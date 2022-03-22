@@ -91,3 +91,7 @@ import Footer from './Footer';
 <h1 align="center">
     Happy Coding 😎
 </h1>
+
+## confused?
+
+follow this [link](https://airbnb.io/javascript/react/)
