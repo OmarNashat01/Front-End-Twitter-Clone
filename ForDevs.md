@@ -7,8 +7,8 @@
 * each component must have one responsibilty only ***for easier debugging and integration***  
 * each section and page from the website must have preferably its own folder
 * the App.jsx sould remain as clean as possible "ie: don't edit in it before asking beforehand"
+* for responsive layouts use Bootstarap grid
 * ***organise your code as much as possible***
-
 
 ## Styling guide
 
