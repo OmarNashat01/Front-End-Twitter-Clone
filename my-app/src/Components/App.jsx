@@ -1,7 +1,8 @@
-import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
-  return <div>happy coding 😀😀</div>;
+  return <h1>hello</h1>;
 }
 
 export default App;
