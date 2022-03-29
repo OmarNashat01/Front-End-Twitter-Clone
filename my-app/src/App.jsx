@@ -3,7 +3,17 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 
 function App() {
-  return <Sidebar />;
+  return (
+    <div className=" container-fluid">
+      <div className=" row">
+        <div className="main-screen col col-md-3 col-lg-4 col-sm-3 sticky-top">
+          <Sidebar />
+        </div>
+        <div className="col col-md-6 col-lg-4 col-sm-6">column</div>
+        <div className="col col-md-3 col-lg-4 col-sm-3">Column</div>
+      </div>
+    </div>
+  );
 }
 
 export default App;

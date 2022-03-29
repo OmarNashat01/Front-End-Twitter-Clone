@@ -1,0 +1,20 @@
+.nav-item {
+  text-align: right;
+  /* margin-left: 75%; */
+
+  padding: 50px 0 50px 50px;
+}
+.navbar-logo {
+  text-align: left;
+  margin-left: auto;
+  width: 29%;
+}
+
+/* tweet button */
+.tweet-btn {
+  height: 50px;
+}
+
+.container-fluid {
+  /* position: fixed; */
+}
