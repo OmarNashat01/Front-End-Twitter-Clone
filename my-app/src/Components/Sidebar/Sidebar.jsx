@@ -10,7 +10,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 function Sidebar() {
   return (
-    <div className="container-fluid position-sticky ">
+    <div className="container-fluid  flex-column position-sticky ">
       <ul className="item-list nav nav-pills flex-column mb-auto vh-100 ">
         <li className="navbar-logo ">
           {/* LOGO */}
