@@ -21,7 +21,8 @@ button:hover {
 } */
 
 .float-parent-element {
-  width: 50%;
+  width: 50% ;
+  
 }
 .float-child-element {
   float: left;
