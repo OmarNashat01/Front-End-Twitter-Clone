@@ -58,9 +58,46 @@
   justify-content: center;
   align-items: center;
 }
+.headline{
+  margin-top: 30px;
+}
+.nameArea{
+  margin-top: 30px;
+}
+.signupButton{
+  margin-bottom: 20px;
+}
+.datePicker{
+  margin-top: 40px;
+}
+.signupPutton{
+  margin-top: 70px;
+}
 .putInCenter {
   text-align: center;
 }
+
 .update-ptn {
   width: 100%;
+}
+.datePicker{
+  margin: 20px 0;
+  /* display: block; */
+}
+
+.month{
+  width: 50%;
+  height: 50px;
+  margin: 2px;
+
+}
+.day{
+  width: 23%;
+  height: 50px;
+  margin: 2px;
+}
+.year{
+  width: 23%;
+  height: 50px;
+  margin: 2px;
 }
