@@ -1,0 +1,9 @@
+.bio {
+    font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    margin: 10px 5px;
+    padding: 0 16px 16px 16px;
+    max-width: 468px;
+}
