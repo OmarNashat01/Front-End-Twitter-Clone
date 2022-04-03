@@ -16,7 +16,8 @@ function SignUp(props){
           <h3>Create an account with twitter</h3>
 
           <input className="inputTxt" type={"text"} placeholder="Name"></input>
-          <input className="inputTxt" type={"password"} placeholder="Phone or Email"></input>
+          <input className="inputTxt" type={"text"} placeholder="Phone or Email"></input>
+          <input className="inputTxt" type={"password"} placeholder="Password"></input>
           <h6>Date of birth</h6>
           <p>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
 

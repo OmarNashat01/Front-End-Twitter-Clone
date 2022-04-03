@@ -38,6 +38,10 @@ function SignIn(props){
           <button type="button" class="btn btn-light">
             Forget Password
           </button>
+
+          <button type="button" class="btn btn-light">
+            Login as admin
+          </button>
         </div>
 
         {props.children}
