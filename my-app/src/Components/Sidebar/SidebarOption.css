@@ -1,9 +1,10 @@
-button {
+/* MARK enta mehtag tedi className el button da mebawaz el denya */
+.button {
   padding: 0px 0px !important;
   width: 200px !important;
   margin: auto 0 !important;
 }
-button:hover {
+.button:hover {
   background-color: rgba(18, 102, 241, 0.5);
 }
 .nav-option {
