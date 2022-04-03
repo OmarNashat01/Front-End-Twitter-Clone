@@ -3,8 +3,27 @@ import ReactDom from "react-dom";
 import "./popup.css"
 
 
+var userFN;
+var loginCred;
+var passwordKey;
+var month;
+var day;
+var year;
 
-//main
+function triggerInputs(){
+  userFN = document.getElementById('userFullName');
+  loginCred = document.getElementById('phoneOrEmail');
+  passwordKey = document.getElementById('passwordArea');
+  month = document.getElementById('selectedMonth');
+  day = document.getElementById('selectedDay');
+  year = document.getElementById('selectedYear');
+  alert(userFN.value);
+  alert(loginCred.value);
+  alert(passwordKey.value);
+  alert(year.value);
+}
+
+//main function
 function SignUp(props){
   return (props.trigger) ? ( 
     <div className="signUp">
@@ -18,13 +37,13 @@ function SignUp(props){
             
           <h3 className="headline">Create an account with twitter</h3>
 
-          <input className="inputTxt signupButton nameArea" type={"text"} placeholder="Name"></input>
-          <input className="inputTxt signupButton" type={"text"} placeholder="Phone or Email"></input>
-          <input className="inputTxt signupButton" type={"password"} placeholder="Password"></input>
+          <input className="inputTxt signupButton nameArea" id="userFullName" type={"text"} placeholder="Name"></input>
+          <input className="inputTxt signupButton" id="phoneOrEmail" type={"text"} placeholder="Phone or Email"></input>
+          <input className="inputTxt signupButton" id="passwordArea" type={"password"} placeholder="Password"></input>
           <h6 className="datePicker">Date of birth</h6>
           {/* <p>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p> */}
 
-          <select name="Month" className="datePicker month">
+          <select name="Month" className="datePicker month" id="selectedMonth">
               <option value={""} disabled selected>Month</option>
               <option value="January">January</option>
               <option value="February">February</option>
@@ -39,7 +58,7 @@ function SignUp(props){
               <option value="November">November</option>
               <option value="December">December</option>
           </select>
-          <select name="Day" className="datePicker day">
+          <select name="Day" className="datePicker day" id="selectedDay">
               <option value={""} disabled selected>Day</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -75,7 +94,7 @@ function SignUp(props){
               <option value="31">31</option>
 
           </select>
-          <select name="Year" className="datePicker year">
+          <select name="Year" className="datePicker year" id="selectedYear">
               <option value={""} disabled selected>Year</option>
               <option value="2007">2007</option>
               <option value="2006">2006</option>
@@ -139,7 +158,7 @@ function SignUp(props){
 
 
 
-          <button type="button" class="btn btn-light update-ptn signupPutton">
+          <button type="button" class="btn btn-light update-ptn signupPutton" onClick={()=>triggerInputs()} >
             Next
           </button>
 
