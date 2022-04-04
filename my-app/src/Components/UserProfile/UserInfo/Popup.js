@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import React from 'react';
-import './Popup.css';
+import "./Popup.css";
 import Modal from 'react-bootstrap/Modal';
 import ModalDialog from 'react-bootstrap/ModalDialog';
 import ModalHeader from 'react-bootstrap/ModalHeader';
@@ -20,7 +20,8 @@ function Popup(props) {
         <
         div className = "popupin" >
         <
-        CloseButton onClick = {
+        CloseButton className = "inner1"
+        onClick = {
             () => props.setTrigger(false)
         }
         / > <
