@@ -2,7 +2,6 @@
   padding: 0px 0px !important;
   width: 200px !important;
   margin: auto 0 !important;
- 
 }
 .nav-button:hover {
   background-color: rgba(18, 102, 241, 0.5);
@@ -11,8 +10,6 @@
 {
   outline: 0px !important  ;
 }
-
-
 .nav-button-small {
   padding: 0px 0px !important;
   width: 50px !important;
@@ -22,7 +19,6 @@
 .nav-button-small:hover {
   background-color: rgba(13,110,253,0.5);
 }
-
 .nav-option {
   text-align: right;
 
@@ -39,7 +35,6 @@
 
 .float-parent-element {
   width: 50% ;
-  
 }
 .float-child-element {
   float: left;
