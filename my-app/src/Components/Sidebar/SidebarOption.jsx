@@ -19,7 +19,7 @@ function SidebarOption(props) {
     <button
       type="button"
       onClick={test}
-      className=" btn nav-option rounded-pill float-parent-element "
+      className=" btn nav-option rounded-pill float-parent-element nav-button "
       data-mdb-ripple-color="light"
     >
       <div className="  float-child-element left-child">
