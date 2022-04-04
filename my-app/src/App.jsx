@@ -3,6 +3,10 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import TestComponent from "./Components/Sidebar/TestComponent";
 
+// FEEDS
+
+import HomeFeed from "./Components/HomeFeed/HomeFeed";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,7 +20,7 @@ function App() {
 
           <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
             <Routes>
-              <Route path="/home" element={<TestComponent name="home" />} />
+              <Route path="/home" element={<HomeFeed />} />
               <Route
                 path="/explore"
                 element={<TestComponent name="explore" />}
