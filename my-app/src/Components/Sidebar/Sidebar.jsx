@@ -19,23 +19,39 @@ function Sidebar() {
 
         <li className="nav-item text-lg-end text-start">
           {/* HOME */}
-          <SidebarOption tabName="Home" pageRoute="/" />
+          <SidebarOption tabName="Home" pageRoute="/home" tabIcon="HomeIcon" />
         </li>
         <li className="nav-item text-lg-end text-start">
           {/* EXPLORE */}
-          <SidebarOption tabName="Explore" pageRoute="/explore" />
+          <SidebarOption
+            tabName="Explore"
+            pageRoute="/explore"
+            tabIcon="TagIcon"
+          />
         </li>
         <li className="nav-item text-lg-end text-start">
           {/* NOTIFICATIONS */}
-          <SidebarOption tabName="Notifications" pageRoute="/notifications" />
+          <SidebarOption
+            tabName="Notifications"
+            pageRoute="/notifications"
+            tabIcon="NotificationsIcon"
+          />
         </li>
         <li className="nav-item text-lg-end text-start">
           {/* BOOKMARKS */}
-          <SidebarOption tabName="Bookmarks" pageRoute="/bookmarks" />
+          <SidebarOption
+            tabName="Bookmarks"
+            pageRoute="/bookmarks"
+            tabIcon="BookmarkIcon"
+          />
         </li>
         <li className="nav-item text-lg-end text-start">
           {/* PROFILE */}
-          <SidebarOption tabName="Profile" pageRoute="/profile" />
+          <SidebarOption
+            tabName="Profile"
+            pageRoute="/profile"
+            tabIcon="PersonIcon"
+          />
         </li>
         <li className="nav-item text-lg-end text-start">
           {/* TWEET BUTTON*/}

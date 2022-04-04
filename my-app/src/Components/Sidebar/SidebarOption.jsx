@@ -11,6 +11,14 @@ import PersonIcon from "@mui/icons-material/Person";
 //NAVIGATION
 import { useNavigate } from "react-router-dom";
 
+const icons = {};
+icons["TwitterIcon"] = <TwitterIcon />;
+icons["HomeIcon"] = <HomeIcon />;
+icons["TagIcon"] = <TagIcon />;
+icons["NotificationsIcon"] = <NotificationsIcon />;
+icons["BookmarkIcon"] = <BookmarkIcon />;
+icons["PersonIcon"] = <PersonIcon />;
+
 function SidebarOption(props) {
   let navigate = useNavigate();
 
@@ -28,7 +36,7 @@ function SidebarOption(props) {
         data-mdb-ripple-color="light"
       >
         <div className="  float-child-element left-child ">
-          <HomeIcon />
+          {icons[props.tabIcon]}
         </div>
         <div className=" tab-text  float-child-element d-none d-lg-block d-xl-block">
           {props.tabName}
@@ -43,7 +51,7 @@ function SidebarOption(props) {
         className=" nav-button-small btn nav-option rounded-pill float-parent-element  d-sm-inline d-xs-inline d-md-inline d-lg-none text-center"
         data-mdb-ripple-color="light"
       >
-        <HomeIcon />
+        {icons[props.tabIcon]}
       </button>
     </div>
   );

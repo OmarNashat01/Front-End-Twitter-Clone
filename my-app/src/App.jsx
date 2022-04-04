@@ -16,7 +16,7 @@ function App() {
 
           <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
             <Routes>
-              <Route path="/" element={<TestComponent name="home" />} />
+              <Route path="/home" element={<TestComponent name="home" />} />
               <Route
                 path="/explore"
                 element={<TestComponent name="explore" />}
