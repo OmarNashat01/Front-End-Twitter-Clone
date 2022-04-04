@@ -1,6 +1,8 @@
 // importing react and components
 import React from "react";
+import { useState } from "react";
 import SidebarOption from "./SidebarOption";
+import TweetPopup from "./TweetPopup/TweetPopup";
 
 //importing css file
 import "./Sidebar.css";
@@ -9,6 +11,10 @@ import "./Sidebar.css";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 function Sidebar() {
+  // THE STATE OF THE TWEET POPUP
+
+  const [popupButton, setPopupButton] = useState(false);
+
   return (
     <div className="container-fluid  flex-column position-sticky ">
       <ul className="item-list nav nav-pills flex-column mb-auto vh-100 ">
@@ -58,11 +64,19 @@ function Sidebar() {
           <button className="btn btn-primary  tweet-btn tweet-btn-small  d-md-block d-xl-none d-lg-none rounded-circle text-center">
             Tweet
           </button>
-          <button className="btn btn-primary rounded-pill tweet-btn d-none d-lg-block d-xl-block ">
+          <button
+            className="btn btn-primary rounded-pill tweet-btn d-none d-lg-block d-xl-block "
+            onClick={() => setPopupButton(true)}
+          >
             Tweet
           </button>
         </li>
       </ul>
+      {/* displaying the popup */}
+
+      <TweetPopup trigger={popupButton} setTrigger={setPopupButton}>
+        <h3>my popup</h3>
+      </TweetPopup>
     </div>
   );
 }
