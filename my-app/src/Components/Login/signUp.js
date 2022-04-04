@@ -17,10 +17,11 @@ function triggerInputs(){
   month = document.getElementById('selectedMonth');
   day = document.getElementById('selectedDay');
   year = document.getElementById('selectedYear');
-  alert(userFN.value);
-  alert(loginCred.value);
-  alert(passwordKey.value);
-  alert(year.value);
+  //use alerts for testing
+  //alert(userFN.value);
+  //alert(loginCred.value);
+  //alert(passwordKey.value);
+  //alert(year.value);
 }
 
 //main function
