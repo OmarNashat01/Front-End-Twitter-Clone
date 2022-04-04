@@ -1,0 +1,51 @@
+.nav-button {
+  padding: 0px 0px !important;
+  width: 200px !important;
+  margin: auto 0 !important;
+}
+.nav-button:hover {
+  background-color: rgba(18, 102, 241, 0.5);
+}
+.nav-button:focus
+{
+  outline: 0px !important  ;
+}
+.nav-button-small {
+  padding: 0px 0px !important;
+  width: 50px !important;
+  height: 50px !important;
+  margin: auto 0 !important;
+}
+.nav-button-small:hover {
+  background-color: rgba(13,110,253,0.5);
+}
+.nav-option {
+  text-align: right;
+
+  padding: 20px;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+/* .tab-item {
+  width: fit-content;
+  margin-left: auto;
+} */
+
+.float-parent-element {
+  width: 50% ;
+}
+.float-child-element {
+  float: left;
+  width: 50%;
+}
+.tab-text {
+  width: 50%;
+  text-align: left !important;
+}
+
+.left-child {
+  width: 25%;
+  text-align: end;
+}
