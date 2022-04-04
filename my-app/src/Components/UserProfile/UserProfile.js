@@ -62,7 +62,7 @@ const UserProfile = () => {
         <
         div className = "UserName" >
         SaraAbdo < /div>        <
-        div > @username < /div>    <
+        div className = "UserNamePro" > @username < /div>    <
         Bio > kkk < /Bio>   <
         Button variant = "outline-secondary"
         className = "Btn"
@@ -76,8 +76,8 @@ const UserProfile = () => {
         Popup trigger = { buttonPopup }
         setTrigger = { setButtonPopup } >
         <
-        h3 > Edit Profile < /h3> <
-        /Popup> 
+        h3 > Edit Profile < /h3> < /
+        Popup >
 
         <
         /Col> <

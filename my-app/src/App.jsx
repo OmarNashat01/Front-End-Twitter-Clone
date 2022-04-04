@@ -1,19 +1,10 @@
 import React from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 function App() {
-  return (
-    <div className=" container-fluid">
-      <div className=" row">
-        <div className="main-screen col col-md-3 col-lg-4 col-sm-3 sticky-top">
-          <Sidebar />
-        </div>
-        <div className="col col-md-6 col-lg-4 col-sm-6">column</div>
-        <div className="col col-md-3 col-lg-4 col-sm-3">Column</div>
-      </div>
-    </div>
-  );
+  return <UserProfile />;
 }
 
 export default App;

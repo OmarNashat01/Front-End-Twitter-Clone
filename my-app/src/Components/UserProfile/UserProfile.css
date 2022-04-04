@@ -2,7 +2,14 @@
     font-weight: bold !important;
     position: relative;
     left: 7px;
-    top: -40px;
+    top: -35px;
+}
+
+.UserNamePro {
+    font-weight: inherit !important;
+    position: relative;
+    left: 7px;
+    top: -35px;
 }
 
 .Cover {
@@ -21,7 +28,7 @@
 .Btn {
     position: relative;
     left: 500px;
-    top: -250px;
+    top: -190px;
     border-radius: 25px !important;
     font-weight: bold !important;
     color: black;

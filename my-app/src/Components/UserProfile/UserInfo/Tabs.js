@@ -3,27 +3,31 @@ import react from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import "./Tab.css";
 
 
 const Tabss = () => {
     return ( <
         Tabs className = "mb-3" >
         <
-        Tab title = "Tweets" >
+        Tab title = < div className = "tabs" > Tweets < /div>
+
+
+        >
 
         <
         /Tab> <
-        Tab title = "Tweets&replies" >
+        Tab title = < div className = "tabs" > Tweets & replies < /div> >
 
         <
         /Tab> <
-        Tab title = "Media" >
+        Tab title = < div className = "tabs" > Media < /div> >
 
         <
         /Tab> 
 
         <
-        Tab title = "likes" >
+        Tab title = < div className = "tabs" > Likes < /div> >
 
         <
         /Tab> < /
