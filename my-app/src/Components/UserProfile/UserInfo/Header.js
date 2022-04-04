@@ -17,7 +17,10 @@ const Header = (props) => {
         i class = "bi bi-arrow-left-short" > < /i>
 
         <
-        h3 > Ggj < /h3>  
+        h3 >
+        <
+        ArrowBackOutlinedIcon / >
+        Ggj < /h3>  
 
         <
         p > 365 tweets < /p> < /
