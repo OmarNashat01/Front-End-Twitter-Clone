@@ -8,6 +8,7 @@ import "./Tab.css";
 
 const Tabss = () => {
     return ( <
+        div > <
         Tabs className = "mb-3" >
         <
         Tab title = < div className = "tabs" > Tweets < /div>
@@ -31,7 +32,8 @@ const Tabss = () => {
 
         <
         /Tab> < /
-        Tabs >
+        Tabs > < /div>
+
     );
 };
 export default Tabss;
