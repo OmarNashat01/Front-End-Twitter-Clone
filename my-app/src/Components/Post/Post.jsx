@@ -10,6 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useEffect, useState } from "react";
 import { Dropdown, Row } from 'react-bootstrap';
 import {Container} from 'react-bootstrap/Container'
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 const Post = forwardRef(
   ({ displayName, username, verified, text, image, avatar, isLiked,likes,isRetweet,retweets }, ref) => {
 
@@ -50,7 +51,7 @@ const Post = forwardRef(
       {
         e.currentTarget.classList.add("is-retweet");
         setRetweets(counterRetweets+1);
-        setRetweets1("retweeted");
+        setRetweets1("undo");
         isRetweet = true;
 
       }
@@ -84,28 +85,28 @@ const Post = forwardRef(
           </div>
           <img src={image} alt="" />
           <div className="post__footer">
-            <div className="chat">
-              <ChatBubbleOutlineIcon fontSize="small" />
+            <div className="chat d-flex align-items-center" >
+              <ChatBubbleOutlineIcon fontSize="small"  className="custom-icon"/>
             </div>
-              <Dropdown >
-                <Dropdown.Toggle variant="secondary" id="dropdown-basic" className={isRetweet === 'true' ? 'is-retweet' : 'retweet-icon'}>
-                <RepeatIcon fontSize="small" /><span className="likeCounter" >{counterRetweets}</span>
+              <Dropdown className="d-flex align-items-center" >
+                <Dropdown.Toggle variant="secondary" id="dropdown-basic" className={isRetweet === 'true' ? 'is-retweet d-flex align-items-center' : 'retweet-icon d-flex align-items-center'}>
+                <RepeatIcon fontSize="small" className="custom-icon" /><span className="likeCounter" >{counterRetweets}</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>{textRetweets}</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-            <div className={isLiked === 'true' ? 'is-liked' : 'fav-icon'} onClick={toggleFavColor} >
-              <FavoriteBorderIcon fontSize="small"  /><span className="likeCounter" >{counterLike}</span>
+            <div className={isLiked === 'true' ? 'is-liked d-flex align-items-center' : 'fav-icon d-flex align-items-center'} onClick={toggleFavColor} >
+              <FavoriteBorderIcon fontSize="small" className="custom-icon" /><span className="likeCounter" >{counterLike}</span>
             </div>
-            <div className="publish">
-              <Dropdown>
-                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                  <PublishIcon fontSize="small" />
+            <div className="publish ">
+              <Dropdown className = "d-flex align-items-center">
+                <Dropdown.Toggle className = "d-flex align-items-center" variant="secondary" id="dropdown-basic">
+                  <PublishIcon fontSize="small" className="custom-icon" />
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Bookmark</Dropdown.Item>
+                  <Dropdown.Item href="#/action-1"><BookmarkAddOutlinedIcon/>Bookmark</Dropdown.Item>
          
                 </Dropdown.Menu>
               </Dropdown>
@@ -118,3 +119,5 @@ const Post = forwardRef(
 );
 
 export default Post;
+
+
