@@ -5,7 +5,7 @@ import Tabss from "./UserInfo/Tabs";
 import Button from "react-bootstrap/Button";
 import 'bootstrap/dist/css/bootstrap.css';
 import Header from "./UserInfo/Header";
-import classes from "./UserProfile.css";
+import "./UserProfile.css";
 import Popup from "./UserInfo/Popup";
 import Image from 'react-bootstrap/Image';
 import cov from "../../assets/cov.jpg";
@@ -76,6 +76,7 @@ const UserProfile = () => {
         Popup trigger = { buttonPopup }
         setTrigger = { setButtonPopup } >
         <
+        h3 > Edit Profile < /h3> <
         /Popup> 
 
         <

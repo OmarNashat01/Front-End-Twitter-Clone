@@ -1,5 +1,8 @@
 .UserName {
     font-weight: bold !important;
+    position: relative;
+    left: 7px;
+    top: -40px;
 }
 
 .Cover {
@@ -9,10 +12,17 @@
 }
 
 .ProfilePic {
-    object-position: 2px 4px;
+    position: relative;
+    top: -40px;
+    left: 1px;
     border-radius: 50%;
 }
 
 .Btn {
+    position: relative;
+    left: 500px;
+    top: -250px;
     border-radius: 25px !important;
+    font-weight: bold !important;
+    color: black;
 }

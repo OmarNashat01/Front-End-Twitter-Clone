@@ -1,4 +1,4 @@
-import { Button } from 'bootstrap';
+import Button from "react-bootstrap/Button";
 import React from 'react';
 import './Popup.css';
 import Modal from 'react-bootstrap/Modal';
@@ -18,19 +18,22 @@ function Popup(props) {
         <
         div className = "popup" >
         <
-        div className = "popupin" > < /div>  <
+        div className = "popupin" >
+        <
         CloseButton onClick = {
             () => props.setTrigger(false)
         }
         / > <
-        button className = "inner"
+        Button variant = "outline-secondary"
+        className = "inner"
         onClick = {
             () => props.setTrigger(false)
         } >
-        Save < /button>
+        Save < /Button>
 
         { props.children } <
-        /div>
+        /div>  < /
+        div >
     ) : "";
 }
 
