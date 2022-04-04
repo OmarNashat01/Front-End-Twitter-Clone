@@ -5,8 +5,9 @@
   padding: 7% 0 7% 7%;
 }
 .navbar-logo {
-  text-align: left;
-  margin-left: auto;
+  /* text-align: left;
+  margin-left: auto; */
+  margin-left: 18px;
   width: 29%;
 }
 
@@ -14,12 +15,15 @@
 .tweet-btn {
   height: 50px;
   margin-left: auto !important;
+  width: 40% ;
 }
 .tweet-btn-small
 {
-  width:50px !important;
+  width:60px !important;
+  height: 60px !important;
   margin-right: auto !important;
   margin-left: 0px !important;
+  
 }
 
 .container-fluid {

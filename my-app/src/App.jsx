@@ -10,11 +10,11 @@ function App() {
     <Router>
       <div className=" container-fluid">
         <div className=" row">
-          <div className="main-screen col col-md-3 col-lg-4 col-sm-3 sticky-top">
+          <div className="main-screen col col-md-3 col-lg-4 col-sm-2 col-xs-1 sticky-top">
             <Sidebar />
           </div>
 
-          <div className="col col-md-6 col-lg-4 col-sm-6">
+          <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
             <Routes>
               <Route path="/" element={<TestComponent name="home" />} />
               <Route
