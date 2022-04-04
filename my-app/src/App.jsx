@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import TestComponent from "./Components/Sidebar/TestComponent";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 // FEEDS
 
