@@ -61,7 +61,10 @@ function Sidebar() {
         </li>
         <li className="nav-item text-lg-end text-start">
           {/* TWEET BUTTON*/}
-          <button className="btn btn-primary  tweet-btn tweet-btn-small  d-md-block d-xl-none d-lg-none rounded-circle text-center">
+          <button
+            className="btn btn-primary  tweet-btn tweet-btn-small  d-md-block d-xl-none d-lg-none rounded-circle text-center"
+            onClick={() => setPopupButton(true)}
+          >
             Tweet
           </button>
           <button
