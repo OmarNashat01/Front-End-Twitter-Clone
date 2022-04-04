@@ -24,10 +24,12 @@
     right: 16px;
     border-radius: 25px !important;
     font-weight: bold !important;
-    color: black;
+    color: white;
+    background-color: black;
 }
 
 .inner1 {
     position: absolute;
     top: 8px;
+    color: black;
 }
