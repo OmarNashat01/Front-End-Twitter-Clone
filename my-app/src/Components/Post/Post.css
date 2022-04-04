@@ -1,0 +1,100 @@
+.post {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--twitter-background);
+  padding-bottom: 10px;
+ 
+}
+
+.post__body {
+  flex: 1;
+  padding: 10px;
+}
+
+.post__body > img {
+  border-radius: 20px;
+  width: 100%;
+}
+
+.post__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.post__headerDescription {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.post__headerText > h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.post__badge {
+  font-size: 14px !important;
+  color: var(--twitter-color);
+}
+
+.post__headerSpecial {
+  font-weight: 600;
+  font-size: 12px;
+  color: gray;
+}
+
+.post__avatar {
+  padding: 20px;
+}
+
+.is-liked {
+  cursor: pointer;
+  color: red !important;
+}
+
+.fav-icon:hover {
+  cursor: pointer;
+  color: red !important;
+  transition: 0.2s all ease-in-out;
+}
+.likeCounter{
+  font-size: 80%;
+  
+
+ 
+}
+
+.is-retweet {
+  cursor: pointer;
+  color: green!important;
+}
+
+.retweet-icon:hover {
+  cursor: pointer;
+  color: green !important;
+  transition: 0.2s all ease-in-out;
+}
+
+#dropdown-basic::after {
+  display: none !important;
+}
+
+#dropdown-basic {
+  width: 40px !important;
+  background-color: white;
+  color: black;
+  border-color: white;
+  box-shadow: none;
+
+}
+.custom-icon{
+  width: 30px !important;
+  height: 30px !important;
+  padding: 5px;
+}
+
+.custom-icon:hover{
+  background-color: rgba(255,0,0,0.1);
+  border-radius: 60%;
+  /* margin-right: 4px; */
+}
