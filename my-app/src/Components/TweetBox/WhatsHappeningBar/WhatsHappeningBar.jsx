@@ -15,7 +15,7 @@ export const WhatsHappeningBar = ({ maxChars }) => {
         reducers={extractPlainText}
       >
         <DraftEditor name="editorState" maxChars={maxChars} />
-        <Input type="hidden" name="plainText" />
+        <Input data-testid="tweetinput-1" type="hidden" name="plainText" />
       </Collection>
     </div>
   );

@@ -43,11 +43,11 @@ export const EmojiPicker = ({ disabled }) => {
       >
         <img alt="Add Emoji" src={EmojiSVG} />
       </button>
-      {/* {showEmojiPicker && (
+      {showEmojiPicker && (
         <div className="EmojiPicker__Wrapper">
           <Picker onEmojiClick={onEmojiClick} />
         </div>
-      )} */}
+      )}
     </div>
   );
 };

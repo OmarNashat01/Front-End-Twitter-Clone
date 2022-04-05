@@ -8,15 +8,18 @@ import { CharacterCounter } from "./CharacterCounter/CharacterCounter";
 import { Container,Row,Col } from 'react-bootstrap';
 import "./TweetBox.css";
 
+
 const MAX_CHARS_ALLOWED = 280;
-export default function TweetBox() {
+export default function TweetBox({
+  avatar = "https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg"
+}) {
   return (
     
-    <div className="tweetBox">
+    <div className="tweetBox" data-testid="tweetbox-1" >
       <Container >
         <Row  >
           <Col xs={2}>
-            <img className="tweetBox__imageInput" src="https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg" alt=''/>
+            <img className="tweetBox__imageInput" src={avatar} alt=''/>
           </Col>
           <Col xs={10} md={10}>
             <Form onSubmit={onSubmit}>
@@ -32,6 +35,7 @@ export default function TweetBox() {
                   <Submit />
                 </div>
               </div>
+              
               {/* form state viewer - debug only */}
               {/* <ReactJsonViewer /> */}
             </Form>
