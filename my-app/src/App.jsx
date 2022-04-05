@@ -11,6 +11,8 @@ import HomeFeed from "./Components/HomeFeed/HomeFeed";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import TweetBox from "./Components/TweetBox/TweetBox";
+
 function App() {
   return (
     <Router>
