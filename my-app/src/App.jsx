@@ -35,10 +35,7 @@ function App() {
                 path="/bookmarks"
                 element={<TestComponent name="bookmarks" />}
               />
-              <Route
-                path="/profile"
-                element={<UserProfile />}
-              />
+              <Route path="/profile" element={<UserProfile />} />
             </Routes>
           </div>
         </div>
