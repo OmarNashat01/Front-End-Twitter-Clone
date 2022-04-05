@@ -26,7 +26,6 @@
   margin: 0px;
   color: rgb(217, 217, 217);
   width: 100%;
-  
 }
 .container {
   padding: 0px;
@@ -103,10 +102,10 @@
 /* ---------------------------------- */
 
 .updatedBtn {
-  display: block;
-  border-radius: 360px;
-  margin: 20px 0px 5px;
-  width: 300px;
+  display: block !important;
+  border-radius: 360px !important;
+  margin: 20px 0px 5px !important;
+  width: 300px !important;
 }
 .icon-img {
   padding-right: 6px;

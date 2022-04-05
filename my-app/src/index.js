@@ -5,4 +5,4 @@ import App from "./App";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import Login from "./Components/Login/login";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Login />, document.getElementById("root"));
