@@ -3,7 +3,7 @@ import Sidebar from "../Sidebar";
 import "@testing-library/jest-dom";
 import { Route, Router, Routes } from "react-router";
 
-it("home button redirects to home", () => {
+it("Tweet button opens popup", () => {
   render(
     <div>
       <Router>
