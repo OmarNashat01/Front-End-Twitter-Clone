@@ -159,7 +159,7 @@ function SignUp(props){
 
 
 
-          <button type="button" class="btn btn-light update-ptn signupPutton" onClick={()=>triggerInputs()} >
+          <button type="button" class="updatedBtn btn btn-light update-ptn signupPutton" onClick={()=>triggerInputs()} >
             Next
           </button>
 

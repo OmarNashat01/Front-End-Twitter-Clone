@@ -5,7 +5,7 @@ const CurrentYera = today.getFullYear();
 
 function Footer() {
   return (
-    <footer className="login-footer">
+    <footer className="loginFotter">
       <a className="footer-links" href="">
         About
       </a>

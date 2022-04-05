@@ -3,6 +3,7 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
+// import Login from "./Components/Login/login";
 
 // FEEDS
 
@@ -36,7 +37,7 @@ function App() {
               />
               <Route
                 path="/profile"
-                element={<TestComponent name="profile" />}
+                element={<UserProfile />}
               />
             </Routes>
           </div>
