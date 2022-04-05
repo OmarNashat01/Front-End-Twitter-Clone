@@ -24,11 +24,16 @@ function App() {
 
           <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
             <Routes>
-              <Route path="/home" element={<HomeFeed />} />
               <Route
-                path="/explore"
-                element={<TestComponent name="explore" />}
+                path="/home"
+                element={
+                  <div>
+                    <TweetBox />
+                    <HomeFeed />
+                  </div>
+                }
               />
+              <Route path="/explore" element={<HomeFeed />} />
               <Route
                 path="/notifications"
                 element={<TestComponent name="notification" />}
@@ -37,7 +42,15 @@ function App() {
                 path="/bookmarks"
                 element={<TestComponent name="bookmarks" />}
               />
-              <Route path="/profile" element={<UserProfile />} />
+              <Route
+                path="/profile"
+                element={
+                  <div>
+                    <UserProfile />
+                    <HomeFeed />
+                  </div>
+                }
+              />
             </Routes>
           </div>
         </div>

@@ -10,7 +10,7 @@ const Header = (props) => {
     <Navbar bg="light">
       <Container>
         <Navbar.Brand href="#home">
-          <i class="bi bi-arrow-left-short"> </i>
+          <i className="bi bi-arrow-left-short"> </i>
           <h3>
             <ArrowBackOutlinedIcon />
             Ggj{" "}

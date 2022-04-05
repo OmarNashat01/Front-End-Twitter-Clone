@@ -15,7 +15,7 @@ import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-console.log("classes");
+// console.log("classes");
 const UserProfile = () => {
   const [buttonPopup, setButtonPopup] = useState(false);
   return (

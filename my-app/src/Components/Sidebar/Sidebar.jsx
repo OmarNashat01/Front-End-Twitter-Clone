@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import SidebarOption from "./SidebarOption";
 import TweetPopup from "./TweetPopup/TweetPopup";
+import TweetBox from "../TweetBox/TweetBox";
 
 //importing css file
 import "./Sidebar.css";
@@ -78,7 +79,7 @@ function Sidebar() {
       {/* displaying the popup */}
 
       <TweetPopup trigger={popupButton} setTrigger={setPopupButton}>
-        <h3>my popup</h3>
+        <TweetBox />
       </TweetPopup>
     </div>
   );
