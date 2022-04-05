@@ -11,19 +11,19 @@ import CloseButton from "react-bootstrap/CloseButton";
 
 function Popup(props) {
   return props.trigger ? (
-    <div className="popup">
-      <div className="popupin">
+    <div className="popupProfile">
+      <div className="popupinProfile">
         <CloseButton
-          className="inner1"
+          className="innerPro1"
           onClick={() => props.setTrigger(false)}
         />{" "}
         <Button
           variant="outline-secondary"
-          className="inner"
+          className="innerPro"
           onClick={() => props.setTrigger(false)}
         >
           Save{" "}
-        </Button>
+        </Button>{" "}
         {props.children}{" "}
       </div>{" "}
     </div>
