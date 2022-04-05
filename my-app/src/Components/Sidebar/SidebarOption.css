@@ -1,11 +1,11 @@
-button {
+/* button {
   padding: 0px 0px !important;
   width: 200px !important;
   margin: auto 0 !important;
 }
 button:hover {
   background-color: rgba(18, 102, 241, 0.5);
-}
+} */
 .nav-option {
   text-align: right;
 
