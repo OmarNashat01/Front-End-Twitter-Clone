@@ -1,5 +1,7 @@
 
+
 .nav-button {
+
 
 
   padding: 0px 0px !important;
@@ -11,6 +13,7 @@
 .nav-button:hover {
 
   background-color: rgba(18, 102, 241, 0.5);
+
 }
 .nav-button:focus
 {
@@ -25,6 +28,7 @@
 .nav-button-small:hover {
   background-color: rgba(13,110,253,0.5);
 }
+
 .nav-option {
   text-align: right;
 
