@@ -11,20 +11,20 @@ function RightHalf() {
     <div className="RightHalf">
 
     
-      <i class="fa-brands fa-twitter"></i>
+      <i className="fa-brands fa-twitter"></i>
 
       <h1 className="h1-for-login">Happening now</h1>
 
 
       <p className="Join-Twitter-today">Join Twitter today.</p>
 
-      <button type="button" class="btn btn-light">
-      <img className="icon-img" src="https://img.icons8.com/color/20/000000/google-logo.png"/>
+      <button type="button" className="updatedBtn btn btn-light">
+      <img className="icon-img" src="https://img.icons8.com/color/20/000000/google-logo.png" alt="google img"/>
       Sign up with Google
       </button>
-      <button type="button" class="btn btn-light">
-        <i class="bi bi-apple"></i>
-        <img className="icon-img" src="https://img.icons8.com/ios-glyphs/20/000000/mac-os.png"/>
+      <button type="button" className="updatedBtn btn btn-light">
+        <i className="bi bi-apple"></i>
+        <img className="icon-img" src="https://img.icons8.com/ios-glyphs/20/000000/mac-os.png" alt="mac icon" />
         Sign up with Apple
       </button>
 
@@ -32,7 +32,7 @@ function RightHalf() {
         <div className="or"> or </div>
       </div>
 
-      <button type="button" class="btn btn-primary signUp-btn" onClick={() => setButtonSignUp(true)} >
+      <button type="button" className="updatedBtn btn btn-primary signUp-btn" onClick={() => setButtonSignUp(true)} >
         Sign up with phone or email
 
       </button>
@@ -47,7 +47,7 @@ function RightHalf() {
       </p>
       <p className="Already-have-an-account">Already have an account?</p>
 
-      <button type="button" class="btn btn-primary black-btn" onClick={() => setButtonPopup(true)}>
+      <button type="button" className="updatedBtn btn btn-primary black-btn" onClick={() => setButtonPopup(true)}>
       Sign in
       </button>
       <SignIn trigger={buttonPopup} setTrigger = {setButtonPopup}>

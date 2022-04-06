@@ -1,5 +1,5 @@
 import React from "react";
-// import "./SidebarOption.css";
+import "./SidebarOption.css";
 // MATERIAL UI ICONS
 import TwitterIcon from "@mui/icons-material/Twitter";
 import HomeIcon from "@mui/icons-material/Home";
@@ -26,6 +26,7 @@ function SidebarOption(props) {
     // optionIcon->the name of the used icon
     // optionName->the text displayed beside it
     //pageRoute->route of the targeted page
+
     <div>
       <button
         type="button"
