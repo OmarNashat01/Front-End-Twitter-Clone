@@ -5,21 +5,23 @@ import { WhatsHappeningBar } from "./WhatsHappeningBar/WhatsHappeningBar";
 import { UploadMediaBar } from "./UploadMediaBar/UploadMediaBar";
 import { Submit } from "./Submit/Submit";
 import { CharacterCounter } from "./CharacterCounter/CharacterCounter";
-import { Container,Row,Col } from 'react-bootstrap';
+import { Container, Row, Col } from "react-bootstrap";
 import "./TweetBox.css";
-
 
 const MAX_CHARS_ALLOWED = 280;
 export default function TweetBox({
-  avatar = "https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg"
+  avatar = "https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg",
 }) {
   return (
-    
-    <div className="tweetBox" data-testid="tweetbox-1" >
-      <Container >
-        <Row  >
+    <div className="tweetBox" data-testid="tweetbox-1">
+      <Container>
+        <Row>
           <Col xs={2}>
-            <img className="tweetBox__imageInput" src={avatar} alt=''/>
+            <img
+              className="tweetBox__imageInput"
+              src={avatar}
+              alt="UserImage"
+            />
           </Col>
           <Col xs={10} md={10}>
             <Form onSubmit={onSubmit}>
@@ -35,7 +37,7 @@ export default function TweetBox({
                   <Submit />
                 </div>
               </div>
-              
+
               {/* form state viewer - debug only */}
               {/* <ReactJsonViewer /> */}
             </Form>
@@ -43,9 +45,8 @@ export default function TweetBox({
         </Row>
       </Container>
     </div>
-  )
+  );
 }
-
 
 async function onSubmit(state) {
   // make an API call
