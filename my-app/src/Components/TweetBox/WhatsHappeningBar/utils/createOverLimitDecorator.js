@@ -1,6 +1,8 @@
 import React from "react";
 
 export const createOverLimitDecorator = (maxChars) => {
+
+  
   function overLimitStrategy(contentBlock, callback) {
     const text = contentBlock.getText();
     const { length } = text;
