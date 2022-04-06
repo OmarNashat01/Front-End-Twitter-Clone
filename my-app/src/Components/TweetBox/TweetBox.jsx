@@ -19,7 +19,7 @@ export default function TweetBox({
       <Container >
         <Row  >
           <Col xs={2}>
-            <img className="tweetBox__imageInput" src={avatar} alt=''/>
+            <img className="tweetBox__imageInput" src={avatar} alt='UserImage'/>
           </Col>
           <Col xs={10} md={10}>
             <Form onSubmit={onSubmit}>

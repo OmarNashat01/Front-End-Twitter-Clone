@@ -35,11 +35,12 @@ export const ProgressRingBar = ({
             style={{ strokeDashoffset }}
             cx={radius}
             cy={radius}
+            data-testid="circle-test"
           />
         </g>
       )}
       {textLabel && (
-        <text fill={colorBar} x="50%" y="50%" textAnchor="middle" dy=".3em">
+        <text fill={colorBar} x="50%" y="50%" textAnchor="middle" dy=".3em" data-testid="warningcounter-test">
           {textLabel}
         </text>
       )}
