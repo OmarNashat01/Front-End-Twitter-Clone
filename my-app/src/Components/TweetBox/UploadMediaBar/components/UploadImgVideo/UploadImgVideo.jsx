@@ -1,13 +1,13 @@
 import React from "react";
 import { Input } from "usetheform";
 import UpladImgSVG from "./../../../../../assets/uploadimages.svg";
-import "./UploadImgVideo.css";
+import UploadImgVideoCSS from"./UploadImgVideo.module.css";
 
 export const UploadImgVideo = ({ disabled }) => {
   return (
     <label
       data-disabled={disabled}
-      className="UploadMediaBar__Input"
+      className={UploadImgVideoCSS.UploadMediaBar__Input}
       htmlFor="media"
     >
       <img alt="Upload" src={UpladImgSVG} />

@@ -3,6 +3,9 @@ import { composeDecorators } from "./utils/composeDecorators";
 import { useField } from "usetheform";
 import { Editor, EditorState } from "draft-js";
 
+import WhatsHappeningBarCSS from "./WhatsHappeningBar.module.css";
+import "./DraftEditor.css";
+
 
 export const DraftEditor = ({ maxChars, name = "editorState" }) => {
 //   What is useMemo? 
@@ -46,7 +49,7 @@ export const DraftEditor = ({ maxChars, name = "editorState" }) => {
   
 
   return (
-    <div className="Editor">
+    <div className={WhatsHappeningBarCSS.Editor}>
       <Editor
         ref={refEditor}
         editorState={value}

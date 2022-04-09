@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "usetheform";
-import "./Submit.css";
+import SubmitCSS from "./Submit.module.css";
 
 export const Submit = () => {
 
@@ -13,7 +13,7 @@ export const Submit = () => {
     <button
       disabled={!isValid || pristine || isEmpty}
       type="submit"
-      className="Submit"
+      className={SubmitCSS.Submit}
     >
       <span>Tweet</span>
     </button>

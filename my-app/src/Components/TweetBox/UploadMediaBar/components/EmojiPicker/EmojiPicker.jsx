@@ -3,7 +3,7 @@ import { useSelector } from "usetheform";
 import { EditorState, Modifier } from "draft-js";
 import EmojiSVG from "./../../../../../assets/emojipicker.svg";
 import Picker from "emoji-picker-react";
-import "./EmojiPicker.css";
+import EmojiPickerCSS from "./EmojiPicker.module.css";
 
 export const EmojiPicker = ({ disabled }) => {
   const [showEmojiPicker, togglePicker] = useState(() => false);
@@ -34,17 +34,17 @@ export const EmojiPicker = ({ disabled }) => {
   });
 
   return (
-    <div ref={refPicker} className="EmojiPicker">
+    <div ref={refPicker} className={EmojiPickerCSS.EmojiPicker}>
       <button
         disabled={disabled}
         type="button"
-        className="EmojiPicker__Btn"
+        className={EmojiPickerCSS.EmojiPicker__Btn}
         onClick={toggleEmojiPicker}
       >
         <img alt="Add Emoji" src={EmojiSVG} />
       </button>
       {showEmojiPicker && (
-        <div className="EmojiPicker__Wrapper">
+        <div className={EmojiPickerCSS.EmojiPicker__Wrapper}>
           <Picker onEmojiClick={onEmojiClick} />
         </div>
       )}
