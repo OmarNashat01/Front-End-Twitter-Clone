@@ -26,6 +26,7 @@ function SidebarOption(props) {
     // optionIcon->the name of the used icon
     // optionName->the text displayed beside it
     //pageRoute->route of the targeted page
+
     <div>
       <button
         type="button"
