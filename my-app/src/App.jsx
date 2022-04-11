@@ -19,7 +19,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import TweetBox from "./Components/TweetBox/TweetBox";
 
 function App() {
-  var page = 0;
+  var page = 1;
 
   if (page === 0) {
     return <Login />;
