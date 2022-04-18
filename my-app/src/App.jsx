@@ -17,6 +17,7 @@ import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import TweetBox from "./Components/TweetBox/TweetBox";
+import SearchBar from "./Components/SearchBar/SearchBar";
 
 function App() {
   var page = 0;

@@ -5,8 +5,8 @@ import { WhatsHappeningBar } from "./WhatsHappeningBar/WhatsHappeningBar";
 import { UploadMediaBar } from "./UploadMediaBar/UploadMediaBar";
 import { Submit } from "./Submit/Submit";
 import { CharacterCounter } from "./CharacterCounter/CharacterCounter";
-import { Container, Row, Col } from "react-bootstrap";
-import "./TweetBox.css";
+import { Container,Row,Col } from 'react-bootstrap';
+import TweetboxCSS from "./TweetBox.module.css";
 
 const MAX_CHARS_ALLOWED = 280;
 export default function TweetBox({
@@ -28,12 +28,12 @@ export default function TweetBox({
               <WhatsHappeningBar maxChars={MAX_CHARS_ALLOWED} />
               {/* <Preview /> */}
               {/* <PrivacyPicker /> */}
-              <span className="thematicBreak" />
-              <div className="actionBar">
+              <span className={TweetboxCSS.thematicBreak} />
+              <div className={TweetboxCSS.actionBar}>
                 <UploadMediaBar />
-                <div className="actionBar__Submit">
+                <div className={TweetboxCSS.actionBar__Submit}>
                   <CharacterCounter maxChars={MAX_CHARS_ALLOWED} />
-                  <span className="thematicBreakVertical" />
+                  <span className={TweetboxCSS.thematicBreakVertical} />
                   <Submit />
                 </div>
               </div>

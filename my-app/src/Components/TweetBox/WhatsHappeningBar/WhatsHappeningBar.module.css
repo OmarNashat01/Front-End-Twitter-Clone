@@ -18,11 +18,7 @@
   background-color: #fd9bb0;
 }
 
-.public-DraftEditorPlaceholder-root {
-  z-index: -1;
-  position: absolute;
-  font-family:"Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  opacity: 1; /* Firefox */
-  color: grey;
-}
+
+
+
 
