@@ -6,7 +6,7 @@ export const ProgressRingBar = ({
   radius = 20,
   stroke = 2,
   progress = 0,
-  hideRingBar
+  hideRingBar,
 }) => {
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
@@ -40,7 +40,14 @@ export const ProgressRingBar = ({
         </g>
       )}
       {textLabel && (
-        <text fill={colorBar} x="50%" y="50%" textAnchor="middle" dy=".3em" data-testid="warningcounter-test">
+        <text
+          fill={colorBar}
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dy=".3em"
+          data-testid="warningcounter-test"
+        >
           {textLabel}
         </text>
       )}
