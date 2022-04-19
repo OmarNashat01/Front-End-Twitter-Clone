@@ -1,18 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-/*----------------------------- root ---------------------------*/
-body {
-  background-color: black;
-  color: rgb(217, 217, 217);
-  margin: 0px;
-  padding: 0px;
-}
+
+
 
 /*--------------------------------------------------------------*/
-footer {
+.loginFotter {
   width: 100%;
   padding-top: 10px;
   text-align: center;
@@ -31,9 +21,10 @@ footer {
 }
 .HomePage {
   /* display: flex; */
+  background-color: black;
   padding: 0px;
   margin: 0px;
-
+  color: rgb(217, 217, 217);
   width: 100%;
 }
 .container {
@@ -110,11 +101,11 @@ footer {
 
 /* ---------------------------------- */
 
-.btn {
-  display: block;
-  border-radius: 360px;
-  margin: 20px 0px 5px;
-  width: 300px;
+.updatedBtn {
+  display: block !important;
+  border-radius: 360px !important;
+  margin: 20px 0px 5px !important;
+  width: 300px !important;
 }
 .icon-img {
   padding-right: 6px;
