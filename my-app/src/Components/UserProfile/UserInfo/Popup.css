@@ -1,4 +1,4 @@
-.popup {
+.popupProfile {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.popupin {
+.popupinProfile {
     position: relative;
     padding: 32px;
     width: 100%;
@@ -18,7 +18,7 @@
     background-color: white;
 }
 
-.inner {
+.innerPro {
     position: absolute;
     top: 16px;
     right: 16px;
@@ -28,7 +28,7 @@
     background-color: black;
 }
 
-.inner1 {
+.innerPro1 {
     position: absolute;
     top: 8px;
     color: black;

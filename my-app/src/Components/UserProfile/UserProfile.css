@@ -25,10 +25,11 @@
     border-radius: 50%;
 }
 
-.Btn {
+
+.edit-button {
     position: relative;
-    left: 500px;
-    top: -190px;
+    left: 75%;
+    bottom: 200px;
     border-radius: 25px !important;
     font-weight: bold !important;
     color: black;

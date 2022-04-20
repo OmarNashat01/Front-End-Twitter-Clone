@@ -1,0 +1,20 @@
+
+.search__input {
+display: flex;
+align-items: center;
+background-color: #e6ecf0;
+padding: 10px;
+border-radius: 20px;
+margin-top: 10px;
+}
+
+.search__inputtext {
+border: none;
+outline: none;
+background-color: #e6ecf0;
+}
+
+.search__searchIcon {
+color: gray;
+}
+
