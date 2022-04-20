@@ -17,10 +17,10 @@ import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import TweetBox from "./Components/TweetBox/TweetBox";
-import SearchBar from "./Components/SearchBar/SearchBar";
+import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
 function App() {
-  var page = 0;
+  var page = 1;
 
   if (page === 0) {
     return <Login />;
@@ -29,23 +29,28 @@ function App() {
   if (page === 1) {
     return (
       <Router>
-        <div className=" container-fluid">
-          <div className=" row">
-            <div className="main-screen col col-md-3 col-lg-4 col-sm-2 col-xs-1 sticky-top">
-              <Sidebar />
-            </div>
-
-            <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+  
               <Routes>
                 <Route
                   path="/home"
                   element={
-                    <div>
-                      <TweetBox />
-                      <HomeFeed />
+                    <div className=" container-fluid">
+                      <div className="row">
+                        <div className="main-screen col col-md-3 col-lg-4 col-sm-2 col-xs-1 sticky-top">
+                          <Sidebar />
+                        </div>
+                        <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                          <TweetBox />
+                          <HomeFeed />
+                        </div>
+                        <div className="col col-md-3 col-lg-3 col-sm-3">
+                           <Widgetbar />  
+                        </div>
+                     </div>
                     </div>
                   }
                 />
+                
                 <Route path="/explore" element={<HomeFeed />} />
                 <Route
                   path="/notifications"
@@ -65,9 +70,6 @@ function App() {
                   }
                 />
               </Routes>
-            </div>
-          </div>
-        </div>
       </Router>
     );
   }

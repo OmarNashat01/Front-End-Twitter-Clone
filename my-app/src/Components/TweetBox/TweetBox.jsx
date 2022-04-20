@@ -18,7 +18,7 @@ export default function TweetBox({
         <Row>
           <Col xs={2}>
             <img
-              className="tweetBox__imageInput"
+              className={TweetboxCSS.imageInput}
               src={avatar}
               alt="UserImage"
             />
