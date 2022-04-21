@@ -7,6 +7,8 @@ import { Submit } from "./Submit/Submit";
 import { CharacterCounter } from "./CharacterCounter/CharacterCounter";
 import { Container,Row,Col } from 'react-bootstrap';
 import TweetboxCSS from "./TweetBox.module.css";
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
 
 const MAX_CHARS_ALLOWED = 280;
 export default function TweetBox({
@@ -17,11 +19,14 @@ export default function TweetBox({
       <Container>
         <Row>
           <Col xs={2}>
-            <img
-              className="tweetBox__imageInput"
+            {/* <img
+              className={TweetboxCSS.imageInput}
               src={avatar}
               alt="UserImage"
-            />
+            /> */}
+            <IconButton className={TweetboxCSS.imageInput}>
+                <Avatar src={avatar} style={{width: "55px",height: "55px"}}/>
+            </IconButton>
           </Col>
           <Col xs={10} md={10}>
             <Form onSubmit={onSubmit}>
