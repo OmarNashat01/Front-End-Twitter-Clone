@@ -17,7 +17,6 @@ function FollowCard({
   return (
     <div className={FollowCardCSS.followcard}>
         <div className={FollowCardCSS.tooltip}>
-            {/* <p className={FollowCardCSS.tooltip__icon}>!</p> */}
             <IconButton className={FollowCardCSS.tooltip__icon}>
                 <Avatar src={img} style={{width: "45px",height: "45px",}}/>
             </IconButton>

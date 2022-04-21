@@ -92,8 +92,6 @@ a {
 }
 
 .imageInput {
-  height: 55px;
-  width: 55px;
-  border-radius: 9999px;
   padding: 0px;
+  margin: 5px 0px 0px 0px;
 }

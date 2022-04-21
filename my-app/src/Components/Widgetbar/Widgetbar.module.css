@@ -9,6 +9,7 @@ h2{
 }
 .widget__padding{
     padding-left: 15px;
+    width: 350px;
 }
 .widget__whotofollowbox{
     width:100%;
