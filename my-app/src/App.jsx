@@ -28,6 +28,12 @@ import {
 import TweetBox from "./Components/TweetBox/TweetBox";
 import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
+//Mock-Service-Worker
+if (process.env.NODE_ENV === "development") {
+  const { worker } = require("./mocks/browser");
+  worker.start();
+}
+
 //indicates if user is authenticated
 let isAuth = false;
 
