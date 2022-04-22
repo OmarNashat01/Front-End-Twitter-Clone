@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-//Base URL
+//BASE URL
 const BASE_URL = "http://localhost:3030";
 
 //this is like the database
@@ -12,7 +12,7 @@ const coins = {
 //each element is an element to mock
 export const handlers = [
   //get coins request
-  rest.get(`${BASE_URL}/example/route`, (req, res, ctx) => {
+  rest.get(`${BASE_URL}/coins`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.delay(500),
@@ -24,16 +24,20 @@ export const handlers = [
     );
   }),
 
-  //Verify Route ======> to send verification mail
-  rest.post(`${BASE_URL}/signup/verify`, (req, res, ctx) => {
-    const { email } = req.body;
+  rest.post(`${BASE_URL}/coins`, (req, res, ctx) => {
+    const { coin } = req.body;
 
+    if (coin !== "bitcoin") {
+      return res(ctx.status(404), ctx.json({ success: false }));
+    }
+
+    return res(ctx.json({ success: true }));
+  }),
+  rest.get(`${BASE_URL}/products`, (req, res, ctx) => {
+    const productId = req.url.searchParams.get("id");
     return res(
-      ctx.status(200),
-      ctx.delay(500),
       ctx.json({
-        "OTP Sent": true,
-        OTP: "1312",
+        productId,
       })
     );
   }),
