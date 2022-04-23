@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 //indicates if user is authenticated
-let isAuth = false;
+let isAuth = true;
 
 function App() {
   var page = 1;
@@ -48,7 +48,8 @@ function App() {
     return (
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          {/* UNDO THIS CHANGE */}
+          <Route path="/" element={<Navigate to="/home" /> /*<Login />*/} />
           <Route path={"/singin"} element={<SignIn />} />
           <Route path={"/singup"} element={<SignUp />} />
           <Route path={"/forgotPassword"} element={<ForgotPassword />} />
@@ -59,7 +60,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -83,7 +84,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -102,7 +103,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -121,7 +122,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -140,7 +141,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">

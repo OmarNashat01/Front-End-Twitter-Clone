@@ -1,9 +1,9 @@
 .navItem {
 
-  text-align: right;
+  text-align: left;
   /* margin-left: 75%; */
 
-  padding: 7% 0 7% 7%;
+  padding: 0 0 0 0 !important;
 }
 .navbarLogo {
   /* text-align: left;
@@ -14,9 +14,9 @@
 
 /* tweet button */
 .tweetBtn {
-  height: 50px;
-  margin-left: auto !important;
-  width: 40% ;
+  height: 52px;
+  margin-right: auto !important;
+  width: 200px ;
 }
 .tweetBtnSmall
 {

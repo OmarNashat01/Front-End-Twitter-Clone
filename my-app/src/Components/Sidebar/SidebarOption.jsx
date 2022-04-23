@@ -27,7 +27,7 @@ function SidebarOption(props) {
     // optionName->the text displayed beside it
     //pageRoute->route of the targeted page
 
-    <div>
+    <div className={`${SidebarOptionStyles.navButtonContainer}`}>
       <button
         type="button"
         onClick={() => {
