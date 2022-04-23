@@ -2,7 +2,7 @@ import React ,{useState,componentDidUpdate} from 'react'
 import DateSelector ,{dateSelected}from "../DateSelector/DateSelector"
 import LineChart from "../LineChart/LineChart"
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import "./TweetsStats.css"
+import TweetStatsStyle from "./TweetsStats.module.css"
 
 const TweetsStats=(props)=>{
 
@@ -15,18 +15,18 @@ const TweetsStats=(props)=>{
 
             <CalendarMonthIcon />
         </div>
-        <div className='fromDateSelector'>
+        <div className={TweetStatsStyle.fromDateSelector}>
 
-            Start Date <DateSelector />
+            Start Date <DateSelector   setStart={setStartDate} dateChosen={startDate} />
          
         </div>
-        <div><CalendarMonthIcon className='dateIcon' /></div>
+        <div><CalendarMonthIcon className={TweetStatsStyle.dateIcon} /></div>
 
-        <div className="toDateSelector">
+        <div className={TweetStatsStyle.toDateSelector}>
 
-            End Date <DateSelector />
+            End Date <DateSelector setStart={setEndDate} dateChosen={endDate}/>
         </div>
-        <div className='chart'><LineChart /></div>
+        <div className={TweetStatsStyle.chart}><LineChart startDate={startDate} endDate={endDate}/></div>
 
     </div>
     );

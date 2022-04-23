@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./AdminPage.css";
+import "./AdminPage.module.css";
 
 import DateSelector from "./DateSelector/DateSelector";
 import LineChart from "./LineChart/LineChart";
