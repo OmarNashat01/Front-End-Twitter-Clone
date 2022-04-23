@@ -91,9 +91,7 @@ a {
   }
 }
 
-.tweetBox__imageInput {
-  height: 55px;
-  width: 55px;
-  border-radius: 9999px;
+.imageInput {
   padding: 0px;
+  margin: 5px 0px 0px 0px;
 }

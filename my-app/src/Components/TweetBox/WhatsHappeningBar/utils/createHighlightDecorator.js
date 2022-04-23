@@ -1,6 +1,8 @@
 import React from "react";
+import WhatsHappeningBarCSS from "./../WhatsHappeningBar.module.css";
 
 export const createHighlightDecorator = (regex) => {
+
   function hashTagStrategy(contentBlock, callback) {
     const text = contentBlock.getText();
     let matchArr, start;
@@ -17,5 +19,5 @@ export const createHighlightDecorator = (regex) => {
 };
 
 function HashTag({ children }) {
-  return <span className="Editor__Highlight">{children}</span>;
+  return <span className={WhatsHappeningBarCSS.Editor__Highlight}>{children}</span>;
 }

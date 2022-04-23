@@ -1,6 +1,9 @@
 import React from "react";
+import WhatsHappeningBarCSS from "./../WhatsHappeningBar.module.css";
 
 export const createOverLimitDecorator = (maxChars) => {
+
+  
   function overLimitStrategy(contentBlock, callback) {
     const text = contentBlock.getText();
     const { length } = text;
@@ -16,5 +19,5 @@ export const createOverLimitDecorator = (maxChars) => {
 };
 
 function OverLimit({ children }) {
-  return <span className="Editor__OverLimit">{children}</span>;
+  return <span className={WhatsHappeningBarCSS.Editor__OverLimit}>{children}</span>;
 }

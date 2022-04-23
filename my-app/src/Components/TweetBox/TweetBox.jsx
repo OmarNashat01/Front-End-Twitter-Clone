@@ -5,8 +5,10 @@ import { WhatsHappeningBar } from "./WhatsHappeningBar/WhatsHappeningBar";
 import { UploadMediaBar } from "./UploadMediaBar/UploadMediaBar";
 import { Submit } from "./Submit/Submit";
 import { CharacterCounter } from "./CharacterCounter/CharacterCounter";
-import { Container, Row, Col } from "react-bootstrap";
-import "./TweetBox.css";
+import { Container,Row,Col } from 'react-bootstrap';
+import TweetboxCSS from "./TweetBox.module.css";
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
 
 const MAX_CHARS_ALLOWED = 280;
 export default function TweetBox({
@@ -17,23 +19,26 @@ export default function TweetBox({
       <Container>
         <Row>
           <Col xs={2}>
-            <img
-              className="tweetBox__imageInput"
+            {/* <img
+              className={TweetboxCSS.imageInput}
               src={avatar}
               alt="UserImage"
-            />
+            /> */}
+            <IconButton className={TweetboxCSS.imageInput}>
+                <Avatar src={avatar} style={{width: "55px",height: "55px"}}/>
+            </IconButton>
           </Col>
           <Col xs={10} md={10}>
             <Form onSubmit={onSubmit}>
               <WhatsHappeningBar maxChars={MAX_CHARS_ALLOWED} />
               {/* <Preview /> */}
               {/* <PrivacyPicker /> */}
-              <span className="thematicBreak" />
-              <div className="actionBar">
+              <span className={TweetboxCSS.thematicBreak} />
+              <div className={TweetboxCSS.actionBar}>
                 <UploadMediaBar />
-                <div className="actionBar__Submit">
+                <div className={TweetboxCSS.actionBar__Submit}>
                   <CharacterCounter maxChars={MAX_CHARS_ALLOWED} />
-                  <span className="thematicBreakVertical" />
+                  <span className={TweetboxCSS.thematicBreakVertical} />
                   <Submit />
                 </div>
               </div>
