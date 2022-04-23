@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 
@@ -34,10 +34,10 @@ if (process.env.NODE_ENV === "development") {
   worker.start();
 }
 
-//indicates if user is authenticated
-let isAuth = true;
-
 function App() {
+  //indicates if user is authenticated
+  const [isAuth, setIsAuth] = useState(false);
+
   var page = 1;
 
   if (page === 0) {
