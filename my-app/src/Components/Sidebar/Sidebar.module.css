@@ -1,11 +1,11 @@
-.nav-item {
+.navItem {
 
-  text-align: right;
+  text-align: left;
   /* margin-left: 75%; */
 
-  padding: 7% 0 7% 7%;
+  padding: 0 0 0 0 !important;
 }
-.navbar-logo {
+.navbarLogo {
   /* text-align: left;
   margin-left: auto; */
   margin-left: 18px;
@@ -13,12 +13,12 @@
 }
 
 /* tweet button */
-.tweet-btn {
-  height: 50px;
-  margin-left: auto !important;
-  width: 40% ;
+.tweetBtn {
+  height: 52px;
+  margin-right: auto !important;
+  width: 200px ;
 }
-.tweet-btn-small
+.tweetBtnSmall
 {
   width:60px !important;
   height: 60px !important;
@@ -27,8 +27,3 @@
   
 }
 
-.container-fluid {
-  /* position: fixed; */
-}
-
-/* dummy comment */
