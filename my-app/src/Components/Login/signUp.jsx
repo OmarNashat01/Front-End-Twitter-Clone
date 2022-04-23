@@ -60,12 +60,12 @@ function SignUp(props){
         <h3 className={Popup.headline}>Create your account</h3>
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control inputTxt signupButton nameArea" id={("floatingInput userFullName",Popup.txtArea)}   placeholder="Name" onChange={getUserData} name="temp_Name"></input>
-          <label  for="floatingInput">Name</label>
+          <label id={Popup.txtAreaTxt}  for="floatingInput">Name</label>
         </div>
   
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Email" onChange={getUserData} name="temp_Email"></input>
-          <label className="floatinTxt" for="floatingInput">Email</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Email</label>
         </div>
   
   
@@ -221,7 +221,7 @@ function SignUp(props){
   
       <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Verification code" onChange={getVerCode}></input>
-          <label className="floatinTxt" for="floatingInput">Verification code</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Verification code</label>
       </div>
   
   </div> );
@@ -241,7 +241,7 @@ function SignUp(props){
       <div>
         <div className="form-floating mb-3">
           <input type={"password"} className="inputTxt form-control inputTxt signupButton" id={("floatingInput",Popup.txtArea)}  placeholder="password" onChange={getUserData} name="temp_Password"></input>
-          <label className="floatinTxt" for="floatingInput">password</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">password</label>
         </div> 
       </div>
 

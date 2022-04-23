@@ -59,7 +59,7 @@ const PasswordStage = () => {
           <div className="form-floating">
               <input className="inputTxt form-control" id={("floatingPassword", Popup.txtArea)} type={"password"} placeholder="Password" onChange={getPassword}></input>
               {/* <i class="far fa-eye" id={("togglePassword",Popup.togglePasswordVisibility)}></i> */}
-              <label htmlFor="floatingPassword">Password</label>
+              <label id={Popup.txtAreaTxt} htmlFor="floatingPassword">Password</label>
           </div>
 
 
