@@ -1,43 +1,38 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "http://localhost:3030/",
-});
-//BASE URL FOR API CALLS
+const api = axios.create();
 
-api.defaults.headers.common["Authorization"] = "AUTH TOKEN";
-// PUTTING THE AUTH TOKEN IN EVERY HEADER
+api.defaults.baseURL = "http://localhost:3030";
 
-//THESE ARE THE DEFAULTS FOR EVERY API CALL AND THEY ARE CONFIGURED ACCORDINGLY
+//All request will wait 10 seconds before timeout
+api.defaults.timeout = 10000;
 
-//////////////////////////////////////////////////////////////////////
+api.defaults.headers.common["x-access-token"] = "AUTH_TOKEN";
 
-async function getExample() {
-  try {
-    let res = await api.get("/example");
-
-    //handle success
-    console.log("success");
-  } catch (error) {
-    //handle error
-    console.log(`ERROR ${error}`);
-  }
+export async function getRequest(URL) {
+  return api
+    .get(`/${URL}`)
+    .then((response) => response)
+    .catch((error) => error.response);
 }
 
-async function postExample(entryData) {
-  try {
-    let res = await api.get("/example", {
-      entry1: "example",
-      entry2: entryData,
-      id: 3,
-    });
-
-    //handle success
-    console.log("success");
-  } catch (error) {
-    //handle error
-    console.log(`ERROR ${error}`);
-  }
+export function postRequest(URL, payload) {
+  return api
+    .post(`/${URL}`, payload)
+    .then((response) => response)
+    .catch((error) => error.response);
 }
 
-export { getExample, postExample };
+export function patchRequest(URL, payload) {
+  return api
+    .patch(`/${URL}`, payload)
+    .then((response) => response)
+    .catch((error) => error.response);
+}
+
+export function deleteRequest(URL) {
+  return api
+    .delete(`/${URL}`)
+    .then((response) => response)
+    .catch((error) => error.response);
+}
