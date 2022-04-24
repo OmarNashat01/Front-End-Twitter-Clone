@@ -122,5 +122,9 @@ export const handlers = [
     if (email !== "email@email.com") {
       return res(ctx.status(401).ctx.json({ 400: "Password doesn't match" }));
     }
+
+    if (email !== "email@email.com" || password !== "5678") {
+      return res(ctx.status(401), ctx.json({ 400: "Password doesn't match" }));
+    }
   }),
 ];
