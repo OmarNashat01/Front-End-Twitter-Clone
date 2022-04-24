@@ -75,14 +75,14 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                    <div className="  border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-2 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
-                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                    <div className="col col-md-6 col-lg-5 col-sm-10   col-xs-8">
                       <TweetBox />
                       <HomeFeed />
                     </div>
-                    <div className="col col-md-3 col-lg-4 col-sm-3 ">
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
                       <Widgetbar />
                     </div>
                   </div>
@@ -99,7 +99,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -118,7 +118,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -137,7 +137,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -156,7 +156,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">

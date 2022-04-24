@@ -1,4 +1,7 @@
 .main-screen {
   height: 100vh;
   overflow: hidden;
+  
+  /* border-right: 1px solid grey; */
+  
 }
