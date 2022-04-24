@@ -6,11 +6,17 @@ export const userColumns = [
     //       </div>
     //     );
     //   }, },
+
+
     {
       field: "user",
       headerName: "User",
       width: 230,
       sortable: true,
+    
+     headerClassName:'columnHeader',
+     headerAlign:'center',
+  
       renderCell: (params) => {
         return (
           <div className={UsersTableStyle.cellWithImg}>
@@ -24,21 +30,55 @@ export const userColumns = [
       field: "email",
       headerName: "Email",
       width: 230,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
     },
   
     {
       field: "age",
       headerName: "Age",
       width: 100,
+      headerClassName:'columnHeader',
+      headerAlign:'center',
+      align:'center',
+
     },
     {
       field: "status",
       headerName: "Status",
       width: 160,
+      headerClassName:'columnHeader',
+      headerAlign:'center',
+      align:'center',
       renderCell: (params) => {
         return (
           <div className={`cellWithStatus ${params.row.status}`}>
             {params.row.status}
+          </div>
+        );
+      },
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 200,
+      sortable: false,
+      headerClassName:'columnHeader',
+      flex:5,
+      align:'center',
+      
+      headerAlign:'center',
+      renderCell: (params) => {
+        return (
+          <div className={UsersTableStyle.cellAction}>
+<button   className={UsersTableStyle.banButton} >Ban</button>
+            {/* <div
+              className={UsersTableStyle.banButton}
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Ban
+            </div> */}
           </div>
         );
       },

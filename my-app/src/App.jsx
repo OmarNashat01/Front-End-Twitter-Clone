@@ -10,7 +10,7 @@ import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
 
-import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
+//import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
@@ -38,7 +38,7 @@ function App() {
   //indicates if user is authenticated
   const [isAuth, setIsAuth] = useState(false);
 
-  var page = 1;
+  var page = 2;
 
   if (page === 0) {
     return <Login />;
@@ -167,11 +167,11 @@ function App() {
       <div>
         <Router>
           <nav className="sticky-top">
-            <AdminNavBar />
+       {/* //     <AdminNavBar /> */}
           </nav>
           <Routes>
-            <Route path="/" element={<AdminPage />}></Route>
-            <Route path="/search" element={<SearchUsers />}></Route>
+            <Route path="/adminhome" element={<AdminPage />}></Route>
+            <Route path="/adminsearch" element={<SearchUsers />}></Route>
           </Routes>
         </Router>
       </div>

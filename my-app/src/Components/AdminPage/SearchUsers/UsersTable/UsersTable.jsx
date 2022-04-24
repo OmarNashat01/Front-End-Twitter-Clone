@@ -3,6 +3,7 @@ import TablePagination from '@mui/material/TablePagination';
 import React,{useState} from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { userColumns,userRows } from "./UsersDate";
+import { margin } from "@mui/system";
 const UsersTable=()=>{
     const [data, setData] = useState(userRows);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -44,12 +45,32 @@ const UsersTable=()=>{
 
 return ( <div className={UsersTableStyle.dataTable}>
 <DataGrid
-  rows={userRows}
-  columns={userColumns.concat(actionColumn)}
+  rows={userRows }
+  columns={userColumns}
   autoPageSize
 rowsPerPageOptions={[4,5,7]}
  onRowsPerPageChange={handleChangeRowsPerPage}
-  checkboxSelection
+//  checkboxSelection
+  sx={{
+    boxShadow: 4,
+    border: 2,
+    padding:0.5,
+    backgroundColor:'white',
+    borderColor: 'primary.light',
+    '& .MuiDataGrid-cell:hover': {
+      color: 'primary.main',
+    },
+    '& .columnHeader': {
+      backgroundColor: 'rgba(13, 110, 253,0.5)',
+      
+      fontFamily: 'Arial Black,sans-serif',
+      fontSize:'14px',
+      fontWeight:'700px',
+      letterSpacing:'1.5px',
+     padding:'10px',
+color:'rgba(23, 40, 69)',
+    },
+  }}
  //count={userRows.length}
 //rowsPerPage={rowsPerPage}
  //page={page}
