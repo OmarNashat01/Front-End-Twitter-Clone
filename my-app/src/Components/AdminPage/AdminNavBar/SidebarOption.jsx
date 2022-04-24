@@ -13,9 +13,9 @@ import { useNavigate } from "react-router-dom";
 
 const icons = {};
 
-icons["HomeIcon"] = <HomeIcon />;
+icons["HomeIcon"] = <HomeIcon className={SidebarOptionStyles.logoColor} />;
 
-icons["PersonIcon"] = <PersonIcon />;
+icons["PersonIcon"] = <PersonIcon  className={SidebarOptionStyles.logoColor} />;
 
 function SidebarOption(props) {
   let navigate = useNavigate();

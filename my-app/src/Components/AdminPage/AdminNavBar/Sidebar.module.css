@@ -6,6 +6,7 @@ width:150px !important;
   padding: 0 0 0 0 !important;
   border-style: groove;
   border-radius: 25px;
+
 }
 .navItemTwo {
 
@@ -19,7 +20,8 @@ width:150px !important;
 }
 .barWidth{
 
-  
+  color: aliceblue !important;
+  height: 50%;
 }
 .navbarLogo {
   /* text-align: left;

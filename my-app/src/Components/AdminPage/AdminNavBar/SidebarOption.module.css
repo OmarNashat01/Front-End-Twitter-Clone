@@ -46,7 +46,9 @@
   margin-bottom: 20px;
   width: fit-content;
 }
-
+.logoColor{
+  color: aliceblue;
+}
 .floatParentElement {
   width: 50% ;
 }
@@ -58,7 +60,9 @@
 .tabText {
   width: 75%;
   text-align: left !important;
-  
+  color:aliceblue;
+font-size: medium;
+font-weight: 700;
 }
 
 .leftChild {
