@@ -17,7 +17,6 @@ import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -35,9 +34,9 @@ if (process.env.NODE_ENV === "development") {
   worker.start();
 }
 
-function checkAuth(setIsAuth){
+function checkAuth(setIsAuth) {
   let token = localStorage.getItem("token");
-  if(token !== undefined){
+  if (token !== null) {
     setIsAuth(true);
   }
   console.log(token);
@@ -46,8 +45,8 @@ function checkAuth(setIsAuth){
 function App() {
   //indicates if user is authenticated
   var authBool = false;
-  if(localStorage.getItem("token") !== undefined){
-    authBool=true;
+  if (localStorage.getItem("token") !== null) {
+    authBool = true;
   }
 
   console.log(authBool);
@@ -65,7 +64,7 @@ function App() {
       <Router>
         <Routes>
           {/* UNDO THIS CHANGE */}
-          <Route path="/" element={ <Login />} />
+          <Route path="/" element={<Login />} />
           <Route path={"/singin"} element={<SignIn />} />
           <Route path={"/singup"} element={<SignUp />} />
           <Route path={"/forgotPassword"} element={<ForgotPassword />} />
