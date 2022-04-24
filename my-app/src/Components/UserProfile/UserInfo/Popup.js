@@ -106,8 +106,7 @@ function Popup(props) {
 
     ) : (
         ""
-    ); >>>
-    >>> > Stashed changes
+    );
 }
 
 export default Popup;

@@ -16,6 +16,7 @@ import Following from "./UserInfo/Following";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+
 // console.log("classes");
 const UserProfile = () => {
     const [buttonPopup, setButtonPopup] = useState(false);
