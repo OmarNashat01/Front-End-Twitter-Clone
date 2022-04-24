@@ -1,0 +1,100 @@
+.popupProfile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popupinProfile {
+    position: relative;
+    padding: 32px;
+    width: 70%;
+    height: 75%;
+    left: 5%;
+    max-width: 640px;
+    background-color: white;
+    border-radius: 3%;
+}
+
+.innerPro {
+    position: absolute;
+    top: 5px;
+    right: 16px;
+    width: 2cm;
+    height: 0.9cm;
+    text-align: center;
+    font-size: medium;
+    border-radius: 25px !important;
+    font-weight: bold !important;
+    background-color: black;
+}
+
+.innerPro1 {
+    position: absolute;
+    top: 13px;
+    color: black;
+    font-size: small;
+}
+
+.edit {
+    position: absolute;
+    top: 10px;
+    left: 15%;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.name {
+    position: relative;
+    top: 63%;
+    left: 0%;
+}
+
+.bio {
+    position: relative;
+    top: 66%;
+    left: 0%;
+}
+
+.location {
+    position: relative;
+    top: 70%;
+    left: 0%;
+}
+
+.cover {
+    width: 98%;
+    position: absolute;
+    bottom: 53%;
+    left: 1%;
+}
+
+.prof {
+    position: absolute;
+    top: 40%;
+    left: 18px;
+    border-radius: 50%;
+}
+
+@media(max-width:800px) {
+    .name {
+        position: relative;
+        top: 63%;
+        left: 0%;
+    }
+    .bio {
+        position: relative;
+        top: 66%;
+        left: 0%;
+    }
+    .location {
+        position: relative;
+        top: 70%;
+        left: 0%;
+    }
+}

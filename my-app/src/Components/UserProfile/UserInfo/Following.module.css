@@ -1,0 +1,41 @@
+.box {
+    border: 0cm;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.user {
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: bold;
+    position: absolute;
+    top: 6%;
+    left: 40%;
+}
+
+.handle {
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: lighter;
+    position: absolute;
+    top: 60%;
+    left: 1%;
+}
+
+.bio {
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: lighter;
+    position: absolute;
+    line-height: 0.4cm;
+    bottom: -280%;
+    left: 1%;
+}
+
+.btn {
+    position: relative;
+    left: 80%;
+    bottom: 30px;
+    border-radius: 25px !important;
+    font-weight: bold !important;
+    color: black;
+}

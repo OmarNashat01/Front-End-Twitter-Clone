@@ -3,19 +3,30 @@ import react from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import "./Tab.css";
+import TabCSS from "./Tab.module.css";
 
 const Tabss = () => {
-  return (
-    <div>
-      {" "}
-      <Tabs className="mb-3">
-        <Tab title=<div className="tabs"> Tweets </div>></Tab>{" "}
-        <Tab title=<div className="tabs"> Tweets & replies </div>></Tab>{" "}
-        <Tab title=<div className="tabs"> Media </div>></Tab>
-        <Tab title=<div className="tabs"> Likes </div>></Tab>{" "}
-      </Tabs>{" "}
-    </div>
-  );
+    return ( <
+        div >
+        <
+        nav className = { TabCSS.alltab } >
+        <
+        a className = { TabCSS.tabs } >
+        Tweets < /a> <
+        a href = "profile/with_replies"
+        className = { TabCSS.tabs } > Tweets & replies < /a> <
+        a href = "profile/media"
+        className = { TabCSS.tabs } > Media < /a> <
+        a href = "profile/likes"
+        className = { TabCSS.tabs } > Likes < /a> < /
+        nav >
+
+        <
+        div > < hr className = { TabCSS.hr }
+        / > < /div >
+
+        <
+        /div >
+    );
 };
 export default Tabss;

@@ -1,0 +1,66 @@
+.UserName {
+    font-weight: bold !important;
+    position: relative;
+    left: 7px;
+    top: -35px;
+}
+
+.UserNamePro {
+    font-weight: inherit !important;
+    position: relative;
+    left: 7px;
+    top: -40px;
+}
+
+.Cover {
+    width: 100%;
+    height: 0px;
+    object-position: center top;
+}
+
+.ProfilePic {
+    position: relative;
+    top: -40px;
+    left: 10px;
+    border-radius: 50%;
+}
+
+.editbutton {
+    position: relative;
+    left: 80%;
+    bottom: 205px;
+    width: 2.8cm;
+    height: 0.9cm;
+    border-radius: 25px !important;
+    border-color: lightgray !important;
+    font-weight: bold !important;
+    text-emphasis-color: black;
+    color: black;
+}
+
+.editbutton:hover {
+    background-color: white !important;
+    color: black !important;
+}
+
+.editbutton::after {
+    background-color: white !important;
+    color: black !important;
+    border-color: lightgray !important;
+    text-decoration: none !important;
+}
+
+::-webkit-scrollbar {
+    width: 0.5cm;
+}
+
+@media(max-width:1500px) {
+    .editbutton {
+        position: relative;
+        left: 70%;
+        bottom: 205px;
+        border-radius: 25px !important;
+        font-weight: bold !important;
+        color: black;
+    }
+}
