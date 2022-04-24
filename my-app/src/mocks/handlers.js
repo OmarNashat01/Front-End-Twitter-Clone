@@ -212,7 +212,7 @@ export const handlers = [
   ///////////////////////***PROFILE ROUTES***//////////////////////////
 
   rest.get(`${BASE_URL}/users/me`, (req, res, ctx) => {
-    const TOKEN = req.headers["x-access-token"];
+    const TOKEN = req.headers._headers["x-access-token"];
 
     if (TOKEN === undefined || TOKEN === null) {
       return res(
