@@ -11,75 +11,73 @@ const coins = {
 //////////////////////////////////////////////////////////////
 
 const USER_50CENT = {
-  user: {
-    _id: "50CENT_1234",
-    email: "email@email.com",
-    name: "50 Cent",
-    username: "@iam50c",
-    date_of_birth: "1998-02-25",
-    gender: "M",
-    creation_date: "2005-12-01",
-    bio: "producer/influencer and I like ice cream 🍧🍧",
-    location: "The Bronx, New York",
-    website: "dummywebsite.com",
-    admin: "False",
-    followers: [
-      {
-        name: "DrDre",
-        username: "@dedre",
-        prof_pic_url:
-          "https://pbs.twimg.com/profile_images/1598289026/Dr.-Dre-Detox-Approved-Photo-for-twitter_400x400.jpg",
-        bio: "i am still dre",
-        followers_count: 455,
-        following_count: 127,
-      },
-      {
-        name: "Snoop Dogg",
-        username: "@SNOOP",
-        prof_pic_url:
-          "https://pbs.twimg.com/profile_images/1505032322717941761/EaFzE2yN_400x400.jpg",
-        bio: "Ayo! i am still here",
-        followers_count: 450,
-        following_count: 128,
-      },
-    ],
-    following: [
-      {
-        name: "DrDre",
-        username: "@dedre",
-        prof_pic_url:
-          "https://pbs.twimg.com/profile_images/1598289026/Dr.-Dre-Detox-Approved-Photo-for-twitter_400x400.jpg",
-        bio: "i am still dre",
-        followers_count: 455,
-        following_count: 127,
-      },
-      {
-        name: "Snoop Dogg",
-        username: "@SNOOP",
-        prof_pic_url:
-          "https://pbs.twimg.com/profile_images/1505032322717941761/EaFzE2yN_400x400.jpg",
-        bio: "Ayo! i am still here",
-        followers_count: 450,
-        following_count: 128,
-      },
-      {
-        name: "Eminem",
-        username: "@MnM",
-        prof_pic_url:
-          "https://pbs.twimg.com/profile_images/1477000326213509125/Bx2Gkyjx_400x400.jpg",
-        bio: "New album coming soon ✨✨",
-        followers_count: 410,
-        following_count: 320,
-      },
-    ],
-    followers_count: 312,
-    following_count: 520,
-    tweet_count: 3,
-    prof_pic_url:
-      "https://pbs.twimg.com/profile_images/1226895461941940224/hBx6tZxz_400x400.jpg",
-    cover_pic_url:
-      "https://pbs.twimg.com/profile_banners/18222378/1645118556/1500x500",
-  },
+  _id: "50CENT_1234",
+  email: "email@email.com",
+  name: "50 Cent",
+  username: "@iam50c",
+  date_of_birth: "1998-02-25",
+  gender: "M",
+  creation_date: "2005-12-01",
+  bio: "producer/influencer and I like ice cream 🍧🍧",
+  location: "The Bronx, New York",
+  website: "dummywebsite.com",
+  admin: "False",
+  followers: [
+    {
+      name: "DrDre",
+      username: "@dedre",
+      prof_pic_url:
+        "https://pbs.twimg.com/profile_images/1598289026/Dr.-Dre-Detox-Approved-Photo-for-twitter_400x400.jpg",
+      bio: "i am still dre",
+      followers_count: 455,
+      following_count: 127,
+    },
+    {
+      name: "Snoop Dogg",
+      username: "@SNOOP",
+      prof_pic_url:
+        "https://pbs.twimg.com/profile_images/1505032322717941761/EaFzE2yN_400x400.jpg",
+      bio: "Ayo! i am still here",
+      followers_count: 450,
+      following_count: 128,
+    },
+  ],
+  following: [
+    {
+      name: "DrDre",
+      username: "@dedre",
+      prof_pic_url:
+        "https://pbs.twimg.com/profile_images/1598289026/Dr.-Dre-Detox-Approved-Photo-for-twitter_400x400.jpg",
+      bio: "i am still dre",
+      followers_count: 455,
+      following_count: 127,
+    },
+    {
+      name: "Snoop Dogg",
+      username: "@SNOOP",
+      prof_pic_url:
+        "https://pbs.twimg.com/profile_images/1505032322717941761/EaFzE2yN_400x400.jpg",
+      bio: "Ayo! i am still here",
+      followers_count: 450,
+      following_count: 128,
+    },
+    {
+      name: "Eminem",
+      username: "@MnM",
+      prof_pic_url:
+        "https://pbs.twimg.com/profile_images/1477000326213509125/Bx2Gkyjx_400x400.jpg",
+      bio: "New album coming soon ✨✨",
+      followers_count: 410,
+      following_count: 320,
+    },
+  ],
+  followers_count: 2,
+  following_count: 3,
+  tweet_count: 3,
+  prof_pic_url:
+    "https://pbs.twimg.com/profile_images/1226895461941940224/hBx6tZxz_400x400.jpg",
+  cover_pic_url:
+    "https://pbs.twimg.com/profile_banners/18222378/1645118556/1500x500",
 };
 
 //////////////////////////////////////////////////////
@@ -212,4 +210,18 @@ export const handlers = [
   ////////////////////////////////////////////////////////////////////////////
 
   ///////////////////////***PROFILE ROUTES***//////////////////////////
+
+  rest.get(`${BASE_URL}/users/me`, (req, res, ctx) => {
+    const TOKEN = req.headers["x-access-token"];
+
+    if (TOKEN === undefined || TOKEN === null) {
+      return res(
+        ctx.status(404),
+        ctx.delay(500),
+        ctx.json({ 404: "TOKEN IS MISSING" })
+      );
+    }
+
+    return res(ctx.status(200), ctx.delay(500), ctx.json(USER_50CENT));
+  }),
 ];
