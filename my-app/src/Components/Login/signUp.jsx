@@ -1,7 +1,10 @@
-import React , {useState , Component} from "react";
+import React , {useState , Component } from "react";
 import Popup from "./popup.module.css"
 import LoginCss from "./Login.module.css"
 import axios from "axios";
+import {postVerify , PostEmailAndVerCode , postUserData} from "../../Api/SignUp"
+import { Email } from "@mui/icons-material";
+
 
 
 var user = {
@@ -25,7 +28,7 @@ var temp_user = {
 
 function getUserData(val){
   temp_user[val.target.name] = val.target.value;
-  console.log(temp_user);
+  //console.log(temp_user);
 }
 
 
@@ -41,6 +44,14 @@ function getVerCode(val){
 function SignUp(props){
   const[page,setPage] = useState(0);
   const FormTitles = ["Next" , "Next" , "Next" , "Sign up" ];
+
+  const[verLoading , setVerLoading] = useState(true);
+  const[verify , setVerify] = useState();
+
+  const[verLoadingIDandEmail , setVerLoadingIDandEmail] = useState(true);
+  const[verifyIDandEmail , setVerifyIDandEmail] = useState();
+
+
 
   //Check which tap will be rendered.
   const PageToDisplay = () => {
@@ -60,12 +71,12 @@ function SignUp(props){
         <h3 className={Popup.headline}>Create your account</h3>
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control inputTxt signupButton nameArea" id={("floatingInput userFullName",Popup.txtArea)}   placeholder="Name" onChange={getUserData} name="temp_Name"></input>
-          <label  for="floatingInput">Name</label>
+          <label id={Popup.txtAreaTxt}  for="floatingInput">Name</label>
         </div>
   
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Email" onChange={getUserData} name="temp_Email"></input>
-          <label className="floatinTxt" for="floatingInput">Email</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Email</label>
         </div>
   
   
@@ -221,7 +232,7 @@ function SignUp(props){
   
       <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Verification code" onChange={getVerCode}></input>
-          <label className="floatinTxt" for="floatingInput">Verification code</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Verification code</label>
       </div>
   
   </div> );
@@ -241,7 +252,7 @@ function SignUp(props){
       <div>
         <div className="form-floating mb-3">
           <input type={"password"} className="inputTxt form-control inputTxt signupButton" id={("floatingInput",Popup.txtArea)}  placeholder="password" onChange={getUserData} name="temp_Password"></input>
-          <label className="floatinTxt" for="floatingInput">password</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">password</label>
         </div> 
       </div>
 
@@ -267,22 +278,31 @@ function SignUp(props){
   </div> );
   }
 
+  //send email to back end
   const sendEmail =async () => {
-    let {data} =await axios.post("http://localhost:3030/",{
-      user_email:user.Email
-    });
-    //console.log(data);
+    let requestBody = {
+      "email": user.Email
+    }
+    let resul = await postVerify(setVerLoading , setVerify , requestBody);
   }
+  const sendData =async () => {
+    let requestBody = {
+      "email": user.Email,
+      "password": user.password,
+      "name": user.Name,
+      "date_of_birth": user.Day +"/"+ user.Month +"/"+ user.Year,
+      "gender": "string",
+      "username": "string"
+    }
+    let resul = await postVerify(setVerLoading , setVerify , requestBody);
+  }
+
+  //send email and verication
   const sendEmailAndVerCode =async () => {
-    let {data} =await axios.post("http://localhost:3030/",{
-      OTP:verCode,
-      user_email:user.Email
-    });
-    //console.log(data);
+    //console.log(user.Email);
+    let resul2 = await PostEmailAndVerCode(setVerLoadingIDandEmail , setVerifyIDandEmail ,`?OTP=${verCode}&email=${user.Email}`);
   }
-  const getApproval =async () => {
-    let res = await axios.get("/example");//not completed
-  }
+
   const sendUserData =async () => {
     let {data} =await axios.post("http://localhost:3030/",{
       Name:user.Name,
@@ -294,10 +314,23 @@ function SignUp(props){
     });
     //console.log(data);
   }
+
+  const Temp = ()=>{
+    console.log(verify);
+  }
+  const checkVer = () =>{
+    if(verCode.length>0 && verifyIDandEmail.status===200){
+      setPage((currpage)=>currpage+1);
+      setVerLoadingIDandEmail(true);
+    }
+    else{
+      setVerLoadingIDandEmail(true);
+    }
+  }
   
 
   //event excuted when main button is clicked to handle which tap will be rendered
-  function Handlebtn(){
+  async function Handlebtn (){
     if(page===0){
       user.Name=temp_user.temp_Name;
       user.Email=temp_user.temp_Email;
@@ -305,10 +338,10 @@ function SignUp(props){
       user.Day=temp_user.temp_Day;
       user.Year=temp_user.temp_Year;
 
-      {sendEmail()}
+      await sendEmail()
 
       if(user.Name.length>0 & user.Email.length>0 & user.Month.length>0 & user.Day.length>0 & user.Year.length>0 ) setPage((currpage)=>currpage+1);
-      alert(user.Name+":"+user.Email)
+      //alert(user.Name+":"+user.Email)
     }
     else if(page===1){
       setPage((currpage)=>currpage+1);
@@ -316,9 +349,7 @@ function SignUp(props){
     else if(page===2){
       verCode=temp_verCode;
       {sendEmailAndVerCode()}
-      if(verCode.length>0)setPage((currpage)=>currpage+1);
-      // alert(verCode);
-
+      // if(verCode.length>0)setPage((currpage)=>currpage+1);
     }
     else if(page===3){
       user.Password=temp_user.temp_Password;
@@ -335,14 +366,23 @@ function SignUp(props){
 
           {PageToDisplay()}
 
+
+
           <button type="button" className="updatedBtn btn btn-light update-ptn" id={(LoginCss.updatedBtn,Popup.signuputton)} 
+
             // disabled={page==FormTitles.length-1} 
             //disabled={!temp_Name}
-
+            
             onClick={() => {Handlebtn()} }>
             {FormTitles[page]}
           </button>
+          {/* {console.log(verLoading)} */}
+          {/* {!verLoading && console.log(verify.status)} */}
+          {/* {!verLoading && Temp()} */}
 
+
+          {!verLoadingIDandEmail && checkVer()}
+          
 
       </div>  
     </div>
