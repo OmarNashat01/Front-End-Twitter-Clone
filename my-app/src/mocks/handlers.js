@@ -438,8 +438,12 @@ export const handlers = [
       );
     }
 
-    const usersSlice = USERS.slice(offset * limit, offset * limit + limit);
+    const usersSlice = USERS.users.slice(
+      offset * limit,
+      offset * limit + limit
+    );
+    const allUsersResponse = { users: usersSlice };
 
-    return res(ctx.status(200), ctx.delay(500), ctx.json(usersSlice));
+    return res(ctx.status(200), ctx.delay(500), ctx.json(allUsersResponse));
   }),
 ];
