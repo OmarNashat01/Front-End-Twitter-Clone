@@ -273,7 +273,7 @@ export const handlers = [
         ctx.json({
           message: "user found",
           token: ADMIN_TOKEN,
-          admin: false,
+          admin: true,
           _id: "ADMIN_1234",
         })
       );
