@@ -36,29 +36,43 @@ export const userColumns = [
     },
   
     {
-      field: "age",
-      headerName: "Age",
-      width: 100,
+      field: "dateofbirth",
+      headerName: "Date of Birth",
+      width: 230,
       headerClassName:'columnHeader',
-      headerAlign:'center',
       align:'center',
-
+      headerAlign:'center',
     },
+  
     {
-      field: "status",
-      headerName: "Status",
-      width: 160,
+      field: "followerscount",
+      headerName: "Followers Count",
+      width: 230,
       headerClassName:'columnHeader',
-      headerAlign:'center',
       align:'center',
-      renderCell: (params) => {
-        return (
-          <div className={`cellWithStatus ${params.row.status}`}>
-            {params.row.status}
-          </div>
-        );
-      },
+      headerAlign:'center',
+      hide:true,
     },
+  
+    {
+      field: "creationdate",
+      headerName: "Creation Date",
+      width: 200,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
+    },
+  
+    {
+      field: "followingcount",
+      headerName: "Following",
+      width: 150,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
+      hide:true,
+    },
+  
     {
       field: "action",
       headerName: "Action",
@@ -90,80 +104,79 @@ export const userRows = [
       id: 1,
       username: "Snow",
       img: "https://cdn.vectorstock.com/i/1000x1000/38/27/male-face-avatar-logo-template-pictograph-vector-11333827.webp",
-      status: "active",
+     
       email: "1snow@gmail.com",
-      age: 35,
+  
     },
     {
       id: 2,
       username: "Jamie Lannister",
       img: "https://cdn.vectorstock.com/i/1000x1000/38/05/male-face-avatar-logo-template-pictograph-vector-11333805.webp",
       email: "2snow@gmail.com",
-      status: "passive",
-      age: 42,
+   
+ 
     },
     {
       id: 3,
       username: "Lannister",
       img: "https://cdn.vectorstock.com/i/1000x1000/38/27/male-face-avatar-logo-template-pictograph-vector-11333827.webp",
       email: "3snow@gmail.com",
-      status: "pending",
-      age: 45,
+    
     },
     {
       id: 4,
       username: "Stark",
       img: "https://cdn.vectorstock.com/i/1000x1000/38/01/female-face-avatar-round-flat-icon-with-women-vector-11333801.webp",
       email: "4snow@gmail.com",
-      status: "active",
-      age: 16,
+  
     },
     {
       id: 5,
       username: "Targaryen",
       img: "https://cdn.vectorstock.com/i/1000x1000/38/01/female-face-avatar-round-flat-icon-with-women-vector-11333801.webp",
       email: "5snow@gmail.com",
-      status: "passive",
-      age: 22,
+  
     },
     {
       id: 6,
       username: "Melisandre",
       img: "https://cdn.vectorstock.com/i/1000x1000/38/05/male-face-avatar-logo-template-pictograph-vector-11333805.webp",
       email: "6snow@gmail.com",
-      status: "active",
-      age: 15,
+     
     },
     {
       id: 7,
       username: "Clifford",
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "7snow@gmail.com",
-      status: "passive",
-      age: 44,
+     
     },
     {
       id: 8,
       username: "Frances",
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "8snow@gmail.com",
-      status: "active",
-      age: 36,
+     
     },
     {
       id: 9,
       username: "Roxie",
       img: "https://cdn.vectorstock.com/i/1000x1000/38/27/male-face-avatar-logo-template-pictograph-vector-11333827.webp",
       email: "snow@gmail.com",
-      status: "pending",
-      age: 65,
+     
     },
     {
       id: 10,
       username: "Roxie",
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "snow@gmail.com",
-      status: "active",
-      age: 65,
+    
+    },
+    {
+      id: 11,
+      username: "Roxie",
+      img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      email: "snow@gmail.com",
+   
     },
   ];

@@ -1,13 +1,19 @@
 import UsersTableStyle from"./UsersTable.module.css"
 import TablePagination from '@mui/material/TablePagination';
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { userColumns,userRows } from "./UsersDate";
 import { margin } from "@mui/system";
+import { getAllUsers } from "../../../../Api/admin";
 const UsersTable=()=>{
     const [data, setData] = useState(userRows);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [page, setPage] = React.useState(0);
+
+    const [usersLoading,setUsersLoading]=useState(true);
+    const [allUsers,setAllUsers]= useState();
+
+
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
       };
@@ -42,13 +48,38 @@ const UsersTable=()=>{
       },
     ];
 
+    useEffect(() => {
+     
+      const fetchData = async () => {
+        const data = await getAllUsers(setUsersLoading,setAllUsers,`?offset=0&limit=10000`);
+      }
+    
+      // call the function
+      fetchData()
+        // make sure to catch any error
+        .catch(console.error);
+    }, [])
 
-return ( <div className={UsersTableStyle.dataTable}>
+    var allUsersTable;
+    if(!usersLoading)
+    {
+      console.log(allUsers);
+      var id_increment=1;
+       allUsersTable = allUsers.data.users.map(user => ({ id:id_increment++,username: user.username,img: user.prof_pic_url,email:user.email,dateofbirth:user.date_of_birth,followerscount:user.followers_count,followingcount:user.following_count,creationdate:user.creation_date }));
+      console.log(allUsersTable);
+
+
+
+    }
+
+
+return (!usersLoading && <div className={UsersTableStyle.dataTable}>
 <DataGrid
-  rows={userRows }
+  rows={allUsersTable }
   columns={userColumns}
   autoPageSize
 rowsPerPageOptions={[4,5,7]}
+//onPageChange={()=>{userRows.append}}
  onRowsPerPageChange={handleChangeRowsPerPage}
 //  checkboxSelection
   sx={{

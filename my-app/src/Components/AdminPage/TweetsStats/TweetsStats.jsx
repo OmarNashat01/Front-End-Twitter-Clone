@@ -17,14 +17,14 @@ const TweetsStats=(props)=>{
         </div>
         <div className={TweetStatsStyle.fromDateSelector}>
 
-            Start Date <DateSelector   setStart={setStartDate} dateChosen={startDate} />
+            Start Date <DateSelector   setStart={setStartDate} dateChosen={startDate} minimumDate={new Date("01-01-2000")} />
          
         </div>
         <div><CalendarMonthIcon className={TweetStatsStyle.dateIcon} /></div>
 
         <div className={TweetStatsStyle.toDateSelector}>
 
-            End Date <DateSelector setStart={setEndDate} dateChosen={endDate}/>
+            End Date <DateSelector setStart={setStartDate} dateChosen={endDate} minimumDate={startDate}/>
         </div>
         <div className={TweetStatsStyle.chart}><LineChart startDate={startDate} endDate={endDate}/></div>
 

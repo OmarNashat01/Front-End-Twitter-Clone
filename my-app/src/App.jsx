@@ -78,8 +78,14 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
-  if (localStorage.getItem("admin") === true) {
-    page = 2;
+  
+  if (localStorage.getItem("admin") === "true") {
+    
+    //return <Navigate to="/adminhome" />
+    //window.location.assign("http://google.com")
+    // window.open("/adminhome","_self");
+
+   
   }
 
   if (page === 0) {
@@ -199,6 +205,8 @@ function App() {
               )
             }
           />
+           <Route path="/adminhome" element={<AdminPage />} />
+            <Route path="/adminsearch" element={<SearchUsers />} />
         </Routes>
       </Router>
     );

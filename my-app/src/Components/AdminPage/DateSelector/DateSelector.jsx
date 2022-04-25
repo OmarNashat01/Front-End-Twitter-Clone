@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export var dateSelected=new Date();
 const DateSelector=(props)=>{
    // const [startDate, setStartDate] = useState(null);
-const {setStart, dateChosen}=props;
+const {setStart, dateChosen,minimumDate}=props;
   //const [endDate, setEndDate] =new Date("2014/02/10");
 //  const [dateRange,setDate]=useState({startDate:null})
  
@@ -13,6 +13,8 @@ const {setStart, dateChosen}=props;
   <div >
      <DatePicker
      selected={dateChosen}
+      minDate={minimumDate}
+     
       onChange={date=>{
       // setDate({startDate: date});
         // dateSelected=date;
@@ -28,12 +30,13 @@ const {setStart, dateChosen}=props;
         setStart(date);
       }}
      
-      dateFormat='dd/MM/yyyy'
+      dateFormat='yyyy-MM-dd'
       maxDate={new Date()}
       isClearable={true}
       showYearDropdown
       scrollableMonthYearDropdown
       showPreviousMonths
+      
     
       />
   {/* {console.log(dateRange.startDate)} */}
