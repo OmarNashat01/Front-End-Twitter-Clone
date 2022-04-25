@@ -29,6 +29,12 @@ export function patchRequest(URL, payload) {
     .then((response) => response)
     .catch((error) => error.response);
 }
+export function putRequest(URL, payload) {
+  return api
+    .put(`/${URL}`, payload)
+    .then((response) => response)
+    .catch((error) => error.response);
+}
 
 export function deleteRequest(URL) {
   return api
