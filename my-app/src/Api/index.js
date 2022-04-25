@@ -7,7 +7,7 @@ api.defaults.baseURL = "http://localhost:3030";
 //All request will wait 10 seconds before timeout
 api.defaults.timeout = 10000;
 
-api.defaults.headers.common["x-access-token"] = "AUTH_TOKEN";
+api.defaults.headers.common["x-access-token"] = localStorage.getItem("token");
 
 export async function getRequest(URL) {
   return api
@@ -26,6 +26,12 @@ export function postRequest(URL, payload) {
 export function patchRequest(URL, payload) {
   return api
     .patch(`/${URL}`, payload)
+    .then((response) => response)
+    .catch((error) => error.response);
+}
+export function putRequest(URL, payload) {
+  return api
+    .put(`/${URL}`, payload)
     .then((response) => response)
     .catch((error) => error.response);
 }

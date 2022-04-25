@@ -32,9 +32,12 @@
   box-shadow: none;
   /* font-size: 5rem; */
 }
-#txtAreaTxt::shadow{
-  color: green;
+
+
+#txtArea:focus ~ #txtAreaTxt {
+  color: rgb(29, 155, 240)
 }
+
 
 .signInToTwitter{
   margin: 30px 0 30px 0;
@@ -127,9 +130,7 @@
 .nameArea{
   margin-top: 30px;
 }
-.floatinTxt{
-  /* color: aqua; */
-}
+
 
 .FirstSignupPopup{
   margin-bottom: 100px;

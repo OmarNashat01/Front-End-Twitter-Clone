@@ -28,17 +28,59 @@ import {
 import TweetBox from "./Components/TweetBox/TweetBox";
 import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
+import jwt_decode from "jwt-decode";
+import { Reddit } from "@mui/icons-material";
+
 //Mock-Service-Worker
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
   worker.start();
 }
 
+function checkAuth(setIsAuth) {
+  var token = localStorage.getItem("token");
+
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+    // var decodedHeader = jwt_decode(token, { header: true });
+    // console.log(decodedHeader);
+  } catch (error) {
+    localStorage.clear();
+    return <Navigate to="/" />;
+  }
+
+  if (token !== null) {
+    setIsAuth(true);
+  }
+  console.log(token);
+}
+
 function App() {
   //indicates if user is authenticated
-  const [isAuth, setIsAuth] = useState(false);
+  var authBool = false;
+  var token = localStorage.getItem("token");
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+  } catch (error) {
+    localStorage.clear();
+    token = null;
+    <Navigate to="/" />;
+  }
 
-  var page = 2;
+  if (token !== null) {
+    authBool = true;
+  }
+
+  console.log(authBool);
+  const [isAuth, setIsAuth] = useState(authBool);
+
+  //{checkAuth(setIsAuth)}
+  var page = 1;
+  if (localStorage.getItem("admin") === true) {
+    page = 2;
+  }
 
   if (page === 0) {
     return <Login />;
@@ -49,7 +91,7 @@ function App() {
       <Router>
         <Routes>
           {/* UNDO THIS CHANGE */}
-          <Route path="/" element={<Navigate to="/home" /> /*<Login />*/} />
+          <Route path="/" element={<Login />} />
           <Route path={"/singin"} element={<SignIn />} />
           <Route path={"/singup"} element={<SignUp />} />
           <Route path={"/forgotPassword"} element={<ForgotPassword />} />
