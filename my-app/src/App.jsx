@@ -28,6 +28,9 @@ import {
 import TweetBox from "./Components/TweetBox/TweetBox";
 import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
+import jwt_decode from "jwt-decode";
+import { Reddit } from "@mui/icons-material";
+
 //Mock-Service-Worker
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
@@ -35,7 +38,20 @@ if (process.env.NODE_ENV === "development") {
 }
 
 function checkAuth(setIsAuth) {
-  let token = localStorage.getItem("token");
+  var token = localStorage.getItem("token");
+  
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = "+decode);
+    // var decodedHeader = jwt_decode(token, { header: true });
+    // console.log(decodedHeader);
+  } catch (error) {
+    localStorage.clear()
+    return(
+      <Navigate to="/" />
+    )
+  }
+
   if (token !== null) {
     setIsAuth(true);
   }
@@ -43,9 +59,21 @@ function checkAuth(setIsAuth) {
 }
 
 function App() {
+
   //indicates if user is authenticated
   var authBool = false;
-  if (localStorage.getItem("token") !== null) {
+  var token = localStorage.getItem("token");
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = "+decode);
+  } catch (error) {
+      localStorage.clear();
+      token = null;
+      <Navigate to="/" />
+  }
+
+  if (token !== null) {
+
     authBool = true;
   }
 
@@ -54,6 +82,9 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
+  if(localStorage.getItem("admin")){
+    page=2;
+  }
 
   if (page === 0) {
     return <Login />;
