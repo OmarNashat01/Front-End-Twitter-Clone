@@ -5,7 +5,7 @@ import AdminPageStyle from"./AdminPage.module.css";
 import DateSelector from "./DateSelector/DateSelector";
 import LineChart from "./LineChart/LineChart";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-
+import DonutChart from "./DonutChart/DonutChart";
 import TweetsStats from "./TweetsStats/TweetsStats";
 import Sidebar from "./AdminNavBar/Sidebar";
 const AdminPage = (props) => {
@@ -23,6 +23,11 @@ const AdminPage = (props) => {
           <div className="col col-lg-10 col-md-9 col-sm-1 col-sm-1">
           <div>
         <TweetsStats />
+        <div  className={AdminPageStyle.chartBox}>
+        <DonutChart  />
+
+        </div>
+        
       </div>
       jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
       jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj

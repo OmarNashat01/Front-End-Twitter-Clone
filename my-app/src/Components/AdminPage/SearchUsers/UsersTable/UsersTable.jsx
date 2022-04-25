@@ -52,7 +52,7 @@ rowsPerPageOptions={[4,5,7]}
  onRowsPerPageChange={handleChangeRowsPerPage}
 //  checkboxSelection
   sx={{
-    boxShadow: 4,
+    boxShadow: '5px 5px 5px grey',
     border: 2,
     padding:0.5,
     backgroundColor:'white',
