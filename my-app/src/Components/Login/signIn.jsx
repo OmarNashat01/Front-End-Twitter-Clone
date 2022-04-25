@@ -72,7 +72,8 @@ function SignIn(props){
   const loadData = () => {
     if(verify.status===200){
       localStorage.setItem("token",verify.data.token);
-      localStorage.setItem("user_id",verify.data.user_id);
+      localStorage.setItem("user_id",verify.data._id);
+      localStorage.setItem("admin", verify.data.admin);
       window.open("/Home","_self");
 
       // this.props.history.replace("/Home");
