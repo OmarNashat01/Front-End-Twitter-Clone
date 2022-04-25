@@ -33,6 +33,7 @@ const USER_50CENT = {
       following_count: 127,
     },
     {
+      user_id: "SNOOP_1234",
       name: "Snoop Dogg",
       username: "@SNOOP",
       prof_pic_url:
@@ -44,6 +45,7 @@ const USER_50CENT = {
   ],
   following: [
     {
+      user_id: "DRDRE_1234",
       name: "DrDre",
       username: "@dedre",
       prof_pic_url:
@@ -53,6 +55,7 @@ const USER_50CENT = {
       following_count: 0,
     },
     {
+      user_id: "SNOOP_1234",
       name: "Snoop Dogg",
       username: "@SNOOP",
       prof_pic_url:
@@ -62,8 +65,8 @@ const USER_50CENT = {
       following_count: 128,
     },
   ],
-  followers_count: 2,
-  following_count: 3,
+  followers_count: 1,
+  following_count: 1,
   tweet_count: 3,
   prof_pic_url:
     "https://pbs.twimg.com/profile_images/1226895461941940224/hBx6tZxz_400x400.jpg",
@@ -88,6 +91,7 @@ const USER_DRDRE = {
 
   followers: [
     {
+      user_id: "SNOOP_1234",
       name: "Snoop Dogg",
       username: "@SNOOP",
       prof_pic_url:
@@ -97,6 +101,7 @@ const USER_DRDRE = {
       following_count: 128,
     },
     {
+      user_id: "50CENT_1234",
       name: "50 Cent",
       username: "@iam50c",
       prof_pic_url:
@@ -145,7 +150,26 @@ const USER_EMINEM = {
 };
 
 const USERS = {
-  users: [USER_50CENT, USER_DRDRE, USER_EMINEM],
+  users: [
+    USER_50CENT,
+    USER_DRDRE,
+    USER_EMINEM,
+    USER_50CENT,
+    USER_DRDRE,
+    USER_EMINEM,
+    USER_50CENT,
+    USER_DRDRE,
+    USER_EMINEM,
+    USER_50CENT,
+    USER_DRDRE,
+    USER_EMINEM,
+    USER_50CENT,
+    USER_DRDRE,
+    USER_EMINEM,
+    USER_50CENT,
+    USER_DRDRE,
+    USER_EMINEM,
+  ],
 };
 
 /////////////////////////////////////////////////////
@@ -414,6 +438,8 @@ export const handlers = [
       );
     }
 
-    return res(ctx.status(200), ctx.delay(500), ctx.json(USERS));
+    const usersSlice = USERS.slice(offset * limit, offset * limit + limit);
+
+    return res(ctx.status(200), ctx.delay(500), ctx.json(usersSlice));
   }),
 ];
