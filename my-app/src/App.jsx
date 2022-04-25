@@ -39,17 +39,15 @@ if (process.env.NODE_ENV === "development") {
 
 function checkAuth(setIsAuth) {
   var token = localStorage.getItem("token");
-  
+
   try {
     var decode = jwt_decode(token);
-    console.log("decode var = "+decode);
+    console.log("decode var = " + decode);
     // var decodedHeader = jwt_decode(token, { header: true });
     // console.log(decodedHeader);
   } catch (error) {
-    localStorage.clear()
-    return(
-      <Navigate to="/" />
-    )
+    localStorage.clear();
+    return <Navigate to="/" />;
   }
 
   if (token !== null) {
@@ -59,21 +57,19 @@ function checkAuth(setIsAuth) {
 }
 
 function App() {
-
   //indicates if user is authenticated
   var authBool = false;
   var token = localStorage.getItem("token");
   try {
     var decode = jwt_decode(token);
-    console.log("decode var = "+decode);
+    console.log("decode var = " + decode);
   } catch (error) {
-      localStorage.clear();
-      token = null;
-      <Navigate to="/" />
+    localStorage.clear();
+    token = null;
+    <Navigate to="/" />;
   }
 
   if (token !== null) {
-
     authBool = true;
   }
 
@@ -82,8 +78,8 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
-  if(localStorage.getItem("admin")){
-    page=2;
+  if (localStorage.getItem("admin") === true) {
+    page = 2;
   }
 
   if (page === 0) {
