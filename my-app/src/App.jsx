@@ -43,8 +43,8 @@ function checkAuth(setIsAuth) {
   try {
     var decode = jwt_decode(token);
     console.log("decode var = "+decode);
-    var decodedHeader = jwt_decode(token, { header: true });
-    console.log(decodedHeader);
+    // var decodedHeader = jwt_decode(token, { header: true });
+    // console.log(decodedHeader);
   } catch (error) {
     localStorage.clear()
     return(
@@ -73,6 +73,7 @@ function App() {
   }
 
   if (token !== null) {
+
     authBool = true;
   }
 
@@ -81,6 +82,9 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
+  if(localStorage.getItem("admin")){
+    page=2;
+  }
 
   if (page === 0) {
     return <Login />;
