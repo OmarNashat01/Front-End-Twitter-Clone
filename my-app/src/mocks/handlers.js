@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import * as utils from './utils';
+import * as utils from "./utils";
 
 //BASE URL
 const BASE_URL = "http://localhost:3030";
@@ -687,8 +687,6 @@ const USER_TOKEN =
 //user id= "user_1234"
 //token= "TOKEN"
 
-
-
 //each element is an element to mock
 export const handlers = [
   //GET request example
@@ -1048,5 +1046,24 @@ export const handlers = [
       ctx.delay(500),
       ctx.json({ tweets: tweetSlice })
     );
+  }),
+  rest.post(`${BASE_URL}/tweets`, (req, res, ctx) => {
+    const { tweet } = req.body;
+    const TOKEN = req.headers._headers["x-access-token"];
+
+    if (TOKEN === undefined || TOKEN === null) {
+      return res(
+        ctx.status(404),
+        ctx.delay(500),
+        ctx.json({ 404: "TOKEN IS MISSING" })
+      );
+    }
+
+    if (
+      tweet.user_id === USER_50CENT._id &&
+      tweet.username === USER_50CENT.username
+    ) {
+      return res(ctx.status(200), ctx.delay(500));
+    }
   }),
 ];
