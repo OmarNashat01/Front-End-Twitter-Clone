@@ -17,9 +17,6 @@ import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar"
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
-import WidgetbarCSS from "./Components/Widgetbar/Widgetbar.module.css";
-import SearchBar from "./Components/Widgetbar/SearchBar/SearchBar";
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -116,9 +113,6 @@ function App() {
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8 ">
                       <HomeNavbar />
-                      {/* <div className={WidgetbarCSS.topNavbar}>
-                     Home
-                      </div>   */}
                       <TweetBox />
                       <HomeFeed />
                     </div>
