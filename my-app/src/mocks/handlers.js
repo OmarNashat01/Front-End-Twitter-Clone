@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import * as utils from './utils';
 
 //BASE URL
 const BASE_URL = "http://localhost:3030";
@@ -187,6 +188,8 @@ const USER_TOKEN =
 //password= "5678"
 //user id= "user_1234"
 //token= "TOKEN"
+
+
 
 //each element is an element to mock
 export const handlers = [

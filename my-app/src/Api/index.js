@@ -42,3 +42,14 @@ export function deleteRequest(URL) {
     .then((response) => response)
     .catch((error) => error.response);
 }
+
+
+export async function getRequestwithLimit(URL,setPosts,count) {
+  let response;
+  response = await api.get(`/${URL}?count=${count}`).then(res => {
+    setPosts(prevPosts => {
+      return [...prevPosts, ...res.data]
+    });
+  })
+  return response;
+}
