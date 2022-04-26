@@ -15,15 +15,10 @@ export default function TweetBox({
   avatar = "https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg",
 }) {
   return (
-    <div className="tweetBox" data-testid="tweetbox-1">
+    <div className={TweetboxCSS.tweetbox} data-testid="tweetbox-1">
       <Container>
         <Row>
           <Col xs={2}>
-            {/* <img
-              className={TweetboxCSS.imageInput}
-              src={avatar}
-              alt="UserImage"
-            /> */}
             <IconButton className={TweetboxCSS.imageInput}>
                 <Avatar src={avatar} style={{width: "55px",height: "55px"}}/>
             </IconButton>
@@ -49,7 +44,7 @@ export default function TweetBox({
           </Col>
         </Row>
       </Container>
-    </div>
+      </div>
   );
 }
 

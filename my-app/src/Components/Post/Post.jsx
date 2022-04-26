@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { Dropdown, Row } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
+import ToolTip from "./../Widgetbar/ToolTip/ToolTip"
 import Col from 'react-bootstrap/Col';
 const Post = forwardRef(
   (
@@ -171,7 +172,7 @@ const Post = forwardRef(
     return (
       <div className="post" ref={ref} >
         <div className="post__avatar">
-          <Avatar src={avatar} onClick={navProfile} />
+          <ToolTip name={displayName} tag={username} img={avatar} show="displayRight" />
         </div>
         <div className="post__body">
           <div className="post__header">

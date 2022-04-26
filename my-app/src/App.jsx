@@ -10,15 +10,13 @@ import SignIn from "./Components/Login/signIn";
 import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
-
 //import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
-
+import HomeNavbar from "./Components/HomeNavbar/HomeNavbar"
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -113,9 +111,10 @@ function App() {
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
-                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8 ">
+                      <HomeNavbar />
                       <TweetBox />
-                      {/* <HomeFeed /> */}
+                      <HomeFeed />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 ">
                       <Widgetbar />
