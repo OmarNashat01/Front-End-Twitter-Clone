@@ -42,7 +42,7 @@ function ProfileFeed() {
               text={post.text}
               avatar={post.prof_pic_url}
               image={post.images}
-              isLiked="true"
+              isLiked="false"
               isRetweet="false"
               likes={post.like_count}
               retweets={post.retweet_count}

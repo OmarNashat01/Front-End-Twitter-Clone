@@ -195,8 +195,6 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
-                        {/* TODO:for testing */}
-                        {/* <HomeFeed /> */}
                       </div>
                     </div>
                   </div>

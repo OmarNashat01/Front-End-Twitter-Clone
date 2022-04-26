@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Form } from "usetheform";
 import {Preview } from "./Preview/Preview";
 import {PrivacyPicker} from "./PrivacyPicker/PrivacyPicker"
@@ -12,18 +13,33 @@ import { Container,Row,Col } from 'react-bootstrap';
 import TweetboxCSS from "./TweetBox.module.css";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
+import { getMe } from "../../Api/UserProfile";
 
 const MAX_CHARS_ALLOWED = 280;
 export default function TweetBox({
   avatar = "https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg",
 }) {
+
+  const [Me, setMe] = useState();
+  const [loading , setLoading] = useState(true);
+  
+  useEffect(()=>{
+    getMe(setLoading, setMe);
+  },[])
+  if(!loading)
+  {
+    console.log(Me.data.prof_pic_url);
+    console.log("HELLOOO");
+  }
+
   return (
     <div className={TweetboxCSS.tweetbox} data-testid="tweetbox-1">
+      {!loading &&
       <Container>
         <Row>
           <Col xs={2}>
             <IconButton className={TweetboxCSS.imageInput}>
-                <Avatar src={avatar} style={{width: "55px",height: "55px"}}/>
+                <Avatar src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
             </IconButton>
           </Col>
           <Col xs={10} md={10}>
@@ -46,7 +62,7 @@ export default function TweetBox({
             </Form>
           </Col>
         </Row>
-      </Container>
+      </Container>}
       </div>
   );
 }

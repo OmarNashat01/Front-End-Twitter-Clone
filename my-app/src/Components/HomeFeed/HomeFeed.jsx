@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from "./Loader";
 import Post from "../Post/Post";
@@ -40,6 +40,7 @@ if(!loading){
               posts.map((post,index) => {
               return <div key={index}>
                 <Post
+                  user_id={post.user_id}
                   displayName={post.name}
                   username={post.username}
                   verified="1"
@@ -50,6 +51,9 @@ if(!loading){
                   isRetweet="false"
                   likes={post.like_count}
                   retweets={post.retweet_count}
+                  followers={post.followers_count}
+                  following={post.following_count}
+                  about={post.bio}
                 ></Post>
               </div>
             })
