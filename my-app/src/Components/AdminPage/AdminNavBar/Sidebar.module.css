@@ -1,0 +1,47 @@
+.navItem {
+
+  text-align: left;
+  /* margin-left: 75%; */
+width:fit-content !important;
+  padding: 0 0 0 0 !important;
+  border-style: groove;
+  border-radius: 25px;
+
+}
+.navItemTwo {
+
+  text-align: left;
+  /* margin-left: 75%; */
+width:150px !important;
+  padding: 0 0 0 0 !important;
+  border-style: groove;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+.barWidth{
+
+  color: aliceblue !important;
+  height: 50%;
+}
+.navbarLogo {
+  /* text-align: left;
+  margin-left: auto; */
+  margin-left: 18px;
+  width: 29%;
+}
+
+/* tweet button */
+.tweetBtn {
+  height: 52px;
+  margin-right: auto !important;
+  width: 200px ;
+}
+.tweetBtnSmall
+{
+  width:60px !important;
+  height: 60px !important;
+  margin-right: auto !important;
+  margin-left: 0px !important;
+  
+}
+

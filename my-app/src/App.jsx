@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 
@@ -10,7 +10,7 @@ import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
 
-import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
+//import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
@@ -28,17 +28,65 @@ import {
 import TweetBox from "./Components/TweetBox/TweetBox";
 import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
+import jwt_decode from "jwt-decode";
+import { Reddit } from "@mui/icons-material";
+
 //Mock-Service-Worker
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
   worker.start();
 }
 
-//indicates if user is authenticated
-let isAuth = false;
+function checkAuth(setIsAuth) {
+  var token = localStorage.getItem("token");
+
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+    // var decodedHeader = jwt_decode(token, { header: true });
+    // console.log(decodedHeader);
+  } catch (error) {
+    localStorage.clear();
+    return <Navigate to="/" />;
+  }
+
+  if (token !== null) {
+    setIsAuth(true);
+  }
+  console.log(token);
+}
 
 function App() {
+  //indicates if user is authenticated
+  var authBool = false;
+  var token = localStorage.getItem("token");
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+  } catch (error) {
+    localStorage.clear();
+    token = null;
+    <Navigate to="/" />;
+  }
+
+  if (token !== null) {
+    authBool = true;
+  }
+
+  console.log(authBool);
+  const [isAuth, setIsAuth] = useState(authBool);
+
+  //{checkAuth(setIsAuth)}
   var page = 1;
+  
+  if (localStorage.getItem("admin") === "true") {
+    
+    //return <Navigate to="/adminhome" />
+    //window.location.assign("http://google.com")
+    // window.open("/adminhome","_self");
+
+   
+  }
 
   if (page === 0) {
     return <Login />;
@@ -48,6 +96,7 @@ function App() {
     return (
       <Router>
         <Routes>
+          {/* UNDO THIS CHANGE */}
           <Route path="/" element={<Login />} />
           <Route path={"/singin"} element={<SignIn />} />
           <Route path={"/singup"} element={<SignUp />} />
@@ -59,7 +108,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -83,7 +132,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -102,7 +151,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -121,7 +170,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -140,7 +189,7 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="main-screen col col-md-3 col-lg-3 col-sm-2 col-xs-1 sticky-top">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
@@ -156,6 +205,8 @@ function App() {
               )
             }
           />
+           <Route path="/adminhome" element={<AdminPage />} />
+            <Route path="/adminsearch" element={<SearchUsers />} />
         </Routes>
       </Router>
     );
@@ -166,11 +217,11 @@ function App() {
       <div>
         <Router>
           <nav className="sticky-top">
-            <AdminNavBar />
+       {/* //     <AdminNavBar /> */}
           </nav>
           <Routes>
-            <Route path="/" element={<AdminPage />}></Route>
-            <Route path="/search" element={<SearchUsers />}></Route>
+            <Route path="/adminhome" element={<AdminPage />}></Route>
+            <Route path="/adminsearch" element={<SearchUsers />}></Route>
           </Routes>
         </Router>
       </div>

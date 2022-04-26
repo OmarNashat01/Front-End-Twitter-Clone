@@ -1,61 +1,71 @@
 
 
-.nav-button {
+.navButton {
 
 
 
   padding: 0px 0px !important;
-  width: 200px !important;
+  width: auto !important;
   margin: auto 0 !important;
-  height: 50px;
+  height: fit-content;
 }
 
-.nav-button:hover {
+.navButtonContainer
+{
+
+  text-align:left!important;
+
+}
+
+
+.navButton:hover {
 
   background-color: rgba(18, 102, 241, 0.5);
 
 }
-.nav-button:focus
+.navButton:focus
 {
   outline: 0px !important  ;
 }
-.nav-button-small {
+.navButtonSmall {
   padding: 0px 0px !important;
-  width: 50px !important;
+  width: 100px !important;
   height: 50px !important;
   margin: auto 0 !important;
 }
-.nav-button-small:hover {
+.navButtonSmall:hover {
   background-color: rgba(13,110,253,0.5);
 }
 
-.nav-option {
+.navOption {
   text-align: right;
 
   padding: 20px;
   font-size: 24px;
   margin-top: 20px;
   margin-bottom: 20px;
-  width: fit-content;
+  width: 100px;
 }
-/* .tab-item {
-  width: fit-content;
-  margin-left: auto;
-} */
-
-.float-parent-element {
+.logoColor{
+  color: aliceblue;
+}
+.floatParentElement {
   width: 50% ;
 }
-.float-child-element {
+.floatChildElement {
   float: left;
   width: 50%;
+  padding:6px;
 }
-.tab-text {
-  width: 50%;
+.tabText {
+  width: 75%;
   text-align: left !important;
+  color:aliceblue;
+font-size: medium;
+font-weight: 700;
 }
 
-.left-child {
+.leftChild {
   width: 25%;
   text-align: end;
 }

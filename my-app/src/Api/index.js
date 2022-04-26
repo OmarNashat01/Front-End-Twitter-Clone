@@ -4,28 +4,41 @@ const api = axios.create();
 
 api.defaults.baseURL = "http://localhost:3030";
 
-//All request will wait 2 seconds before timeout
+//All request will wait 10 seconds before timeout
 api.defaults.timeout = 10000;
 
-export async function getRequest(URL, params = undefined) {
-  let response;
-  if (params === undefined) {
-    response = await api.get(`/${URL}`);
-  } else {
-    response = await api.get(`/${URL}`, { params });
-  }
+api.defaults.headers.common["x-access-token"] = localStorage.getItem("token");
 
-  return response;
+export async function getRequest(URL) {
+  return api
+    .get(`/${URL}`)
+    .then((response) => response)
+    .catch((error) => error.response);
 }
 
 export function postRequest(URL, payload) {
-  return api.post(`/${URL}`, { payload }).then((response) => response);
+  return api
+    .post(`/${URL}`, payload)
+    .then((response) => response)
+    .catch((error) => error.response);
 }
 
 export function patchRequest(URL, payload) {
-  return api.patch(`/${URL}`, { payload }).then((response) => response);
+  return api
+    .patch(`/${URL}`, payload)
+    .then((response) => response)
+    .catch((error) => error.response);
+}
+export function putRequest(URL, payload) {
+  return api
+    .put(`/${URL}`, payload)
+    .then((response) => response)
+    .catch((error) => error.response);
 }
 
 export function deleteRequest(URL) {
-  return api.delete(`/${URL}`).then((response) => response);
+  return api
+    .delete(`/${URL}`)
+    .then((response) => response)
+    .catch((error) => error.response);
 }

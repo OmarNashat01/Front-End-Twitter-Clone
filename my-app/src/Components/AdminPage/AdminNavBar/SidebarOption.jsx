@@ -12,12 +12,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
 
 const icons = {};
-icons["TwitterIcon"] = <TwitterIcon />;
-icons["HomeIcon"] = <HomeIcon />;
-icons["TagIcon"] = <TagIcon />;
-icons["NotificationsIcon"] = <NotificationsIcon />;
-icons["BookmarkIcon"] = <BookmarkIcon />;
-icons["PersonIcon"] = <PersonIcon />;
+
+icons["HomeIcon"] = <HomeIcon className={SidebarOptionStyles.logoColor} />;
+
+icons["PersonIcon"] = <PersonIcon  className={SidebarOptionStyles.logoColor} />;
 
 function SidebarOption(props) {
   let navigate = useNavigate();

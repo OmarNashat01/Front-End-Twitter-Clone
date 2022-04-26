@@ -1,7 +1,10 @@
-import React , {useState , Component} from "react";
+import React , {useState , Component } from "react";
 import Popup from "./popup.module.css"
 import LoginCss from "./Login.module.css"
 import axios from "axios";
+import {postVerify , PostEmailAndVerCode , postUserData} from "../../Api/SignUp"
+import { Email } from "@mui/icons-material";
+
 
 
 var user = {
@@ -11,6 +14,7 @@ var user = {
   Day: "",
   Year: "",
   Password: "",
+  username:"",
 }
 
 var temp_user = {
@@ -20,12 +24,12 @@ var temp_user = {
   temp_Month: "",
   temp_Day: "",
   temp_Year: "",
-  
+  temp_username:"",
 }
 
 function getUserData(val){
   temp_user[val.target.name] = val.target.value;
-  console.log(temp_user);
+  //console.log(temp_user);
 }
 
 
@@ -40,7 +44,19 @@ function getVerCode(val){
 //main function.
 function SignUp(props){
   const[page,setPage] = useState(0);
-  const FormTitles = ["Next" , "Next" , "Next" , "Sign up" ];
+  const FormTitles = ["Next" , "Next" , "Next" ,"Next" , "Sign up" ];
+
+  const[verLoading , setVerLoading] = useState(true);
+  const[verify , setVerify] = useState();
+
+  const[verLoadingIDandEmail , setVerLoadingIDandEmail] = useState(true);
+  const[verifyIDandEmail , setVerifyIDandEmail] = useState();
+
+  
+  const[verLoadingData , setVerLoadingData] = useState(true);
+  const[verifyData , setVerifyData] = useState();
+
+
 
   //Check which tap will be rendered.
   const PageToDisplay = () => {
@@ -48,6 +64,7 @@ function SignUp(props){
     else if(page===1) return <div>{secondStep()}</div>
     else if(page===2) return <div>{verStep()}</div>
     else if(page===3) return <div>{passwordStep()}</div>
+    else if(page===4) return <div>{userNameStep()}</div>
   }
   //Render first tap ask the user to enter name, email, and date of birth.
   const PageDisplay = () => {
@@ -60,12 +77,12 @@ function SignUp(props){
         <h3 className={Popup.headline}>Create your account</h3>
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control inputTxt signupButton nameArea" id={("floatingInput userFullName",Popup.txtArea)}   placeholder="Name" onChange={getUserData} name="temp_Name"></input>
-          <label  for="floatingInput">Name</label>
+          <label id={Popup.txtAreaTxt}  for="floatingInput">Name</label>
         </div>
   
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Email" onChange={getUserData} name="temp_Email"></input>
-          <label className="floatinTxt" for="floatingInput">Email</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Email</label>
         </div>
   
   
@@ -221,7 +238,7 @@ function SignUp(props){
   
       <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Verification code" onChange={getVerCode}></input>
-          <label className="floatinTxt" for="floatingInput">Verification code</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Verification code</label>
       </div>
   
   </div> );
@@ -241,7 +258,7 @@ function SignUp(props){
       <div>
         <div className="form-floating mb-3">
           <input type={"password"} className="inputTxt form-control inputTxt signupButton" id={("floatingInput",Popup.txtArea)}  placeholder="password" onChange={getUserData} name="temp_Password"></input>
-          <label className="floatinTxt" for="floatingInput">password</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">password</label>
         </div> 
       </div>
 
@@ -260,44 +277,71 @@ function SignUp(props){
       <div className={Popup.txtAskVer}>Your @username is unique. You can always change it later.</div>
   
       <div className="form-floating mb-3">
-          <input type={"text"} className="inputTxt form-control signupButton nameArea" id="floatingInput phoneOrEmail"  placeholder="username"></input>
+          <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="username" onChange={getUserData} name="temp_username"></input>
           <label className="floatinTxt" for="floatingInput">username</label>
       </div>
       
   </div> );
   }
 
+  //send email to back end
   const sendEmail =async () => {
-    let {data} =await axios.post("http://localhost:3030/",{
-      user_email:user.Email
-    });
-    //console.log(data);
+    let requestBody = {
+      "email": user.Email
+    }
+    let resul = await postVerify(setVerLoading , setVerify , requestBody);
   }
+  const sendData =async () => {
+    let requestBody = {
+      "email": user.Email,
+      "password": user.password,
+      "name": user.Name,
+      "date_of_birth": user.Day +"/"+ user.Month +"/"+ user.Year,
+      "gender": "string",
+      "username": user.username,
+    }
+    let resul = await postUserData(setVerLoadingData , setVerifyData , requestBody);
+  }
+
+  //send email and verication
   const sendEmailAndVerCode =async () => {
-    let {data} =await axios.post("http://localhost:3030/",{
-      OTP:verCode,
-      user_email:user.Email
-    });
-    //console.log(data);
+    //console.log(user.Email);
+    let resul2 = await PostEmailAndVerCode(setVerLoadingIDandEmail , setVerifyIDandEmail ,`?OTP=${verCode}&email=${user.Email}`);
   }
-  const getApproval =async () => {
-    let res = await axios.get("/example");//not completed
+
+
+  const checkVer = () =>{
+    if(page===2 && verCode !== undefined){
+    if(verCode.length>0 && verifyIDandEmail.status===200){
+      setPage((currpage)=>currpage+1);
+      setVerLoadingIDandEmail(true);
+    }
+    else{
+      setVerLoadingIDandEmail(true);
+    }
   }
-  const sendUserData =async () => {
-    let {data} =await axios.post("http://localhost:3030/",{
-      Name:user.Name,
-      email:user.Email,
-      month:user.month,
-      day:user.Day,
-      year:user.year,
-      Password:user.Password,
-    });
-    //console.log(data);
+  }
+
+  const checkDataSent = () => {
+    console.log(verifyData.status);
+    if(user.username.length>0 && verifyData.status===200){
+      window.open("/Home","_self");
+      setVerLoadingData(true);
+      {console.log(verifyData)}
+    }
+    else if(user.username.length>0 && verifyData.status===400){
+      setVerLoadingIDandEmail(true);
+      user.username= "";
+    }
+    else{
+      {console.log(verifyData)}
+      setVerLoadingData(true);
+    }
   }
   
 
   //event excuted when main button is clicked to handle which tap will be rendered
-  function Handlebtn(){
+  async function Handlebtn (){
     if(page===0){
       user.Name=temp_user.temp_Name;
       user.Email=temp_user.temp_Email;
@@ -305,10 +349,10 @@ function SignUp(props){
       user.Day=temp_user.temp_Day;
       user.Year=temp_user.temp_Year;
 
-      {sendEmail()}
+      await sendEmail()
 
       if(user.Name.length>0 & user.Email.length>0 & user.Month.length>0 & user.Day.length>0 & user.Year.length>0 ) setPage((currpage)=>currpage+1);
-      alert(user.Name+":"+user.Email)
+      //alert(user.Name+":"+user.Email)
     }
     else if(page===1){
       setPage((currpage)=>currpage+1);
@@ -316,14 +360,18 @@ function SignUp(props){
     else if(page===2){
       verCode=temp_verCode;
       {sendEmailAndVerCode()}
-      if(verCode.length>0)setPage((currpage)=>currpage+1);
-      // alert(verCode);
-
+      // if(verCode.length>0)setPage((currpage)=>currpage+1);
     }
     else if(page===3){
-      user.Password=temp_user.temp_Password;
-      if(user.Password.length>0)window.open("/Home","_self");
+      // user.Password=temp_user.temp_Password;
+      // await sendData();
+      setPage((currpage)=>currpage+1);
+      //if(user.Password.length>0)window.open("/Home","_self");
       // alert(Password);
+    }
+    else if(page===4){
+      user.username=temp_user.temp_username;
+      await sendData();
     }
   }
 
@@ -335,14 +383,27 @@ function SignUp(props){
 
           {PageToDisplay()}
 
+
+
           <button type="button" className="updatedBtn btn btn-light update-ptn" id={(LoginCss.updatedBtn,Popup.signuputton)} 
+
             // disabled={page==FormTitles.length-1} 
             //disabled={!temp_Name}
-
+            
             onClick={() => {Handlebtn()} }>
             {FormTitles[page]}
           </button>
+          {/* {console.log(verLoading)} */}
+          {/* {!verLoading && console.log(verify.status)} */}
+          {/* {!verLoading && Temp()} */}
 
+
+          {!verLoadingIDandEmail && checkVer()}
+          {!verLoadingData && checkDataSent()}
+          
+
+          
+          
 
       </div>  
     </div>
