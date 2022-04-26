@@ -5,7 +5,7 @@ export async function getMyTweets(setLoading, setPosts) {
 
     try {
       const response = await getRequest("tweets/all/me");
-      setPosts(response.tweets);
+      setPosts(response.data.tweets);
     } catch (error) {
       console.log(error.message);
     }

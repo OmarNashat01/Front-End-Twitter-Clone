@@ -59,7 +59,7 @@ if(!loading){
                 verified="0"
                 text={post.text}
                 avatar={post.prof_pic_url}
-                image={"https://picsum.photos/seed/" + Math.random() + "/700/500"}
+                image={post.images.length === 0 ? "" : post.images[0].url}
                 isLiked="false"
                 isRetweet="false"
                 likes={post.like_count}
