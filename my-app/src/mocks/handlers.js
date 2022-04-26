@@ -274,6 +274,355 @@ const TWEETS_50CENT = {
   ],
 };
 
+///////////////////////////////////////////
+
+const TWEETS_DRDRE = {
+  tweets: [
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "DRDRE_TWEET_1",
+      user_id: USER_DRDRE._id,
+      name: USER_DRDRE.name,
+      username: USER_DRDRE.username,
+      prof_pic_url: USER_DRDRE.prof_pic_url,
+      bio: USER_DRDRE.bio,
+      followers_count: USER_DRDRE.followers_count,
+      following_count: USER_DRDRE.following_count,
+      text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+      created_at: "15/02/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 22,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "DRDRE_TWEET_2",
+      user_id: USER_DRDRE._id,
+      name: USER_DRDRE.name,
+      username: USER_DRDRE.username,
+      prof_pic_url: USER_DRDRE.prof_pic_url,
+      bio: USER_DRDRE.bio,
+      followers_count: USER_DRDRE.followers_count,
+      following_count: USER_DRDRE.following_count,
+      text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+      created_at: "15/02/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 22,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "DRDRE_TWEET_3",
+      user_id: USER_DRDRE._id,
+      name: USER_DRDRE.name,
+      username: USER_DRDRE.username,
+      prof_pic_url: USER_DRDRE.prof_pic_url,
+      bio: USER_DRDRE.bio,
+      followers_count: USER_DRDRE.followers_count,
+      following_count: USER_DRDRE.following_count,
+      text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+      created_at: "15/02/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 22,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "DRDRE_TWEET_4",
+      user_id: USER_DRDRE._id,
+      name: USER_DRDRE.name,
+      username: USER_DRDRE.username,
+      prof_pic_url: USER_DRDRE.prof_pic_url,
+      bio: USER_DRDRE.bio,
+      followers_count: USER_DRDRE.followers_count,
+      following_count: USER_DRDRE.following_count,
+      text: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m",
+      created_at: "15/02/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 22,
+      comments: [],
+    },
+  ],
+};
+/////////////////////////////
+const TWEETS_EMINEM = {
+  tweets: [
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_1",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_2",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_3",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_4",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_5",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_6",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_7",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_8",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_9",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "Eminem_TWEET_10",
+      user_id: USER_EMINEM._id,
+      name: USER_EMINEM.name,
+      username: USER_EMINEM.username,
+      prof_pic_url: USER_EMINEM.prof_pic_url,
+      bio: USER_EMINEM.bio,
+      followers_count: USER_EMINEM.followers_count,
+      following_count: USER_EMINEM.following_count,
+      text: "Non enim praesent elementum facilisis leo vel fringilla. Viverra tellus in hac habitasse platea.",
+      created_at: "26/04/2022",
+      videos: [],
+      images: [],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 26,
+      comments: [],
+    },
+  ],
+};
+////////////////////////////////////
+
 const ADMIN_TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjY1NTIyNzRkNTc4NmY0MzdjYmIyNWMiLCJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjgyMzQzOTExfQ.b6-oq0j_Uto5NGvyobu4y2BVRjmM_6cUT9zQJ1I9FP8";
 const USER_TOKEN =
@@ -584,5 +933,29 @@ export const handlers = [
     }
 
     return res(ctx.status(200), ctx.delay(500), ctx.json(TWEETS_50CENT));
+  }),
+  rest.get(`${BASE_URL}/tweets/all`, (req, res, ctx) => {
+    const TOKEN = req.headers._headers["x-access-token"];
+    const USER_ID = req.url.searchParams.get("user_id");
+
+    if (TOKEN === undefined || TOKEN === null) {
+      return res(
+        ctx.status(404),
+        ctx.delay(500),
+        ctx.json({ 404: "TOKEN IS MISSING" })
+      );
+    } else if (
+      USER_ID !== USER_50CENT._id &&
+      USER_ID !== USER_DRDRE._id &&
+      USER_ID !== USER_EMINEM._id
+    ) {
+      return res(ctx.status(404), ctx.delay(500));
+    } else if (USER_ID === "DRDRE_1234") {
+      return res(ctx.status(200), ctx.delay(500), ctx.json(TWEETS_DRDRE));
+    } else if (USER_ID === "50CENT_1234") {
+      return res(ctx.status(200), ctx.delay(500), ctx.json(TWEETS_50CENT));
+    } else if (USER_ID === "EMINEM_1234") {
+      return res(ctx.status(200), ctx.delay(500), ctx.json(TWEETS_EMINEM));
+    }
   }),
 ];
