@@ -623,6 +623,55 @@ const TWEETS_EMINEM = {
 };
 ////////////////////////////////////
 
+const RANDOM_TWEETS = [
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+  ...TWEETS_DRDRE.tweets,
+  ...TWEETS_EMINEM.tweets,
+];
+
+/////////////////////
+
 const ADMIN_TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjY1NTIyNzRkNTc4NmY0MzdjYmIyNWMiLCJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjgyMzQzOTExfQ.b6-oq0j_Uto5NGvyobu4y2BVRjmM_6cUT9zQJ1I9FP8";
 const USER_TOKEN =
@@ -957,5 +1006,15 @@ export const handlers = [
     } else if (USER_ID === "EMINEM_1234") {
       return res(ctx.status(200), ctx.delay(500), ctx.json(TWEETS_EMINEM));
     }
+  }),
+  rest.get(`${BASE_URL}/tweets/random`, (req, res, ctx) => {
+    const TOKEN = req.headers._headers["x-access-token"];
+    const PAGE = req.url.searchParams.get("page");
+
+    const tweetSlice = RANDOM_TWEETS.slice(PAGE * 25, PAGE * 25 + 24);
+    if (tweetSlice.length === 0) {
+      return res(ctx.status(404), ctx.delay(500));
+    }
+    return res(ctx.status(200), ctx.delay(500), ctx.json(tweetSlice));
   }),
 ];
