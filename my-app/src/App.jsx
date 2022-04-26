@@ -16,6 +16,7 @@ import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
 
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
+import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 
 import {
   BrowserRouter as Router,
@@ -195,7 +196,7 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
-                        <HomeFeed />
+                        <ProfileFeed />
                       </div>
                     </div>
                   </div>

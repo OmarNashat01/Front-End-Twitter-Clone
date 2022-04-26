@@ -74,6 +74,7 @@ function SignIn(props){
       localStorage.setItem("token",verify.data.token);
       localStorage.setItem("user_id",verify.data._id);
       localStorage.setItem("admin", verify.data.admin);
+      alert("Sign in Succfadsfa");
 
       
 
