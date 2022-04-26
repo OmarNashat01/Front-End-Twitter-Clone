@@ -50,8 +50,104 @@
     text-decoration: none !important;
 }
 
+.bellbutton {
+    position: relative;
+    left: 56%;
+    bottom: 205px;
+    width: 0.7cm;
+    height: 0.8cm;
+    border-radius: 25px !important;
+    border-color: lightgray !important;
+    font-weight: bold !important;
+    text-emphasis-color: black;
+    color: black;
+}
+
+.envbutton {
+    position: relative;
+    left: 45%;
+    bottom: 205px;
+    width: 0.7cm;
+    height: 0.8cm;
+    border-radius: 25px !important;
+    border-color: lightgray !important;
+    font-weight: bold !important;
+    text-emphasis-color: black;
+    color: black;
+}
+
+.dotsbutton {
+    position: relative;
+    left: 30%;
+    bottom: 205px;
+    width: 0.7cm;
+    height: 0.8cm;
+    border-radius: 25px !important;
+    border-color: lightgray !important;
+    font-weight: bold !important;
+    text-emphasis-color: black;
+    color: black;
+}
+
+.bellbutton:hover {
+    background-color: white !important;
+    color: black !important;
+}
+
+.envbutton:hover {
+    background-color: white !important;
+    color: black !important;
+}
+
+.dotsbutton:hover {
+    background-color: white !important;
+    color: black !important;
+}
+
 ::-webkit-scrollbar {
     width: 0.5cm;
+}
+
+.bellicon {
+    position: relative !important;
+    top: 0px !important;
+    bottom: 20% !important;
+    max-width: 100% !important;
+    height: 1.0em !important;
+    display: inline-block !important;
+    color: black !important;
+    fill: currentcolor !important;
+    vertical-align: text-bottom !important;
+    margin-right: 4px !important;
+    user-select: none !important;
+}
+
+.envicon {
+    position: relative !important;
+    top: 0px !important;
+    bottom: 20% !important;
+    max-width: 100% !important;
+    height: 1.0em !important;
+    display: inline-block !important;
+    color: black !important;
+    fill: currentcolor !important;
+    vertical-align: text-bottom !important;
+    margin-right: 4px !important;
+    user-select: none !important;
+}
+
+.doticon {
+    position: relative !important;
+    top: 0px !important;
+    bottom: 20% !important;
+    max-width: 100% !important;
+    height: 1.0em !important;
+    display: inline-block !important;
+    color: black !important;
+    fill: currentcolor !important;
+    vertical-align: text-bottom !important;
+    margin-right: 4px !important;
+    user-select: none !important;
 }
 
 @media(max-width:1500px) {

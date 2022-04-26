@@ -9,7 +9,7 @@ import SignIn from "./Components/Login/signIn";
 import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
-
+import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
@@ -162,7 +162,31 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
-                        <HomeFeed />
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+           <Route
+            path="/profile/following"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <FollowingPage/>
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
                       </div>
                     </div>
                   </div>

@@ -10,23 +10,33 @@ import pro from "../../../assets/pro.jpg";
 import Image from "react-bootstrap/Image";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 const Following = (props) => {
-    return ( < div >
+    return ( < div className = {
+            FollowingCSS.box
+        } >
+
+
         <
-        div className = { FollowingCSS.box } >
+        div >
+
+
         <
-        img src = { pro }
+        img src = { props.pic }
         alt = "pic"
         className = "img-fluid rounded-circle"
+        className = {
+            FollowingCSS.pic
+        }
         height = { 50 }
         width = { 50 }
         /> </div >
         <
-        div className = { FollowingCSS.user } > user name < p className = { FollowingCSS.handle } > @handlee < /p> <
-        p className = { FollowingCSS.bio } > hi im here to follow < /p > < /div > <
-        Button variant = "outline-secondary"
+        div className = { FollowingCSS.user } > { props.username } < p className = { FollowingCSS.handle } > { props.handle } < /p> <
+        p className = { FollowingCSS.bio } > { props.bio } < /p > < /div > <
+        Button variant = "outline-dark"
         className = { FollowingCSS.btn } >
-        following { props.children } { " " } <
-        /Button>{" "}
+        <
+        span > Following < /span> { props.children } { " " } < /
+        Button > { " " }
 
         <
         /div>

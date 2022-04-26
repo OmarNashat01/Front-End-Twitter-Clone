@@ -1,23 +1,25 @@
 .box {
-    border: 0cm;
-    border-color: rgba(0, 0, 0, 0.2);
+    position: relative;
+    width: max-content;
+    top: auto;
 }
 
 .user {
     font-size: 15px;
     font-family: inherit;
     font-weight: bold;
-    position: absolute;
-    top: 6%;
-    left: 40%;
+    position: relative;
+    top: 15.5%;
+    left: 65%;
 }
 
 .handle {
     font-size: 15px;
     font-family: inherit;
     font-weight: lighter;
-    position: absolute;
-    top: 60%;
+    color: gray;
+    position: relative;
+    top: 75%;
     left: 1%;
 }
 
@@ -25,17 +27,98 @@
     font-size: 15px;
     font-family: inherit;
     font-weight: lighter;
-    position: absolute;
+    position: relative;
+    white-space: nowrap;
     line-height: 0.4cm;
-    bottom: -280%;
+    top: 200%;
     left: 1%;
+    margin: -2.5% 0.66%;
+    overflow-wrap: break-word;
+    min-width: 0px;
+    max-width: 468px;
 }
 
 .btn {
     position: relative;
-    left: 80%;
-    bottom: 30px;
+    left: 450px;
+    width: 2.5cm;
+    text-align: center;
+    height: 0.9cm;
+    bottom: 40px;
+    border-radius: 25px !important;
+    border-color: lightgray !important;
+    font-weight: bold !important;
     border-radius: 25px !important;
     font-weight: bold !important;
     color: black;
+}
+
+.btn:hover span {
+    background-color: rgba(244, 33, 46, 0.1) !important;
+    color: red !important;
+}
+
+.pic {
+    position: absolute;
+    left: 21%;
+    top: 16%;
+    border-radius: 50%;
+}
+
+@media(max-width:1000px) {
+    .box {
+        border: 0cm;
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    .user {
+        font-size: 15px;
+        font-family: inherit;
+        font-weight: bold;
+        position: absolute;
+        top: 15.5%;
+        left: 25%;
+    }
+    .handle {
+        font-size: 15px;
+        font-family: inherit;
+        font-weight: lighter;
+        color: gray;
+        position: absolute;
+        top: 75%;
+        left: 1%;
+    }
+    .bio {
+        font-size: 15px;
+        font-family: inherit;
+        font-weight: lighter;
+        position: absolute;
+        white-space: nowrap;
+        line-height: 0.4cm;
+        top: 200%;
+        left: 1%;
+        margin: -2.5% 0.66%;
+        overflow-wrap: break-word;
+        min-width: 0px;
+        max-width: 468px;
+    }
+    .btn {
+        position: relative;
+        left: 75%;
+        width: 2.5cm;
+        text-align: center;
+        height: 0.9cm;
+        bottom: 65px;
+        border-radius: 25px !important;
+        border-color: lightgray !important;
+        font-weight: bold !important;
+        border-radius: 25px !important;
+        font-weight: bold !important;
+        color: black;
+    }
+    .pic {
+        position: absolute;
+        left: 21%;
+        top: 16%;
+        border-radius: 50%;
+    }
 }

@@ -1,9 +1,11 @@
 .bio {
     position: absolute;
-    font-size: 14px;
+    font-size: 15px;
     font-family: inherit;
-    top: 60%;
+    top: 65%;
     margin: -2.5% 0.66%;
+    overflow-wrap: break-word;
+    min-width: 0px;
     max-width: 468px;
 }
 
@@ -23,25 +25,30 @@
     top: 90%;
     bottom: 20%;
     vertical-align: text-bottom;
-    left: 170px;
+    left: 145px;
 }
 
 .following {
     font-size: 15px;
-    font-family: inherit;
-    font-weight: lighter;
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
     position: absolute;
-    top: 150%;
-    left: 25px;
+    color: rgb(83, 100, 113);
+    top: 175%;
+    margin: 1%;
+    left: 10px;
+    line-height: 20px;
 }
 
 .follower {
     font-size: 15px;
-    font-family: inherit;
-    font-weight: lighter;
+    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
     position: absolute;
-    top: 150%;
-    left: 130px;
+    color: rgb(83, 100, 113);
+    top: 175%;
+    left: 105px;
+    line-height: 20px;
 }
 
 .following:hover {
@@ -55,9 +62,10 @@
 
 .numb1 {
     top: 0px;
-    left: -20px;
+    left: -13px;
     position: absolute;
     font-weight: bold;
+    color: black;
 }
 
 .born {
@@ -80,24 +88,25 @@
 }
 
 .bicon {
-    position: absolute;
-    top: 92%;
-    bottom: 20%;
-    max-width: 100%;
-    height: 1.25em;
-    display: inline-block;
+    position: absolute !important;
+    top: 95% !important;
+    bottom: 20% !important;
+    max-width: 100% !important;
+    height: 1.0em !important;
+    display: inline-block !important;
     color: rgb(83, 100, 113) !important;
-    fill: currentcolor;
-    vertical-align: text-bottom;
-    margin-right: 4px;
-    user-select: none;
+    fill: currentcolor !important;
+    vertical-align: text-bottom !important;
+    margin-right: 4px !important;
+    user-select: none !important;
 }
 
 .numb2 {
     top: 0px;
-    left: -20px;
+    left: -13px;
     position: absolute;
     font-weight: bold;
+    color: black;
 }
 
 hr {
@@ -108,17 +117,19 @@ hr {
 @media(max-width:1500px) {
     .follower {
         font-size: 15px;
-        font-family: inherit;
-        font-weight: lighter;
+        font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
         position: absolute;
-        top: 150%;
-        left: 130px;
+        color: rgb(83, 100, 113);
+        top: 175%;
+        left: 105px;
+        line-height: 20px;
     }
     .bio {
         position: absolute;
         font-size: 14px;
         font-family: inherit;
-        top: 60%;
+        top: 65%;
         margin: -2.5% 0.66%;
         max-width: 468px;
     }
@@ -142,23 +153,27 @@ hr {
     }
     .following {
         font-size: 15px;
-        font-family: inherit;
-        font-weight: lighter;
+        font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
         position: absolute;
-        top: 150%;
-        left: 25px;
+        color: rgb(83, 100, 113);
+        top: 175%;
+        left: 10px;
+        line-height: 20px;
     }
     .numb1 {
         top: 0px;
-        left: -20px;
+        left: -13px;
         position: absolute;
         font-weight: bold;
+        color: black;
     }
     .numb2 {
         top: 0px;
-        left: -20px;
+        left: -13px;
         position: absolute;
         font-weight: bold;
+        color: black;
     }
     .born {
         font-size: 15px;

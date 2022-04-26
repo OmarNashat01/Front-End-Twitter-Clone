@@ -1,11 +1,7 @@
 import Button from "react-bootstrap/Button";
 import React from "react";
 import PopCSS from "./Popup.module.css";
-import Modal from "react-bootstrap/Modal";
-import ModalDialog from "react-bootstrap/ModalDialog";
-import ModalHeader from "react-bootstrap/ModalHeader";
-import ModalTitle from "react-bootstrap/ModalTitle";
-import ModalBody from "react-bootstrap/ModalBody";
+
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Navbar from "react-bootstrap/Navbar";
@@ -15,8 +11,26 @@ import Image from "react-bootstrap/Image";
 import cov from "../../../assets/cov.jpg";
 import pro from "../../../assets/pro.jpg";
 import CloseButton from "react-bootstrap/CloseButton";
+import { useState, useEffect } from "react";
+import { getMe } from "../../../Api/UserProfile";
+import { requirePropFactory } from "@mui/material";
+
+
 
 function Popup(props) {
+
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState();
+
+    useEffect(() => {
+
+        const getCurrentUser = async() => {
+            const data = await getMe(setLoading, setUserData);
+        }
+        getCurrentUser();
+
+    }, []);
+
 
     return props.trigger ? (
 
@@ -47,7 +61,7 @@ function Popup(props) {
         div >
 
         <
-        img src = { cov }
+        img src = { userData.data.cover_pic_url }
         alt = "pic"
         className = "img-fluid "
         className = { PopCSS.cover }
@@ -55,7 +69,7 @@ function Popup(props) {
         div > <
         div >
         <
-        img src = { pro }
+        img src = { userData.data.prof_pic_url }
         alt = "pic"
         className = "img-fluid rounded-circle"
         className = { PopCSS.prof }
