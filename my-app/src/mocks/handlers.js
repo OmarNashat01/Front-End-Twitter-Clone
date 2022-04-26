@@ -230,14 +230,18 @@ export const handlers = [
   rest.post(`${BASE_URL}/signup/verify`, (req, res, ctx) => {
     const { email } = req.body;
 
-    if (email === undefined) {
-      return res(ctx.status(404), ctx.json({ error: "no email was given" }));
+    if (email === "mark@email.com") {
+      return res(
+        ctx.delay(500),
+        ctx.status(400),
+        ctx.json({ message: "email does already exist" })
+      );
     }
 
     return res(
       ctx.delay(500),
       ctx.status(200),
-      ctx.json({ "OTP Sent": true, OTP: "1234" })
+      ctx.json({ message: "OTP SENT", OTP: "1234" })
     );
   }),
 
@@ -251,13 +255,13 @@ export const handlers = [
       return res(
         ctx.delay(500),
         ctx.status(200),
-        ctx.json({ 200: "Email verified", email: "email@email.com" })
+        ctx.json({ message: "Email verified", email: "email@email.com" })
       );
     } else {
       return res(
         ctx.delay(500),
         ctx.status(401),
-        ctx.json({ 401: "Token expired" })
+        ctx.json({ message: "Token expired" })
       );
     }
   }),
@@ -268,10 +272,13 @@ export const handlers = [
     const { email, password, name, date_of_birth, gender, username } = req.body;
 
     if (username === "mark") {
-      return res(ctx.status(400));
+      return res(ctx.status(400), ctx.json({ message: "username exists" }));
     }
 
-    return res(ctx.status(200));
+    return res(
+      ctx.status(200),
+      ctx.json({ message: "successfully inserted new user" })
+    );
   }),
 
   //LOGIN ====> takes email and password and logs in the user
@@ -281,7 +288,7 @@ export const handlers = [
 
     if (password === "5678" && email === "email@email.com") {
       return res(
-        ctx.status(200),
+        ctx.status(201),
         ctx.json({
           message: "user found",
           token: USER_TOKEN,
@@ -293,7 +300,7 @@ export const handlers = [
 
     if (password === "admin" && email === "admin@email.com") {
       return res(
-        ctx.status(200),
+        ctx.status(201),
         ctx.json({
           message: "user found",
           token: ADMIN_TOKEN,
@@ -353,8 +360,18 @@ export const handlers = [
         ctx.delay(500),
         ctx.json({ 404: "TOKEN IS MISSING" })
       );
+    } else if (
+      USER_ID !== USER_50CENT._id ||
+      USER_ID !== USER_DRDRE._id ||
+      USER_ID !== USER_EMINEM._id
+    ) {
+      return res(ctx.status(404), ctx.delay(500));
     } else if (USER_ID === "DRDRE_1234") {
       return res(ctx.status(200), ctx.delay(500), ctx.json(USER_DRDRE));
+    } else if (USER_ID === "50CENT_1234") {
+      return res(ctx.status(200), ctx.delay(500), ctx.json(USER_50CENT));
+    } else if (USER_ID === "EMINEM_1234") {
+      return res(ctx.status(200), ctx.delay(500), ctx.json(USER_EMINEM));
     }
   }),
 
