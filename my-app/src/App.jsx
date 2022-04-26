@@ -10,7 +10,7 @@ import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
 
-import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
+//import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
@@ -78,8 +78,14 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
-  if (localStorage.getItem("admin") === true) {
-    page = 2;
+  
+  if (localStorage.getItem("admin") === "true") {
+    
+    //return <Navigate to="/adminhome" />
+    //window.location.assign("http://google.com")
+    // window.open("/adminhome","_self");
+
+   
   }
 
   if (page === 0) {
@@ -199,6 +205,8 @@ function App() {
               )
             }
           />
+           <Route path="/adminhome" element={<AdminPage />} />
+            <Route path="/adminsearch" element={<SearchUsers />} />
         </Routes>
       </Router>
     );
@@ -209,11 +217,11 @@ function App() {
       <div>
         <Router>
           <nav className="sticky-top">
-            <AdminNavBar />
+       {/* //     <AdminNavBar /> */}
           </nav>
           <Routes>
-            <Route path="/" element={<AdminPage />}></Route>
-            <Route path="/search" element={<SearchUsers />}></Route>
+            <Route path="/adminhome" element={<AdminPage />}></Route>
+            <Route path="/adminsearch" element={<SearchUsers />}></Route>
           </Routes>
         </Router>
       </div>
