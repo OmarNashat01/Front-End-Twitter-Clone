@@ -1,0 +1,30 @@
+.header {
+    position: relative;
+    top: 10%;
+    height: 50px;
+    color: white;
+}
+
+.user {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.tweetnum {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    font-size: small;
+    font-weight: lighter;
+}
+
+.arrow {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    font-size: large;
+    font-weight: bolder;
+}
