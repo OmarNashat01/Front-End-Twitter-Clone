@@ -20,10 +20,10 @@ export async function postVerify(setLoading, setRes, requestBody) {
   
       setRes(response);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setRes(error);
     }
-    console.log(response);
+    // console.log(response);
     setLoading(false);
   }
 
@@ -31,13 +31,13 @@ export async function postVerify(setLoading, setRes, requestBody) {
   export async function PostEmailAndVerCode(setLoading, setId, params) {
     //params is a string like => ?id=20
     setLoading(true);
-    console.log(`products${params}`);
+    // console.log(`products${params}`);
   
     try {
       const response = await getRequest(`signup/confirm_email${params}`);
       setId(response);
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
     setLoading(false);
   }
@@ -63,7 +63,7 @@ export async function postUserData(setLoading, setCoins, requestBody) {
 
     setCoins(response);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     setCoins(error);
   }
   setLoading(false);
@@ -89,7 +89,7 @@ export async function postUserData(setLoading, setCoins, requestBody) {
   
       setCoins(response);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setCoins(error);
     }
     setLoading(false);
