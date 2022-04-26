@@ -172,7 +172,7 @@ const Post = forwardRef(
     return (
       <div className="post" ref={ref} >
         <div className="post__avatar">
-          <ToolTip name={displayName} tag={username} img={avatar} show="displayRight" />
+          <ToolTip name={displayName} tag={username} img={avatar} show="displayRight" user_id="1" />
         </div>
         <div className="post__body">
           <div className="post__header">

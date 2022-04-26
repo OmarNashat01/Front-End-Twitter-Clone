@@ -1,5 +1,8 @@
 import React from "react";
 import { Form } from "usetheform";
+import {Preview } from "./Preview/Preview";
+import {PrivacyPicker} from "./PrivacyPicker/PrivacyPicker"
+
 // import JSONTree from "react-json-tree";
 import { WhatsHappeningBar } from "./WhatsHappeningBar/WhatsHappeningBar";
 import { UploadMediaBar } from "./UploadMediaBar/UploadMediaBar";
@@ -26,8 +29,8 @@ export default function TweetBox({
           <Col xs={10} md={10}>
             <Form onSubmit={onSubmit}>
               <WhatsHappeningBar maxChars={MAX_CHARS_ALLOWED} />
-              {/* <Preview /> */}
-              {/* <PrivacyPicker /> */}
+              <Preview /> 
+              <PrivacyPicker />
               <span className={TweetboxCSS.thematicBreak} />
               <div className={TweetboxCSS.actionBar}>
                 <UploadMediaBar />

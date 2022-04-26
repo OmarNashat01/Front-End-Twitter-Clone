@@ -13,20 +13,24 @@ function ToolTip(
         ,followers= 3800
         ,following= 5105
         ,show="displayLeft"
+        ,user_id="1"
     }
 ) {
 
+    function navProfile() {
+        window.open(`/user/${user_id}`, "_self");
+      }
     
   return (
     <div className={ToolTipCSS.tooltip}>
             <IconButton className={ToolTipCSS.tooltip__icon}>
-                <Avatar src={img} style={{width: "45px",height: "45px"}}/>
+                <Avatar onClick={navProfile} src={img} style={{width: "45px",height: "45px"}}/>
             </IconButton>
             <span className={ToolTipCSS.tooltiptext}  id={show === "displayRight" ? ToolTipCSS.displayRight: ToolTipCSS.displayLeft}>
 
                 <div className={ToolTipCSS.toolbtn_container}>
                     <IconButton className={ToolTipCSS.tooltip__icon}>
-                        <Avatar src={img} style={{width: "60px",height: "60px"}}/>
+                        <Avatar onClick={navProfile} src={img} style={{width: "60px",height: "60px"}}/>
                     </IconButton>
                     <div className={ToolTipCSS.followbtn__container}>
                         <button type="submit" className={ToolTipCSS.followbtn}>

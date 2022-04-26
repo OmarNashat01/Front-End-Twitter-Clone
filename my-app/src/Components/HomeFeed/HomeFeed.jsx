@@ -45,7 +45,7 @@ if(!loading){
                   verified="1"
                   text={post.text}
                   avatar={post.prof_pic_url}
-                  image={ post.images.length === 0 ? "" : post.images[0].url}
+                  image={ post.images}
                   isLiked="false"
                   isRetweet="false"
                   likes={post.like_count}
