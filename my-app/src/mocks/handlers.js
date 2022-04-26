@@ -961,6 +961,31 @@ export const handlers = [
 
     return res(ctx.status(200), ctx.delay(500), ctx.json(allUsersResponse));
   }),
+  rest.get(`${BASE_URL}/admin/statistics/retweet_count`, (req, res, ctx) => {
+    const start_date = req.url.searchParams.get("start_date");
+    const end_date = req.url.searchParams.get("end_date");
+    const TOKEN = req.headers._headers["x-access-token"];
+
+    if (TOKEN === undefined || TOKEN === null) {
+      return res(
+        ctx.status(404),
+        ctx.delay(500),
+        ctx.json({ 404: "TOKEN IS MISSING" })
+      );
+    }
+    return res(
+      ctx.json({
+        "Number of retweets": [
+          { "22-04-15": 2 },
+          { "22-04-16": 3 },
+          { "22-04-17": 5 },
+          { "22-04-18": 2 },
+          { "22-04-19": 7 },
+          { "22-04-20": 10 },
+        ],
+      })
+    );
+  }),
   ///////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////
