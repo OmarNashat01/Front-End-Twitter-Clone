@@ -66,8 +66,8 @@ const USER_50CENT = {
       following_count: 128,
     },
   ],
-  followers_count: 1,
-  following_count: 1,
+  followers_count: 2,
+  following_count: 2,
   tweet_count: 3,
   prof_pic_url:
     "https://pbs.twimg.com/profile_images/1226895461941940224/hBx6tZxz_400x400.jpg",
