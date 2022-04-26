@@ -42,3 +42,5 @@ export function deleteRequest(URL) {
     .then((response) => response)
     .catch((error) => error.response);
 }
+
+

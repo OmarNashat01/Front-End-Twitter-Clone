@@ -5,7 +5,7 @@ import Post from "../Post/Post";
 import { getMyTweets } from "../../Api/homeFeed";
 import axios from "axios";
 
-function HomeFeed() {
+function ProfileFeed() {
   const count=3
   const [posts, setPosts] = useState([]);
   const [response,setResponse] = useState();
@@ -50,23 +50,16 @@ if(!loading){
 
   return (
     <div>
-    <InfiniteScroll
-      dataLength={posts.length}
-      next={getMyTweets}
-      hasMore={true}
-      loader={<Loader />}
- >
-
         {!loading && 
             posts.map((post,index) => {
               return <div key={index}>
               <Post
                 displayName={post.name}
                 username={post.username}
-                verified="1"
+                verified="0"
                 text={post.text}
                 avatar={post.prof_pic_url}
-                image={"https://picsum.photos/seed/" + Math.random() + "/700/500"}
+                image={post.images.length === 0 ? "" : post.images[0].url}
                 isLiked="false"
                 isRetweet="false"
                 likes={post.like_count}
@@ -74,13 +67,11 @@ if(!loading){
               ></Post>
             </div>
           })}
- 
-    </InfiniteScroll>  
   </div>
   );
 }
 
-export default HomeFeed;
+export default ProfileFeed;
 
 {/* {!loading && posts.map((post,index) => {
           return <div key={index}>
