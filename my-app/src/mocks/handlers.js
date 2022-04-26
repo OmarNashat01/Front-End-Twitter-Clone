@@ -173,6 +173,106 @@ const USERS = {
 };
 
 /////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+//////////////////////TWEETS/////////////////////////
+
+const TWEETS_50CENT = {
+  tweets: [
+    {
+      //TWEET WITH ONE PHOTO AND TEXT
+      tweet_id: "50_CENT_TWEET_1",
+      user_id: USER_50CENT._id,
+      name: USER_50CENT.name,
+      username: USER_50CENT.username,
+      prof_pic_url: USER_50CENT.prof_pic_url,
+      bio: USER_50CENT.bio,
+      followers_count: USER_50CENT.followers_count,
+      following_count: USER_50CENT.following_count,
+      text: "this is my first tweet and it is with an image 📷🔥🔥🔥",
+      created_at: "15/02/2022",
+      videos: [],
+      images: [
+        {
+          url: "https://wallpapercave.com/wp/wkNOkoA.jpg",
+          alt_text: "TWEET_PHOTO",
+          height: 1080,
+          width: 1920,
+        },
+      ],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 12,
+      comments: [],
+    },
+    {
+      //TWEET WITH 2 PHOTOS AND TEXT
+      tweet_id: "50_CENT_TWEET_2",
+      user_id: USER_50CENT._id,
+      name: USER_50CENT.name,
+      username: USER_50CENT.username,
+      prof_pic_url: USER_50CENT.prof_pic_url,
+      bio: USER_50CENT.bio,
+      followers_count: USER_50CENT.followers_count,
+      following_count: USER_50CENT.following_count,
+      text: "in LOVE with the ✨stars✨",
+      created_at: "18/03/2022",
+      videos: [],
+      images: [
+        {
+          url: "https://media.cntraveler.com/photos/60f5a7fa964f812d9f962ceb/16:9/w_2560%2Cc_limit/Stargazing-2021_PRK0G2.jpg",
+          alt_text: "TWEET_PHOTO_1",
+          height: 1440,
+          width: 2560,
+        },
+        {
+          url: "https://images.unsplash.com/photo-1527871899604-f1425bcce779?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          alt_text: "TWEET_PHOTO_2",
+          height: 3456,
+          width: 5184,
+        },
+      ],
+      like_count: 3,
+      liker_ids: [
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+        "DUMMY_ID_DO_NOT_USE",
+      ],
+      comment_count: 0,
+      retweet_count: 52,
+      comments: [],
+    },
+    {
+      //TWEET WITH TEXT ONLY
+      tweet_id: "50_CENT_TWEET_3",
+      user_id: USER_50CENT._id,
+      name: USER_50CENT.name,
+      username: USER_50CENT.username,
+      prof_pic_url: USER_50CENT.prof_pic_url,
+      bio: USER_50CENT.bio,
+      followers_count: USER_50CENT.followers_count,
+      following_count: USER_50CENT.following_count,
+      text: "Good Morning hope you have a great morning 🌞🌞🌞",
+      created_at: "25/03/2022",
+      videos: [],
+      images: [],
+      comment_count: 0,
+      retweet_count: 25,
+      comments: [],
+    },
+  ],
+};
 
 const ADMIN_TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjY1NTIyNzRkNTc4NmY0MzdjYmIyNWMiLCJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjgyMzQzOTExfQ.b6-oq0j_Uto5NGvyobu4y2BVRjmM_6cUT9zQJ1I9FP8";
@@ -462,5 +562,27 @@ export const handlers = [
     const allUsersResponse = { users: usersSlice };
 
     return res(ctx.status(200), ctx.delay(500), ctx.json(allUsersResponse));
+  }),
+  ///////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
+  ///////////////////////////TWEET ROUTE/////////////////////////////////
+
+  rest.get(`${BASE_URL}/tweets/all/me`, (req, res, ctx) => {
+    const TOKEN = req.headers._headers["x-access-token"];
+
+    if (TOKEN === undefined || TOKEN === null) {
+      return res(
+        ctx.status(404),
+        ctx.delay(500),
+        ctx.json({ 404: "TOKEN IS MISSING" })
+      );
+    }
+
+    return res(ctx.status(200), ctx.delay(500), ctx.json(TWEETS_50CENT));
   }),
 ];
