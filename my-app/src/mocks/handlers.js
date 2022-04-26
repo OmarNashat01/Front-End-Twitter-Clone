@@ -1014,10 +1014,14 @@ export const handlers = [
     const TOKEN = req.headers._headers["x-access-token"];
     const PAGE = req.url.searchParams.get("page");
 
-    const tweetSlice = RANDOM_TWEETS.slice(PAGE * 25, PAGE * 25 + 24);
+    const tweetSlice = RANDOM_TWEETS.slice(PAGE * 25, PAGE * 25 + 25);
     if (tweetSlice.length === 0) {
       return res(ctx.status(404), ctx.delay(500));
     }
-    return res(ctx.status(200), ctx.delay(500), ctx.json(tweetSlice));
+    return res(
+      ctx.status(200),
+      ctx.delay(500),
+      ctx.json({ tweets: tweetSlice })
+    );
   }),
 ];
