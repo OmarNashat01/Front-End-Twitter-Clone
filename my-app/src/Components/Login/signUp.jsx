@@ -14,6 +14,7 @@ var user = {
   Day: "",
   Year: "",
   Password: "",
+  username:"",
 }
 
 var temp_user = {
@@ -23,7 +24,7 @@ var temp_user = {
   temp_Month: "",
   temp_Day: "",
   temp_Year: "",
-  
+  temp_username:"",
 }
 
 function getUserData(val){
@@ -43,13 +44,17 @@ function getVerCode(val){
 //main function.
 function SignUp(props){
   const[page,setPage] = useState(0);
-  const FormTitles = ["Next" , "Next" , "Next" , "Sign up" ];
+  const FormTitles = ["Next" , "Next" , "Next" ,"Next" , "Sign up" ];
 
   const[verLoading , setVerLoading] = useState(true);
   const[verify , setVerify] = useState();
 
   const[verLoadingIDandEmail , setVerLoadingIDandEmail] = useState(true);
   const[verifyIDandEmail , setVerifyIDandEmail] = useState();
+
+  
+  const[verLoadingData , setVerLoadingData] = useState(true);
+  const[verifyData , setVerifyData] = useState();
 
 
 
@@ -59,6 +64,7 @@ function SignUp(props){
     else if(page===1) return <div>{secondStep()}</div>
     else if(page===2) return <div>{verStep()}</div>
     else if(page===3) return <div>{passwordStep()}</div>
+    else if(page===4) return <div>{userNameStep()}</div>
   }
   //Render first tap ask the user to enter name, email, and date of birth.
   const PageDisplay = () => {
@@ -271,7 +277,7 @@ function SignUp(props){
       <div className={Popup.txtAskVer}>Your @username is unique. You can always change it later.</div>
   
       <div className="form-floating mb-3">
-          <input type={"text"} className="inputTxt form-control signupButton nameArea" id="floatingInput phoneOrEmail"  placeholder="username"></input>
+          <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="username" onChange={getUserData} name="temp_username"></input>
           <label className="floatinTxt" for="floatingInput">username</label>
       </div>
       
@@ -292,9 +298,9 @@ function SignUp(props){
       "name": user.Name,
       "date_of_birth": user.Day +"/"+ user.Month +"/"+ user.Year,
       "gender": "string",
-      "username": "string"
+      "username": user.username,
     }
-    let resul = await postVerify(setVerLoading , setVerify , requestBody);
+    let resul = await postUserData(setVerLoadingData , setVerifyData , requestBody);
   }
 
   //send email and verication
@@ -303,28 +309,33 @@ function SignUp(props){
     let resul2 = await PostEmailAndVerCode(setVerLoadingIDandEmail , setVerifyIDandEmail ,`?OTP=${verCode}&email=${user.Email}`);
   }
 
-  const sendUserData =async () => {
-    let {data} =await axios.post("http://localhost:3030/",{
-      Name:user.Name,
-      email:user.Email,
-      month:user.month,
-      day:user.Day,
-      year:user.year,
-      Password:user.Password,
-    });
-    //console.log(data);
-  }
 
-  const Temp = ()=>{
-    console.log(verify);
-  }
   const checkVer = () =>{
+    if(page===2 && verCode !== undefined){
     if(verCode.length>0 && verifyIDandEmail.status===200){
       setPage((currpage)=>currpage+1);
       setVerLoadingIDandEmail(true);
     }
     else{
       setVerLoadingIDandEmail(true);
+    }
+  }
+  }
+
+  const checkDataSent = () => {
+    console.log(verifyData.status);
+    if(user.username.length>0 && verifyData.status===200){
+      window.open("/Home","_self");
+      setVerLoadingData(true);
+      {console.log(verifyData)}
+    }
+    else if(user.username.length>0 && verifyData.status===400){
+      setVerLoadingIDandEmail(true);
+      user.username= "";
+    }
+    else{
+      {console.log(verifyData)}
+      setVerLoadingData(true);
     }
   }
   
@@ -352,9 +363,15 @@ function SignUp(props){
       // if(verCode.length>0)setPage((currpage)=>currpage+1);
     }
     else if(page===3){
-      user.Password=temp_user.temp_Password;
-      if(user.Password.length>0)window.open("/Home","_self");
+      // user.Password=temp_user.temp_Password;
+      // await sendData();
+      setPage((currpage)=>currpage+1);
+      //if(user.Password.length>0)window.open("/Home","_self");
       // alert(Password);
+    }
+    else if(page===4){
+      user.username=temp_user.temp_username;
+      await sendData();
     }
   }
 
@@ -382,6 +399,10 @@ function SignUp(props){
 
 
           {!verLoadingIDandEmail && checkVer()}
+          {!verLoadingData && checkDataSent()}
+          
+
+          
           
 
       </div>  

@@ -1,0 +1,25 @@
+.navBorder{
+    padding-left: 0 !important ;
+    padding-right: 0 !important;
+    border-right:3px solid grey;
+    box-shadow: 5px 5px 5px grey;
+
+}
+.barWidth{
+border: black;
+
+  background-color:rgba(13, 110, 253,0.55)
+}
+.pageColor{
+    background-color:rgba(242, 242, 242,1) ;
+
+}
+.chartBox {
+  margin-top: 20px;
+  width: 50%;
+  padding: 20px;
+  border-radius: 20px;
+  border: solid 3px rgba(255, 26, 104, 1);
+  background: white;
+  box-shadow: 5px 5px 5px grey;
+}

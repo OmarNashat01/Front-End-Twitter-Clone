@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import Post from "./Components/Post/Post";
 
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
@@ -9,13 +10,14 @@ import SignIn from "./Components/Login/signIn";
 import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
+
 import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
-import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
 
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
+import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 
 import {
   BrowserRouter as Router,
@@ -28,6 +30,9 @@ import {
 import TweetBox from "./Components/TweetBox/TweetBox";
 import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
+import jwt_decode from "jwt-decode";
+import { Reddit } from "@mui/icons-material";
+
 //Mock-Service-Worker
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./mocks/browser");
@@ -35,7 +40,18 @@ if (process.env.NODE_ENV === "development") {
 }
 
 function checkAuth(setIsAuth) {
-  let token = localStorage.getItem("token");
+  var token = localStorage.getItem("token");
+
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+    // var decodedHeader = jwt_decode(token, { header: true });
+    // console.log(decodedHeader);
+  } catch (error) {
+    localStorage.clear();
+    return <Navigate to="/" />;
+  }
+
   if (token !== null) {
     setIsAuth(true);
   }
@@ -45,7 +61,17 @@ function checkAuth(setIsAuth) {
 function App() {
   //indicates if user is authenticated
   var authBool = false;
-  if (localStorage.getItem("token") !== null) {
+  var token = localStorage.getItem("token");
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+  } catch (error) {
+    localStorage.clear();
+    token = null;
+    <Navigate to="/" />;
+  }
+
+  if (token !== null) {
     authBool = true;
   }
 
@@ -54,6 +80,15 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
+  
+  if (localStorage.getItem("admin") === "true") {
+    
+    //return <Navigate to="/adminhome" />
+    //window.location.assign("http://google.com")
+    // window.open("/adminhome","_self");
+
+   
+  }
 
   if (page === 0) {
     return <Login />;
@@ -80,7 +115,7 @@ function App() {
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TweetBox />
-                      <HomeFeed />
+                      {/* <HomeFeed /> */}
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 ">
                       <Widgetbar />
@@ -196,6 +231,8 @@ function App() {
               )
             }
           />
+           <Route path="/adminhome" element={<AdminPage />} />
+            <Route path="/adminsearch" element={<SearchUsers />} />
         </Routes>
       </Router>
     );
@@ -206,11 +243,11 @@ function App() {
       <div>
         <Router>
           <nav className="sticky-top">
-            <AdminNavBar />
+       {/* //     <AdminNavBar /> */}
           </nav>
           <Routes>
-            <Route path="/" element={<AdminPage />}></Route>
-            <Route path="/search" element={<SearchUsers />}></Route>
+            <Route path="/adminhome" element={<AdminPage />}></Route>
+            <Route path="/adminsearch" element={<SearchUsers />}></Route>
           </Routes>
         </Router>
       </div>

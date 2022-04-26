@@ -1,5 +1,5 @@
 import React ,{useState} from 'react';
-import "./LineChart.css";
+ import ChartStyle from"./LineChart.module.css";
 
 import Chart from 'chart.js/auto';
 
@@ -7,10 +7,12 @@ import Chart from 'chart.js/auto';
 
 import {Line} from 'react-chartjs-2';
 
-const LineChart=()=>{
+const LineChart=(props)=>{
+//const date=startDate;
+const {startDate, endDate}=props;
     const state = {
-   labels: ['January', 'February', 'March',
-            'April', 'May'],
+   labels: [startDate.toLocaleDateString(), 'February', 'March',
+            'April', endDate.toLocaleDateString()],
    datasets: [
      {
        label: 'Tweets',
@@ -27,7 +29,7 @@ const LineChart=()=>{
    return (
    <div >
      
-     <div className='chartBox'>
+     <div className={ChartStyle.chartBox}>
      <Line
     
            data={state}
@@ -43,6 +45,7 @@ const LineChart=()=>{
              }
            }}
          />
+        
          </div>
  </div>
    );
