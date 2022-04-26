@@ -25,6 +25,7 @@ const USER_50CENT = {
   admin: false,
   followers: [
     {
+      user_id: "DRDRE_1234",
       name: "DrDre",
       username: "@dedre",
       prof_pic_url:
