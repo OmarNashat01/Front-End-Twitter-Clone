@@ -28,8 +28,6 @@ export async function getMyTweets(setLoading, setPosts) {
       {
         setHasMore(true);
         setPosts((prevPosts) => {return  [...prevPosts,...response.data.tweets]});
-        // setPage( prevPage => {
-        //   return  prevPage+1});
       }
       
     } catch (error) {
