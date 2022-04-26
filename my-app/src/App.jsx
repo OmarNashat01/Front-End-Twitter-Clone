@@ -10,7 +10,7 @@ import SignIn from "./Components/Login/signIn";
 import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
-
+import FollowersPage from "./Components/UserProfile/UserInfo/FollowersPage";
 import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
@@ -229,8 +229,31 @@ function App() {
               )
             }
           />
-          <Route path="/adminhome" element={<AdminPage />} />
-          <Route path="/adminsearch" element={<SearchUsers />} />
+           <Route
+            path="/profile/followers"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <FollowersPage/>
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+           <Route path="/adminhome" element={<AdminPage />} />
+            <Route path="/adminsearch" element={<SearchUsers />} />
         </Routes>
       </Router>
     );
