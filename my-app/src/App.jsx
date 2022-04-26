@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import Post from "./Components/Post/Post";
 
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
@@ -16,6 +17,7 @@ import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
 
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
+import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 
 import {
   BrowserRouter as Router,
@@ -113,7 +115,7 @@ function App() {
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TweetBox />
-                      <HomeFeed />
+                      {/* <HomeFeed /> */}
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 ">
                       <Widgetbar />
@@ -195,7 +197,7 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
-                        <HomeFeed />
+                        <ProfileFeed />
                       </div>
                     </div>
                   </div>

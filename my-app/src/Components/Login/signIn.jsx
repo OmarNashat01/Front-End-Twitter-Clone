@@ -70,7 +70,7 @@ function SignIn(props){
   }
 
   const loadData = () => {
-    if(verify.status===200){
+    if(verify.status===201){
       localStorage.setItem("token",verify.data.token);
       localStorage.setItem("user_id",verify.data._id);
       localStorage.setItem("admin", verify.data.admin);
