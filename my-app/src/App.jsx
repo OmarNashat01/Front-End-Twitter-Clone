@@ -1,32 +1,234 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Post from "./Components/Post/Post";
 
+import TestComponent from "./Components/Sidebar/TestComponent";
+import UserProfile from "./Components/UserProfile/UserProfile";
+import Login from "./Components/Login/login";
+import SignIn from "./Components/Login/signIn";
+import SignUp from "./Components/Login/signUp";
+import ForgotPassword from "./Components/Login/forgotPassword";
+import UserPage from "./Components/UserPage/UserPage";
+
+//import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
+import AdminPage from "./Components/AdminPage/AdminPage";
+import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
+// FEEDS
+
+import HomeFeed from "./Components/HomeFeed/HomeFeed";
+import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from "react-router-dom";
+
+import TweetBox from "./Components/TweetBox/TweetBox";
+import Widgetbar from "./Components/Widgetbar/Widgetbar";
+
+import jwt_decode from "jwt-decode";
+import { Reddit } from "@mui/icons-material";
+
+//Mock-Service-Worker
+if (process.env.NODE_ENV === "development") {
+  const { worker } = require("./mocks/browser");
+  worker.start();
+}
+
+function checkAuth(setIsAuth) {
+  var token = localStorage.getItem("token");
+
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+    // var decodedHeader = jwt_decode(token, { header: true });
+    // console.log(decodedHeader);
+  } catch (error) {
+    localStorage.clear();
+    return <Navigate to="/" />;
+  }
+
+  if (token !== null) {
+    setIsAuth(true);
+  }
+  console.log(token);
+}
+
 function App() {
-  return (
-    <div className=" container-fluid">
-      <div className=" row">
-        <div className="main-screen col col-md-3 col-lg-4 col-sm-3 sticky-top">
-          <Sidebar />
-        </div>
-        <div className="col col-md-6 col-lg-4 col-sm-6"><Post  
-            key={"dani"}
-            displayName={"daniel"}
-            username={"danielhrg99"}
-            verified={"1"}
-            text={"This is my first post Hi everybody"}
-            avatar={"https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80"}
-            image={"https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80"}
-            isLiked = {"false"}
-            isRetweet = {"false"}
-            likes = {22}
-            retweets = {20}>
-              </Post></div>
-        <div className="col col-md-3 col-lg-4 col-sm-3">Column</div>
+  //indicates if user is authenticated
+  var authBool = false;
+  var token = localStorage.getItem("token");
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+  } catch (error) {
+    localStorage.clear();
+    token = null;
+    <Navigate to="/" />;
+  }
+
+  if (token !== null) {
+    authBool = true;
+  }
+
+  console.log(authBool);
+  const [isAuth, setIsAuth] = useState(authBool);
+
+  //{checkAuth(setIsAuth)}
+  var page = 1;
+  
+  if (localStorage.getItem("admin") === "true") {
+    
+    //return <Navigate to="/adminhome" />
+    //window.location.assign("http://google.com")
+    // window.open("/adminhome","_self");
+
+   
+  }
+
+  if (page === 0) {
+    return <Login />;
+  }
+
+  if (page === 1) {
+    return (
+      <Router>
+        <Routes>
+          {/* UNDO THIS CHANGE */}
+          <Route path="/" element={<Login />} />
+          <Route path={"/singin"} element={<SignIn />} />
+          <Route path={"/singup"} element={<SignUp />} />
+          <Route path={"/forgotPassword"} element={<ForgotPassword />} />
+
+          <Route
+            path="/home"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <TweetBox />
+                      <HomeFeed />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 ">
+                      <Widgetbar />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
+          <Route
+            path="/explore"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <HomeFeed />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <TestComponent name="notification" />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/bookmarks"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <TestComponent name="bookmarks" />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <UserProfile />
+                        <ProfileFeed />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+           <Route path="/adminhome" element={<AdminPage />} />
+            <Route path="/adminsearch" element={<SearchUsers />} />
+        </Routes>
+      </Router>
+    );
+  }
+
+  if (page === 2) {
+    return (
+      <div>
+        <Router>
+          <nav className="sticky-top">
+       {/* //     <AdminNavBar /> */}
+          </nav>
+          <Routes>
+            <Route path="/adminhome" element={<AdminPage />}></Route>
+            <Route path="/adminsearch" element={<SearchUsers />}></Route>
+          </Routes>
+        </Router>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

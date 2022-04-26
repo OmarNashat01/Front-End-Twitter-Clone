@@ -18,6 +18,33 @@ import Col from 'react-bootstrap/Col';
 const Post = forwardRef(
   ({ displayName, username, verified, text, image, avatar, isLiked,likes,isRetweet,retweets }, ref) => {
 
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import RepeatIcon from "@mui/icons-material/Repeat";
+
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
+import PublishIcon from "@mui/icons-material/Publish";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useEffect, useState } from "react";
+import { Dropdown, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap/Container";
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
+const Post = forwardRef(
+  (
+    {
+      displayName,
+      username,
+      verified,
+      text,
+      image,
+      avatar,
+      isLiked,
+      likes,
+      isRetweet,
+      retweets,
+    },
+    ref
+  ) => {
     const [counterLike, setCounter] = useState(likes);
     const [counterRetweets, setRetweets] = useState(retweets);
     const [textRetweets, setRetweets1] = useState("retweet");
@@ -247,23 +274,21 @@ const Post = forwardRef(
       //axios.post('///',..., onsuccess: function(response) {
       //e.currentTarget.classList.add("liked");
       //})
-      if (!e.currentTarget.classList.contains("Post.is-retweet")) {
+      if (!e.currentTarget.classList.contains("is-retweet")) {
         e.currentTarget.classList.add("is-retweet");
-        setRetweets(counterRetweets+1);
+        setRetweets(counterRetweets + 1);
         setRetweets1("undo");
         isRetweet = true;
-
-      }
-      else{
+      } else {
         e.currentTarget.classList.remove("is-retweet");
-        setRetweets(counterRetweets-1);
+        setRetweets(counterRetweets - 1);
         setRetweets1("retweet");
         isRetweet = false;
       }
     }
 
     return (
-      <div className="post" ref={ref}>
+      <div className="post" ref={ref} >
         <div className="post__avatar">
           <Avatar src={avatar} />
         </div>
@@ -345,8 +370,8 @@ const Post = forwardRef(
                </div> : null}
             </div>
           <div className="post__footer">
-            <div className="chat d-flex align-items-center" >
-              <ChatBubbleOutlineIcon fontSize="small"  className="custom-icon"/>
+            <div className="chat d-flex align-items-center">
+              <ChatBubbleOutlineIcon fontSize="small" className="custom-icon" />
             </div>
             <Dropdown className="d-flex align-items-center">
               <Dropdown.Toggle
@@ -373,21 +398,26 @@ const Post = forwardRef(
                   ? "is-liked d-flex align-items-center"
                   : "fav-icon d-flex align-items-center"
               }
-              id="like-trig"
               onClick={toggleFavColor}
             >
               <FavoriteBorderIcon fontSize="small" className="custom-icon" />
               <span className="likeCounter">{counterLike}</span>
             </div>
             <div className="publish ">
-              <Dropdown className = "d-flex align-items-center">
-                <Dropdown.Toggle className = "d-flex align-items-center" variant="secondary" id="dropdown-basic">
+              <Dropdown className="d-flex align-items-center">
+                <Dropdown.Toggle
+                  className="d-flex align-items-center"
+                  variant="secondary"
+                  id="dropdown-basic"
+                >
                   <PublishIcon fontSize="small" className="custom-icon" />
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1"><BookmarkAddOutlinedIcon/>Bookmark</Dropdown.Item>
-         
+                  <Dropdown.Item href="#/action-1">
+                    <BookmarkAddOutlinedIcon />
+                    Bookmark
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -399,5 +429,3 @@ const Post = forwardRef(
 );
 
 export default Post;
-
-
