@@ -1,3 +1,4 @@
+import { response } from "msw";
 import { getRequest,postRequest } from "./index";
 
 export async function getMyTweets(setLoading, setPosts) {
@@ -12,6 +13,30 @@ export async function getMyTweets(setLoading, setPosts) {
     setLoading(false);
   }
 
+  export async function getHomeTweets(setLoading, setPosts,setHasMore, params) {
+    //params is a string like => ?id=20
+    setLoading(true);
+  
+    try {
+      const response = await getRequest(`tweets/random${params}`);
+      if(response.status === 404)
+      {
+        setHasMore(false);
+        console.log("HIIIII");
+      }
+      else
+      {
+        setHasMore(true);
+        setPosts((prevPosts) => {return  [...prevPosts,...response.data.tweets]});
+      }
+      
+    } catch (error) {
+      console.log(error.message);
+      
+      
+    }
+    setLoading(false);
+  }
 
 
 
