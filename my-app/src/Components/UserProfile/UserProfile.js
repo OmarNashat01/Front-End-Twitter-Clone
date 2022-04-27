@@ -13,7 +13,7 @@ import Following from "./UserInfo/Following";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { getMe } from "../../Api/UserProfile";
-import HomeFeed from "../HomeFeed/HomeFeed";
+import ProfileFeed from "../HomeFeed/ProfileFeed";
 import FollowingPage from "./UserInfo/FollowigPage";
 import bell from "../../assets/bell.png";
 import envelope from "../../assets/envelope-icon-14.png";
@@ -100,6 +100,7 @@ const UserProfile = () => {
         /
         Popup >
         <
+        ProfileFeed / > <
         /Container>{" "} < /
         Auxelary >
     );

@@ -19,6 +19,7 @@ import Col from 'react-bootstrap/Col';
 const Post = forwardRef(
   (
     {
+      user_id,
       displayName,
       username,
       verified,
@@ -29,6 +30,9 @@ const Post = forwardRef(
       likes,
       isRetweet,
       retweets,
+      followers,
+      following,
+      bio
     },
     ref
   ) => {
@@ -54,8 +58,6 @@ const Post = forwardRef(
       setfullScreen(!fullScreen);
 
     }
-
-    var user_id = 1;
 
     function navProfile() {
       window.open(`/user/${user_id}`, "_self");
@@ -172,7 +174,7 @@ const Post = forwardRef(
     return (
       <div className="post" ref={ref} >
         <div className="post__avatar">
-          <ToolTip name={displayName} tag={username} img={avatar} show="displayRight" user_id="1" />
+          <ToolTip user_id={user_id} name={displayName} tag={username} img={avatar} show="displayRight" followers={followers} following={following} bio={bio} />
         </div>
         <div className="post__body">
           <div className="post__header">
