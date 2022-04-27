@@ -3,9 +3,7 @@ version: '3.8'
 services:
 
   frontend_test:
-    build: 
-      context: ./my-app
-      dockerfile: Dockerfile
+    build: my-app/
 
     ports:
       - 3000:3000
