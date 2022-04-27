@@ -6,13 +6,13 @@
 
 }
 .barWidth{
-border: black;
 
-  background-color:rgba(13, 110, 253,0.55)
+  background-color:rgba(13, 110, 253,0.55);
+
 }
 .pageColor{
     background-color:rgba(242, 242, 242,1) ;
-
+    height: 100vh;
 }
 .chartBox {
   margin-top: 20px;

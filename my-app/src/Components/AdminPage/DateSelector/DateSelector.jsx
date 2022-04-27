@@ -36,8 +36,7 @@ const {setStart, dateChosen,minimumDate}=props;
       showYearDropdown
       scrollableMonthYearDropdown
       showPreviousMonths
-      
-    
+ 
       />
   {/* {console.log(dateRange.startDate)} */}
 </div>

@@ -2,9 +2,16 @@ import React , {useState , Component } from "react";
 import Popup from "./popup.module.css"
 import LoginCss from "./Login.module.css"
 import axios from "axios";
-import {postVerify , PostEmailAndVerCode , postUserData} from "../../Api/SignUp"
+import {postVerify , PostEmailAndVerCode , postUserData , postEmailAndPassword} from "../../Api/SignUp"
 import { Email } from "@mui/icons-material";
 
+import {library} from "@fortawesome/fontawesome-svg-core";
+import { faEye , faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Visibility } from "@mui/icons-material";
+import { color, style } from "@mui/system";
+import { green } from "@mui/material/colors";
+library.add(faEye , faEyeSlash);
 
 
 var user = {
@@ -39,12 +46,24 @@ function getVerCode(val){
   temp_verCode = val.target.value;
 }
 
+const usePasswordToggle = () => {
+  const [visible , setVisibility] = useState(false);
+  const Icon = (
+    <FontAwesomeIcon icon =  {visible ? "eye":"eye"} onClick = {() => setVisibility(Visibility => !Visibility)} />
+  )
+  
+  const tempInputType = visible ? "text" : "password";
+  return[tempInputType , Icon];
+}
+
+
+
 
 
 //main function.
 function SignUp(props){
   const[page,setPage] = useState(0);
-  const FormTitles = ["Next" , "Next" , "Next" ,"Next" , "Sign up" ];
+  const FormTitles = ["Next" , "Next" , "Next" ,"Next" , "Next" , "Sign up" ];
 
   const[verLoading , setVerLoading] = useState(true);
   const[verify , setVerify] = useState();
@@ -56,15 +75,23 @@ function SignUp(props){
   const[verLoadingData , setVerLoadingData] = useState(true);
   const[verifyData , setVerifyData] = useState();
 
+  const[verLoadingLogin , setVerLoadingLogin] = useState(true);
+  const[verifyLogin , setVerifyLogin] = useState();
 
+  const [passwordInputType , toggleIcon] = usePasswordToggle();
+
+  const secPageBtn = () => {
+    setPage((currpage)=>currpage-1)
+  }
 
   //Check which tap will be rendered.
   const PageToDisplay = () => {
     if(page===0) return <div>{PageDisplay()}</div> 
     else if(page===1) return <div>{secondStep()}</div>
-    else if(page===2) return <div>{verStep()}</div>
-    else if(page===3) return <div>{passwordStep()}</div>
-    else if(page===4) return <div>{userNameStep()}</div>
+    else if(page===2) return <div>{thirdStep()}</div>
+    else if(page===3) return <div>{verStep()}</div>
+    else if(page===4) return <div>{passwordStep()}</div>
+    else if(page===5) return <div>{userNameStep()}</div>
   }
   //Render first tap ask the user to enter name, email, and date of birth.
   const PageDisplay = () => {
@@ -77,6 +104,7 @@ function SignUp(props){
         <h3 className={Popup.headline}>Create your account</h3>
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control inputTxt signupButton nameArea" id={("floatingInput userFullName",Popup.txtArea)}   placeholder="Name" onChange={getUserData} name="temp_Name"></input>
+          {/* {tempUserNameLength.length} */}
           <label id={Popup.txtAreaTxt}  for="floatingInput">Name</label>
         </div>
   
@@ -211,8 +239,8 @@ function SignUp(props){
   const secondStep = () => {
     return( <div className={Popup.secondSignupPopup}>
       <div>
-        <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{ setPage((currpage)=>currpage-1)}}></button>
-        <h5>Step 2 of 5</h5>
+        <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{secPageBtn()}}></button>
+        <h5 className={Popup.steps}>Step 2 of 5</h5>
       </div>
       <h3 className={Popup.customizeH}>Customize your experience</h3>
       <h5 className={Popup.TrackH}>Track where you see Twitter content across the web</h5>
@@ -225,21 +253,57 @@ function SignUp(props){
   
     </div> )
   }
+
+  //third tap
+  const thirdStep = () => {
+    return( <div className={Popup.FirstSignupPopup}>
+  
+      <div>
+        <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{secPageBtn()}}></button>
+        <h5 className={Popup.steps}>Step 3 of 5</h5>
+      </div>  
+
+      <h3 className={Popup.headline}>Create your account</h3>
+      <div className="form-floating mb-3">
+        <input type={"text"} style={{backgroundColor: "white"}} className="inputTxt form-control inputTxt signupButton nameArea" id={("floatingInput userFullName",Popup.txtArea)} value={user.Name} disabled={true}   placeholder="Name" ></input>
+        <label id={Popup.txtAreaTxt}  for="floatingInput">Name</label>
+      </div>
+
+      <div className="form-floating mb-3">
+        <input type={"text"} style={{backgroundColor: "white"}} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)} value={user.Email} disabled={true}  placeholder="Email" ></input>
+        <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Email</label>
+      </div>
+
+      <div className="form-floating mb-3">
+        <input type={"text"} style={{backgroundColor: "white"}} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)} value={user.Month+" "+user.Day+", "+user.Year} disabled={true}  placeholder="Birth date" ></input>
+        <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Birth date</label>
+      </div>
+
+      <div className={Popup.privacyAndPolicy2}>
+        By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. Learn more. Others will be able to find you by email or phone number, when provided, unless you choose otherwise here.
+      </div>
+
+
+  </div> );
+  }
   
   //Verification step tap, ask the user to enter the verification code 
   const verStep = () => {
     return( <div className={Popup.FirstSignupPopup}>
   
-      <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{ window.open("/","_self")}}></button>
+      {/* <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{ window.open("/","_self")}}></button> */}
           
       <div className={Popup.putInCenter}><i className="fa-brands fa-twitter " id={Popup.twitterIcon}></i></div>
       <h3 className={Popup.headline}>We sent you a code</h3>
       <div className={Popup.txtAskVer}>Enter it below to verify your account.</div>
   
-      <div className="form-floating mb-3">
-          <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Verification code" onChange={getVerCode}></input>
-          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Verification code</label>
+      <div>
+        <div className="form-floating mb-3">
+            <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Verification code" onChange={getVerCode}></input>
+            <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Verification code</label>
+        </div>
       </div>
+
   
   </div> );
   }
@@ -248,7 +312,7 @@ function SignUp(props){
   const passwordStep = () => {
     return( <div className={Popup.FirstSignupPopup}>
   
-      <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{ window.open("/","_self")}}></button>
+      {/* <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{ window.open("/","_self")}}></button> */}
           
       <div className={Popup.putInCenter}><i className="fa-brands fa-twitter " id={Popup.twitterIcon}></i></div>
       <h3 className={Popup.headline}>You'll need a password</h3>
@@ -256,11 +320,17 @@ function SignUp(props){
 
       
       <div>
-        <div className="form-floating mb-3">
-          <input type={"password"} className="inputTxt form-control inputTxt signupButton" id={("floatingInput",Popup.txtArea)}  placeholder="password" onChange={getUserData} name="temp_Password"></input>
-          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">password</label>
-        </div> 
+        <div>
+          <div className="form-floating mb-3">
+            <input type={passwordInputType} className="inputTxt form-control inputTxt signupButton" id={("floatingInput",Popup.txtArea)}  placeholder="password" onChange={getUserData} name="temp_Password"></input>
+            <span id={(Popup.togglePasswordVisibility)}>
+                  {toggleIcon}
+                </span>
+            <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">password</label>
+          </div> 
+        </div>
       </div>
+
 
       
   </div> );
@@ -270,7 +340,7 @@ function SignUp(props){
   const userNameStep = () => {
     return( <div className={Popup.FirstSignupPopup}>
   
-      <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{ window.open("/","_self")}}></button>
+      {/* <button type="button" className="btn-close btn-close-black close-btn" id={Popup.closeBtn} aria-label="close" onClick={() =>{ window.open("/","_self")}}></button> */}
           
       <div className={Popup.putInCenter}><i className="fa-brands fa-twitter " id={Popup.twitterIcon}></i></div>
       <h3 className={Popup.headline}>What should we call you</h3>
@@ -302,6 +372,14 @@ function SignUp(props){
     }
     let resul = await postUserData(setVerLoadingData , setVerifyData , requestBody);
   }
+  //login
+  const tempLogin = async()=>{
+    let requestBody2 = {
+      "email": user.Email,
+      "password": user.password
+    }
+    let resul2 = await postEmailAndPassword(setVerLoadingLogin , setVerifyLogin , requestBody2);
+  }
 
   //send email and verication
   const sendEmailAndVerCode =async () => {
@@ -311,31 +389,41 @@ function SignUp(props){
 
 
   const checkVer = () =>{
-    if(page===2 && verCode !== undefined){
-    if(verCode.length>0 && verifyIDandEmail.status===200){
-      setPage((currpage)=>currpage+1);
-      setVerLoadingIDandEmail(true);
+    if(page===3 && verCode !== undefined){
+      if(verCode.length>0 && verifyIDandEmail.status===200){
+        setPage((currpage)=>currpage+1);
+        setVerLoadingIDandEmail(true);
+      }
+      else{
+        setVerLoadingIDandEmail(true);
+      }
     }
-    else{
-      setVerLoadingIDandEmail(true);
-    }
-  }
   }
 
   const checkDataSent = () => {
-    console.log(verifyData.status);
-    if(user.username.length>0 && verifyData.status===200){
+    // console.log(verifyData.status);
+  
+    if(user.username.length>0 && verifyData.status===200 /*&& verifyLogin.status===200*/){
+
+      localStorage.setItem("token",verifyLogin.data.token);
+      localStorage.setItem("user_id",verifyLogin.data._id);
+      localStorage.setItem("admin", verifyLogin.data.admin);
+
       window.open("/Home","_self");
+
       setVerLoadingData(true);
-      {console.log(verifyData)}
+      setVerLoadingLogin(true);
+      // {console.log(verifyData)}
     }
     else if(user.username.length>0 && verifyData.status===400){
       setVerLoadingIDandEmail(true);
+      setVerLoadingLogin(true);
       user.username= "";
     }
     else{
-      {console.log(verifyData)}
+      // {console.log(verifyData)}
       setVerLoadingData(true);
+      setVerLoadingLogin(true);
     }
   }
   
@@ -349,6 +437,8 @@ function SignUp(props){
       user.Day=temp_user.temp_Day;
       user.Year=temp_user.temp_Year;
 
+      
+
       await sendEmail()
 
       if(user.Name.length>0 & user.Email.length>0 & user.Month.length>0 & user.Day.length>0 & user.Year.length>0 ) setPage((currpage)=>currpage+1);
@@ -358,20 +448,24 @@ function SignUp(props){
       setPage((currpage)=>currpage+1);
     }
     else if(page===2){
+      setPage((currpage)=>currpage+1);
+    }
+    else if(page===3){
       verCode=temp_verCode;
       {sendEmailAndVerCode()}
       // if(verCode.length>0)setPage((currpage)=>currpage+1);
     }
-    else if(page===3){
-      // user.Password=temp_user.temp_Password;
+    else if(page===4){
+      user.Password=temp_user.temp_Password;
       // await sendData();
-      setPage((currpage)=>currpage+1);
+      if(user.Password.length>0)setPage((currpage)=>currpage+1);
       //if(user.Password.length>0)window.open("/Home","_self");
       // alert(Password);
     }
-    else if(page===4){
+    else if(page===5){
       user.username=temp_user.temp_username;
       await sendData();
+       tempLogin();
     }
   }
 
@@ -399,7 +493,8 @@ function SignUp(props){
 
 
           {!verLoadingIDandEmail && checkVer()}
-          {!verLoadingData && checkDataSent()}
+          {!verLoadingData && !verLoadingLogin && checkDataSent()}
+          
           
 
           
