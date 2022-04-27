@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 import Following from "./UserInfo/Following";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { getMe } from "../../Api/UserProfile";
+import { getMe, getUser } from "../../Api/UserProfile";
 import HomeFeed from "../HomeFeed/HomeFeed";
 import FollowingPage from "./UserInfo/FollowigPage";
 import bell from "../../assets/bell.png";
@@ -32,11 +32,12 @@ const OtherProfiles = () => {
     useEffect(() => {
 
         const getCurrentUser = async() => {
-            const data = await getMe(setLoading, setUserData);
+            const data = await getUser(setLoading, setUserData, `?user_id=${window.location.pathname.split('/')[2]}`);
         }
         getCurrentUser();
 
     }, []);
+
 
     if (!loading) {
         console.log(userData);
