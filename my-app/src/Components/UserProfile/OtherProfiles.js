@@ -18,6 +18,7 @@ import FollowingPage from "./UserInfo/FollowigPage";
 import bell from "../../assets/bell.png";
 import envelope from "../../assets/envelope-icon-14.png";
 import dots from "../../assets/3dots.jpg";
+import ProfileFeed from "../HomeFeed/ProfileFeed";
 
 
 
@@ -33,7 +34,7 @@ const OtherProfiles = () => {
 
         const getCurrentUser = async() => {
             const data = await getUser(setLoading, setUserData, `?user_id=${window.location.pathname.split('/')[2]}`);
-            console.log(`?user_id=${window.location.pathname.split('/')[2]}`);
+            // console.log(`?user_id=${window.location.pathname.split('/')[2]}`);
         }
 
         getCurrentUser();
@@ -143,7 +144,7 @@ const OtherProfiles = () => {
         /
         Popup >
         <
-        HomeFeed / > <
+        ProfileFeed / > <
         /Container>{" "} < /
         Auxelary >
     );

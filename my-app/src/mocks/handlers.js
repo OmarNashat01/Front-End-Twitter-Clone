@@ -753,213 +753,195 @@ const USER_TOKEN =
 
 //each element is an element to mock
 export const handlers = [
-//GET request example
-rest.get(`${BASE_URL}/coins`, (req, res, ctx) => {
-    return res(
-        ctx.status(200),
-        ctx.delay(500),
-        ctx.json(
-            Object.entries(coins).map(([symbol, data]) => {
-                return { symbol, ...data };
-            })
-        )
-    );
-}),
-
-// POST request example
-rest.post(`${BASE_URL}/coins`, (req, res, ctx) => {
-    const { coin } = req.body;
-
-    if (coin !== "bitcoin") {
-        return res(ctx.status(404), ctx.json({ success: false }));
-    }
-
-    return res(ctx.json({ success: true }));
-}),
-
-// GET request with query parameters
-rest.get(`${BASE_URL}/products`, (req, res, ctx) => {
-    const productId = req.url.searchParams.get("id");
-    return res(
-        ctx.json({
-            productId,
-        })
-    );
-}),
-
-////////////////////////////////////////////////////////////////////
-
-//VERIFY ====> Causes the user to verify his email by sending an OTP to him
-rest.post(`${BASE_URL}/signup/verify`, (req, res, ctx) => {
-    const { email } = req.body;
-
-    if (email === "mark@email.com") {
+    //GET request example
+    rest.get(`${BASE_URL}/coins`, (req, res, ctx) => {
         return res(
+            ctx.status(200),
             ctx.delay(500),
-            ctx.status(400),
-            ctx.json({ message: "email does already exist" })
+            ctx.json(
+                Object.entries(coins).map(([symbol, data]) => {
+                    return { symbol, ...data };
+                })
+            )
         );
-    }
+    }),
 
-    return res(
-        ctx.delay(500),
-        ctx.status(200),
-        ctx.json({ message: "OTP SENT", OTP: "1234" })
-    );
-}),
+    // POST request example
+    rest.post(`${BASE_URL}/coins`, (req, res, ctx) => {
+        const { coin } = req.body;
 
-// CONFIRM EMAIL =====> Causes the user to verify his email by entering the correct OTP
+        if (coin !== "bitcoin") {
+            return res(ctx.status(404), ctx.json({ success: false }));
+        }
 
-rest.get(`${BASE_URL}/signup/confirm_email`, (req, res, ctx) => {
-    const OTP = req.url.searchParams.get("OTP");
-    const email = req.url.searchParams.get("email");
+        return res(ctx.json({ success: true }));
+    }),
 
-    if (email === "email@email.com" && OTP === "1234") {
+    // GET request with query parameters
+    rest.get(`${BASE_URL}/products`, (req, res, ctx) => {
+        const productId = req.url.searchParams.get("id");
+        return res(
+            ctx.json({
+                productId,
+            })
+        );
+    }),
+
+    ////////////////////////////////////////////////////////////////////
+
+    //VERIFY ====> Causes the user to verify his email by sending an OTP to him
+    rest.post(`${BASE_URL}/signup/verify`, (req, res, ctx) => {
+        const { email } = req.body;
+
+        if (email === "mark@email.com") {
+            return res(
+                ctx.delay(500),
+                ctx.status(400),
+                ctx.json({ message: "email does already exist" })
+            );
+        }
+
         return res(
             ctx.delay(500),
             ctx.status(200),
-            ctx.json({ message: "Email verified", email: "email@email.com" })
+            ctx.json({ message: "OTP SENT", OTP: "1234" })
         );
-    } else {
+    }),
+
+    // CONFIRM EMAIL =====> Causes the user to verify his email by entering the correct OTP
+
+    rest.get(`${BASE_URL}/signup/confirm_email`, (req, res, ctx) => {
+        const OTP = req.url.searchParams.get("OTP");
+        const email = req.url.searchParams.get("email");
+
+        if (email === "email@email.com" && OTP === "1234") {
+            return res(
+                ctx.delay(500),
+                ctx.status(200),
+                ctx.json({ message: "Email verified", email: "email@email.com" })
+            );
+        } else {
+            return res(
+                ctx.delay(500),
+                ctx.status(401),
+                ctx.json({ message: "Token expired" })
+            );
+        }
+    }),
+
+    // SIGNUP =====> Causes the user to create a new account
+
+    rest.post(`${BASE_URL}/signup`, (req, res, ctx) => {
+        const { email, password, name, date_of_birth, gender, username } = req.body;
+
+        if (username === "mark") {
+            return res(ctx.status(400), ctx.json({ message: "username exists" }));
+        }
+
         return res(
-            ctx.delay(500),
-            ctx.status(401),
-            ctx.json({ message: "Token expired" })
+            ctx.status(200),
+            ctx.json({ message: "successfully inserted new user" })
         );
-    }
-}),
+    }),
 
-// SIGNUP =====> Causes the user to create a new account
+    //LOGIN ====> takes email and password and logs in the user
 
-rest.post(`${BASE_URL}/signup`, (req, res, ctx) => {
-    const { email, password, name, date_of_birth, gender, username } = req.body;
+    rest.post(`${BASE_URL}/Login`, (req, res, ctx) => {
+        const { email, password } = req.body;
 
-    if (username === "mark") {
-        return res(ctx.status(400), ctx.json({ message: "username exists" }));
-    }
+        if (password === "5678" && email === "email@email.com") {
+            return res(
+                ctx.status(201),
+                ctx.json({
+                    message: "user found",
+                    token: USER_TOKEN,
+                    admin: false,
+                    _id: "50CENT_1234",
+                })
+            );
+        }
 
-    return res(
-        ctx.status(200),
-        ctx.json({ message: "successfully inserted new user" })
-    );
-}),
+        if (password === "admin" && email === "admin@email.com") {
+            return res(
+                ctx.status(201),
+                ctx.json({
+                    message: "user found",
+                    token: ADMIN_TOKEN,
+                    admin: true,
+                    _id: "ADMIN_1234",
+                })
+            );
+        }
 
-//LOGIN ====> takes email and password and logs in the user
+        if (email !== "email@email.com" && email !== "admin@email.com") {
+            return res(ctx.status(404).ctx.json({ message: "email doesn't exist" }));
+        }
 
-rest.post(`${BASE_URL}/Login`, (req, res, ctx) => {
-    const { email, password } = req.body;
+        if (email === "email@email.com" || password !== "5678") {
+            return res(ctx.status(400), ctx.json({ message: "incorrect password" }));
+        }
 
-    if (password === "5678" && email === "email@email.com") {
-        return res(
-            ctx.status(201),
-            ctx.json({
-                message: "user found",
-                token: USER_TOKEN,
-                admin: false,
-                _id: "50CENT_1234",
-            })
-        );
-    }
+        if (email === "admin@email.com" || password !== "admin") {
+            return res(ctx.status(400), ctx.json({ message: "incorrect password" }));
+        }
+    }),
 
-    if (password === "admin" && email === "admin@email.com") {
-        return res(
-            ctx.status(201),
-            ctx.json({
-                message: "user found",
-                token: ADMIN_TOKEN,
-                admin: true,
-                _id: "ADMIN_1234",
-            })
-        );
-    }
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
-    if (email !== "email@email.com" && email !== "admin@email.com") {
-        return res(ctx.status(404).ctx.json({ message: "email doesn't exist" }));
-    }
+    ///////////////////////***PROFILE ROUTES***//////////////////////////
 
-    if (email === "email@email.com" || password !== "5678") {
-        return res(ctx.status(400), ctx.json({ message: "incorrect password" }));
-    }
+    //GET users/me ===> to get the info of the current user
+    rest.get(`${BASE_URL}/users/me`, (req, res, ctx) => {
+        const TOKEN = req.headers._headers["x-access-token"];
 
-    if (email === "admin@email.com" || password !== "admin") {
-        return res(ctx.status(400), ctx.json({ message: "incorrect password" }));
-    }
-}),
+        if (TOKEN === undefined || TOKEN === null) {
+            return res(
+                ctx.status(404),
+                ctx.delay(500),
+                ctx.json({ 404: "TOKEN IS MISSING" })
+            );
+        }
 
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-
-///////////////////////***PROFILE ROUTES***//////////////////////////
-
-//GET users/me ===> to get the info of the current user
-rest.get(`${BASE_URL}/users/me`, (req, res, ctx) => {
-    const TOKEN = req.headers._headers["x-access-token"];
-
-    if (TOKEN === undefined || TOKEN === null) {
-        return res(
-            ctx.status(404),
-            ctx.delay(500),
-            ctx.json({ 404: "TOKEN IS MISSING" })
-        );
-    }
-
-    return res(ctx.status(200), ctx.delay(500), ctx.json(USER_50CENT));
-}),
-
-//GET users/user_id ===> to get the info of the user with the provided id
-rest.get(`${BASE_URL}/users/user_id`, (req, res, ctx) => {
-
-    if (TOKEN === undefined || TOKEN === null) {
-        return res(
-            ctx.status(404),
-            ctx.delay(500),
-            ctx.json({ 404: "TOKEN IS MISSING" })
-        );
-    } else if (
-        USER_ID !== USER_50CENT._id &&
-        USER_ID !== USER_DRDRE._id &&
-        USER_ID !== USER_EMINEM._id
-    ) {
-        return res(ctx.status(404), ctx.delay(500));
-    } else if (USER_ID === "DRDRE_1234") {
-        return res(ctx.status(200), ctx.delay(500), ctx.json(USER_DRDRE));
-    } else if (USER_ID === "50CENT_1234") {
         return res(ctx.status(200), ctx.delay(500), ctx.json(USER_50CENT));
-    } else if (USER_ID === "EMINEM_1234") {
-        return res(ctx.status(200), ctx.delay(500), ctx.json(USER_EMINEM));
-    }
-}),
+    }),
 
-if (TOKEN === undefined || TOKEN === null) {
-    return res(
-        ctx.status(404),
-        ctx.delay(500),
-        ctx.json({ 404: "TOKEN IS MISSING" })
-    );
-} else if (
-    USER_ID !== USER_50CENT._id ||
-    USER_ID !== USER_DRDRE._id ||
-    USER_ID !== USER_EMINEM._id
-) {
-    return res(ctx.status(404), ctx.delay(500));
-} else if (USER_ID === "DRDRE_1234") {
-    return res(ctx.status(200), ctx.delay(500), ctx.json(USER_DRDRE));
-} else if (USER_ID === "50CENT_1234") {
-    return res(ctx.status(200), ctx.delay(500), ctx.json(USER_50CENT));
-} else if (USER_ID === "EMINEM_1234") {
-    return res(ctx.status(200), ctx.delay(500), ctx.json(USER_EMINEM));
-}
-}),
+    //GET users/user_id ===> to get the info of the user with the provided id
+    rest.get(`${BASE_URL}/users/user_id`, (req, res, ctx) => {
+        const TOKEN = req.headers._headers["x-access-token"];
+        const USER_ID = req.url.searchParams.get("user_id");
+        if (TOKEN === undefined || TOKEN === null) {
+            return res(
+                ctx.status(404),
+                ctx.delay(500),
+                ctx.json({ 404: "TOKEN IS MISSING" })
+            );
+        } else if (
+            USER_ID !== USER_50CENT._id &&
+            USER_ID !== USER_DRDRE._id &&
+            USER_ID !== USER_EMINEM._id
+        ) {
+            return res(ctx.status(404), ctx.delay(500));
+        } else if (USER_ID === "DRDRE_1234") {
+            return res(ctx.status(200), ctx.delay(500), ctx.json(USER_DRDRE));
+        } else if (USER_ID === "50CENT_1234") {
+            return res(ctx.status(200), ctx.delay(500), ctx.json(USER_50CENT));
+        } else if (USER_ID === "EMINEM_1234") {
+            return res(ctx.status(200), ctx.delay(500), ctx.json(USER_EMINEM));
+        }
+    }),
 
-// POST /users/following ==> current user follows the user with the provided id
 
-rest.post(`${BASE_URL}/users/following`, (req, res, ctx) => {
+
+    // POST /users/following ==> current user follows the user with the provided id
+
+    rest.post(`${BASE_URL}/users/following`, (req, res, ctx) => {
         const TOKEN = req.headers._headers["x-access-token"];
         const { source_user_id, target_user_id } = req.body;
 
