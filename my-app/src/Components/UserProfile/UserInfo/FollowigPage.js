@@ -45,19 +45,22 @@ const FollowigPage = () => {
         /> <
         nav className = { FollowingPageCSS.alltabs } >
         <
-        a className = { FollowingPageCSS.tab } > Followers < /a> <
+        a className = { FollowingPageCSS.tab }
+        onClick = {
+            () => { window.open("/profile/followers", "_self") }
+        } > Followers < /a> <
         a className = { FollowingPageCSS.tab } > Followings < /a>  < /
         nav >
         <
-        Following pic = { userData.data.followers[0].prof_pic_url }
-        username = { userData.data.followers[0].name }
-        handle = { userData.data.followers[0].username }
-        bio = { userData.data.followers[0].bio }
+        Following pic = { userData.data.following[0].prof_pic_url }
+        username = { userData.data.following[0].name }
+        handle = { userData.data.following[0].username }
+        bio = { userData.data.following[0].bio }
         />   <
-        Following pic = { userData.data.followers[1].prof_pic_url }
-        username = { userData.data.followers[1].name }
-        handle = { userData.data.followers[1].username }
-        bio = { userData.data.followers[1].bio }
+        Following pic = { userData.data.following[1].prof_pic_url }
+        username = { userData.data.following[1].name }
+        handle = { userData.data.following[1].username }
+        bio = { userData.data.following[1].bio }
         />  
 
 

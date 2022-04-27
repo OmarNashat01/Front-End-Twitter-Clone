@@ -100,7 +100,6 @@ const UserProfile = () => {
         /
         Popup >
         <
-        HomeFeed / > <
         /Container>{" "} < /
         Auxelary >
     );
