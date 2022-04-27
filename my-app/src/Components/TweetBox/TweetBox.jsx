@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Form } from "usetheform";
 import {Preview } from "./Preview/Preview";
 import {PrivacyPicker} from "./PrivacyPicker/PrivacyPicker"
-
 // import JSONTree from "react-json-tree";
 import { WhatsHappeningBar } from "./WhatsHappeningBar/WhatsHappeningBar";
 import { UploadMediaBar } from "./UploadMediaBar/UploadMediaBar";
@@ -14,6 +13,7 @@ import TweetboxCSS from "./TweetBox.module.css";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { getMe } from "../../Api/UserProfile";
+import {postUserTweet} from "../../Api/tweetbox"
 
 const MAX_CHARS_ALLOWED = 280;
 export default function TweetBox({
@@ -21,15 +21,38 @@ export default function TweetBox({
 }) {
 
   const [Me, setMe] = useState();
+  const [Tweet,setTweet] = useState();
   const [loading , setLoading] = useState(true);
-  
+  const [loadingsss , setLoadingsss] = useState(true);
+
   useEffect(()=>{
     getMe(setLoading, setMe);
   },[])
-  if(!loading)
-  {
-    console.log(Me.data.prof_pic_url);
-    console.log("HELLOOO");
+  
+  async function onSubmit(state) {
+    // make an API call
+    // await submitForm(state)
+    const {
+      editor: { plainText },
+      ...resState
+    } = state;
+
+    console.log("onSubmit  => ", { ...resState, plainText });
+    if(!loading){
+        const postObj= {
+          "text": plainText,
+          "videos": [],
+          "images": []
+        };
+        console.log(postObj);
+        postUserTweet(setLoadingsss, setTweet, postObj); 
+      }
+    return true;
+  }
+
+
+  function navProfile() {
+    window.open(`/profile`, "_self");
   }
 
   return (
@@ -39,14 +62,14 @@ export default function TweetBox({
         <Row>
           <Col xs={2}>
             <IconButton className={TweetboxCSS.imageInput}>
-                <Avatar src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
+                <Avatar onClick={navProfile} src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
             </IconButton>
           </Col>
           <Col xs={10} md={10}>
             <Form onSubmit={onSubmit}>
               <WhatsHappeningBar maxChars={MAX_CHARS_ALLOWED} />
-              <Preview /> 
-              <PrivacyPicker />
+              {/* <Preview /> 
+              <PrivacyPicker /> */}
               <span className={TweetboxCSS.thematicBreak} />
               <div className={TweetboxCSS.actionBar}>
                 <UploadMediaBar />
@@ -67,16 +90,7 @@ export default function TweetBox({
   );
 }
 
-async function onSubmit(state) {
-  // make an API call
-  // await submitForm(state)
-  const {
-    editor: { plainText },
-    ...resState
-  } = state;
-  console.log("onSubmit  => ", { ...resState, plainText });
-  return true;
-}
+
 
 // function ReactJsonViewer() {
 //   const { state } = useForm();

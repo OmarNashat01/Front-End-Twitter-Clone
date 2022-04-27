@@ -59,8 +59,6 @@ const Post = forwardRef(
 
     }
 
-    var user_id = 1;
-
     function navProfile() {
       window.open(`/user/${user_id}`, "_self");
     }
