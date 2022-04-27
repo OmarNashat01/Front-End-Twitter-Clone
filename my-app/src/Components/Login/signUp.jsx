@@ -5,6 +5,8 @@ import axios from "axios";
 import {postVerify , PostEmailAndVerCode , postUserData , postEmailAndPassword} from "../../Api/SignUp"
 import { Email } from "@mui/icons-material";
 
+import md5 from "md5";
+
 import {library} from "@fortawesome/fontawesome-svg-core";
 import { faEye , faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -33,6 +35,8 @@ var temp_user = {
   temp_Year: "",
   temp_username:"",
 }
+
+var encryptedPassword;
 
 function getUserData(val){
   temp_user[val.target.name] = val.target.value;
@@ -105,12 +109,12 @@ function SignUp(props){
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control inputTxt signupButton nameArea" id={("floatingInput userFullName",Popup.txtArea)}   placeholder="Name" onChange={getUserData} name="temp_Name"></input>
           {/* {tempUserNameLength.length} */}
-          <label id={Popup.txtAreaTxt}  for="floatingInput">Name</label>
+          <label id={Popup.txtAreaTxt}  htmlFor="floatingInput">Name</label>
         </div>
   
         <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Email" onChange={getUserData} name="temp_Email"></input>
-          <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Email</label>
+          <label className="floatinTxt" id={Popup.txtAreaTxt} htmlFor="floatingInput">Email</label>
         </div>
   
   
@@ -266,17 +270,17 @@ function SignUp(props){
       <h3 className={Popup.headline}>Create your account</h3>
       <div className="form-floating mb-3">
         <input type={"text"} style={{backgroundColor: "white"}} className="inputTxt form-control inputTxt signupButton nameArea" id={("floatingInput userFullName",Popup.txtArea)} value={user.Name} disabled={true}   placeholder="Name" ></input>
-        <label id={Popup.txtAreaTxt}  for="floatingInput">Name</label>
+        <label id={Popup.txtAreaTxt}  htmlFor="floatingInput">Name</label>
       </div>
 
       <div className="form-floating mb-3">
         <input type={"text"} style={{backgroundColor: "white"}} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)} value={user.Email} disabled={true}  placeholder="Email" ></input>
-        <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Email</label>
+        <label className="floatinTxt" id={Popup.txtAreaTxt} htmlFor="floatingInput">Email</label>
       </div>
 
       <div className="form-floating mb-3">
         <input type={"text"} style={{backgroundColor: "white"}} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)} value={user.Month+" "+user.Day+", "+user.Year} disabled={true}  placeholder="Birth date" ></input>
-        <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Birth date</label>
+        <label className="floatinTxt" id={Popup.txtAreaTxt} htmlFor="floatingInput">Birth date</label>
       </div>
 
       <div className={Popup.privacyAndPolicy2}>
@@ -300,7 +304,7 @@ function SignUp(props){
       <div>
         <div className="form-floating mb-3">
             <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="Verification code" onChange={getVerCode}></input>
-            <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Verification code</label>
+            <label className="floatinTxt" id={Popup.txtAreaTxt} htmlFor="floatingInput">Verification code</label>
         </div>
       </div>
 
@@ -326,7 +330,7 @@ function SignUp(props){
             <span id={(Popup.togglePasswordVisibility)}>
                   {toggleIcon}
                 </span>
-            <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">password</label>
+            <label className="floatinTxt" id={Popup.txtAreaTxt} htmlFor="floatingInput">password</label>
           </div> 
         </div>
       </div>
@@ -348,7 +352,7 @@ function SignUp(props){
   
       <div className="form-floating mb-3">
           <input type={"text"} className="inputTxt form-control signupButton nameArea" id={("floatingInput phoneOrEmail",Popup.txtArea)}  placeholder="username" onChange={getUserData} name="temp_username"></input>
-          <label className="floatinTxt" for="floatingInput">username</label>
+          <label className="floatinTxt" htmlFor="floatingInput">username</label>
       </div>
       
   </div> );
@@ -364,11 +368,14 @@ function SignUp(props){
   const sendData =async () => {
     let requestBody = {
       "email": user.Email,
-      "password": user.password,
+      "password": user.Password,
       "name": user.Name,
-      "date_of_birth": user.Day +"/"+ user.Month +"/"+ user.Year,
-      "gender": "string",
       "username": user.username,
+      "date_of_birth": user.Year +"-"+ user.Month +"-"+ user.Day,
+      "gender": "M",
+      "bio": " ",
+      "location": " ",
+      "website": " ",
     }
     let resul = await postUserData(setVerLoadingData , setVerifyData , requestBody);
   }
@@ -376,8 +383,9 @@ function SignUp(props){
   const tempLogin = async()=>{
     let requestBody2 = {
       "email": user.Email,
-      "password": user.password
+      "password": user.Password
     }
+    console.log("req2 : "+requestBody2);
     let resul2 = await postEmailAndPassword(setVerLoadingLogin , setVerifyLogin , requestBody2);
   }
 
@@ -399,15 +407,29 @@ function SignUp(props){
       }
     }
   }
+  const checkEmailSent = () =>{
+
+    if(page===0 &&verify !== undefined){
+      if(verify.status === 400){
+        alert("Email is already exist");
+      }
+      else{
+        if(user.Name.length>0 & user.Email.length>0 & user.Month.length>0 & user.Day.length>0 & user.Year.length>0 ){
+          setPage((currpage)=>currpage+1);
+        } 
+      }
+    }
+  }
 
   const checkDataSent = () => {
     // console.log(verifyData.status);
   
     if(user.username.length>0 && verifyData.status===200 /*&& verifyLogin.status===200*/){
-
+      
       localStorage.setItem("token",verifyLogin.data.token);
       localStorage.setItem("user_id",verifyLogin.data._id);
       localStorage.setItem("admin", verifyLogin.data.admin);
+      console.log(user.Email+"   "+user.Password);
 
       window.open("/Home","_self");
 
@@ -416,11 +438,13 @@ function SignUp(props){
       // {console.log(verifyData)}
     }
     else if(user.username.length>0 && verifyData.status===400){
+      alert("User is already exist");
       setVerLoadingIDandEmail(true);
       setVerLoadingLogin(true);
       user.username= "";
     }
     else{
+
       // {console.log(verifyData)}
       setVerLoadingData(true);
       setVerLoadingLogin(true);
@@ -437,11 +461,10 @@ function SignUp(props){
       user.Day=temp_user.temp_Day;
       user.Year=temp_user.temp_Year;
 
-      
+
 
       await sendEmail()
 
-      if(user.Name.length>0 & user.Email.length>0 & user.Month.length>0 & user.Day.length>0 & user.Year.length>0 ) setPage((currpage)=>currpage+1);
       //alert(user.Name+":"+user.Email)
     }
     else if(page===1){
@@ -457,6 +480,10 @@ function SignUp(props){
     }
     else if(page===4){
       user.Password=temp_user.temp_Password;
+
+      encryptedPassword = md5(user.Password);
+      // alert(encryptedPassword);
+
       // await sendData();
       if(user.Password.length>0)setPage((currpage)=>currpage+1);
       //if(user.Password.length>0)window.open("/Home","_self");
@@ -491,14 +518,9 @@ function SignUp(props){
           {/* {!verLoading && console.log(verify.status)} */}
           {/* {!verLoading && Temp()} */}
 
-
+          {!verLoading && checkEmailSent()}
           {!verLoadingIDandEmail && checkVer()}
           {!verLoadingData && !verLoadingLogin && checkDataSent()}
-          
-          
-
-          
-          
 
       </div>  
     </div>
