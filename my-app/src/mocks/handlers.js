@@ -947,8 +947,8 @@ export const handlers = [
         ctx.json({ 404: "TOKEN IS MISSING" })
       );
     } else if (
-      USER_ID !== USER_50CENT._id ||
-      USER_ID !== USER_DRDRE._id ||
+      USER_ID !== USER_50CENT._id &&
+      USER_ID !== USER_DRDRE._id &&
       USER_ID !== USER_EMINEM._id
     ) {
       return res(ctx.status(404), ctx.delay(500));
@@ -1149,6 +1149,5 @@ export const handlers = [
     if (user_id === USER_50CENT._id && username === USER_50CENT.username) {
       return res(ctx.status(200), ctx.delay(500));
     }
-    
   }),
 ];
