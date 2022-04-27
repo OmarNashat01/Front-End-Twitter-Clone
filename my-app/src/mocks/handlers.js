@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import * as utils from './utils';
+import * as utils from "./utils";
 
 //BASE URL
 const BASE_URL = "http://localhost:3030";
@@ -25,6 +25,7 @@ const USER_50CENT = {
   admin: false,
   followers: [
     {
+      user_id: "DRDRE_1234",
       name: "DrDre",
       username: "@dedre",
       prof_pic_url:
@@ -66,8 +67,8 @@ const USER_50CENT = {
       following_count: 128,
     },
   ],
-  followers_count: 1,
-  following_count: 1,
+  followers_count: 2,
+  following_count: 2,
   tweet_count: 3,
   prof_pic_url:
     "https://pbs.twimg.com/profile_images/1226895461941940224/hBx6tZxz_400x400.jpg",
@@ -268,8 +269,94 @@ const TWEETS_50CENT = {
       created_at: "25/03/2022",
       videos: [],
       images: [],
+      like_count: 0,
+      liker_ids: [],
       comment_count: 0,
-      retweet_count: 25,
+      retweet_count: 52,
+      comments: [],
+    },
+    {
+      //TWEET WITH 3 IMAGES
+      tweet_id: "50_CENT_TWEET_3",
+      user_id: USER_50CENT._id,
+      name: USER_50CENT.name,
+      username: USER_50CENT.username,
+      prof_pic_url: USER_50CENT.prof_pic_url,
+      bio: USER_50CENT.bio,
+      followers_count: USER_50CENT.followers_count,
+      following_count: USER_50CENT.following_count,
+      text: "I love nature 🏜 ⛰ 🌳",
+      created_at: "25/03/2022",
+      videos: [],
+      images: [
+        {
+          url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+          alt_text: "TWEET_PHOTO_1",
+          height: 1440,
+          width: 2560,
+        },
+        {
+          url: "https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          alt_text: "TWEET_PHOTO_2",
+          height: 3456,
+          width: 5184,
+        },
+        {
+          url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          alt_text: "TWEET_PHOTO_2",
+          height: 3456,
+          width: 5184,
+        },
+      ],
+      like_count: 5,
+      liker_ids: [],
+      comment_count: 0,
+      retweet_count: 52,
+      comments: [],
+    },
+    {
+      //TWEET WITH 4 IMAGES
+      tweet_id: "50_CENT_TWEET_3",
+      user_id: USER_50CENT._id,
+      name: USER_50CENT.name,
+      username: USER_50CENT.username,
+      prof_pic_url: USER_50CENT.prof_pic_url,
+      bio: USER_50CENT.bio,
+      followers_count: USER_50CENT.followers_count,
+      following_count: USER_50CENT.following_count,
+      text: "I love nature 🏜 ⛰ 🌳",
+      created_at: "25/03/2022",
+      videos: [],
+      images: [
+        {
+          url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+          alt_text: "TWEET_PHOTO_1",
+          height: 1440,
+          width: 2560,
+        },
+        {
+          url: "https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          alt_text: "TWEET_PHOTO_2",
+          height: 3456,
+          width: 5184,
+        },
+        {
+          url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          alt_text: "TWEET_PHOTO_2",
+          height: 3456,
+          width: 5184,
+        },
+        {
+          url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          alt_text: "TWEET_PHOTO_2",
+          height: 3456,
+          width: 5184,
+        },
+      ],
+      like_count: 0,
+      liker_ids: [],
+      comment_count: 0,
+      retweet_count: 52,
       comments: [],
     },
   ],
@@ -687,8 +774,6 @@ const USER_TOKEN =
 //user id= "user_1234"
 //token= "TOKEN"
 
-
-
 //each element is an element to mock
 export const handlers = [
   //GET request example
@@ -1048,5 +1133,22 @@ export const handlers = [
       ctx.delay(500),
       ctx.json({ tweets: tweetSlice })
     );
+  }),
+  rest.post(`${BASE_URL}/tweets`, (req, res, ctx) => {
+    const { user_id, username } = req.body;
+    const TOKEN = req.headers._headers["x-access-token"];
+
+    if (TOKEN === undefined || TOKEN === null) {
+      return res(
+        ctx.status(404),
+        ctx.delay(500),
+        ctx.json({ 404: "TOKEN IS MISSING" })
+      );
+    }
+
+    if (user_id === USER_50CENT._id && username === USER_50CENT.username) {
+      return res(ctx.status(200), ctx.delay(500));
+    }
+    
   }),
 ];

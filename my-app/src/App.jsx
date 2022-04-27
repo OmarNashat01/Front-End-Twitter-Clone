@@ -11,11 +11,11 @@ import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
 
-//import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
+import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 // FEEDS
-
+import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 
@@ -80,14 +80,11 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
-  
+
   if (localStorage.getItem("admin") === "true") {
-    
     //return <Navigate to="/adminhome" />
     //window.location.assign("http://google.com")
     // window.open("/adminhome","_self");
-
-   
   }
 
   if (page === 0) {
@@ -113,9 +110,10 @@ function App() {
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar />
                     </div>
-                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8 ">
+                      <HomeNavbar />
                       <TweetBox />
-                      {/* <HomeFeed /> */}
+                      <HomeFeed />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 ">
                       <Widgetbar />
@@ -197,7 +195,6 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
-                        <ProfileFeed />
                       </div>
                     </div>
                   </div>
@@ -207,8 +204,31 @@ function App() {
               )
             }
           />
-           <Route path="/adminhome" element={<AdminPage />} />
-            <Route path="/adminsearch" element={<SearchUsers />} />
+          <Route
+            path="/profile/following"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <FollowingPage />
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route path="/adminhome" element={<AdminPage />} />
+          <Route path="/adminsearch" element={<SearchUsers />} />
         </Routes>
       </Router>
     );
@@ -218,9 +238,7 @@ function App() {
     return (
       <div>
         <Router>
-          <nav className="sticky-top">
-       {/* //     <AdminNavBar /> */}
-          </nav>
+          <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
           <Routes>
             <Route path="/adminhome" element={<AdminPage />}></Route>
             <Route path="/adminsearch" element={<SearchUsers />}></Route>

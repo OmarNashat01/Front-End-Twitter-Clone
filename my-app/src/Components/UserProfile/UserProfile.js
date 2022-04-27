@@ -5,51 +5,104 @@ import Tabss from "./UserInfo/Tabs";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "./UserInfo/Header";
-import "./UserProfile.css";
+import UserCSS from "./UserProfile.module.css";
 import Popup from "./UserInfo/Popup";
-import Image from "react-bootstrap/Image";
-import cov from "../../assets/cov.jpg";
-import pro from "../../assets/pro.jpg";
 import Container from "react-bootstrap/esm/Container";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Following from "./UserInfo/Following";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { getMe } from "../../Api/UserProfile";
+import ProfileFeed from "../HomeFeed/ProfileFeed";
+import FollowingPage from "./UserInfo/FollowigPage";
+import bell from "../../assets/bell.png";
+import envelope from "../../assets/envelope-icon-14.png";
+import dots from "../../assets/3dots.jpg";
+
+
+
 
 // console.log("classes");
 const UserProfile = () => {
-  const [buttonPopup, setButtonPopup] = useState(false);
-  return (
-    <Auxelary>
-      <Container>
-        <Header></Header>{" "}
-        <div>
-          <img src={cov} alt="pic" className="img-fluid " />
-        </div>
-        <div className="ProfilePic">
-          <img
-            src={pro}
-            alt="pic"
-            className="img-fluid rounded-circle"
-            height={150}
-            width={150}
-          />{" "}
-        </div>{" "}
-        <br />
-        <div className="UserName">SaraAbdo </div>{" "}
-        <div className="UserNamePro"> @username </div> <Bio> kkk </Bio>{" "}
-        <Button
-          variant="outline-secondary"
-          className="edit-button"
-          onClick={() => setButtonPopup(true)}
-        >
-          Edit Profile{" "}
-        </Button>{" "}
-        <Tabss> </Tabss>
-        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <h3> Edit Profile </h3>{" "}
-        </Popup>
-      </Container>{" "}
-    </Auxelary>
-  );
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState();
+    const imageClick = () => {}
+
+    useEffect(() => {
+
+        const getCurrentUser = async() => {
+            const data = await getMe(setLoading, setUserData);
+        }
+        getCurrentUser();
+
+    }, []);
+
+    if (!loading) {
+        console.log(userData);
+    }
+
+
+    return (!loading && <
+        Auxelary >
+        <
+        Container >
+        <
+        Header user = { userData.data.name }
+        tweetnum = { userData.data.tweet_count }
+        />{" "} 
+
+        <
+        div >
+        <
+        img src = { userData.data.cover_pic_url }
+        alt = "pic"
+        className = "img-fluid " / >
+        <
+        /div> <
+        div className = { UserCSS.ProfilePic }
+        onClick = {
+            () => imageClick()
+        } >
+        <
+        img src = { userData.data.prof_pic_url }
+        alt = "pic"
+        className = "img-fluid rounded-circle"
+        height = { 140 }
+        width = { 140 }
+
+        /> < /
+        div > { " " } <
+        br / >
+        <
+        div className = { UserCSS.UserName } > { userData.data.name } < /div>{" "} <
+        div className = { UserCSS.UserNamePro } > { userData.data.username } < /div> <Bio bio={userData.data.bio} joindate={userData.data.creation_date}
+        fingcount = { userData.data.following_count }
+        fercount = { userData.data.followers_count }
+        bdate = { userData.data.date_of_birth }
+        /> { " " } <
+        Button variant = "outline-dark"
+        size = "sm"
+        className = { UserCSS.editbutton }
+        onClick = {
+            () => setButtonPopup(true)
+        } >
+        Edit Profile { " " } <
+        /Button>
+
+
+
+
+        <
+        Tabss > < /Tabss> <
+        Popup trigger = { buttonPopup }
+        setTrigger = { setButtonPopup } > { " " } <
+        /
+        Popup >
+        <
+        ProfileFeed / > <
+        /Container>{" "} < /
+        Auxelary >
+    );
 };
 export default UserProfile;
