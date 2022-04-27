@@ -1134,7 +1134,7 @@ export const handlers = [
     );
   }),
   rest.post(`${BASE_URL}/tweets`, (req, res, ctx) => {
-    const { tweet } = req.body;
+    const { user_id, username } = req.body;
     const TOKEN = req.headers._headers["x-access-token"];
 
     if (TOKEN === undefined || TOKEN === null) {
@@ -1145,10 +1145,7 @@ export const handlers = [
       );
     }
 
-    if (
-      tweet.user_id === USER_50CENT._id &&
-      tweet.username === USER_50CENT.username
-    ) {
+    if (user_id === USER_50CENT._id && username === USER_50CENT.username) {
       return res(ctx.status(200), ctx.delay(500));
     }
   }),
