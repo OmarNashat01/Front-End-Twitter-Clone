@@ -15,8 +15,8 @@ export async function getMe(setLoading, setMe) {
 
 export async function getUser(setLoading, setUser, params) {
     //params is a string like => ?id=20
+    // console.log(params);
     setLoading(true);
-    console.log(`products${params}`);
 
     try {
         const response = await getRequest(`users/user_id${params}`);

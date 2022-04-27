@@ -33,7 +33,9 @@ const OtherProfiles = () => {
 
         const getCurrentUser = async() => {
             const data = await getUser(setLoading, setUserData, `?user_id=${window.location.pathname.split('/')[2]}`);
+            console.log(`?user_id=${window.location.pathname.split('/')[2]}`);
         }
+
         getCurrentUser();
 
     }, []);
