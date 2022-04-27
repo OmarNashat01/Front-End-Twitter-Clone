@@ -1,0 +1,29 @@
+.navItem {
+
+  text-align: left;
+  /* margin-left: 75%; */
+
+  padding: 0 0 0 0 !important;
+}
+.navbarLogo {
+  /* text-align: left;
+  margin-left: auto; */
+  margin-left: 18px;
+  width: 29%;
+}
+
+/* tweet button */
+.tweetBtn {
+  height: 52px;
+  margin-right: auto !important;
+  width: 200px ;
+}
+.tweetBtnSmall
+{
+  width:60px !important;
+  height: 60px !important;
+  margin-right: auto !important;
+  margin-left: 0px !important;
+  
+}
+

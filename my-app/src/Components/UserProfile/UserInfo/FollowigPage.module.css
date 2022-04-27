@@ -1,0 +1,49 @@
+.alltabs {
+    width: 100%;
+    height: 20vh;
+    position: relative;
+    bottom: 45px;
+    left: -3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.tab {
+    position: relative;
+    text-decoration: none;
+    color: grey;
+    text-indent: 5%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.tab:hover {
+    cursor: pointer;
+    color: black;
+}
+
+@media(max-width:1000px) {
+    .alltabs {
+        width: 100%;
+        height: 20vh;
+        position: relative;
+        bottom: 45px;
+        left: -3%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: auto;
+    }
+    .tab {
+        position: relative;
+        text-decoration: none;
+        color: grey;
+        text-indent: 5%;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+    }
+}

@@ -1,173 +1,65 @@
-import React from "react";
-
+import { useEffect, useState } from "react";
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Loader from "./Loader";
 import Post from "../Post/Post";
+import { getHomeTweets } from "../../Api/homeFeed";
+
 
 function HomeFeed() {
+  const [posts, setPosts] = useState([]);
+  const [loading , setLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
+  const [page,setPage]= useState(1);
+
+  
+  useEffect(()=>{
+    getHomeTweets(setLoading,setPosts,setHasMore,`?page=1`);
+  },[])
+  
+  const fetchData = () => {
+    setPage(page + 1);
+    getHomeTweets(setLoading,setPosts,setHasMore,`?page=${page}`);
+  };
+
+if(!loading){
+  console.log(posts);
+  console.log(posts.length);
+}
+
   return (
+  
     <div>
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"daniel"}
-          username={"danielhrg99"}
-          verified={"1"}
-          text={"This is my first post Hi everybody"}
-          avatar={
-            "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80"
+      <InfiniteScroll
+        className="overflow-hidden"
+        dataLength={posts.length}
+        next={fetchData}
+        hasMore={hasMore}
+        loader={<Loader />}
+      > 
+          { posts &&
+              posts.map((post,index) => {
+              return <div key={index}>
+                <Post
+                  user_id={post.user_id}
+                  displayName={post.name}
+                  username={post.username}
+                  verified="1"
+                  text={post.text}
+                  avatar={post.prof_pic_url}
+                  image={ post.images}
+                  isLiked="false"
+                  isRetweet="false"
+                  likes={post.like_count}
+                  retweets={post.retweet_count}
+                  followers={post.followers_count}
+                  following={post.following_count}
+                  about={post.bio}
+                ></Post>
+              </div>
+            })
           }
-          image={
-            "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVuc3xlbnwwfHwwfHw%3D&w=1000&q=80"
-          }
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={"https://picsum.photos/seed/" + Math.random() + "/700/500"}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={"https://picsum.photos/seed/" + Math.random() + "/700/500"}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={"https://picsum.photos/seed/" + Math.random() + "/700/500"}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={"https://picsum.photos/seed/" + Math.random() + "/700/500"}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={""}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={""}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={""}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
-
-      <div>
-        <Post
-          key={"dani"}
-          displayName={"john doe"}
-          username={"johndoe23"}
-          verified={"1"}
-          text={
-            "egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis molestie a iaculis at erat pellentesque"
-          }
-          avatar={"https://picsum.photos/seed/" + Math.random() + "/50/50"}
-          image={""}
-          isLiked={"false"}
-          isRetweet={"false"}
-          likes={22}
-          retweets={20}
-        ></Post>
-      </div>
+  
+      </InfiniteScroll>  
     </div>
   );
 }
