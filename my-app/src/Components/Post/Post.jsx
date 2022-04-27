@@ -7,15 +7,15 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import RepeatIcon from "@mui/icons-material/Repeat";
 
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import PublishIcon from "@mui/icons-material/Publish";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useEffect, useState } from "react";
 import { Dropdown, Row } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
+import Container from "react-bootstrap/Container";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
-import ToolTip from "./../Widgetbar/ToolTip/ToolTip"
-import Col from 'react-bootstrap/Col';
+import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
+import Col from "react-bootstrap/Col";
 const Post = forwardRef(
   (
     {
@@ -32,7 +32,7 @@ const Post = forwardRef(
       retweets,
       followers,
       following,
-      bio
+      bio,
     },
     ref
   ) => {
@@ -42,10 +42,12 @@ const Post = forwardRef(
     const [fullScreen, setfullScreen] = useState(false);
     const [fullScreenImg, setfullScreenImg] = useState("");
     const [imgs_count, setimgs_count] = useState(0);
-    const [isLikedState, setIsLikedState] = useState(isLiked === "true" ? true : false)
+    const [isLikedState, setIsLikedState] = useState(
+      isLiked === "true" ? true : false
+    );
     useEffect(() => {
       setimgs_count(image.length);
-      var temp = image.map(x => x.url);
+      var temp = image.map((x) => x.url);
       image = temp;
     }, []);
 
@@ -54,9 +56,7 @@ const Post = forwardRef(
     }
 
     function fullScreenTog() {
-
       setfullScreen(!fullScreen);
-
     }
 
     function navProfile() {
@@ -70,45 +70,137 @@ const Post = forwardRef(
 
     function imagesGrid() {
       if (imgs_count === 0) {
-        return (null);
-      }
-      else if (imgs_count === 1) {
+        return null;
+      } else if (imgs_count === 1) {
         return (
-          <img src={image[0].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={() => { setImg(image[0].url); fullScreenTog(); }} />
+          <img
+            src={image[0].url}
+            className="img-post h-100 w-100 border-img-all"
+            alt=""
+            onClick={() => {
+              setImg(image[0].url);
+              fullScreenTog();
+            }}
+          />
         );
-      }
-      else if (imgs_count === 2) {
+      } else if (imgs_count === 2) {
         console.log(image[0]);
         return (
           <div>
-            <Row className='w-100 m-0'>
-              <Col className='p-0'><img src={image[0].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={() => { setImg(image[0].url); fullScreenTog(); }} /></Col>
-              <Col className='p-0'><img src={image[1].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={() => { setImg(image[1].url); fullScreenTog(); }} /></Col>
+            <Row className="w-100 m-0">
+              <Col className="p-0">
+                <img
+                  src={image[0].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[0].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
+              <Col className="p-0">
+                <img
+                  src={image[1].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[1].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
             </Row>
           </div>
-        )
-      }
-      else if (imgs_count === 3) {
+        );
+      } else if (imgs_count === 3) {
         return (
           <div>
-            <Row className='w-100 m-0'>
-              <Col className='p-0'><img src={image[0].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={fullScreenTog} /></Col>
-              <Col className='p-0'><img src={image[1].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={fullScreenTog} /></Col>
+            <Row className="w-100 m-0">
+              <Col className="p-0">
+                <img
+                  src={image[0].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[0].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
+              <Col className="p-0">
+                <img
+                  src={image[1].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[1].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
             </Row>
-            <img src={image[2].url} className="img-post w-100 border-img-all" alt="" onClick={fullScreenTog} />
+            <img
+              src={image[2].url}
+              className="img-post w-100 border-img-all"
+              alt=""
+              onClick={() => {
+                setImg(image[2].url);
+                fullScreenTog();
+              }}
+            />
           </div>
-        )
-      }
-      else if (imgs_count >= 4) {
+        );
+      } else if (imgs_count >= 4) {
         return (
           <div>
-            <Row className='w-100 m-0'>
-              <Col className='p-0'><img src={image[0].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={fullScreenTog} /></Col>
-              <Col className='p-0'><img src={image[1].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={fullScreenTog} /></Col>
+            <Row className="w-100 m-0">
+              <Col className="p-0">
+                <img
+                  src={image[0].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[0].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
+              <Col className="p-0">
+                <img
+                  src={image[1].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[1].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
             </Row>
-            <Row className='w-100 m-0'>
-              <Col className='p-0'><img src={image[2].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={fullScreenTog} /></Col>
-              <Col className='p-0'><img src={image[3].url} className="img-post h-100 w-100 border-img-all" alt="" onClick={fullScreenTog} /></Col>
+            <Row className="w-100 m-0">
+              <Col className="p-0">
+                <img
+                  src={image[2].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[2].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
+              <Col className="p-0">
+                <img
+                  src={image[3].url}
+                  className="img-post h-100 w-100 border-img-all"
+                  alt=""
+                  onClick={() => {
+                    setImg(image[3].url);
+                    fullScreenTog();
+                  }}
+                />
+              </Col>
             </Row>
           </div>
         );
@@ -172,9 +264,18 @@ const Post = forwardRef(
     }
 
     return (
-      <div className="post" ref={ref} >
+      <div className="post" ref={ref}>
         <div className="post__avatar">
-          <ToolTip user_id={user_id} name={displayName} tag={username} img={avatar} show="displayRight" followers={followers} following={following} bio={bio} />
+          <ToolTip
+            user_id={user_id}
+            name={displayName}
+            tag={username}
+            img={avatar}
+            show="displayRight"
+            followers={followers}
+            following={following}
+            bio={bio}
+          />
         </div>
         <div className="post__body">
           <div className="post__header">
@@ -193,13 +294,19 @@ const Post = forwardRef(
           </div>
           {imagesGrid()}
           <div id="test">
-            {fullScreen ?
-              <div className="full-screen" id="full-div" >
-                <CloseIcon className="close-icon" onClick={closeImg}></CloseIcon>
+            {fullScreen ? (
+              <div className="full-screen" id="full-div">
+                <CloseIcon
+                  className="close-icon"
+                  onClick={closeImg}
+                ></CloseIcon>
                 <img className="img-full" src={fullScreenImg} alt="" />
                 <div className="post__footer__full">
                   <div className="chat d-flex align-items-center">
-                    <ChatBubbleOutlineIcon fontSize="small" className="custom-icon-full" />
+                    <ChatBubbleOutlineIcon
+                      fontSize="small"
+                      className="custom-icon-full"
+                    />
                   </div>
                   <Dropdown className=" d-flex align-items-center">
                     <Dropdown.Toggle
@@ -211,8 +318,13 @@ const Post = forwardRef(
                           : "retweet-icon d-flex align-items-center"
                       }
                     >
-                      <RepeatIcon fontSize="small" className="custom-icon-full" />
-                      <span className="likeCounter-full">{counterRetweets}</span>
+                      <RepeatIcon
+                        fontSize="small"
+                        className="custom-icon-full"
+                      />
+                      <span className="likeCounter-full">
+                        {counterRetweets}
+                      </span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>
@@ -229,7 +341,10 @@ const Post = forwardRef(
                     id="like-trig"
                     onClick={toggleFavColor}
                   >
-                    <FavoriteBorderIcon fontSize="small" className="custom-icon-full" />
+                    <FavoriteBorderIcon
+                      fontSize="small"
+                      className="custom-icon-full"
+                    />
                     <span className="likeCounter-full">{counterLike}</span>
                   </div>
                   <div className="publish ">
@@ -239,7 +354,10 @@ const Post = forwardRef(
                         variant="secondary"
                         id="dropdown-basic-full"
                       >
-                        <PublishIcon fontSize="small" className="custom-icon-full" />
+                        <PublishIcon
+                          fontSize="small"
+                          className="custom-icon-full"
+                        />
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
@@ -251,7 +369,8 @@ const Post = forwardRef(
                     </Dropdown>
                   </div>
                 </div>
-              </div> : null}
+              </div>
+            ) : null}
           </div>
           <div className="post__footer">
             <div className="chat d-flex align-items-center">
