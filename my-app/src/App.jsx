@@ -34,11 +34,11 @@ import Widgetbar from "./Components/Widgetbar/Widgetbar";
 import jwt_decode from "jwt-decode";
 import { Reddit } from "@mui/icons-material";
 
-// //Mock-Service-Worker
-// if (process.env.NODE_ENV === "development") {
-//   const { worker } = require("./mocks/browser");
-//   worker.start();
-// }
+//Mock-Service-Worker
+if (process.env.NODE_ENV === "development") {
+  const { worker } = require("./mocks/browser");
+  worker.start();
+}
 
 function checkAuth(setIsAuth) {
   var token = localStorage.getItem("token");
