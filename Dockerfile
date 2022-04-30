@@ -7,7 +7,7 @@ RUN npm install react-scripts@3.4.1 -g --silent
 
 
 COPY my-app ./
-RUN npm run build
+CMD ["npm" ,"run", "build"]
 
 # production environment
 FROM nginx:stable-alpine
