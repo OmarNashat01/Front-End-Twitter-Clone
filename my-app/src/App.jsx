@@ -35,10 +35,10 @@ import jwt_decode from "jwt-decode";
 import { Reddit } from "@mui/icons-material";
 
 //Mock-Service-Worker
-if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./mocks/browser");
-  worker.start();
-}
+// if (process.env.NODE_ENV === "development") {
+//   const { worker } = require("./mocks/browser");
+//   worker.start();
+// }
 
 function checkAuth(setIsAuth) {
   var token = localStorage.getItem("token");
@@ -228,7 +228,7 @@ function App() {
               )
             }
           />
-           <Route
+          <Route
             path="/profile/followers"
             element={
               isAuth === true ? (
@@ -239,7 +239,7 @@ function App() {
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
-                        <FollowersPage/>
+                        <FollowersPage />
                         {/* TODO:for testing */}
                         {/* <HomeFeed /> */}
                       </div>
@@ -251,7 +251,7 @@ function App() {
               )
             }
           />
-            <Route
+          <Route
             path="/user/*"
             element={
               isAuth === true ? (
@@ -274,9 +274,9 @@ function App() {
               )
             }
           />
-          
-           <Route path="/adminhome" element={<AdminPage />} />
-            <Route path="/adminsearch" element={<SearchUsers />} />
+
+          <Route path="/adminhome" element={<AdminPage />} />
+          <Route path="/adminsearch" element={<SearchUsers />} />
         </Routes>
       </Router>
     );
