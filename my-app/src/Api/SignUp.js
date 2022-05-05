@@ -54,6 +54,10 @@ export async function postUserData(setLoading, setCoins, requestBody) {
     SEARCH ON HOW TO WRITE OBJECTS IN JAVASCRIPT FOR MORE CLARIFICATION
 
   */
+
+  console.log("inside user data");
+  console.log(requestBody);
+
   setLoading(true);
   let response;
 

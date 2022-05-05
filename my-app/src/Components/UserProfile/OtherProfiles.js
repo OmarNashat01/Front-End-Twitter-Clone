@@ -32,7 +32,7 @@ const OtherProfiles = () => {
       const data = await getUser(
         setLoading,
         setUserData,
-        `?user_id=${window.location.pathname.split("/")[2].toString()}`
+        `?_id=${window.location.pathname.split("/")[2].toString()}`
       );
       //   console.log(
       //     `?user_id=${window.location.pathname.split("/")[2].toString()}`
