@@ -5,10 +5,10 @@ import Auxelary from "../../../hoc/Auxelary";
 import Container from "react-bootstrap/esm/Container";
 import Following from "./Following";
 import { useState, useEffect } from "react";
-import FollowingPageCSS from "./FollowigPage.module.css";
+import FollowigPageCSS from "./FollowigPage.module.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-const FollowigPage = () => {
+const FollowersPage = () => {
 
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState();
@@ -43,24 +43,24 @@ const FollowigPage = () => {
         Header user = { userData.data.name }
         tweetnum = { userData.data.tweet_count }
         /> <
-        nav className = { FollowingPageCSS.alltabs } >
+        nav className = { FollowigPageCSS.alltabs } >
         <
-        a className = { FollowingPageCSS.tab }
+        a className = { FollowigPageCSS.tab } > Followers < /a> <
+        a className = { FollowigPageCSS.tab }
         onClick = {
-            () => { window.open("/profile/followers", "_self") }
-        } > Followers < /a> <
-        a className = { FollowingPageCSS.tab } > Followings < /a>  < /
+            () => { window.open("/profile/following", "_self") }
+        } > Followings < /a>  < /
         nav >
         <
-        Following pic = { userData.data.following[0].prof_pic_url }
-        username = { userData.data.following[0].name }
-        handle = { userData.data.following[0].username }
-        bio = { userData.data.following[0].bio }
+        Following pic = { userData.data.followers[0].prof_pic_url }
+        username = { userData.data.followers[0].name }
+        handle = { userData.data.followers[0].username }
+        bio = { userData.data.followers[0].bio }
         />   <
-        Following pic = { userData.data.following[1].prof_pic_url }
-        username = { userData.data.following[1].name }
-        handle = { userData.data.following[1].username }
-        bio = { userData.data.following[1].bio }
+        Following pic = { userData.data.followers[1].prof_pic_url }
+        username = { userData.data.followers[1].name }
+        handle = { userData.data.followers[1].username }
+        bio = { userData.data.followers[1].bio }
         />  
 
 
@@ -77,4 +77,4 @@ const FollowigPage = () => {
     );
 };
 
-export default FollowigPage;
+export default FollowersPage;

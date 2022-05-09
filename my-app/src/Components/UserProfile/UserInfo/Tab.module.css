@@ -2,7 +2,7 @@
     /* margin: 20px 10px; */
     position: relative;
     text-decoration: none;
-    color: grey;
+    color: gray;
     text-indent: 0%;
     text-align: center;
     font-size: 15px;
@@ -11,68 +11,43 @@
 
 .alltab {
     width: 100%;
-    height: 20vh;
+    height: 10vh;
     position: relative;
-    bottom: -50px;
+    bottom: 0px;
     left: -3%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: auto;
-}
-
-.tabs::after {
-    content: "";
-    position: absolute;
-    background-color: aliceblue;
-    height: 3px;
-    width: 0;
-    left: 0;
-    bottom: -10px;
-}
-
-.tabs:after {
-    height: 3px;
-    width: 150%;
-    left: center;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.07);
-    transition-duration: 0.2s;
 }
 
 .tabs:hover {
-    color: gray;
+    color: black;
     transition-duration: 0.2s;
     cursor: pointer;
-    transition-property: initial;
 }
 
-.tabs:hover:after {
-    margin-top: 50px;
-    min-height: 50px;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.07);
+.tabs::after {
+    color: grey;
 }
 
 .hr {
     margin: 0.03mm;
-    font-weight: 10;
+    font-weight: 5;
     font-size: 1px;
     color: black !important;
     position: relative;
-    top: -70px;
+    top: -12px;
 }
 
 @media(max-width:800px) {
     .alltab {
         width: 100%;
-        height: 20vh;
+        height: 10vh;
         position: relative;
-        bottom: -10px;
+        bottom: 0px;
         left: -3%;
         display: flex;
         align-items: center;
         justify-content: space-around;
-        margin: auto;
     }
 }

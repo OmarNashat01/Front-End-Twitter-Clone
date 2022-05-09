@@ -2,7 +2,7 @@ import { rest } from "msw";
 import * as utils from "./utils";
 
 //BASE URL
-const BASE_URL = "http://localhost:3030";
+const BASE_URL = "http://45.79.245.94:5000";
 
 //this is like the database
 const coins = {
@@ -939,7 +939,6 @@ export const handlers = [
   rest.get(`${BASE_URL}/users/user_id`, (req, res, ctx) => {
     const TOKEN = req.headers._headers["x-access-token"];
     const USER_ID = req.url.searchParams.get("user_id");
-
     if (TOKEN === undefined || TOKEN === null) {
       return res(
         ctx.status(404),
@@ -947,8 +946,8 @@ export const handlers = [
         ctx.json({ 404: "TOKEN IS MISSING" })
       );
     } else if (
-      USER_ID !== USER_50CENT._id ||
-      USER_ID !== USER_DRDRE._id ||
+      USER_ID !== USER_50CENT._id &&
+      USER_ID !== USER_DRDRE._id &&
       USER_ID !== USER_EMINEM._id
     ) {
       return res(ctx.status(404), ctx.delay(500));
@@ -1138,17 +1137,8 @@ export const handlers = [
     const { user_id, username } = req.body;
     const TOKEN = req.headers._headers["x-access-token"];
 
-    if (TOKEN === undefined || TOKEN === null) {
-      return res(
-        ctx.status(404),
-        ctx.delay(500),
-        ctx.json({ 404: "TOKEN IS MISSING" })
-      );
-    }
-
     if (user_id === USER_50CENT._id && username === USER_50CENT.username) {
       return res(ctx.status(200), ctx.delay(500));
     }
-    
   }),
 ];

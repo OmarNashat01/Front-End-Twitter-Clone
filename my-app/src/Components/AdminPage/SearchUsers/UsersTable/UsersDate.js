@@ -11,7 +11,7 @@ export const userColumns = [
     {
       field: "user",
       headerName: "User",
-      width: 230,
+      width: 200,
       sortable: true,
     
      headerClassName:'columnHeader',
@@ -29,7 +29,7 @@ export const userColumns = [
     {
       field: "email",
       headerName: "Email",
-      width: 230,
+      width: 200,
       headerClassName:'columnHeader',
       align:'center',
       headerAlign:'center',
@@ -38,7 +38,7 @@ export const userColumns = [
     {
       field: "dateofbirth",
       headerName: "Date of Birth",
-      width: 230,
+      width: 200,
       headerClassName:'columnHeader',
       align:'center',
       headerAlign:'center',
@@ -46,8 +46,8 @@ export const userColumns = [
   
     {
       field: "followerscount",
-      headerName: "Followers Count",
-      width: 230,
+      headerName: "Followers",
+      width: 150,
       headerClassName:'columnHeader',
       align:'center',
       headerAlign:'center',
@@ -57,7 +57,7 @@ export const userColumns = [
     {
       field: "creationdate",
       headerName: "Creation Date",
-      width: 200,
+      width: 150,
       headerClassName:'columnHeader',
       align:'center',
       headerAlign:'center',
@@ -75,8 +75,8 @@ export const userColumns = [
   
     {
       field: "action",
-      headerName: "Action",
-      width: 200,
+      headerName: "Ban",
+      width: 100,
       sortable: false,
       headerClassName:'columnHeader',
       flex:5,
