@@ -7,7 +7,7 @@ import LoginCss from "./Login.module.css"
 function SignIn(props){
   return ( 
     <div className={Popup.popup}>
-      <div className={Popup.popupInner}>
+      <div className={(Popup.popupInner )}>
 
         <button type="button" className="btn-close btn-close-black" id={Popup.closeBtn} aria-label="close" onClick={() =>{ window.open("/","_self")}}></button>
         <div id={Popup.signinLayout}>
@@ -17,9 +17,11 @@ function SignIn(props){
 
 
           <div className="form-floating mb-3">
-            <input type="email" className="inputTxt form-control" id="floatingInput"  placeholder="Enter your Phone, email, or username"></input>
-            <label className="floatinTxt" for="floatingInput">Enter your Phone, email, or username</label>
+            <input type="email" className="inputTxt form-control" id={("floatingInput userFullName",Popup.txtArea)}  placeholder="Enter your Phone, email, or username"></input>
+            <label className="floatinTxt" id={Popup.txtAreaTxt} for="floatingInput">Enter your Phone, email, or username</label>
           </div>
+
+
           
 
 

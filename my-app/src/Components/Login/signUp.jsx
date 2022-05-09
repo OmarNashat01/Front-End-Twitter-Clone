@@ -85,7 +85,9 @@ function SignUp(props){
   const [passwordInputType , toggleIcon] = usePasswordToggle();
 
   const secPageBtn = () => {
+    console.log(page);
     setPage((currpage)=>currpage-1)
+    alert(page)
   }
 
   //Check which tap will be rendered.
@@ -125,31 +127,31 @@ function SignUp(props){
   
       <select  className={(Popup.datePicker,Popup.month)} id="selectedMonth" onChange={getUserData} name="temp_Month">
                   <option value={""} disabled selected>Month</option>
-                  <option value="January">January</option>
-                  <option value="February">February</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                  <option value="June">June</option>
-                  <option value="July">July</option>
-                  <option value="August">August</option>
-                  <option value="Sebtember">Sebtember</option>
-                  <option value="October">October</option>
-                  <option value="November">November</option>
-                  <option value="December">December</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">Sebtember</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
       </select>
   
       <select className={(Popup.datePicker, Popup.day)} id="selectedDay" onChange={getUserData} name="temp_Day">
                   <option value={""} disabled selected>Day</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
+                  <option value="01">1</option>
+                  <option value="02">2</option>
+                  <option value="03">3</option>
+                  <option value="04">4</option>
+                  <option value="05">5</option>
+                  <option value="06">6</option>
+                  <option value="07">7</option>
+                  <option value="08">8</option>
+                  <option value="09">9</option>
                   <option value="10">10</option>
                   <option value="11">11</option>
                   <option value="12">12</option>
@@ -361,21 +363,21 @@ function SignUp(props){
   //send email to back end
   const sendEmail =async () => {
     let requestBody = {
-      "email": user.Email
+      email: user.Email,
     }
     let resul = await postVerify(setVerLoading , setVerify , requestBody);
   }
   const sendData =async () => {
     let requestBody = {
-      "email": user.Email,
-      "password": user.Password,
-      "name": user.Name,
-      "username": user.username,
-      "date_of_birth": user.Year +"-"+ user.Month +"-"+ user.Day,
-      "gender": "M",
-      "bio": " ",
-      "location": " ",
-      "website": " ",
+      email: user.Email,
+      password: user.Password,
+      name: user.Name,
+      date_of_birth: `${user.Year}-${user.Month}-${user.Day}`,
+      gender: "M",
+      username: user.username,
+      bio: null,
+      location: null,
+      website: null,
     }
     let resul = await postUserData(setVerLoadingData , setVerifyData , requestBody);
   }
@@ -461,7 +463,7 @@ function SignUp(props){
       user.Day=temp_user.temp_Day;
       user.Year=temp_user.temp_Year;
 
-
+      // this.style.backgroundColor = 'green';
 
       await sendEmail()
 
