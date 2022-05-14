@@ -932,7 +932,11 @@ export const handlers = [
       );
     }
 
-    return res(ctx.status(200), ctx.delay(500), ctx.json(USER_50CENT));
+    return res(
+      ctx.status(200),
+      ctx.delay(500),
+      ctx.json({ user: { ...USER_50CENT } })
+    );
   }),
 
   //GET users/user_id ===> to get the info of the user with the provided id
