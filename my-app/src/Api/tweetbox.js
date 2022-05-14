@@ -5,7 +5,7 @@ export async function postUserTweet(setLoading, setTweet, requestBody) {
   let response;
 
   try {
-    response = await postRequest("tweets/", requestBody);
+    response = await postRequest("tweets", requestBody);
 
     setTweet(response);
   } catch (error) {
