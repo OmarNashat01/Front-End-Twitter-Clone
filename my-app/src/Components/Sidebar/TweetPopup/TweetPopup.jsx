@@ -1,26 +1,29 @@
 import React from "react";
-// importimg stylesheeet
-import "./TweetPopup.css";
+import TweetPopupCSS from "./TweetPopup.module.css";
 
-// importing icons
-import CloseIcon from "@mui/icons-material/Close";
+import Modal from "react-modal";
+import TweetBox from "../../TweetBox/TweetBox";
+import ClosebtnNavbar from "./ClosebtnNavbar"
 
-function TweetPopup(props) {
-  return props.trigger ? (
-    <div className="tweet-popup">
-      <div className="popup-inner-content">
-        <button
-          className=" btn tweet-popup-close-button"
-          onClick={() => props.setTrigger(false)}
-        >
-          <CloseIcon />
-        </button>
-        {props.children}
-      </div>
+
+export default function TweetPopup({setIsOpen,isOpen,toggleModal}) {
+  
+
+  return (
+    <div className={TweetPopupCSS.popup_container}>
+      <button onClick={toggleModal}>Open modal</button>
+
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="My dialog"
+        className={TweetPopupCSS.mymodal}
+        overlayClassName={TweetPopupCSS.myoverlay}
+        closeTimeoutMS={500}
+      >
+        <ClosebtnNavbar toggleModal={toggleModal}/>
+        <TweetBox setIsOpen={setIsOpen} isOpen={isOpen}/>
+      </Modal>
     </div>
-  ) : (
-    ""
   );
 }
-
-export default TweetPopup;
