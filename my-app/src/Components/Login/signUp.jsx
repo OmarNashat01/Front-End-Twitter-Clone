@@ -10,6 +10,8 @@ import {
 } from "../../Api/SignUp";
 import { Email } from "@mui/icons-material";
 
+import md5 from "md5";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,6 +39,8 @@ var temp_user = {
   temp_Year: "",
   temp_username: "",
 };
+
+var encryptedPassword;
 
 function getUserData(val) {
   temp_user[val.target.name] = val.target.value;
@@ -82,7 +86,9 @@ function SignUp(props) {
   const [passwordInputType, toggleIcon] = usePasswordToggle();
 
   const secPageBtn = () => {
+    console.log(page);
     setPage((currpage) => currpage - 1);
+    alert(page);
   };
 
   //Check which tap will be rendered.
@@ -123,7 +129,7 @@ function SignUp(props) {
             name="temp_Name"
           ></input>
           {/* {tempUserNameLength.length} */}
-          <label id={Popup.txtAreaTxt} for="floatingInput">
+          <label id={Popup.txtAreaTxt} htmlFor="floatingInput">
             Name
           </label>
         </div>
@@ -140,7 +146,7 @@ function SignUp(props) {
           <label
             className="floatinTxt"
             id={Popup.txtAreaTxt}
-            for="floatingInput"
+            htmlFor="floatingInput"
           >
             Email
           </label>
@@ -357,7 +363,7 @@ function SignUp(props) {
             disabled={true}
             placeholder="Name"
           ></input>
-          <label id={Popup.txtAreaTxt} for="floatingInput">
+          <label id={Popup.txtAreaTxt} htmlFor="floatingInput">
             Name
           </label>
         </div>
@@ -375,7 +381,7 @@ function SignUp(props) {
           <label
             className="floatinTxt"
             id={Popup.txtAreaTxt}
-            for="floatingInput"
+            htmlFor="floatingInput"
           >
             Email
           </label>
@@ -394,7 +400,7 @@ function SignUp(props) {
           <label
             className="floatinTxt"
             id={Popup.txtAreaTxt}
-            for="floatingInput"
+            htmlFor="floatingInput"
           >
             Birth date
           </label>
@@ -439,7 +445,7 @@ function SignUp(props) {
             <label
               className="floatinTxt"
               id={Popup.txtAreaTxt}
-              for="floatingInput"
+              htmlFor="floatingInput"
             >
               Verification code
             </label>
@@ -478,7 +484,7 @@ function SignUp(props) {
               <label
                 className="floatinTxt"
                 id={Popup.txtAreaTxt}
-                for="floatingInput"
+                htmlFor="floatingInput"
               >
                 password
               </label>
@@ -512,7 +518,7 @@ function SignUp(props) {
             onChange={getUserData}
             name="temp_username"
           ></input>
-          <label className="floatinTxt" for="floatingInput">
+          <label className="floatinTxt" htmlFor="floatingInput">
             username
           </label>
         </div>
@@ -527,7 +533,6 @@ function SignUp(props) {
     };
     let resul = await postVerify(setVerLoading, setVerify, requestBody);
   };
-  //TODO fix date format
   const sendData = async () => {
     let requestBody = {
       email: user.Email,
@@ -540,7 +545,6 @@ function SignUp(props) {
       location: null,
       website: null,
     };
-
     let resul = await postUserData(
       setVerLoadingData,
       setVerifyData,
@@ -551,8 +555,9 @@ function SignUp(props) {
   const tempLogin = async () => {
     let requestBody2 = {
       email: user.Email,
-      password: user.password,
+      password: user.Password,
     };
+    console.log("req2 : " + requestBody2);
     let resul2 = await postEmailAndPassword(
       setVerLoadingLogin,
       setVerifyLogin,
@@ -580,6 +585,23 @@ function SignUp(props) {
       }
     }
   };
+  const checkEmailSent = () => {
+    if (page === 0 && verify !== undefined) {
+      if (verify.status === 400) {
+        alert("Email is already exist");
+      } else {
+        if (
+          (user.Name.length > 0) &
+          (user.Email.length > 0) &
+          (user.Month.length > 0) &
+          (user.Day.length > 0) &
+          (user.Year.length > 0)
+        ) {
+          setPage((currpage) => currpage + 1);
+        }
+      }
+    }
+  };
 
   const checkDataSent = () => {
     // console.log(verifyData.status);
@@ -588,16 +610,18 @@ function SignUp(props) {
       user.username.length > 0 &&
       verifyData.status === 200 /*&& verifyLogin.status===200*/
     ) {
-      window.open("/Home", "_self");
       localStorage.setItem("token", verifyLogin.data.token);
       localStorage.setItem("user_id", verifyLogin.data._id);
       localStorage.setItem("admin", verifyLogin.data.admin);
-      alert("signup successful");
+      console.log(user.Email + "   " + user.Password);
+
+      window.open("/Home", "_self");
 
       setVerLoadingData(true);
       setVerLoadingLogin(true);
       // {console.log(verifyData)}
     } else if (user.username.length > 0 && verifyData.status === 400) {
+      alert("User is already exist");
       setVerLoadingIDandEmail(true);
       setVerLoadingLogin(true);
       user.username = "";
@@ -617,16 +641,10 @@ function SignUp(props) {
       user.Day = temp_user.temp_Day;
       user.Year = temp_user.temp_Year;
 
+      // this.style.backgroundColor = 'green';
+
       await sendEmail();
 
-      if (
-        (user.Name.length > 0) &
-        (user.Email.length > 0) &
-        (user.Month.length > 0) &
-        (user.Day.length > 0) &
-        (user.Year.length > 0)
-      )
-        setPage((currpage) => currpage + 1);
       //alert(user.Name+":"+user.Email)
     } else if (page === 1) {
       setPage((currpage) => currpage + 1);
@@ -640,6 +658,10 @@ function SignUp(props) {
       // if(verCode.length>0)setPage((currpage)=>currpage+1);
     } else if (page === 4) {
       user.Password = temp_user.temp_Password;
+
+      encryptedPassword = md5(user.Password);
+      // alert(encryptedPassword);
+
       // await sendData();
       if (user.Password.length > 0) setPage((currpage) => currpage + 1);
       //if(user.Password.length>0)window.open("/Home","_self");
@@ -673,6 +695,7 @@ function SignUp(props) {
         {/* {!verLoading && console.log(verify.status)} */}
         {/* {!verLoading && Temp()} */}
 
+        {!verLoading && checkEmailSent()}
         {!verLoadingIDandEmail && checkVer()}
         {!verLoadingData && !verLoadingLogin && checkDataSent()}
       </div>
