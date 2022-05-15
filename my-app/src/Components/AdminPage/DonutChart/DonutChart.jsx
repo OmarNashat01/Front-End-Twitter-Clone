@@ -13,7 +13,7 @@ const DonutChart=(props)=> {
         var r = Math.floor(Math.random() * 255);
         var g = Math.floor(Math.random() * 255);
         var b = Math.floor(Math.random() * 255);
-        return "rgb(" + r + "," + g + "," + b + ")";
+        return "rgb(" + r + "," + g + "," + b + ","+"0.8"+")";
      };
      var color = [];
      var percentages=[];
@@ -30,9 +30,9 @@ const DonutChart=(props)=> {
     const options = {
         plugins: {
             datalabels: {
-                backgroundColor: function(context) {
-                  return context.dataset.backgroundColor;
-                },
+                // backgroundColor: function(context) {
+                //   return context.dataset.backgroundColor;
+                // },
                 // borderColor: 'white',
                 // borderRadius: 25,
                 // borderWidth: 2,
