@@ -25,13 +25,13 @@ box-shadow: 5px 5px 5px grey;
     padding-left: 0 !important ;
     padding-right: 0 !important;
     border-right:3px solid grey;
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 2px 2px 2px grey;
 
 }
 .barWidth{
 border: black;
 
-    background-color:rgba(13, 110, 253,0.55)
+background-color:rgba(33, 85, 205,1);
 }
 .pageColor{
     background-color:rgba(242, 242, 242,1) ;

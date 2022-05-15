@@ -14,6 +14,7 @@ import UserPage from "./Components/UserPage/UserPage";
 import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
+import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
 // FEEDS
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
@@ -32,6 +33,8 @@ import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
 import jwt_decode from "jwt-decode";
 import { Reddit } from "@mui/icons-material";
+import LikesStats from "./Components/AdminPage/LikesStats/LikesStats";
+
 
 //Mock-Service-Worker
 if (process.env.NODE_ENV === "development") {
@@ -229,24 +232,29 @@ function App() {
           />
           <Route path="/adminhome" element={<AdminPage />} />
           <Route path="/adminsearch" element={<SearchUsers />} />
+          <Route path="/retweets" element={<RetweetsStats />}></Route>
+          <Route path="/likes" element={<LikesStats />}></Route>
         </Routes>
       </Router>
     );
   }
 
-  if (page === 2) {
-    return (
-      <div>
-        <Router>
-          <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
-          <Routes>
-            <Route path="/adminhome" element={<AdminPage />}></Route>
-            <Route path="/adminsearch" element={<SearchUsers />}></Route>
-          </Routes>
-        </Router>
-      </div>
-    );
-  }
+//TESTING FOR ADMIN PAGE
+
+//   if (page === 2) {
+//     return (
+//       <div>
+//         <Router>
+//           <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
+//           <Routes>
+//             <Route path="/adminhome" element={<AdminPage />}></Route>
+//             <Route path="/adminsearch" element={<SearchUsers />}></Route>
+          
+//           </Routes>
+//         </Router>
+//       </div>
+//     );
+//   }
 }
 
 export default App;
