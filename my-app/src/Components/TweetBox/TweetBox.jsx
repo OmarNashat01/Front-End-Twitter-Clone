@@ -14,7 +14,6 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { getMe } from "../../Api/UserProfile";
 import {postUserTweet} from "../../Api/tweetbox";
-import { EditorState, ContentState } from 'draft-js';
 
 
 const MAX_CHARS_ALLOWED = 280;
@@ -24,11 +23,6 @@ export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
   const [Tweet,setTweet] = useState();
   const [loading , setLoading] = useState(true);
   const [loadingsss , setLoadingsss] = useState(true);
- 
-  // const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
-  // this.setState({ editorState });
-    
-    // onClick={() => { func1(); func2();}}
 
     
 
@@ -42,6 +36,7 @@ export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
     // await submitForm(state)
     
     const { editor: { plainText }, ...resState} = state;
+    
     if(isOpen)
     { 
       setIsOpen(!isOpen)
@@ -75,8 +70,8 @@ export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
       <Container>
         <Row>
           <Col xs={2}>
-            <IconButton className={TweetboxCSS.imageInput}>
-                <Avatar onClick={navProfile} src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
+            <IconButton className={TweetboxCSS.imageInput} onClick={navProfile}>
+                <Avatar  src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
             </IconButton>
           </Col>
           <Col xs={10} md={10}>
@@ -90,7 +85,7 @@ export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
                 <div className={TweetboxCSS.actionBar__Submit}>
                   <CharacterCounter maxChars={MAX_CHARS_ALLOWED} />
                   <span className={TweetboxCSS.thematicBreakVertical} />
-                  <Submit />
+                  <Submit OnSubmit={OnSubmit}/>
                 </div>
               </div>
 
