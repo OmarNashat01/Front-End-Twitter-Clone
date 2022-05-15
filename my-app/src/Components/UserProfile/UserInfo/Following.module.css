@@ -10,7 +10,7 @@
     font-weight: bold;
     position: relative;
     top: 15.5%;
-    left: 65%;
+    left: 70%;
 }
 
 .handle {
@@ -53,8 +53,8 @@
     color: black;
 }
 
-.btn:hover span {
-    background-color: rgba(244, 33, 46, 0.1) !important;
+.btn:hover {
+    background-color: rgba(248, 84, 94, 0.1) !important;
     color: red !important;
 }
 

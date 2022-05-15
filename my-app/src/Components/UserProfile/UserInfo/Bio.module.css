@@ -2,7 +2,7 @@
     position: absolute;
     font-size: 15px;
     font-family: inherit;
-    top: 65%;
+    top: 60%;
     margin: -2.5% 0.66%;
     overflow-wrap: break-word;
     min-width: 0px;
@@ -35,7 +35,6 @@
     position: absolute;
     color: rgb(83, 100, 113);
     top: 175%;
-    margin: 1%;
     left: 10px;
     line-height: 20px;
 }
@@ -53,11 +52,13 @@
 
 .following:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .follower:hover {
     text-decoration: underline;
     color: black;
+    cursor: pointer;
 }
 
 .numb1 {
@@ -126,11 +127,13 @@ hr {
         line-height: 20px;
     }
     .bio {
-        position: absolute;
+        position: relative;
         font-size: 14px;
         font-family: inherit;
-        top: 65%;
-        margin: -2.5% 0.66%;
+        top: 20%;
+        margin: 0% 0.66%;
+        overflow-wrap: break-word;
+        min-width: 0px;
         max-width: 468px;
     }
     .timejoined {

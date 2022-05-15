@@ -28,10 +28,9 @@ const Bio = (props) => {
 
         <
         div className = { BioCSS.follower }
-        // onClick = {
-        //     () => navigate('/profile/followers')
-        // } 
-        >
+        onClick = {
+            () => { window.open("/profile/followers", "_self") }
+        } >
         <
         div className = { BioCSS.numb2 } > { props.fercount } < /div> Followers < /div >
 
