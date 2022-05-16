@@ -14,10 +14,10 @@ const {startDate, endDate,values,labels}=props;
    labels:labels,
    datasets: [
      {
-       label: 'ReTweets',
+       label: 'Tweets',
        fill: false,
        lineTension: 0.5,
-       backgroundColor: 'rgba(75,192,192,1)',
+       backgroundColor: 'rgba(10, 161, 221,0.8)',
        borderColor: 'rgba(0,0,0,1)',
        borderWidth: 2,
        data:values,

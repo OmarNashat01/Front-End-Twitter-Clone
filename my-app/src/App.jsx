@@ -14,6 +14,7 @@ import FollowersPage from "./Components/UserProfile/UserInfo/FollowersPage";
 import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
+import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
 import OtherProfiles from "./Components/UserProfile/OtherProfiles";
 // FEEDS
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
@@ -33,6 +34,8 @@ import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
 import jwt_decode from "jwt-decode";
 import { Reddit } from "@mui/icons-material";
+import LikesStats from "./Components/AdminPage/LikesStats/LikesStats";
+
 
 //Mock-Service-Worker
 // if (process.env.NODE_ENV === "development") {
@@ -63,6 +66,7 @@ function App() {
   //indicates if user is authenticated
   var authBool = false;
   var token = localStorage.getItem("token");
+  const [disabled, setDisabled] = useState(false);
   try {
     var decode = jwt_decode(token);
     console.log("decode var = " + decode);
@@ -109,11 +113,11 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8 ">
                       <HomeNavbar />
-                      <TweetBox />
+                      <TweetBox disabled={disabled}/>
                       <HomeFeed />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 ">
@@ -134,7 +138,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <HomeFeed />
@@ -153,7 +157,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="notification" />
@@ -172,7 +176,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="bookmarks" />
@@ -191,7 +195,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
@@ -212,7 +216,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
@@ -235,7 +239,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
@@ -258,7 +262,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled}/>
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
@@ -277,24 +281,29 @@ function App() {
 
           <Route path="/adminhome" element={<AdminPage />} />
           <Route path="/adminsearch" element={<SearchUsers />} />
+          <Route path="/retweets" element={<RetweetsStats />}></Route>
+          <Route path="/likes" element={<LikesStats />}></Route>
         </Routes>
       </Router>
     );
   }
 
-  if (page === 2) {
-    return (
-      <div>
-        <Router>
-          <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
-          <Routes>
-            <Route path="/adminhome" element={<AdminPage />}></Route>
-            <Route path="/adminsearch" element={<SearchUsers />}></Route>
-          </Routes>
-        </Router>
-      </div>
-    );
-  }
+//TESTING FOR ADMIN PAGE
+
+//   if (page === 2) {
+//     return (
+//       <div>
+//         <Router>
+//           <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
+//           <Routes>
+//             <Route path="/adminhome" element={<AdminPage />}></Route>
+//             <Route path="/adminsearch" element={<SearchUsers />}></Route>
+          
+//           </Routes>
+//         </Router>
+//       </div>
+//     );
+//   }
 }
 
 export default App;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Form } from "usetheform";
+import { Form ,useForm} from "usetheform";
 import {Preview } from "./Preview/Preview";
 import {PrivacyPicker} from "./PrivacyPicker/PrivacyPicker"
 // import JSONTree from "react-json-tree";
@@ -13,30 +13,34 @@ import TweetboxCSS from "./TweetBox.module.css";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { getMe } from "../../Api/UserProfile";
-import {postUserTweet} from "../../Api/tweetbox"
+import {postUserTweet} from "../../Api/tweetbox";
+
 
 const MAX_CHARS_ALLOWED = 280;
-export default function TweetBox({
-  avatar = "https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg",
-}) {
+export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
 
   const [Me, setMe] = useState();
   const [Tweet,setTweet] = useState();
   const [loading , setLoading] = useState(true);
   const [loadingsss , setLoadingsss] = useState(true);
 
+    
+
   useEffect(()=>{
     getMe(setLoading, setMe);
   },[])
+
   
-  async function onSubmit(state) {
+  async function OnSubmit(state) {
     // make an API call
     // await submitForm(state)
-    const {
-      editor: { plainText },
-      ...resState
-    } = state;
-
+    
+    const { editor: { plainText }, ...resState} = state;
+    
+    if(isOpen)
+    { 
+      setIsOpen(!isOpen)
+    }
     console.log("onSubmit  => ", { ...resState, plainText });
     if(!loading){
         const postObj= {
@@ -47,8 +51,13 @@ export default function TweetBox({
         console.log(postObj);
         postUserTweet(setLoadingsss, setTweet, postObj); 
       }
+      
     return true;
   }
+
+  
+
+  
 
 
   function navProfile() {
@@ -57,26 +66,26 @@ export default function TweetBox({
 
   return (
     <div className={TweetboxCSS.tweetbox} data-testid="tweetbox-1">
-      {!loading &&
+      {!loading && !disabled &&
       <Container>
         <Row>
           <Col xs={2}>
-            <IconButton className={TweetboxCSS.imageInput}>
-                <Avatar onClick={navProfile} src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
+            <IconButton className={TweetboxCSS.imageInput} onClick={navProfile}>
+                <Avatar  src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
             </IconButton>
           </Col>
           <Col xs={10} md={10}>
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={OnSubmit}  onReset={() => console.log("ON RESETTT")}  >
               <WhatsHappeningBar maxChars={MAX_CHARS_ALLOWED} />
-              {/* <Preview /> 
-              <PrivacyPicker /> */}
+              <Preview />
+              <PrivacyPicker />
               <span className={TweetboxCSS.thematicBreak} />
               <div className={TweetboxCSS.actionBar}>
                 <UploadMediaBar />
                 <div className={TweetboxCSS.actionBar__Submit}>
                   <CharacterCounter maxChars={MAX_CHARS_ALLOWED} />
                   <span className={TweetboxCSS.thematicBreakVertical} />
-                  <Submit />
+                  <Submit OnSubmit={OnSubmit}/>
                 </div>
               </div>
 
@@ -100,3 +109,8 @@ export default function TweetBox({
 //     </div>
 //   );
 // }
+
+
+
+
+

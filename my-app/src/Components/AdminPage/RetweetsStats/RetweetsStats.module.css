@@ -1,0 +1,45 @@
+.toDateSelector{
+    margin-left: 320px;
+    margin-top: -80px;
+    width:10%;
+}
+.chart{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.fromDateSelector{
+    margin-left: 25px;
+    margin-top: -25px;
+    width:10%;
+  
+}
+.dateIcon{
+    margin-left: 290px;
+    margin-top: -110px;
+}
+.buttonStyle{
+    box-shadow: 5px 5px 5px grey;
+    margin-left: 550px;
+    margin-top: -65px;
+    height:auto;
+}
+.textStyle{
+    font-family: Arial Black,sans-serif;
+      font-size:22px;
+      font-weight:700px;
+      
+
+color:rgba(23, 40, 69);
+}
+.retweetCard{
+    margin-left: 700px;
+    margin-top: -230px;
+    margin-bottom: 100px;
+   
+
+}
+.borderStyle{
+
+    
+    
+}
