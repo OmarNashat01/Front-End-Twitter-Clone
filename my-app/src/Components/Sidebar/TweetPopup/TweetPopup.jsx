@@ -20,6 +20,7 @@ export default function TweetPopup({setIsOpen,isOpen,toggleModal}) {
         className={TweetPopupCSS.mymodal}
         overlayClassName={TweetPopupCSS.myoverlay}
         closeTimeoutMS={500}
+        ariaHideApp={false}
       >
         <ClosebtnNavbar toggleModal={toggleModal}/>
         <TweetBox setIsOpen={setIsOpen} isOpen={isOpen}/>

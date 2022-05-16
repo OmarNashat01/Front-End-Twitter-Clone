@@ -4,11 +4,12 @@
   position: relative;
   width: 100%;
   max-width: 500px;
-  overflow: hidden;
-  min-height: 24px;
+  min-height: auto;
   text-align: left;
   padding: 10px 5px;
   box-sizing: border-box;
+  max-height: 400px;
+  overflow-y: auto;
 }
 .Editor__Highlight {
   color: rgb(27, 149, 224);
