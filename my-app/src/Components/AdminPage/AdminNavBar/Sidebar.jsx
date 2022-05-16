@@ -37,6 +37,23 @@ function Sidebar() {
           />
         </li>
   
+        <li className={`${SidebarStyles.navItemTwo} text-lg-end text-start`}>
+          {/* Admin Retweets */}
+          <SidebarOption
+            tabName="Retweets"
+            pageRoute="/retweets"
+            tabIcon="Retweets"
+          />
+        </li>
+        <li className={`${SidebarStyles.navItemTwo} text-lg-end text-start`}>
+          {/* Admin Retweets */}
+          <SidebarOption
+            tabName="  Likes"
+            pageRoute="/likes"
+            tabIcon="Likes"
+          />
+        </li>
+  
       </ul>
       {/* displaying the popup */}
 

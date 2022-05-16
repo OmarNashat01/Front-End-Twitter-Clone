@@ -4,7 +4,7 @@
   /* margin-left: 75%; */
 width:fit-content !important;
   padding: 0 0 0 0 !important;
-  border-style: groove;
+ /* border-style: groove;*/
   border-radius: 25px;
 
 }
@@ -14,7 +14,7 @@ width:fit-content !important;
   /* margin-left: 75%; */
 width:150px !important;
   padding: 0 0 0 0 !important;
-  border-style: groove;
+  /*border-style: groove;*/
   border-radius: 25px;
   margin-top: 10px;
 }

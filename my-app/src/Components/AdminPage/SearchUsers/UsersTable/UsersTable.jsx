@@ -92,7 +92,7 @@ rowsPerPageOptions={[4,5,7]}
       color: 'primary.main',
     },
     '& .columnHeader': {
-      backgroundColor: 'rgba(13, 110, 253,0.5)',
+      backgroundColor: 'rgba(10, 161, 221,0.8)',
       
       fontFamily: 'Arial Black,sans-serif',
       fontSize:'14px',
