@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create();
 
-api.defaults.baseURL = "http://3.91.30.250:5000";
+api.defaults.baseURL = "http://45.79.245.94:5000/";
 
 //All request will wait 10 seconds before timeout
 api.defaults.timeout = 10000;
