@@ -68,6 +68,7 @@ const FollowigPage = () => {
             </a>{" "}
             <a className={FollowingPageCSS.tab}> Followings </a>{" "}
           </nav>
+          {/* list of following accounts */}
           {following}
         </Container>{" "}
       </Auxelary>
