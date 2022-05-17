@@ -110,8 +110,8 @@ function App() {
             element={
               isAuth === true ? (
                 <div className=" container-fluid">
-                  <div className="row">
-                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                  <div className="row h-100">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top ">
                       <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8 ">
@@ -142,6 +142,9 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <HomeFeed />
                     </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -161,6 +164,9 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="notification" />
                     </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -179,6 +185,9 @@ function App() {
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="bookmarks" />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
                     </div>
                   </div>
                 </div>
@@ -200,6 +209,9 @@ function App() {
                       <div>
                         <UserProfile />
                       </div>
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
                     </div>
                   </div>
                 </div>
