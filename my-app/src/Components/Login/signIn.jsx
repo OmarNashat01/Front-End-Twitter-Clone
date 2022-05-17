@@ -21,10 +21,8 @@ var encryptedPassword;
 var emailNotExist=true;
 
 
-// React.state={errorMessage:""}
-function getEmail(val){
-  Email = val.target.value;
-}
+
+
 function getPassword(val){
   Password = val.target.value;
   encryptedPassword = md5(Password);
@@ -52,23 +50,34 @@ function SignIn(props){
   const[verLoading , setVerLoading] = useState(true);
   const[verify , setVerify] = useState();
 
+
+
+  const[emailLength , setEmailLength] = useState(0);
+  const[nextBtn , setNextBtn] = useState(true);
+  const[errorMessage , setErrorMessage] = useState("");
+  function getEmail(val){
+    Email = val.target.value;
+    setEmailLength(Email.length);
+
+    if(emailLength>1){
+      setNextBtn(false);
+    }
+    else{
+      setNextBtn(true);
+    }
+  }
+  
+
+
+  
   const GoToGetPasswordStep = () => {
-    //alert(Email);
-    if(Email.length>0){
+    if(emailLength>0){
       setPage((currpage)=>currpage+1);
     }
-
-    
   }
 
 
-  const GoToHome = async () => {
-    
-    {sendEmail()};
-  
-    //window.open("/Home","_self");
-    //alert("Data after being to api "+Email+Password);
-  }
+
 
   const sendEmail =async () => {
   
@@ -78,9 +87,7 @@ function SignIn(props){
     }
     let resul = await postEmailAndPassword(setVerLoading , setVerify , requestBody);
 
-
-    
-    // console.log(Email+"  "+encryptedPassword);
+     //console.log(verify.status);
   }
 
   const loadData = () => {
@@ -89,8 +96,6 @@ function SignIn(props){
       localStorage.setItem("user_id",verify.data._id);
       localStorage.setItem("admin", verify.data.admin);
 
-      
-
       window.open("/home","_self");
 
       if(localStorage.getItem("admin")==="true")
@@ -98,12 +103,25 @@ function SignIn(props){
         window.open("/adminhome","_self");
       }
 
-      // this.props.history.replace("/Home");
     } 
-    else{
-      // console.log(verify);
+    else if(verify.status===400){
+      setErrorMessage("incorrect password");
     }
+    else if(verify.status===404){
+      setErrorMessage("email doesn't exist");
+    }
+    else if(verify.status===500){
+      setErrorMessage("Please enter password");
+    }
+    console.log("second");
   }
+  const GoToHome = async () => {
+    sendEmail(); 
+    // await timeout(1000);
+    loadData();
+  }
+
+  
 
 
   const EmailStage = () => {
@@ -138,6 +156,7 @@ function SignIn(props){
             {/* {this.state.errorMessage} */}
   
             <button type="button" className="updatedBtn btn btn-dark" id={LoginCss.updatedBtn}
+              disabled = {nextBtn}
               onClick={() => { GoToGetPasswordStep()} }  >
               Next
             </button>
@@ -172,15 +191,15 @@ function SignIn(props){
             </div>
   
             <div className="form-floating">
-                <input className="inputTxt form-control" id={("floatingPassword", Popup.txtArea)} type={passwordInputType} placeholder="Password" onChange={getPassword}>
-                </input>
-                {/* <i class="far fa-eye" id={("togglePassword",Popup.togglePasswordVisibility)}></i> */}
+                <input className="inputTxt form-control" id={("floatingPassword", Popup.txtArea)} type={passwordInputType} placeholder="Password" onChange={getPassword}></input>
                 <span id={(Popup.togglePasswordVisibility)}>
                   {toggleIcon}
                 </span>
                 
                 <label id={Popup.txtAreaTxt} htmlFor="floatingPassword">Password</label>
             </div>
+            {/* error message here */}
+            <div className={Popup.errorMessage}>{errorMessage}</div>
   
   
       </div>
@@ -188,7 +207,7 @@ function SignIn(props){
                 onClick={() => { GoToHome()} }>
                 Login
       </button>
-      {!verLoading && loadData()}
+      {/* {!verLoading && loadData()} */}
   
       <p className={Popup.HaveNoAccountF}>Don't have an account? <a className={Popup.SignUpLink} href={"/singup"}>Sign up</a> </p>
   

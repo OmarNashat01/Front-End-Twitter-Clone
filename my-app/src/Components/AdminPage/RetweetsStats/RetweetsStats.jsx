@@ -1,12 +1,15 @@
 import React, { useState, componentDidUpdate, useEffect } from 'react'
 import { format } from 'date-fns'
 import DateSelector, { dateSelected } from "../DateSelector/DateSelector"
-import LineChart from "../LineChart/LineChart"
+import BarChart from "../BarChart/BarChart"
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import TweetStatsStyle from "./TweetsStats.module.css"
+import RetweetsStatsStyle from "./RetweetsStats.module.css"
 import { getTweetCount } from "../../../Api/admin";
+import RepeatIcon from '@mui/icons-material/Repeat';
 import Card from "../Card/Card"
-const TweetsStats = (props) => {
+import AdminPageStyle from "../AdminPage.module.css"
+import Sidebar from '../AdminNavBar/Sidebar'
+const RetweetsStats = (props) => {
 
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
@@ -56,34 +59,65 @@ var temp=values.data[Object.keys(values.data)[0]];
 
 
     return (
-        <div className={TweetStatsStyle.borderStyle}>
-            <div className={TweetStatsStyle.textStyle}>Number of Tweets</div>
+        
+<div>
+<div className={AdminPageStyle.pageColor}>
+
+<div className="container-fluid">
+  <div className="row vh-100 ">
+    <div className={`col col-lg-2 col-md-3 col-sm-1 col-sm-1 ${AdminPageStyle.navBorder}`}>
+     <div className={`sticky-top ${AdminPageStyle.barWidth}`} >
+
+     <Sidebar />
+     </div>
+    </div>
+    <div className="col col-lg-10 col-md-9 col-sm-1 col-sm-1">
+    <div>
+    <div className={RetweetsStatsStyle.borderStyle}>
+            <div className={RetweetsStatsStyle.textStyle}>Number of ReTweets</div>
             <div>
 
                 <CalendarMonthIcon />
             </div>
-            <div className={TweetStatsStyle.fromDateSelector}>
+            <div className={RetweetsStatsStyle.fromDateSelector}>
 
                 Start Date <DateSelector setStart={setStartDate} dateChosen={startDate} minimumDate={new Date("01-01-2000")} />
 
             </div>
-            <div><CalendarMonthIcon className={TweetStatsStyle.dateIcon} /></div>
+            <div><CalendarMonthIcon className={RetweetsStatsStyle.dateIcon} /></div>
 
-            <div className={TweetStatsStyle.toDateSelector}>
+            <div className={RetweetsStatsStyle.toDateSelector}>
 
                 End Date <DateSelector setStart={setEndDate} dateChosen={endDate} minimumDate={startDate} />
             </div>
             <div>
 
-                <button className={`btn btn-outline-primary ${TweetStatsStyle.buttonStyle}`} type="submit" onClick={buttonHandler}>Show Chart</button>
+                <button className={`btn btn-outline-primary ${RetweetsStatsStyle.buttonStyle}`} type="submit" onClick={buttonHandler}>Show Chart</button>
             </div>
            
-            {!valuesLoading && <div><div className={TweetStatsStyle.chart}><LineChart startDate={startDate} endDate={endDate} values={chartValues} labels={chartLabels} /></div>
+            {!valuesLoading && <div><div className={RetweetsStatsStyle.chart}><BarChart startDate={startDate} endDate={endDate} values={chartValues} labels={chartLabels} /></div>
             
-           <div  className={TweetStatsStyle.retweetCard}> <Card title="Tweets" value={sumWithInitial} type="2"/></div>
+           <div  className={RetweetsStatsStyle.retweetCard}> <Card title="Retweets" value={sumWithInitial} type="1" /></div>
             </div>}
 
         </div>
+  
+</div>
+
+
+</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+      
+        </div>
     );
 }
-export default TweetsStats
+export default RetweetsStats

@@ -7,16 +7,18 @@ import TagIcon from "@mui/icons-material/Tag";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import RepeatIcon from '@mui/icons-material/Repeat';
 //NAVIGATION
 import { useNavigate } from "react-router-dom";
 
 const icons = {};
 
-icons["HomeIcon"] = <HomeIcon className={SidebarOptionStyles.logoColor} />;
+icons["HomeIcon"] = <HomeIcon className={SidebarOptionStyles.logoColorMargin} />;
 
 icons["PersonIcon"] = <PersonIcon  className={SidebarOptionStyles.logoColor} />;
-
+icons["Retweets"] = <RepeatIcon  className={SidebarOptionStyles.logoColor} />;
+icons["Likes"] = <FavoriteIcon  className={SidebarOptionStyles.logoColorMargin} />;
 function SidebarOption(props) {
   let navigate = useNavigate();
 
