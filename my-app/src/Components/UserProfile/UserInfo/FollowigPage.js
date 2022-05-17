@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const FollowigPage = () => {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState();
+  const [following, setFollowing] = useState();
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -18,6 +19,23 @@ const FollowigPage = () => {
     };
     getCurrentUser();
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      let followingList = userData.data.user.following.map(
+        (followingAccount) => (
+          <Following
+            pic={followingAccount.prof_pic_url}
+            username={followingAccount.name}
+            handle={followingAccount.username}
+            bio={followingAccount.bio}
+          />
+        )
+      );
+
+      setFollowing(followingList);
+    }
+  }, [userData, loading]);
 
   if (!loading) {
     console.log(userData);
@@ -50,18 +68,7 @@ const FollowigPage = () => {
             </a>{" "}
             <a className={FollowingPageCSS.tab}> Followings </a>{" "}
           </nav>
-          <Following
-            pic={userData.data.user.following[0].prof_pic_url}
-            username={userData.data.user.following[0].name}
-            handle={userData.data.user.following[0].username}
-            bio={userData.data.user.following[0].bio}
-          />{" "}
-          <Following
-            pic={userData.data.user.following[1].prof_pic_url}
-            username={userData.data.user.following[1].name}
-            handle={userData.data.user.following[1].username}
-            bio={userData.data.user.following[1].bio}
-          />
+          {following}
         </Container>{" "}
       </Auxelary>
     )
