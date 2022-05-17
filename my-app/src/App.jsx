@@ -266,6 +266,31 @@ function App() {
               )
             }
           />
+
+          <Route
+            path="/search/*"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        TEST: THIS IS THE SEARCH PAGE
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
           <Route
             path="/user/*"
             element={
