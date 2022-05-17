@@ -37,7 +37,24 @@
 #txtArea:focus ~ #txtAreaTxt {
   color: rgb(29, 155, 240)
 }
-
+.FPLayouts{
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.FPbtn{
+  margin-top: 80%;
+  font-weight: bold;
+}
+.findYourTwitterFP{
+  text-align: left;
+  margin: 30px 0;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
 
 .signInToTwitter{
   margin: 30px 0 30px 0;
@@ -56,6 +73,15 @@
   height: 50px;
   color: white;
   padding: 10px;
+}
+.errorMessage{
+  text-align: left;
+  color: red;
+  font-weight: bold;
+}
+.errorMessage1{
+  color:red;
+  margin-top: 0px;
 }
 .inputTxt {
   display: block;

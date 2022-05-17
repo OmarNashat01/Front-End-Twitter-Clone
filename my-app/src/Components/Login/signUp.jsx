@@ -85,6 +85,10 @@ function SignUp(props) {
 
   const [passwordInputType, toggleIcon] = usePasswordToggle();
 
+  const [errorMessage1 , setErrorMessage1] = useState("");
+  const [errorMessage2 , setErrorMessage2] = useState("");
+  const [errorMessage3 , setErrorMessage3] = useState("");
+
   const secPageBtn = () => {
     console.log(page);
     setPage((currpage) => currpage - 1);
@@ -151,6 +155,7 @@ function SignUp(props) {
             Email
           </label>
         </div>
+        <div className={Popup.errorMessage1}>{errorMessage1}</div>
 
         <h6 className={(Popup.datePicker, Popup.datePickerH)}>Date of birth</h6>
         <div className={Popup.askToConfirmDB}>
@@ -450,6 +455,7 @@ function SignUp(props) {
               Verification code
             </label>
           </div>
+          <div className={Popup.errorMessage}>{errorMessage2}</div>
         </div>
       </div>
     );
@@ -522,6 +528,7 @@ function SignUp(props) {
             username
           </label>
         </div>
+        <div className={Popup.errorMessage}>{errorMessage3}</div>
       </div>
     );
   };
@@ -581,6 +588,7 @@ function SignUp(props) {
         setPage((currpage) => currpage + 1);
         setVerLoadingIDandEmail(true);
       } else {
+        setErrorMessage2("Verification code Expired")
         setVerLoadingIDandEmail(true);
       }
     }
@@ -588,7 +596,8 @@ function SignUp(props) {
   const checkEmailSent = () => {
     if (page === 0 && verify !== undefined) {
       if (verify.status === 400) {
-        alert("Email is already exist");
+        //alert("Email is already exist");
+        setErrorMessage1("Email is already exist");
       } else {
         if (
           (user.Name.length > 0) &
@@ -621,7 +630,8 @@ function SignUp(props) {
       setVerLoadingLogin(true);
       // {console.log(verifyData)}
     } else if (user.username.length > 0 && verifyData.status === 400) {
-      alert("User is already exist");
+      //alert("User is already exist");
+      setErrorMessage3("User is already exist");
       setVerLoadingIDandEmail(true);
       setVerLoadingLogin(true);
       user.username = "";
@@ -641,9 +651,9 @@ function SignUp(props) {
       user.Day = temp_user.temp_Day;
       user.Year = temp_user.temp_Year;
 
-      // this.style.backgroundColor = 'green';
 
-      await sendEmail();
+      sendEmail();
+      checkEmailSent();
 
       //alert(user.Name+":"+user.Email)
     } else if (page === 1) {
@@ -654,6 +664,8 @@ function SignUp(props) {
       verCode = temp_verCode;
       {
         sendEmailAndVerCode();
+        checkVer();
+        
       }
       // if(verCode.length>0)setPage((currpage)=>currpage+1);
     } else if (page === 4) {
@@ -695,8 +707,8 @@ function SignUp(props) {
         {/* {!verLoading && console.log(verify.status)} */}
         {/* {!verLoading && Temp()} */}
 
-        {!verLoading && checkEmailSent()}
-        {!verLoadingIDandEmail && checkVer()}
+        {/* {!verLoading && checkEmailSent()} */}
+        {/* {!verLoadingIDandEmail && checkVer()} */}
         {!verLoadingData && !verLoadingLogin && checkDataSent()}
       </div>
     </div>

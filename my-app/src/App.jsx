@@ -36,7 +36,6 @@ import jwt_decode from "jwt-decode";
 import { Reddit } from "@mui/icons-material";
 import LikesStats from "./Components/AdminPage/LikesStats/LikesStats";
 
-
 //Mock-Service-Worker
 // if (process.env.NODE_ENV === "development") {
 //   const { worker } = require("./mocks/browser");
@@ -66,6 +65,7 @@ function App() {
   //indicates if user is authenticated
   var authBool = false;
   var token = localStorage.getItem("token");
+  const [disabled, setDisabled] = useState(false);
   try {
     var decode = jwt_decode(token);
     console.log("decode var = " + decode);
@@ -110,16 +110,16 @@ function App() {
             element={
               isAuth === true ? (
                 <div className=" container-fluid">
-                  <div className="row">
-                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                  <div className="row h-100">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top ">
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8 ">
                       <HomeNavbar />
-                      <TweetBox />
+                      <TweetBox disabled={disabled} />
                       <HomeFeed />
                     </div>
-                    <div className="col col-md-3 col-lg-4 col-sm-3 ">
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
                       <Widgetbar />
                     </div>
                   </div>
@@ -137,10 +137,13 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <HomeFeed />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
                     </div>
                   </div>
                 </div>
@@ -156,10 +159,13 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="notification" />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
                     </div>
                   </div>
                 </div>
@@ -175,10 +181,13 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="bookmarks" />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
                     </div>
                   </div>
                 </div>
@@ -194,12 +203,15 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
                       </div>
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar />
                     </div>
                   </div>
                 </div>
@@ -215,7 +227,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
@@ -238,7 +250,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
@@ -261,7 +273,7 @@ function App() {
                 <div className=" container-fluid">
                   <div className="row">
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
@@ -287,22 +299,22 @@ function App() {
     );
   }
 
-//TESTING FOR ADMIN PAGE
+  //TESTING FOR ADMIN PAGE
 
-//   if (page === 2) {
-//     return (
-//       <div>
-//         <Router>
-//           <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
-//           <Routes>
-//             <Route path="/adminhome" element={<AdminPage />}></Route>
-//             <Route path="/adminsearch" element={<SearchUsers />}></Route>
-          
-//           </Routes>
-//         </Router>
-//       </div>
-//     );
-//   }
+  //   if (page === 2) {
+  //     return (
+  //       <div>
+  //         <Router>
+  //           <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
+  //           <Routes>
+  //             <Route path="/adminhome" element={<AdminPage />}></Route>
+  //             <Route path="/adminsearch" element={<SearchUsers />}></Route>
+
+  //           </Routes>
+  //         </Router>
+  //       </div>
+  //     );
+  //   }
 }
 
 export default App;

@@ -23,14 +23,14 @@ function ToolTip(
     
   return (
     <div className={ToolTipCSS.tooltip}>
-            <IconButton className={ToolTipCSS.tooltip__icon}>
-                <Avatar onClick={navProfile} src={img} style={{width: "45px",height: "45px"}}/>
+            <IconButton className={ToolTipCSS.tooltip__icon} onClick={navProfile}>
+                <Avatar  src={img} style={{width: "45px",height: "45px"}}/>
             </IconButton>
             <span className={ToolTipCSS.tooltiptext}  id={show === "displayRight" ? ToolTipCSS.displayRight: ToolTipCSS.displayLeft}>
 
                 <div className={ToolTipCSS.toolbtn_container}>
-                    <IconButton className={ToolTipCSS.tooltip__icon}>
-                        <Avatar onClick={navProfile} src={img} style={{width: "60px",height: "60px"}}/>
+                    <IconButton className={ToolTipCSS.tooltip__icon} onClick={navProfile}>
+                        <Avatar  src={img} style={{width: "60px",height: "60px"}}/>
                     </IconButton>
                     <div className={ToolTipCSS.followbtn__container}>
                         <button type="submit" className={ToolTipCSS.followbtn}>
