@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import Post from "./Components/Post/Post";
 
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
@@ -9,13 +10,16 @@ import SignIn from "./Components/Login/signIn";
 import SignUp from "./Components/Login/signUp";
 import ForgotPassword from "./Components/Login/forgotPassword";
 import UserPage from "./Components/UserPage/UserPage";
-
-import AdminNavBar from "./Components/AdminPage/AdminNavBar/AdminNavBar";
+import FollowersPage from "./Components/UserProfile/UserInfo/FollowersPage";
+import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
+import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
+import OtherProfiles from "./Components/UserProfile/OtherProfiles";
 // FEEDS
-
+import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
+import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 
 import {
   BrowserRouter as Router,
@@ -28,14 +32,29 @@ import {
 import TweetBox from "./Components/TweetBox/TweetBox";
 import Widgetbar from "./Components/Widgetbar/Widgetbar";
 
+import jwt_decode from "jwt-decode";
+import { Reddit } from "@mui/icons-material";
+import LikesStats from "./Components/AdminPage/LikesStats/LikesStats";
+
 //Mock-Service-Worker
-if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./mocks/browser");
-  worker.start();
-}
+// if (process.env.NODE_ENV === "development") {
+//   const { worker } = require("./mocks/browser");
+//   worker.start();
+// }
 
 function checkAuth(setIsAuth) {
-  let token = localStorage.getItem("token");
+  var token = localStorage.getItem("token");
+
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+    // var decodedHeader = jwt_decode(token, { header: true });
+    // console.log(decodedHeader);
+  } catch (error) {
+    localStorage.clear();
+    return <Navigate to="/" />;
+  }
+
   if (token !== null) {
     setIsAuth(true);
   }
@@ -45,7 +64,18 @@ function checkAuth(setIsAuth) {
 function App() {
   //indicates if user is authenticated
   var authBool = false;
-  if (localStorage.getItem("token") !== null) {
+  var token = localStorage.getItem("token");
+  const [disabled, setDisabled] = useState(false);
+  try {
+    var decode = jwt_decode(token);
+    console.log("decode var = " + decode);
+  } catch (error) {
+    localStorage.clear();
+    token = null;
+    <Navigate to="/" />;
+  }
+
+  if (token !== null) {
     authBool = true;
   }
 
@@ -54,6 +84,12 @@ function App() {
 
   //{checkAuth(setIsAuth)}
   var page = 1;
+
+  if (localStorage.getItem("admin") === "true") {
+    //return <Navigate to="/adminhome" />
+    //window.location.assign("http://google.com")
+    // window.open("/adminhome","_self");
+  }
 
   if (page === 0) {
     return <Login />;
@@ -75,11 +111,12 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className="  border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-2 col-xs-1 sticky-top">
-                      <Sidebar />
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
-                    <div className="col col-md-6 col-lg-5 col-sm-10   col-xs-8">
-                      <TweetBox />
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8 ">
+                      <HomeNavbar />
+                      <TweetBox disabled={disabled} />
                       <HomeFeed />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
@@ -99,8 +136,8 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <HomeFeed />
@@ -118,8 +155,8 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="notification" />
@@ -137,8 +174,8 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <TestComponent name="bookmarks" />
@@ -156,13 +193,12 @@ function App() {
               isAuth === true ? (
                 <div className=" container-fluid">
                   <div className="row">
-                    <div className=" border border-light border-end main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
-                      <Sidebar />
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
-                        <HomeFeed />
                       </div>
                     </div>
                   </div>
@@ -172,26 +208,101 @@ function App() {
               )
             }
           />
+          <Route
+            path="/profile/following"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <FollowingPage />
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/profile/followers"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <FollowersPage />
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/user/*"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <OtherProfiles />
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
+          <Route path="/adminhome" element={<AdminPage />} />
+          <Route path="/adminsearch" element={<SearchUsers />} />
+          <Route path="/retweets" element={<RetweetsStats />}></Route>
+          <Route path="/likes" element={<LikesStats />}></Route>
         </Routes>
       </Router>
     );
   }
 
-  if (page === 2) {
-    return (
-      <div>
-        <Router>
-          <nav className="sticky-top">
-            <AdminNavBar />
-          </nav>
-          <Routes>
-            <Route path="/" element={<AdminPage />}></Route>
-            <Route path="/search" element={<SearchUsers />}></Route>
-          </Routes>
-        </Router>
-      </div>
-    );
-  }
+  //TESTING FOR ADMIN PAGE
+
+  //   if (page === 2) {
+  //     return (
+  //       <div>
+  //         <Router>
+  //           <nav className="sticky-top">{/* //     <AdminNavBar /> */}</nav>
+  //           <Routes>
+  //             <Route path="/adminhome" element={<AdminPage />}></Route>
+  //             <Route path="/adminsearch" element={<SearchUsers />}></Route>
+
+  //           </Routes>
+  //         </Router>
+  //       </div>
+  //     );
+  //   }
 }
 
 export default App;

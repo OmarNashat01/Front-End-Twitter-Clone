@@ -4,20 +4,39 @@ import Popup from "./popup.module.css"
 import LoginCss from "./Login.module.css"
 import axios from "axios";
 import {postEmailAndPassword} from "../../Api/SignUp"
+import md5 from "md5";
+
+import {library} from "@fortawesome/fontawesome-svg-core";
+import { faEye , faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Visibility } from "@mui/icons-material";
+library.add(faEye , faEyeSlash);
+
 
 var Email;
 var Password;
 
+var encryptedPassword;
+
+var emailNotExist=true;
 
 
-// React.state={errorMessage:""}
-function getEmail(val){
-  Email = val.target.value;
-}
+
+
 function getPassword(val){
   Password = val.target.value;
+  encryptedPassword = md5(Password);
 }
 
+const usePasswordToggle = () => {
+  const [visible , setVisibility] = useState(false);
+  const Icon = (
+    <FontAwesomeIcon icon =  {visible ? "eye":"eye"} onClick = {() => setVisibility(Visibility => !Visibility)} />
+  )
+  
+  const tempInputType = visible ? "text" : "password";
+  return[tempInputType , Icon];
+}
 
 
 
@@ -25,38 +44,42 @@ function SignIn(props){
   const[page,setPage] = useState(0);
   const FormTitles = ["Next" , "Log in" , "Log in"];
 
+  const [passwordInputType , toggleIcon] = usePasswordToggle();
+  
+
   const[verLoading , setVerLoading] = useState(true);
   const[verify , setVerify] = useState();
 
+
+
+  const[emailLength , setEmailLength] = useState(0);
+  const[nextBtn , setNextBtn] = useState(true);
+  const[errorMessage , setErrorMessage] = useState("");
+  function getEmail(val){
+    Email = val.target.value;
+    setEmailLength(Email.length);
+
+    if(emailLength>1){
+      setNextBtn(false);
+    }
+    else{
+      setNextBtn(true);
+    }
+  }
+  
+
+
+  
   const GoToGetPasswordStep = () => {
-    //alert(Email);
-    setPage((currpage)=>currpage+1);
+    if(emailLength>0){
+      setPage((currpage)=>currpage+1);
+    }
   }
 
-  const GoToHome = async () => {
-    //alert("Email:"+Email);
-    //alert("password"+Password);
-    {sendEmail()};
-  
-    //window.open("/Home","_self");
-    alert("Data after being to api "+Email+Password);
-  }
+
+
 
   const sendEmail =async () => {
-    // let {data} =await axios.post("http://localhost:3030/",{
-    //   email:Email,
-    //   password:Password,
-    // });
-  
-    // if(data.message==="success"){
-    //   localStorage.setItem("token",data.token)
-    //   this.props.history.replace("/Home");
-    // }
-    // else{
-    //   this.setState({
-    //     errorMessage:data.message
-    //   })
-    // }
   
     let requestBody = {
       "email": Email,
@@ -64,23 +87,41 @@ function SignIn(props){
     }
     let resul = await postEmailAndPassword(setVerLoading , setVerify , requestBody);
 
-
-    
-    console.log(Email+"  "+Password);
+     //console.log(verify.status);
   }
 
   const loadData = () => {
-    if(verify.status===200){
+    if(verify.status===201){
       localStorage.setItem("token",verify.data.token);
-      localStorage.setItem("user_id",verify.data.user_id);
-      window.open("/Home","_self");
+      localStorage.setItem("user_id",verify.data._id);
+      localStorage.setItem("admin", verify.data.admin);
 
-      // this.props.history.replace("/Home");
+      window.open("/home","_self");
+
+      if(localStorage.getItem("admin")==="true")
+      {
+        window.open("/adminhome","_self");
+      }
+
     } 
-    else{
-      console.log(verify);
+    else if(verify.status===400){
+      setErrorMessage("incorrect password");
     }
+    else if(verify.status===404){
+      setErrorMessage("email doesn't exist");
+    }
+    else if(verify.status===500){
+      setErrorMessage("Please enter password");
+    }
+    console.log("second");
   }
+  const GoToHome = async () => {
+    sendEmail(); 
+    // await timeout(1000);
+    loadData();
+  }
+
+  
 
 
   const EmailStage = () => {
@@ -115,6 +156,7 @@ function SignIn(props){
             {/* {this.state.errorMessage} */}
   
             <button type="button" className="updatedBtn btn btn-dark" id={LoginCss.updatedBtn}
+              disabled = {nextBtn}
               onClick={() => { GoToGetPasswordStep()} }  >
               Next
             </button>
@@ -124,7 +166,9 @@ function SignIn(props){
             </button>
   
             <p className={Popup.HaveNoAccount}>Don't have an account? <a className={Popup.SignUpLink} href={"/singup"}>Sign up</a> </p>
-  
+
+            <div className={Popup.emailNotExist} hidden={emailNotExist}>"Sorry we could not find your account."</div>
+            
           </div>
   
   </div> );
@@ -147,10 +191,15 @@ function SignIn(props){
             </div>
   
             <div className="form-floating">
-                <input className="inputTxt form-control" id={("floatingPassword", Popup.txtArea)} type={"password"} placeholder="Password" onChange={getPassword}></input>
-                {/* <i class="far fa-eye" id={("togglePassword",Popup.togglePasswordVisibility)}></i> */}
+                <input className="inputTxt form-control" id={("floatingPassword", Popup.txtArea)} type={passwordInputType} placeholder="Password" onChange={getPassword}></input>
+                <span id={(Popup.togglePasswordVisibility)}>
+                  {toggleIcon}
+                </span>
+                
                 <label id={Popup.txtAreaTxt} htmlFor="floatingPassword">Password</label>
             </div>
+            {/* error message here */}
+            <div className={Popup.errorMessage}>{errorMessage}</div>
   
   
       </div>
@@ -158,7 +207,7 @@ function SignIn(props){
                 onClick={() => { GoToHome()} }>
                 Login
       </button>
-      {!verLoading && loadData()}
+      {/* {!verLoading && loadData()} */}
   
       <p className={Popup.HaveNoAccountF}>Don't have an account? <a className={Popup.SignUpLink} href={"/singup"}>Sign up</a> </p>
   
@@ -177,7 +226,7 @@ function SignIn(props){
       {PageToDisplay()}
 
       </div>  
-      {console.log(verify)}
+      {/* {console.log(verify)} */}
     </div>
   );
 }

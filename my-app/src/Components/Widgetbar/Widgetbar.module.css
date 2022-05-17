@@ -1,3 +1,13 @@
+.topNavbar{
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    padding: 10px;
+    top: 0;
+    align-self: flex-start; /* <-- this is the fix */
+    background-color: white; 
+    z-index: 100;
+}
+
 h2{
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: large;

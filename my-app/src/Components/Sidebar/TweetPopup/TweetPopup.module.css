@@ -1,0 +1,38 @@
+.popup_container {
+    font-family: sans-serif;
+    text-align: center;
+  }
+
+  
+  .mymodal {
+    position: fixed;
+    top: 40%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow-y: auto;
+    border-radius: 15px;
+    outline: none;
+    padding: 10px;
+    width: 600px;
+    height: auto;
+    min-height: 300px;
+    max-height: 80%;
+    padding-top: 0;
+  }
+  
+  .myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 99999999;
+  }
+  
+  
+
+  
+  

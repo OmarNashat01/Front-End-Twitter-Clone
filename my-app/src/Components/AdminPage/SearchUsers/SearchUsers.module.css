@@ -1,0 +1,38 @@
+.searchBox{
+   
+ 
+    box-shadow: 5px 5px 5px grey;
+margin-right: 100px !important; 
+}
+.usersTable{
+    display: flex;
+  
+}
+.searchDiv{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.searchButtonDiv{
+    margin-left: 10px;
+}
+.searchButton{
+  
+
+box-shadow: 5px 5px 5px grey;
+
+}
+.navBorder{
+    padding-left: 0 !important ;
+    padding-right: 0 !important;
+    border-right:3px solid grey;
+    box-shadow: 2px 2px 2px grey;
+
+}
+.barWidth{
+border: black;
+
+background-color:rgba(33, 85, 205,1);
+}
+.pageColor{
+    background-color:rgba(242, 242, 242,1) ;
+}
