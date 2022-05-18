@@ -1,0 +1,14 @@
+.rs-nav-item{
+    padding: 16px !important;
+    font-size: 15px !important;
+}
+
+.rs-nav-item-active{
+    color: black !important;
+    font-weight: bolder !important;
+   
+}
+
+.rs-nav-item-active:before{
+    background-color: rgb(27, 149, 224) !important ;
+}

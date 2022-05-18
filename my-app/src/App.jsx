@@ -20,6 +20,8 @@ import OtherProfiles from "./Components/UserProfile/OtherProfiles";
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
+import SearchFeed from "./Components/SearchFeed/SearchFeed"
+
 
 import {
   BrowserRouter as Router,
@@ -66,6 +68,7 @@ function App() {
   var authBool = false;
   var token = localStorage.getItem("token");
   const [disabled, setDisabled] = useState(false);
+ 
   try {
     var decode = jwt_decode(token);
     console.log("decode var = " + decode);
@@ -277,11 +280,10 @@ function App() {
                       <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
-                      <div>
-                        TEST: THIS IS THE SEARCH PAGE
-                        {/* TODO:for testing */}
-                        {/* <HomeFeed /> */}
-                      </div>
+                      <SearchFeed />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar showSearchbar={false} />
                     </div>
                   </div>
                 </div>

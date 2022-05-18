@@ -1,0 +1,20 @@
+.search_container{
+    /* display: flex; */
+    align-items:center;
+    /* justify-content: space-between;  */
+    padding: 10px;
+    
+}
+.search_bar{
+   float: left;
+}
+.back_icon{
+    float: left;
+    margin-right: 10px;
+} 
+.more_icon{
+    float: right;
+    margin-left: 10px;
+    
+} 
+
