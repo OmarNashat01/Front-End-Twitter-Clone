@@ -15,11 +15,12 @@ function SearchFeed() {
     const searchInput=window.location.pathname.split("/")[2].toString();       
     useEffect(()=>{
         getSearchAllUsers(setLoading,setResponse,`?keyword=${searchInput}&offset=0&limit=1000`)
-        if(!loading){
-            console.log(response)
-        }
-        console.log("Hellooo")
-      },[])
+        
+    },[])
+
+    if(!loading){
+        console.log(response)
+    }
     
   return (
     <div>
