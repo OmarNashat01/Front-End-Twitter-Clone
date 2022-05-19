@@ -1,6 +1,6 @@
 // importing react and components
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SidebarOption from "./SidebarOption";
 import TweetPopup from "./TweetPopup/TweetPopup";
 import TweetBox from "../TweetBox/TweetBox";
@@ -11,16 +11,44 @@ import SidebarStyles from "./Sidebar.module.css";
 //importing icons
 import TwitterIcon from "@mui/icons-material/Twitter";
 
-function Sidebar() {
+function Sidebar({ setDisabled }) {
   // THE STATE OF THE TWEET POPUP
 
-  const [popupButton, setPopupButton] = useState(false);
+  // const [popupButton, setPopupButton] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleModal() {
+    setIsOpen(!isOpen);
+  }
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      setDisabled(true);
+    } else {
+      document.body.style.overflow = "auto";
+      setDisabled(false);
+    }
+  }, [isOpen]);
+
+  function handleLogout() {
+    localStorage.clear();
+    window.open("/", "_self");
+  }
 
   return (
     <div className="container-fluid  flex-column position-sticky ">
       <ul className="item-list nav nav-pills flex-column mb-auto vh-100 ">
-        <li className={`${SidebarStyles.navbarLogo} text-start `}>
-          {/* LOGO */}
+        <li
+          className={`${SidebarStyles.navbarLogoNormal}  text-start   d-none d-lg-block d-xl-block`}
+        >
+          {/* LOGO NORMAL */}
+          <TwitterIcon fontSize="large" />
+        </li>
+
+        <li
+          className={`${SidebarStyles.navbarLogoSmall} text-start  d-md-block d-xl-none d-lg-none rounded-circle text-center`}
+        >
+          {/* LOGO SMALL*/}
           <TwitterIcon fontSize="large" />
         </li>
 
@@ -64,23 +92,47 @@ function Sidebar() {
           {/* TWEET BUTTON*/}
           <button
             className={`btn btn-primary  ${SidebarStyles.tweetBtn} ${SidebarStyles.tweetBtnSmall}  d-md-block d-xl-none d-lg-none rounded-circle text-center`}
-            onClick={() => setPopupButton(true)}
+            onClick={toggleModal}
           >
-            Tweet
+            <i className="fa-solid fa-feather" style={{ fontSize: 35 }}></i>
           </button>
           <button
             className={`btn btn-primary rounded-pill ${SidebarStyles.tweetBtn} d-none d-lg-block d-xl-block `}
-            onClick={() => setPopupButton(true)}
+            onClick={toggleModal}
           >
             Tweet
           </button>
         </li>
+
+        <li
+          className={`${SidebarStyles.navItem} text-lg-end text-start ${SidebarStyles.logoutButton} `}
+        >
+          <div className={`${SidebarStyles.logoutButtonStyle}`}>
+            {/* LOGOUT BUTTON*/}
+            <button
+              className={`btn btn-primary  ${SidebarStyles.tweetBtn} ${SidebarStyles.tweetBtnSmall}  d-md-block d-xl-none d-lg-none rounded-circle text-center `}
+              onClick={handleLogout}
+            >
+              <i
+                className="fa-solid fa-right-from-bracket"
+                style={{ fontSize: 35 }}
+              ></i>
+            </button>
+            <button
+              className={`btn btn-outline-primary rounded-pill ${SidebarStyles.tweetBtn}  d-none d-lg-block d-xl-block `}
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        </li>
       </ul>
       {/* displaying the popup */}
-
-      <TweetPopup trigger={popupButton} setTrigger={setPopupButton}>
-        <TweetBox />
-      </TweetPopup>
+      <TweetPopup
+        toggleModal={toggleModal}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
     </div>
   );
 }

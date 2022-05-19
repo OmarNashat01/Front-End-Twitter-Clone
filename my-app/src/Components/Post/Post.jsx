@@ -36,6 +36,9 @@ const Post = forwardRef(
     },
     ref
   ) => {
+    const [Is_verified, setIs_verified] = useState(
+      verified === "true" ? true : false
+    );
     const [counterLike, setCounter] = useState(likes);
     const [counterRetweets, setRetweets] = useState(retweets);
     const [textRetweets, setRetweets1] = useState("retweet");
@@ -49,7 +52,9 @@ const Post = forwardRef(
       setimgs_count(image.length);
       var temp = image.map((x) => x.url);
       image = temp;
+      console.log(verified);
     }, []);
+
 
     function setImg(url) {
       setfullScreenImg(url);
@@ -91,7 +96,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[0].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-img-all right-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[0].url);
@@ -102,7 +107,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[1].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-img-all left-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[1].url);
@@ -120,7 +125,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[0].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-left-up right-pad down-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[0].url);
@@ -131,7 +136,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[1].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-right-up left-pad down-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[1].url);
@@ -142,7 +147,7 @@ const Post = forwardRef(
             </Row>
             <img
               src={image[2].url}
-              className="img-post w-100 border-img-all"
+              className="img-post w-100 border-img-all border-left-right up-pad"
               alt=""
               onClick={() => {
                 setImg(image[2].url);
@@ -158,7 +163,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[0].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-left-up right-pad down-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[0].url);
@@ -169,7 +174,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[1].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-right-up left-pad down-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[1].url);
@@ -182,7 +187,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[2].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-left-down right-pad up-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[2].url);
@@ -193,7 +198,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[3].url}
-                  className="img-post h-100 w-100 border-img-all"
+                  className="img-post h-100 w-100 border-right-down left-pad up-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[3].url);
@@ -283,13 +288,13 @@ const Post = forwardRef(
               <h3>
                 {displayName}{" "}
                 <span className="post__headerSpecial">
-                  {verified && <VerifiedUserIcon className="post__badge" />}
-                  {username}
+                  {Is_verified ? <VerifiedUserIcon className="post__badge verified-color" /> : null}
+                  @{username}
                 </span>
               </h3>
             </div>
-            <div className="post__headerDescription">
-              <p>{text}</p>
+            <div className="post__headerDescription" >
+              <p className="text-overflow">{text}</p>
             </div>
           </div>
           {imagesGrid()}
