@@ -108,6 +108,22 @@
     width: 0.5cm;
 }
 
+.fullscreen {
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.imgfull {
+    margin-left: 10%;
+    width: 80%;
+    height: 90%;
+}
+
 .bellicon {
     position: relative !important;
     top: 0px !important;
