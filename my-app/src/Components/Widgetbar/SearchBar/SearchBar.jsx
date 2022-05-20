@@ -2,7 +2,7 @@ import React from 'react';
 import SearchBarCSS from './SearchBar.module.css';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 
@@ -22,7 +22,7 @@ function SearchBar() {
   
   return (
       <div className={SearchBarCSS.search__input}>
-        {text != '' &&
+        {text !== '' &&
         <button className={SearchBarCSS.close__btn} onClick={ClearInput}>
           <CloseIcon className={SearchBarCSS.close__icon} fontSize="medium"/>
         </button>

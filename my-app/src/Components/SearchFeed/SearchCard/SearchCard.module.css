@@ -129,7 +129,7 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
-.bio__container{
+.about__container{
     margin-top: 10px;
     font-size: 15px;
     color: #0F1419;
