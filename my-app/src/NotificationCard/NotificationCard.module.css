@@ -1,0 +1,87 @@
+.searchcard{
+    display: flex;
+    width: 100%;
+    height:auto;
+    padding: 15px 15px 15px 15px;
+    background-color: white;
+}
+.searchcard:hover{
+    background-color: #eff1f1;
+
+}
+
+.middlepart_1{
+    display: flex;
+    align-items: flex-start;
+    justify-items: center;
+    margin-bottom: 5px;
+}
+.name{
+    font-size: 15px;
+    color: #0F1419;
+    font-weight: bolder;
+    margin-bottom: 0px;
+    display:inline-block;
+}
+.name:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.liketweet__text{
+    display:inline-block;
+    color: #0F1419;
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-weight: 400;
+}
+.tweet__text{
+    font-size: 15px;
+    color: #536471;
+    margin-bottom: 0px;
+}
+.heart__icon{
+    font-size: 32px !important;
+    margin-top: 11px;
+    color: #fb1682;
+}
+
+.toolbtn_container{
+    display: flex;
+}  
+
+.tooltip {
+    position:relative;
+    display: inline-block;
+    /* float: left; */
+    margin-right: 2%;
+}
+
+.tooltip__icon{
+  cursor: pointer;
+  margin-bottom: 5px !important;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: white;
+    box-shadow: 5px 10px 18px #888888;
+    color: #3f4347;
+    text-align: left;
+    border-radius: 15px;
+    padding: 15px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    /* left: -100px;
+    top: 60px; */
+    right: 105%;
+    top: 0px;
+ 
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
