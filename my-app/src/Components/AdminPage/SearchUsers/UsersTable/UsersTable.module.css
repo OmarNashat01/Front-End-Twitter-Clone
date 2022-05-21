@@ -3,6 +3,7 @@
     width: '100%'
    
 }
+
 .cellAction {
     display: flex;
     align-items: center;
@@ -35,8 +36,11 @@
     padding: 2px 5px;
     border-radius: 5px;
     color: crimson;
-    border: 1px dotted rgba(220, 20, 60, 0.6);
-    cursor: pointer;
+    border: 1px solid rgba(220, 20, 60, 0.6);
+    
+  }
+  .banButton :hover{
+    background-color: rgb(220, 53, 69) !important;
   }
 .cellWithStatus {
     padding: 5px;

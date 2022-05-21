@@ -3,10 +3,12 @@ import { Modal,ModalHeader } from 'react-bootstrap';
 import DropDown from "./DropDown";
 import BlockIcon from '@mui/icons-material/Block';
 //import Modal from "react-modal";
-import PopUpStyle from "./PopUpStyle.module.css"
+import PopUpStyle from "./PopUpStyle.module.css";
+import { postBan } from "../../../Api/admin";
 import { color } from "@mui/system";
+import useId from "@mui/material/utils/useId";
 const PopUp=(props)=>{
-    const {isOpened,setOpen}= props;
+    const {isOpened,setOpen,userId}= props;
         function toggleModal() {
           isOpened=!isOpened;
           }
@@ -17,10 +19,23 @@ const PopUp=(props)=>{
      let title="Period"
 const [show,setShow]=useState(isOpened);
 const [period,setPeriod]=useState("");
+const[loading,setLoading]=useState(true);
+const[message,setMessage]=useState("");
 const BanHander=()=>{
 console.log("poping me");
 console.log(period);
+console.log("from pop");
+console.log(userId);
+let requestBody={"_id":userId,minutes:period};
+
+postBan(setLoading,setMessage,requestBody);
+
+
 }
+if(!loading)
+{console.log(message);}
+
+
    return( <Modal show={show} onHide={toggle}   aria-labelledby="contained-modal-title-vcenter" centered >
         <Modal.Header closeButton>
         {/* <BlockIcon sx={{ fontSize:28}}/> */}
@@ -31,6 +46,9 @@ console.log(period);
             <div  className={PopUpStyle.textStyle}>Select ban period</div>
       <div> 
           <DropDown setPeriod={setPeriod}/>
+          {
+            !loading&& <div  className="text-danger"> User is blocked  </div>
+          }
     </div> 
 
         </Modal.Body>

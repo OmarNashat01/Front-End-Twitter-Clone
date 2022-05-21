@@ -1,25 +1,31 @@
 import UsersTableStyle from "./UsersTable.module.css"
+
 import TablePagination from '@mui/material/TablePagination';
+
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 //import { userColumns, userRows } from "./UsersDate";
 import { margin } from "@mui/system";
 import PopUp from "../../PopUp/PopUp";
-import { getAllUsers } from "../../../../Api/admin";
+import { getAllUsers,getBannedUsers} from "../../../../Api/admin";
 import{getSearchUsersAdmin}from "../../../../Api/admin";
 const UsersTable = (props) => {
   const { userName } = props;
   //const [data, setData] = useState(userRows);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const[userId,setUserId]=useState('');
   const [page, setPage] = React.useState(0);
 const [showBan,setShowBan]=useState(false);
 console.log("from parent");
 console.log(showBan);
   const [usersLoading, setUsersLoading] = useState(true);
   const [allUsers, setAllUsers] = useState();
-  const banHandler=()=>{
+  const banHandler=(param)=>{
     setShowBan(!showBan);
-  
+  console.log("inside ban");
+  console.log(param);
+  setUserId(param);
+
   }
   const userColumns = [
     // { field: "id", headerName: "ID", width: 70, hide:true ,renderCell: (params) => {
@@ -51,7 +57,7 @@ console.log(showBan);
     {
       field: "email",
       headerName: "Email",
-      width: 200,
+      width: 300,
       headerClassName:'columnHeader',
       align:'center',
       headerAlign:'center',
@@ -101,14 +107,14 @@ console.log(showBan);
       width: 100,
       sortable: false,
       headerClassName:'columnHeader',
-      flex:5,
+      flex:3,
       align:'center',
       
       headerAlign:'center',
       renderCell: (params) => {
         return (
           <div className={UsersTableStyle.cellAction}>
-<button   className={UsersTableStyle.banButton} onClick={() => banHandler()}>Ban</button>
+<button   className={UsersTableStyle.banButton} onClick={() => banHandler(params.row.id)}>Ban</button>
             {/* <div
               className={UsersTableStyle.banButton}
               onClick={() => handleDelete(params.row.id)}
@@ -161,7 +167,8 @@ console.log(showBan);
       if (userName==="")
       {
         queryString= `?offset=0&limit=10000`;
-        const data = await getAllUsers(setUsersLoading, setAllUsers, queryString);
+     const data = await getAllUsers(setUsersLoading, setAllUsers, queryString);
+        //const data = await getBannedUsers(setUsersLoading, setAllUsers);
       }
       else{
         queryString=`?keyword=${userName}&offset=0&limit=10000`;
@@ -186,8 +193,8 @@ console.log(showBan);
     if(allUsers.status===204)
     {
       allUsersTable=[];
-    }
-else  {  allUsersTable = allUsers.data.users.map(user => ({ id: id_increment++, username: user.username, img: user.prof_pic_url, email: user.email, dateofbirth: user.date_of_birth, followerscount: user.followers_count, followingcount: user.following_count, creationdate: user.creation_date }));
+    } ///allUsers.data["blocked_users"].map
+else  {  allUsersTable = allUsers.data.users.map(user => ({ id: user._id, username: user.username, img: user.prof_pic_url, email: user.email, dateofbirth: user.date_of_birth, followerscount: user.followers_count, followingcount: user.following_count, creationdate: user.creation_date }));
     console.log(allUsersTable);}
 
 
@@ -197,6 +204,7 @@ else  {  allUsersTable = allUsers.data.users.map(user => ({ id: id_increment++, 
 
   return (!usersLoading && <div className={UsersTableStyle.dataTable}>
     <DataGrid
+    ColumnResizeIcon
       rows={allUsersTable}
       columns={userColumns}
       autoPageSize
@@ -230,7 +238,7 @@ else  {  allUsersTable = allUsers.data.users.map(user => ({ id: id_increment++, 
     //onPageChange={handleChangePage}
 
     />
-{showBan&&<div><PopUp isOpened={showBan} setOpen={setShowBan}/></div>
+{showBan&&<div><PopUp isOpened={showBan} setOpen={setShowBan} userId={userId}/></div>
 
 }
   </div>);

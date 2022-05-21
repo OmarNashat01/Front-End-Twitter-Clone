@@ -15,6 +15,7 @@ import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
+import BannedUsersTable from "./Components/AdminPage/BannedUsers/BannedUsers";
 import OtherProfiles from "./Components/UserProfile/OtherProfiles";
 // FEEDS
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
@@ -294,6 +295,7 @@ function App() {
           <Route path="/adminsearch" element={<SearchUsers />} />
           <Route path="/retweets" element={<RetweetsStats />}></Route>
           <Route path="/likes" element={<LikesStats />}></Route>
+          <Route path="/banned" element={<BannedUsersTable />}></Route>
         </Routes>
       </Router>
     );
