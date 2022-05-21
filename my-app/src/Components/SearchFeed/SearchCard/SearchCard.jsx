@@ -2,8 +2,6 @@ import React from 'react'
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import SearchCardCSS from "./SearchCard.module.css";
 import ToolTip from "./../../Widgetbar/ToolTip/ToolTip";
-import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
 
 function SearchCard({
     name= "Ahmed El Saka",

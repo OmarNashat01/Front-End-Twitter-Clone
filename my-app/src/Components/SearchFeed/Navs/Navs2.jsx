@@ -5,18 +5,15 @@ import { useState } from "react";
 import "./Navs.css"
 
 
-function Navs() {
+function Navs2() {
 
  ////////////////////////////////////////////////////////////
- const [active, setActive] = useState('People');
+ const [active, setActive] = useState('All');
  const CustomNav = ({ active, onSelect, ...props }) => {
    return (
      <Nav {...props} activeKey={active} onSelect={onSelect} justified>
-       <Nav.Item eventKey="Top" >Top</Nav.Item>
-       <Nav.Item eventKey="Latest" >Latest</Nav.Item>
-       <Nav.Item eventKey="People" >People</Nav.Item>
-       <Nav.Item eventKey="Photos" >Photos</Nav.Item>
-       <Nav.Item eventKey="Videos" >Videos</Nav.Item>
+       <Nav.Item eventKey="All" >All</Nav.Item>
+       <Nav.Item eventKey="Mentions" >Mentions</Nav.Item>
      </Nav>
    );
  };
@@ -24,10 +21,10 @@ function Navs() {
 
 
   return (
-    <div className='nav_container_1'>
+    <div className='nav_container_2'>
         <CustomNav appearance="subtle" active={active} onSelect={setActive} />
     </div>
   )
 }
 
-export default Navs
+export default Navs2
