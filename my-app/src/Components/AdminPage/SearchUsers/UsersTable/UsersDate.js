@@ -1,4 +1,9 @@
 import UsersTableStyle from"./UsersTable.module.css"
+import PopUp from "../../PopUp/PopUp";
+const banHandler=()=>{
+  <div><PopUp isOpen="true"/></div>
+
+}
 export const userColumns = [
     // { field: "id", headerName: "ID", width: 70, hide:true ,renderCell: (params) => {
     //     return (
@@ -86,7 +91,7 @@ export const userColumns = [
       renderCell: (params) => {
         return (
           <div className={UsersTableStyle.cellAction}>
-<button   className={UsersTableStyle.banButton} >Ban</button>
+<button   className={UsersTableStyle.banButton}  >Ban</button>
             {/* <div
               className={UsersTableStyle.banButton}
               onClick={() => handleDelete(params.row.id)}

@@ -2,20 +2,124 @@ import UsersTableStyle from "./UsersTable.module.css"
 import TablePagination from '@mui/material/TablePagination';
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { userColumns, userRows } from "./UsersDate";
+//import { userColumns, userRows } from "./UsersDate";
 import { margin } from "@mui/system";
+import PopUp from "../../PopUp/PopUp";
 import { getAllUsers } from "../../../../Api/admin";
 import{getSearchUsersAdmin}from "../../../../Api/admin";
 const UsersTable = (props) => {
   const { userName } = props;
-  const [data, setData] = useState(userRows);
+  //const [data, setData] = useState(userRows);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [page, setPage] = React.useState(0);
-
+const [showBan,setShowBan]=useState(false);
+console.log("from parent");
+console.log(showBan);
   const [usersLoading, setUsersLoading] = useState(true);
   const [allUsers, setAllUsers] = useState();
+  const banHandler=()=>{
+    setShowBan(!showBan);
+  
+  }
+  const userColumns = [
+    // { field: "id", headerName: "ID", width: 70, hide:true ,renderCell: (params) => {
+    //     return (
+    //     <div>
+    //       </div>
+    //     );
+    //   }, },
 
 
+    {
+      field: "user",
+      headerName: "User",
+      width: 200,
+      sortable: true,
+    
+     headerClassName:'columnHeader',
+     headerAlign:'center',
+  
+      renderCell: (params) => {
+        return (
+          <div className={UsersTableStyle.cellWithImg}>
+           <img className={UsersTableStyle.cellImg} src={params.row.img} alt="avatar" />
+            {params.row.username}
+          </div>
+        );
+      },
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 200,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
+    },
+  
+    {
+      field: "dateofbirth",
+      headerName: "Date of Birth",
+      width: 200,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
+    },
+  
+    {
+      field: "followerscount",
+      headerName: "Followers",
+      width: 150,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
+      hide:true,
+    },
+  
+    {
+      field: "creationdate",
+      headerName: "Creation Date",
+      width: 150,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
+    },
+  
+    {
+      field: "followingcount",
+      headerName: "Following",
+      width: 150,
+      headerClassName:'columnHeader',
+      align:'center',
+      headerAlign:'center',
+      hide:true,
+    },
+  
+    {
+      field: "action",
+      headerName: "Ban",
+      width: 100,
+      sortable: false,
+      headerClassName:'columnHeader',
+      flex:5,
+      align:'center',
+      
+      headerAlign:'center',
+      renderCell: (params) => {
+        return (
+          <div className={UsersTableStyle.cellAction}>
+<button   className={UsersTableStyle.banButton} onClick={() => banHandler()}>Ban</button>
+            {/* <div
+              className={UsersTableStyle.banButton}
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Ban
+            </div> */}
+          </div>
+        );
+      },
+    },
+  ];
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -24,31 +128,31 @@ const UsersTable = (props) => {
     setPage(0);
   };
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setData(data.filter((item) => item.id !== id));
+  // };
 
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      sortable: false,
-      renderCell: (params) => {
-        return (
-          <div className={UsersTableStyle.cellAction}>
-            <button className={UsersTableStyle.banButton} >Ban</button>
-            {/* <div
-                className={UsersTableStyle.banButton}
-                onClick={() => handleDelete(params.row.id)}
-              >
-                Ban
-              </div> */}
-          </div>
-        );
-      },
-    },
-  ];
+  // const actionColumn = [
+  //   {
+  //     field: "action",
+  //     headerName: "Action",
+  //     width: 200,
+  //     sortable: false,
+  //     renderCell: (params) => {
+  //       return (
+  //         <div className={UsersTableStyle.cellAction}>
+  //           <button className={UsersTableStyle.banButton} onClick={banHandler}>Ban</button>
+  //           {/* <div
+  //               className={UsersTableStyle.banButton}
+  //               onClick={() => handleDelete(params.row.id)}
+  //             >
+  //               Ban
+  //             </div> */}
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // ];
 
   useEffect(() => {
 
@@ -126,7 +230,9 @@ else  {  allUsersTable = allUsers.data.users.map(user => ({ id: id_increment++, 
     //onPageChange={handleChangePage}
 
     />
+{showBan&&<div><PopUp isOpened={showBan} setOpen={setShowBan}/></div>
 
+}
   </div>);
 
 }
