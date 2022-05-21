@@ -14,6 +14,10 @@ function Sidebar() {
   // THE STATE OF THE TWEET POPUP
 
 
+  function handleLogout() {
+    localStorage.clear();
+    window.open("/", "_self");
+  }
 
   return (
     <div className={`container-fluid  flex-column position-sticky `} >
@@ -53,7 +57,28 @@ function Sidebar() {
             tabIcon="Likes"
           />
         </li>
-  
+        <li
+          className={`${SidebarStyles.navItem} text-lg-end text-start ${SidebarStyles.logoutButton} `}
+        >
+          <div className={`${SidebarStyles.logoutButtonStyle}`}>
+            {/* LOGOUT BUTTON*/}
+            <button
+              className={`btn btn-primary  ${SidebarStyles.tweetBtn} ${SidebarStyles.tweetBtnSmall}  d-md-block d-xl-none d-lg-none rounded-circle text-center `}
+              onClick={handleLogout}
+            >
+              <i
+                className="fa-solid fa-right-from-bracket"
+                style={{ fontSize: 35 }}
+              ></i>
+            </button>
+            <button
+            type="button"  className={`btn btn-light rounded-pill ${SidebarStyles.tweetBtn}  d-none d-lg-block d-xl-block `}
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
+        </li>
       </ul>
       {/* displaying the popup */}
 
