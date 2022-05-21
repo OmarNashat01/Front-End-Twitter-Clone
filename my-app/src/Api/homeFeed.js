@@ -22,7 +22,6 @@ export async function getMyTweets(setLoading, setPosts) {
       if(response.status === 404)
       {
         setHasMore(false);
-        console.log("HIIIII");
       }
       else
       {

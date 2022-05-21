@@ -13,6 +13,7 @@ function ToolTip(
         followers= 3800,
         following= 5105,
         show="displayLeft",
+        disableToolTip=false,
         user_id="1",
     }
 ) {
@@ -26,6 +27,7 @@ function ToolTip(
             <IconButton className={ToolTipCSS.tooltip__icon} onClick={navProfile}>
                 <Avatar  src={img} style={{width: "45px",height: "45px"}}/>
             </IconButton>
+            {disableToolTip &&
             <span className={ToolTipCSS.tooltiptext}  id={show === "displayRight" ? ToolTipCSS.displayRight: ToolTipCSS.displayLeft}>
 
                 <div className={ToolTipCSS.toolbtn_container}>
@@ -54,7 +56,7 @@ function ToolTip(
                         <p className={ToolTipCSS.tag}>Followers</p>
                     </div>
                 </div>
-            </span>
+            </span>}
         </div>
   )
 }

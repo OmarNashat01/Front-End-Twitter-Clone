@@ -11,7 +11,7 @@ const Bio = (props) => {
     const navigate = useNavigate();
     return ( <
         div className = { BioCSS.bio } > { " " } <
-        p > { props.bio } < /p>{" "} <
+        p className = { BioCSS.bioo } > { props.bio } < /p>{" "} <
         div className = { BioCSS.timejoined } > { " " } <
         CalendarMonthTwoToneIcon / > Joined { props.joindate } { " " } <
         /div>{" "}  <
