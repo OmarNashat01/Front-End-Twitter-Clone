@@ -60,9 +60,18 @@ function Sidebar() {
         <li className={`${SidebarStyles.navItemTwo} text-lg-end text-start`}>
           {/* Admin Retweets */}
           <SidebarOption
-            tabName="  Banned Users"
+            tabName="Banned Users"
             pageRoute="/banned"
             tabIcon="Ban"
+          />
+        </li>
+
+        <li className={`${SidebarStyles.navItemTwo} text-lg-end text-start`}>
+          {/* Admin Retweets */}
+          <SidebarOption
+            tabName="New Accounts"
+            pageRoute="/newaccounts"
+            tabIcon="New"
           />
         </li>
         <li
