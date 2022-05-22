@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import NotificationCard from "./NotificationCard/NotificationCard";
+import NotificationCard from "./Components/NotificationCard/NotificationCard";
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Login from "./Components/Login/login";
@@ -17,13 +17,13 @@ import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
 import BannedUsersTable from "./Components/AdminPage/BannedUsers/BannedUsers";
 import NewAccountsStats from "./Components/AdminPage/NewAccountsStats/NewAccountsStats";
 import OtherProfiles from "./Components/UserProfile/OtherProfiles";
-import Navs2 from "./Components/SearchFeed/Navs/Navs2"
+import Navs2 from "./Components/SearchFeed/Navs/Navs2";
 // FEEDS
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
-import SearchFeed from "./Components/SearchFeed/SearchFeed"
-
+import SearchFeed from "./Components/SearchFeed/SearchFeed";
+import NotificationFeed from "./Components/NotificationFeed/NotificationFeed";
 
 import {
   BrowserRouter as Router,
@@ -70,7 +70,7 @@ function App() {
   var authBool = false;
   var token = localStorage.getItem("token");
   const [disabled, setDisabled] = useState(false);
- 
+
   try {
     var decode = jwt_decode(token);
     console.log("decode var = " + decode);
@@ -168,12 +168,8 @@ function App() {
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <HomeNavbar text={"Notifications"} />
-                      <Navs2/>
-                      <NotificationCard />
-                      <NotificationCard />
-                      <NotificationCard />
-                      <NotificationCard />
-                      <NotificationCard />
+                      <Navs2 />
+                      <NotificationFeed />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
                       <Widgetbar />
