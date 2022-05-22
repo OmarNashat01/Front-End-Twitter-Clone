@@ -3,7 +3,7 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Post from "./Components/Post/Post";
 import PostFull from "./Components/Post/PostFull";
-import NotificationCard from "./NotificationCard/NotificationCard";
+import NotificationCard from "./Components/NotificationCard/NotificationCard";
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Login from "./Components/Login/login";
@@ -24,8 +24,9 @@ import Navs2 from "./Components/SearchFeed/Navs/Navs2";
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
-import TweetFull from "./Components/FullTweet/FullTweet";
 import SearchFeed from "./Components/SearchFeed/SearchFeed";
+import NotificationFeed from "./Components/NotificationFeed/NotificationFeed";
+import TweetFull from "./Components/FullTweet/FullTweet";
 
 import {
   BrowserRouter as Router,
@@ -186,11 +187,7 @@ function App() {
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <HomeNavbar text={"Notifications"} />
                       <Navs2 />
-                      <NotificationCard />
-                      <NotificationCard />
-                      <NotificationCard />
-                      <NotificationCard />
-                      <NotificationCard />
+                      <NotificationFeed />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
                       <Widgetbar />
