@@ -1,0 +1,25 @@
+.Editor {
+  display: block;
+  font-size: 19px;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: auto;
+  text-align: left;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.Editor__Highlight {
+  color: rgb(27, 149, 224);
+}
+
+.Editor__OverLimit {
+  background-color: #fd9bb0;
+}
+
+
+
+
+
