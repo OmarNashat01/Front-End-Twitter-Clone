@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import NotificationCard from "./Components/NotificationCard/NotificationCard";
+import Post from "./Components/Post/Post";
+import PostFull from "./Components/Post/PostFull";
+import NotificationCard from "./NotificationCard/NotificationCard";
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Login from "./Components/Login/login";
@@ -24,6 +26,7 @@ import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 import SearchFeed from "./Components/SearchFeed/SearchFeed";
 import NotificationFeed from "./Components/NotificationFeed/NotificationFeed";
+import TweetFull from "./Components/FullTweet/FullTweet";
 
 import {
   BrowserRouter as Router,
@@ -39,6 +42,7 @@ import Widgetbar from "./Components/Widgetbar/Widgetbar";
 import jwt_decode from "jwt-decode";
 import { Reddit } from "@mui/icons-material";
 import LikesStats from "./Components/AdminPage/LikesStats/LikesStats";
+import TweetBox2 from "./Components/TweetBox2/TweetBox2";
 
 //Mock-Service-Worker
 // if (process.env.NODE_ENV === "development") {
@@ -101,6 +105,20 @@ function App() {
   }
 
   if (page === 1) {
+    const images_1 = [
+      {
+        alt_text: "7:45 pm",
+        height: 0,
+        url: "https://cdn1.vectorstock.com/i/1000x1000/37/90/close-up-of-colorful-eyes-cat-vector-23633790.jpg",
+        width: 0,
+      },
+      {
+        alt_text: "7:45 pm",
+        height: 0,
+        url: "https://cdn1.vectorstock.com/i/1000x1000/37/90/close-up-of-colorful-eyes-cat-vector-23633790.jpg",
+        width: 0,
+      },
+    ];
     return (
       <Router>
         <Routes>
@@ -212,7 +230,7 @@ function App() {
                     <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
                       <Sidebar setDisabled={setDisabled} />
                     </div>
-                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                    <div className="col col-xs-6 col-md-6 col-lg-5 col-sm-9   col-xs-8">
                       <div>
                         <UserProfile />
                       </div>
@@ -312,6 +330,28 @@ function App() {
                         {/* TODO:for testing */}
                         {/* <HomeFeed /> */}
                       </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/tweet/*"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row h-100">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top ">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-7 col-lg-6 col-sm-10   col-xs-9 ">
+                      <HomeNavbar />
+                      <TweetFull></TweetFull>
+                      <TweetBox2 disabled={disabled} />
+                      <HomeFeed></HomeFeed>
                     </div>
                   </div>
                 </div>
