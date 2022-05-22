@@ -3,6 +3,7 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Post from "./Components/Post/Post";
 import PostFull from "./Components/Post/PostFull";
+import NotificationCard from "./NotificationCard/NotificationCard";
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Login from "./Components/Login/login";
@@ -15,12 +16,16 @@ import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
+import BannedUsersTable from "./Components/AdminPage/BannedUsers/BannedUsers";
+import NewAccountsStats from "./Components/AdminPage/NewAccountsStats/NewAccountsStats";
 import OtherProfiles from "./Components/UserProfile/OtherProfiles";
+import Navs2 from "./Components/SearchFeed/Navs/Navs2";
 // FEEDS
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 import TweetFull from "./Components/FullTweet/FullTweet";
+import SearchFeed from "./Components/SearchFeed/SearchFeed";
 
 import {
   BrowserRouter as Router,
@@ -68,6 +73,7 @@ function App() {
   var authBool = false;
   var token = localStorage.getItem("token");
   const [disabled, setDisabled] = useState(false);
+
   try {
     var decode = jwt_decode(token);
     console.log("decode var = " + decode);
@@ -98,7 +104,20 @@ function App() {
   }
 
   if (page === 1) {
-    const images_1 = [{ alt_text: '7:45 pm', height: 0, url: 'https://cdn1.vectorstock.com/i/1000x1000/37/90/close-up-of-colorful-eyes-cat-vector-23633790.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://cdn1.vectorstock.com/i/1000x1000/37/90/close-up-of-colorful-eyes-cat-vector-23633790.jpg', width: 0 }]
+    const images_1 = [
+      {
+        alt_text: "7:45 pm",
+        height: 0,
+        url: "https://cdn1.vectorstock.com/i/1000x1000/37/90/close-up-of-colorful-eyes-cat-vector-23633790.jpg",
+        width: 0,
+      },
+      {
+        alt_text: "7:45 pm",
+        height: 0,
+        url: "https://cdn1.vectorstock.com/i/1000x1000/37/90/close-up-of-colorful-eyes-cat-vector-23633790.jpg",
+        width: 0,
+      },
+    ];
     return (
       <Router>
         <Routes>
@@ -165,7 +184,13 @@ function App() {
                       <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
-                      <TestComponent name="notification" />
+                      <HomeNavbar text={"Notifications"} />
+                      <Navs2 />
+                      <NotificationCard />
+                      <NotificationCard />
+                      <NotificationCard />
+                      <NotificationCard />
+                      <NotificationCard />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
                       <Widgetbar />
@@ -269,6 +294,30 @@ function App() {
               )
             }
           />
+
+          <Route
+            path="/search/*"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <SearchFeed />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar showSearchbar={false} />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
           <Route
             path="/user/*"
             element={
@@ -307,7 +356,6 @@ function App() {
                       <TweetBox2 disabled={disabled} />
                       <HomeFeed></HomeFeed>
                     </div>
-
                   </div>
                 </div>
               ) : (
@@ -320,6 +368,8 @@ function App() {
           <Route path="/adminsearch" element={<SearchUsers />} />
           <Route path="/retweets" element={<RetweetsStats />}></Route>
           <Route path="/likes" element={<LikesStats />}></Route>
+          <Route path="/banned" element={<BannedUsersTable />}></Route>
+          <Route path="/newaccounts" element={<NewAccountsStats />}></Route>
         </Routes>
       </Router>
     );

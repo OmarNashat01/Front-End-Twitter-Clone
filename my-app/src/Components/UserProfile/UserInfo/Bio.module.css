@@ -1,12 +1,19 @@
 .bio {
-    position: absolute;
+    position: relative;
     font-size: 15px;
     font-family: inherit;
-    top: 60%;
+    top: -20px;
     margin: -2.5% 0.66%;
     overflow-wrap: break-word;
     min-width: 0px;
     max-width: 468px;
+}
+
+.bioo {
+    position: relative;
+    font-size: 15px;
+    font-family: inherit;
+    top: 90px;
 }
 
 .timejoined {
@@ -22,7 +29,7 @@
     min-width: 0px;
     display: inline-block;
     white-space: nowrap;
-    top: 90%;
+    top: 75%;
     bottom: 20%;
     vertical-align: text-bottom;
     left: 145px;
@@ -32,9 +39,9 @@
     font-size: 15px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 400;
-    position: absolute;
+    position: relative;
     color: rgb(83, 100, 113);
-    top: 175%;
+    top: 55px;
     left: 10px;
     line-height: 20px;
 }
@@ -43,9 +50,9 @@
     font-size: 15px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 400;
-    position: absolute;
+    position: relative;
     color: rgb(83, 100, 113);
-    top: 175%;
+    top: 35px;
     left: 105px;
     line-height: 20px;
 }
@@ -82,7 +89,7 @@
     min-width: 0px;
     display: inline-block;
     white-space: nowrap;
-    top: 90%;
+    top: 75%;
     bottom: 20%;
     vertical-align: text-bottom;
     left: 20px;
@@ -90,7 +97,7 @@
 
 .bicon {
     position: absolute !important;
-    top: 95% !important;
+    top: 79% !important;
     bottom: 20% !important;
     max-width: 100% !important;
     height: 1.0em !important;
