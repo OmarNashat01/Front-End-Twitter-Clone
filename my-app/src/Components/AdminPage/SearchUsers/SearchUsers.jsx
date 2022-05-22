@@ -9,7 +9,9 @@ const SearchUsers=(props)=>{
  const [userName,setUser]=useState('');
  const[saveName,setSaved]=useState('');
  const captureUser=()=>{
-setSaved(userName);
+  setUser(userName);
+
+console.log(userName);
 
  }
     return(
@@ -32,12 +34,12 @@ setSaved(userName);
         <input className={`form-control me-2 ${SearchUsersStyle.searchBox}`} type="search" placeholder="Search Users" aria-label="Search" value={userName} onChange={(name)=>setUser(name.target.value)}/>
         </div>
         <div className={SearchUsersStyle.searchButtonDiv}>
-        <button className={`btn btn-outline-primary ${SearchUsersStyle.searchButton}`} type="submit" onClick={captureUser}>Search</button>
+        <button className={`btn btn-outline-primary d-none ${SearchUsersStyle.searchButton}`} type="submit" onClick={captureUser}>Search</button>
         </div>
         {console.log(saveName)}
       </form>
       </div >
-      <div ><UsersTable /></div>
+      <div ><UsersTable  userName={userName} /></div>
       
     
             </div>
