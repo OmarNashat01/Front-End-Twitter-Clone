@@ -16,6 +16,7 @@ import Container from "react-bootstrap/Container";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
 import Col from "react-bootstrap/Col";
+import PostMini from "./PostMini"
 const Post = forwardRef(
   (
     {
@@ -58,7 +59,7 @@ const Post = forwardRef(
       console.log(verified);
     }, []);
 
-
+    const images_1 = [{ alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }]
     function setImg(url) {
       setfullScreenImg(url);
     }
@@ -316,6 +317,14 @@ const Post = forwardRef(
             </div>
           </div>
           {imagesGrid()}
+          <PostMini
+            displayName={displayName}
+            username={username}
+            verified="false"
+            text={text}
+            avatar={avatar}
+            image={images_1}
+          ></PostMini>
           <div id="test">
             {fullScreen ? (
               <div className="full-screen" id="full-div">
