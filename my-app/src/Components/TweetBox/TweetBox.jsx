@@ -35,18 +35,19 @@ export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
     // make an API call
     // await submitForm(state)
     
-    const { editor: { plainText }, ...resState} = state;
+    const { editor: { plainText }, media,...resState} = state;
     
     if(isOpen)
     { 
       setIsOpen(!isOpen)
     }
-    console.log("onSubmit  => ", { ...resState, plainText });
+    console.log("onSubmit  => ", { ...resState,media, plainText });
     if(!loading){
         const postObj= {
           "text": plainText,
-          "videos": [],
-          "images": []
+          "images": media,
+          "videos": []
+          
         };
         console.log(postObj);
         postUserTweet(setLoadingsss, setTweet, postObj); 
