@@ -14,7 +14,8 @@ const Following = (props) => {
             FollowingCSS.box
         } >
 
-
+        <
+        div >
         <
         div >
 
@@ -31,14 +32,14 @@ const Following = (props) => {
         /> </div >
         <
         div className = { FollowingCSS.user } > { props.username } < p className = { FollowingCSS.handle } > { props.handle } < /p> <
-        p className = { FollowingCSS.bio } > { props.bio } < /p > < /div > <
+        p className = { FollowingCSS.bio } > { props.bio } < /p >  <
         Button variant = "outline-dark"
         className = { FollowingCSS.btn } >
         <
         span > Following < /span> { props.children } { " " } < /
-        Button > { " " }
-
-        <
+        Button > { " " } <
+        /div > <
+        /div> <
         /div>
     );
 };

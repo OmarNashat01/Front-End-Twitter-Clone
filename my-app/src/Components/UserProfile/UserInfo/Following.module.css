@@ -9,8 +9,8 @@
     font-family: inherit;
     font-weight: bold;
     position: relative;
-    top: 15.5%;
-    left: 70%;
+    top: -15%;
+    left: 80%;
 }
 
 .handle {
@@ -19,7 +19,7 @@
     font-weight: lighter;
     color: gray;
     position: relative;
-    top: 75%;
+    top: 10%;
     left: 1%;
 }
 
@@ -30,9 +30,8 @@
     position: relative;
     white-space: nowrap;
     line-height: 0.4cm;
-    top: 200%;
+    top: 30%;
     left: 1%;
-    margin: -2.5% 0.66%;
     overflow-wrap: break-word;
     min-width: 0px;
     max-width: 468px;
