@@ -27,6 +27,20 @@ function NotificationFeed() {
         user_id="1"
         action="reply"
       />
+      <NotificationCard
+        name="mark"
+        tweet_text="this is a testweet"
+        img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
+        user_id="1"
+        action="block"
+      />
+      <NotificationCard
+        name="mark"
+        tweet_text="this is a testweet"
+        img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
+        user_id="1"
+        action="like"
+      />
     </div>
   );
 }

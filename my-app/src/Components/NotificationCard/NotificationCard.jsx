@@ -4,8 +4,9 @@ import NotificationCardCSS from "./NotificationCard.module.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import RepeatIcon from "@mui/icons-material/Repeat";
+// import RepeatIcon from "@mui/icons-material/Repeat";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import BlockIcon from "@mui/icons-material/Block";
 
 function SearchCard(props) {
   function navProfile() {
@@ -14,8 +15,8 @@ function SearchCard(props) {
   return (
     <div className={NotificationCardCSS.searchcard}>
       <div className={NotificationCardCSS.tooltip}>
-        {props.action === "retweet" && (
-          <RepeatIcon className={NotificationCardCSS.retweet__icon} />
+        {props.action === "block" && (
+          <BlockIcon className={NotificationCardCSS.block__icon} />
         )}
         {props.action === "like" && (
           <FavoriteIcon className={NotificationCardCSS.heart__icon} />
