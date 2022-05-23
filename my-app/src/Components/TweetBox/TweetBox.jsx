@@ -13,7 +13,7 @@ import TweetboxCSS from "./TweetBox.module.css";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { getMe } from "../../Api/UserProfile";
-import {postUserTweet} from "../../Api/tweetbox";
+import {postUserTweet,postTweet} from "../../Api/tweetbox";
 
 
 const MAX_CHARS_ALLOWED = 280;
@@ -22,7 +22,8 @@ export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
   const [Me, setMe] = useState();
   const [Tweet,setTweet] = useState();
   const [loading , setLoading] = useState(true);
-  const [loadingsss , setLoadingsss] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+  
 
     
 
@@ -36,23 +37,29 @@ export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
     // await submitForm(state)
     
     const { editor: { plainText }, media,...resState} = state;
-    
     if(isOpen)
     { 
       setIsOpen(!isOpen)
     }
     console.log("onSubmit  => ", { ...resState,media, plainText });
     if(!loading){
-        const postObj= {
-          "text": plainText,
-          "images": media,
-          "videos": []
-          
-        };
-        console.log(postObj);
-        postUserTweet(setLoadingsss, setTweet, postObj); 
+
+      const formData = new FormData()
+      formData.append("text",plainText);
+
+      if(typeof media != 'undefined'){ 
+        for(let i=0 ; i<media.length ; i++){
+              formData.append("img",media[i]);
+              console.log(media[i]);
+            }
       }
-      
+          postTweet(setLoading2,setTweet,formData);
+          for (var pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]); 
+        }
+    }
+        
+  
     return true;
   }
 
