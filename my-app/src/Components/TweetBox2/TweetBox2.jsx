@@ -13,25 +13,30 @@ import TweetboxCSS from "./TweetBox2.module.css";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { getMe } from "../../Api/UserProfile";
-import { postUserTweet,postReply } from "../../Api/tweetbox";
+import { getTweet } from "../../Api/tweetFull";
+import { postReply } from "../../Api/tweetbox";
 
 
 const MAX_CHARS_ALLOWED = 280;
 export default function TweetBox2({ disabled, setIsOpen, isOpen = false }) {
   const replyArray = [];
 
-
+  
   const [replies, setreplies] = useState(replyArray);
   const [Me, setMe] = useState();
   const [Tweet, setTweet] = useState();
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(true);
+////////////////////////-----MINAAA---///////////////////////////////////////////
+  const [replypost,setReplyPost] = useState([]);
 
-
-
+  const tweet_id=window.location.pathname.split("/")[2].toString(); 
   useEffect(() => {
     getMe(setLoading, setMe);
+    getTweet(setLoading, setReplyPost, `?Id=${tweet_id}`);
+
   }, [])
+
 
 
   async function OnSubmit(state) {
@@ -46,6 +51,7 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false }) {
     console.log("onSubmit  => ", { ...resState, media, plainText });
     if(!loading){
       const formData = new FormData()
+      formData.append("tweet_id",tweet_id);
       formData.append("text",plainText);
       if(typeof media != 'undefined'){ 
         for(let i=0 ; i<media.length ; i++){
@@ -61,7 +67,7 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false }) {
 
     return true;
   }
-
+  ////////////////////////-----MINAAA---///////////////////////////////////////////
 
 
 
