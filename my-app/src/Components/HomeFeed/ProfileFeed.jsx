@@ -23,6 +23,7 @@ function ProfileFeed() {
 
 
   if (!loading) {
+    console.log(posts)
     console.log("imageeeeeeeeeeee");
     console.log(posts[1].images);
     console.log(posts[0].images.length);

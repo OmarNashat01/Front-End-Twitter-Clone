@@ -11,7 +11,7 @@ export default function TweetPopup({setIsOpen,isOpen,toggleModal}) {
 
   return (
     <div className={TweetPopupCSS.popup_container}>
-      <button onClick={toggleModal}>Open modal</button>
+      {/* <button onClick={toggleModal}>Open modal</button> */}
 
       <Modal
         isOpen={isOpen}
