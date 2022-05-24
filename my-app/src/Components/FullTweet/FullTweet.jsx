@@ -24,8 +24,8 @@ function FullTweet() {
 
 
     if (!loading) {
-        console.log("COMMENTS");
-        console.log(posts.data);
+        console.log("FULL TWEET");
+        //console.log(posts.data);
 
 
     }
@@ -66,6 +66,7 @@ function FullTweet() {
                 following={posts.data.tweet.following_count}
                 about={posts.data.tweet.bio}
                 likers={posts.data.tweet.liked_by_ids}
+            //retweeters_ids={posts.data.tweet.retweeters_ids}
             ></Post>
         ));
 

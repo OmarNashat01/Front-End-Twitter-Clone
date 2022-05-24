@@ -54,9 +54,6 @@ const PostMini = forwardRef(
         const [isFull, setisFull] = useState(true);
         useEffect(() => {
             setimgs_count(image.length);
-            var temp = image.map((x) => x.url);
-            image = temp;
-            console.log(verified);
         }, []);
 
 
@@ -89,11 +86,11 @@ const PostMini = forwardRef(
             } else if (imgs_count === 1) {
                 return (
                     <img
-                        src={image[0].url}
+                        src={image[0]}
                         className=" h-100 w-100 border-img-all"
                         alt=""
                         onClick={() => {
-                            setImg(image[0].url);
+                            setImg(image[0]);
                             fullScreenTog();
                         }}
                     />
@@ -105,22 +102,22 @@ const PostMini = forwardRef(
                         <Row className="w-100 m-0">
                             <Col className="p-0">
                                 <img
-                                    src={image[0].url}
+                                    src={image[0]}
                                     className=" h-100 w-100 full-border-left right-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[0].url);
+                                        setImg(image[0]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0">
                                 <img
-                                    src={image[1].url}
+                                    src={image[1]}
                                     className=" h-100 w-100 full-border-right left-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[1].url);
+                                        setImg(image[1]);
                                         fullScreenTog();
                                     }}
                                 />
@@ -134,33 +131,33 @@ const PostMini = forwardRef(
                         <Row className="w-100 m-0">
                             <Col className="p-0">
                                 <img
-                                    src={image[0].url}
+                                    src={image[0]}
                                     className=" h-100 w-100 border-left-up right-pad down-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[0].url);
+                                        setImg(image[0]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0">
                                 <img
-                                    src={image[1].url}
+                                    src={image[1]}
                                     className=" h-100 w-100 border-right-up left-pad down-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[1].url);
+                                        setImg(image[1]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                         </Row>
                         <img
-                            src={image[2].url}
+                            src={image[2]}
                             className=" w-100 border-img-all border-left-right up-pad"
                             alt=""
                             onClick={() => {
-                                setImg(image[2].url);
+                                setImg(image[2]);
                                 fullScreenTog();
                             }}
                         />
@@ -172,22 +169,22 @@ const PostMini = forwardRef(
                         <Row className="w-100 m-0">
                             <Col className="p-0">
                                 <img
-                                    src={image[0].url}
+                                    src={image[0]}
                                     className=" h-100 w-100 border-left-up right-pad down-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[0].url);
+                                        setImg(image[0]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0">
                                 <img
-                                    src={image[1].url}
+                                    src={image[1]}
                                     className=" h-100 w-100 border-right-up left-pad down-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[1].url);
+                                        setImg(image[1]);
                                         fullScreenTog();
                                     }}
                                 />
@@ -196,22 +193,22 @@ const PostMini = forwardRef(
                         <Row className="w-100 m-0">
                             <Col className="p-0">
                                 <img
-                                    src={image[2].url}
+                                    src={image[2]}
                                     className=" h-100 w-100 border-left-down right-pad up-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[2].url);
+                                        setImg(image[2]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0">
                                 <img
-                                    src={image[3].url}
+                                    src={image[3]}
                                     className=" h-100 w-100 border-right-down left-pad up-pad"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[3].url);
+                                        setImg(image[3]);
                                         fullScreenTog();
                                     }}
                                 />

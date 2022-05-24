@@ -17,7 +17,7 @@ import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
 import Col from "react-bootstrap/Col";
 import { postLike, deleteLike, postRetweet, deleteRetweet } from "../../Api/tweetFull";
-import LikesRetweetPopup from "./LikesRetweetPopup";
+import LikesRetweetPopup from "./LikesRetweetPopup/LikesRetweetPopup";
 const PostFull = forwardRef(
     (
         {
@@ -37,12 +37,14 @@ const PostFull = forwardRef(
             following,
             bio,
             likers,
+            //retweeters_ids,
         },
         ref
     ) => {
         const [Is_verified, setIs_verified] = useState(
             verified === "true" ? true : false
         );
+        const [isRetweetCol, setisRetweetCol] = useState(isRetweet);
         const [response, setresponse] = useState();
         const [loading, setLoading] = useState(true);
         const [counterLike, setCounter] = useState(likes);
@@ -57,6 +59,13 @@ const PostFull = forwardRef(
         const [isOpen, setIsOpen] = useState(false);
         const [isOpen_2, setIsOpen_2] = useState(false);
 
+        const formData = new FormData();
+        formData.append('quoted', false);
+        formData.append('tweet_id', tweet_id);
+        formData.append('text', text);
+        formData.append('videos', []);
+        formData.append('images', image);
+
         function RetweettoggleModal() {
             setIsOpen(!isOpen);
         }
@@ -64,12 +73,7 @@ const PostFull = forwardRef(
             setIsOpen_2(!isOpen_2);
         }
         useEffect(() => {
-            console.log("imageeeeeeeeeees");
-            console.log(image);
             setimgs_count(image.length);
-            var temp = image.map((x) => x.url);
-            image = temp;
-            console.log(image);
             var temp2 = likers.map((x) => x.liker);
             likers = temp2;
             if ((likers.includes(localStorage.getItem("user_id")))) {
@@ -79,6 +83,16 @@ const PostFull = forwardRef(
             else {
                 setIsLikedState(false);
             }
+
+            // if ((retweeters_ids.includes(localStorage.getItem("user_id")))) {
+            //     console.log("DA5AAL");
+            //     setisRetweetCol(true);
+            //     setRetweets1("undo");
+            // }
+            // else {
+            //setisRetweetCol(false);
+            //setRetweets1("retweet");
+            //}
         }, []);
         const postObj = {
             "user_id": localStorage.getItem("user_id"),
@@ -288,14 +302,16 @@ const PostFull = forwardRef(
             //})
             if (!e.currentTarget.classList.contains("is-retweet-full")) {
                 e.currentTarget.classList.add("is-retweet-full");
+                postRetweet(setLoading, setresponse, formData);
                 setRetweets(counterRetweets + 1);
                 setRetweets1("undo");
-                isRetweet = true;
+                setisRetweetCol(true);
             } else {
                 e.currentTarget.classList.remove("is-retweet-full");
+                //deleteLike(setLoading, setresponse, `?Id=${tweet_id}`)
                 setRetweets(counterRetweets - 1);
                 setRetweets1("retweet");
-                isRetweet = false;
+                setisRetweetCol(false);
             }
         }
 
@@ -349,7 +365,7 @@ const PostFull = forwardRef(
                                             variant="secondary"
                                             id="dropdown-basic-full"
                                             className={
-                                                isRetweet === "true"
+                                                isRetweetCol === true
                                                     ? "is-retweet-full d-flex align-items-center"
                                                     : "retweet-icon-full d-flex align-items-center"
                                             }
@@ -410,7 +426,7 @@ const PostFull = forwardRef(
                     </div>
                     <div className="post__footer_full-full">
                         <div className="retweets-full-full d-flex align-items-center">
-                            <span className="retweets-count-full" onClick={RetweettoggleModal}>{retweets}</span>
+                            <span className="retweets-count-full" onClick={RetweettoggleModal}>{counterRetweets}</span>
                             <span className="retweets-text-full" onClick={RetweettoggleModal}>Retweets</span>
                         </div>
                         <LikesRetweetPopup

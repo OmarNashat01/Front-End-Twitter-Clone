@@ -41,6 +41,17 @@ const Post = forwardRef(
       isRetweeted,
       isQuoted,
       replyingUser,
+      //retweeters_ids,
+
+
+      displayNameQ,
+      usernameQ,
+      verifiedQ,
+      textQ,
+      avatarQ,
+      imageQ,
+      user_idQ,
+      tweet_idQ,
     },
     ref
   ) => {
@@ -51,7 +62,7 @@ const Post = forwardRef(
     const [loading, setLoading] = useState(true);
 
     const [counterLike, setCounter] = useState(likes);
-    const [isRetweetCol, setisRetweetCol] = useState(isRetweet);
+    const [isRetweetCol, setisRetweetCol] = useState(false);
     const [counterRetweets, setRetweets] = useState(retweets);
     const [textRetweets, setRetweets1] = useState("retweet");
     const [fullScreen, setfullScreen] = useState(false);
@@ -73,19 +84,9 @@ const Post = forwardRef(
       //formdata object
       //formData.append('user_id', localStorage.getItem("user_id"));   //append the values with key, value pair 
       setimgs_count(image.length);
-      console.log("FOUUUUUUUUUND");
-      var temp = image.map((x) => x.url);
-      if (temp.length === 0) {
-        console.log("mafeesh");
-        setimg_type(false);
-        console.log("7agmhaaaaaaa");
-
-
-        console.log(image.length);
-      }
-      else {
-        image = temp;
-      }
+      // console.log("FOUUUUUUUUUND");
+      // console.log(image);
+      // console.log(imageQ);
 
       var temp2 = likers.map((x) => x.liker);
       likers = temp2;
@@ -100,6 +101,16 @@ const Post = forwardRef(
       else {
         setIsLikedState(false);
       }
+
+      // if ((retweeters_ids.includes(localStorage.getItem("user_id")))) {
+      //   console.log("DA5AAL");
+      //   setisRetweetCol(true);
+      //   setRetweets1("undo");
+      // }
+      // else {
+      //   setisRetweetCol(false);
+      //   setRetweets1("retweet");
+      // }
     }, []);
     const postObj = {
       "user_id": localStorage.getItem("user_id"),
@@ -140,11 +151,11 @@ const Post = forwardRef(
       } else if (imgs_count === 1) {
         return (
           <img
-            src={img_type ? image[0].url : image[0]}
+            src={image[0]}
             className="img-post h-100 w-100 border-img-all"
             alt=""
             onClick={() => {
-              setImg(img_type ? image[0].url : image[0]);
+              setImg(image[0]);
               fullScreenTog();
             }}
           />
@@ -156,22 +167,22 @@ const Post = forwardRef(
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={img_type ? image[0].url : image[0]}
+                  src={image[0]}
                   className="img-post h-100 w-100 full-border-left right-pad"
                   alt=""
                   onClick={() => {
-                    setImg(img_type ? image[0].url : image[0]);
+                    setImg(image[0]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={img_type ? image[1].url : image[1]}
+                  src={image[1]}
                   className="img-post h-100 w-100 full-border-right left-pad"
                   alt=""
                   onClick={() => {
-                    setImg(img_type ? image[1].url : image[1]);
+                    setImg(image[1]);
                     fullScreenTog();
                   }}
                 />
@@ -185,33 +196,33 @@ const Post = forwardRef(
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={image[0].url}
+                  src={image[0]}
                   className="img-post h-100 w-100 border-left-up right-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[0].url);
+                    setImg(image[0]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={image[1].url}
+                  src={image[1]}
                   className="img-post h-100 w-100 border-right-up left-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[1].url);
+                    setImg(image[1]);
                     fullScreenTog();
                   }}
                 />
               </Col>
             </Row>
             <img
-              src={image[2].url}
+              src={image[2]}
               className="img-post w-100 border-img-all border-left-right up-pad"
               alt=""
               onClick={() => {
-                setImg(image[2].url);
+                setImg(image[2]);
                 fullScreenTog();
               }}
             />
@@ -223,22 +234,22 @@ const Post = forwardRef(
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={image[0].url}
+                  src={image[0]}
                   className="img-post h-100 w-100 border-left-up right-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[0].url);
+                    setImg(image[0]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={image[1].url}
+                  src={image[1]}
                   className="img-post h-100 w-100 border-right-up left-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[1].url);
+                    setImg(image[1]);
                     fullScreenTog();
                   }}
                 />
@@ -247,22 +258,22 @@ const Post = forwardRef(
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={image[2].url}
+                  src={image[2]}
                   className="img-post h-100 w-100 border-left-down right-pad up-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[2].url);
+                    setImg(image[2]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={image[3].url}
+                  src={image[3]}
                   className="img-post h-100 w-100 border-right-down left-pad up-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[3].url);
+                    setImg(image[3]);
                     fullScreenTog();
                   }}
                 />
@@ -384,12 +395,13 @@ const Post = forwardRef(
           {imagesGrid()}
           {isQuoted === "true" ? (
             <PostMini
-              displayName={displayName}
-              username={username}
-              verified="false"
-              text={text}
-              avatar={avatar}
-              image={images_1}
+              displayName={displayNameQ}
+              username={usernameQ}
+              text={textQ}
+              avatar={avatarQ}
+              image={imageQ}
+              user_id={user_idQ}
+              tweet_id={tweet_idQ}
             ></PostMini>) : null
           }
           <div id="test">

@@ -27,7 +27,7 @@ function ReplyBox() {
     if (!loading) {
         console.log("COMMENTS");
         //console.log(posts.data.tweet.comments);
-        console.log(posts.data.tweet.username)
+        //console.log(posts.data.tweet.username);
 
 
 
@@ -38,7 +38,7 @@ function ReplyBox() {
 
     return (
         !loading && (
-            <TweetBox2 disbaled={false} replyingUser={posts.data.tweet.username}>/</TweetBox2>
+            <TweetBox2 disbaled={false} >/</TweetBox2>
         ));
 
 };
