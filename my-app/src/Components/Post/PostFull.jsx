@@ -16,6 +16,8 @@ import Container from "react-bootstrap/Container";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
 import Col from "react-bootstrap/Col";
+import LikesRetweetPopup from "./LikesRetweetPopup/LikesRetweetPopup";
+
 const PostFull = forwardRef(
     (
         {
@@ -48,6 +50,15 @@ const PostFull = forwardRef(
         const [isLikedState, setIsLikedState] = useState(
             isLiked === "true" ? true : false
         );
+        const [isOpen, setIsOpen] = useState(false);
+        const [isOpen_2, setIsOpen_2] = useState(false);
+
+        function RetweettoggleModal() {
+            setIsOpen(!isOpen);
+        }
+        function LikestoggleModal() {
+            setIsOpen_2(!isOpen_2);
+        }
         useEffect(() => {
             setimgs_count(image.length);
             var temp = image.map((x) => x.url);
@@ -379,13 +390,27 @@ const PostFull = forwardRef(
                     </div>
                     <div className="post__footer_full-full">
                         <div className="retweets-full-full d-flex align-items-center">
-                            <span className="retweets-count-full" >{retweets}</span>
-                            <span className="retweets-text-full">Retweets</span>
+                            <span className="retweets-count-full" onClick={RetweettoggleModal}>{retweets}</span>
+                            <span className="retweets-text-full" onClick={RetweettoggleModal}>Retweets</span>
                         </div>
+                        <LikesRetweetPopup
+                            toggleModal={RetweettoggleModal}
+                            isOpen={isOpen}
+                            setIsOpen={setIsOpen}
+                            showText={true}
+                            text="Retweeted by"
+                        />
                         <div className="retweets-full-full ">
-                            <span className="retweets-count-full" >{likes}</span>
-                            <span className="retweets-text-full">Likes</span>
+                            <span className="retweets-count-full" onClick={LikestoggleModal}>{likes}</span>
+                            <span className="retweets-text-full" onClick={LikestoggleModal}>Likes</span>
                         </div>
+                        <LikesRetweetPopup
+                            toggleModal={LikestoggleModal}
+                            isOpen={isOpen_2}
+                            setIsOpen={setIsOpen_2}
+                            showText={true}
+                            text="Liked by"
+                        />
                     </div>
                     <div className="post__footer-full">
                         <div className="chat-full d-flex align-items-center">
