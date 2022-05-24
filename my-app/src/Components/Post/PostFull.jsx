@@ -65,7 +65,13 @@ const PostFull = forwardRef(
             image = temp;
             console.log(verified);
         }, []);
-
+        useEffect(() => {
+            if (isOpen || isOpen_2) {
+              document.body.style.overflow = "hidden";
+            } else {
+              document.body.style.overflow = "auto";
+            }
+          }, [isOpen,isOpen_2]);
 
         function setImg(url) {
             setfullScreenImg(url);
