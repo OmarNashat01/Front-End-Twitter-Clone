@@ -22,7 +22,7 @@ const NewAccountsStats = (props) => {
     const buttonHandler = () => {
 
         const fetchData = async () => {
-            const data = await getReTweetCount(setValuesLoading, setValues, `?start_date=${format(startDate, 'yyyy-MM-dd')}&end_date=${format(endDate, 'yyyy-MM-dd')}`);
+            const data = await getNewAccountsCount(setValuesLoading, setValues, `?start_date=${format(startDate, 'yyyy-MM-dd')}&end_date=${format(endDate, 'yyyy-MM-dd')}`);
         }
 
         // call the function
