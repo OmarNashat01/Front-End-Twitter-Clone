@@ -23,20 +23,20 @@ const Card=(props)=> {
           {value}
         </MDBCardText>
         </div></div>}
-        {type==2 && <div style={{height:'118px'}}> <MDBCardTitle className={CardStyles.textAlign2}><div className={CardStyles.tweet}><HistoryEduIcon style={{fontSize:'35px'}} /></div>{title}</MDBCardTitle>
+        {type==2 && <div style={{maxHeight:'118px'}}> <MDBCardTitle className={CardStyles.textAlign2}><div className={CardStyles.tweet}><HistoryEduIcon style={{fontSize:'35px'}} /></div>{title}</MDBCardTitle>
         <div className={CardStyles.textAlign}>
         <MDBCardText >
           {value}
         </MDBCardText>
         </div></div>}
-        {type==3 && <div style={{height:'118px'}}> <MDBCardTitle className={CardStyles.textAlign2}><div className={CardStyles.tweet}><FavoriteIcon  style={{fontSize:'35px'}}/></div>{title}</MDBCardTitle>
+        {type==3 && <div style={{maxHeight:'118px'}}> <MDBCardTitle className={CardStyles.textAlign2}><div className={CardStyles.tweet}><FavoriteIcon  style={{fontSize:'35px'}}/></div>{title}</MDBCardTitle>
         <div className={CardStyles.textAlign}>
         <MDBCardText >
           {value}
         </MDBCardText>
         </div></div>}
 
-        {type==4 && <div style={{height:'125px'}}> <MDBCardTitle className={CardStyles.textAlign2}><div className={CardStyles.tweet}><AssignmentIndIcon  style={{fontSize:'35px'}}/></div>{title}</MDBCardTitle>
+        {type==4 && <div style={{maxHeight:'125px'}}> <MDBCardTitle className={CardStyles.textAlign2}><div className={CardStyles.tweet}><AssignmentIndIcon  style={{fontSize:'35px'}}/></div>{title}</MDBCardTitle>
         <div className={CardStyles.textAlign}>
         <MDBCardText >
           {value}
