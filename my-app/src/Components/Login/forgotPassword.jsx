@@ -4,6 +4,12 @@ import Popup from "./popup.module.css";
 import LoginCss from "./Login.module.css";
 import { height } from "@mui/system";
 
+import {
+  postVerify,
+  PostEmailAndVerCode,
+  PostNewPassword,
+} from "../../Api/forgotPassword";
+
 function ForgotPasswordPage(props) {
   const [Email, setEmail] = useState("");
   const [btnState, setBtnState] = useState(true);
@@ -15,16 +21,84 @@ function ForgotPasswordPage(props) {
   const [errorMessage1, setErrorMessage1] = useState("");
   const [errorMessage2, setErrorMessage2] = useState("");
 
+  const [verify, setVerify] = useState();
+  const [verLoading, setVerLoading] = useState(true);
+
+  const [verLoadingIDandEmail, setVerLoadingIDandEmail] = useState(true);
+  const [verifyIDandEmail, setVerifyIDandEmail] = useState();
+
+  const [verLoadingNewPassword, setVerLoadingNewPassword] = useState(true);
+  const [verifyNewPassword, setVerifyNewPassword] = useState();
+
+  //api funs///////////////////////////////////
+  /// 1 /////
+  const sendEmail = async () => {
+    let requestBody = {
+      email: Email,
+    };
+    let resul = await postVerify(setVerLoading, setVerify, requestBody);
+  };
+  const checkEmailSent = () => {
+    if (page === 0 /*&& verify !== undefined*/) {
+      if (true /*verify.status === 200*/) {
+        setPage(1);
+      }
+    }
+  };
+  /// 2 ///////send email and verication
+  const sendEmailAndVerCode = async () => {
+    //console.log(user.Email);
+    let resul2 = await PostEmailAndVerCode(
+      setVerLoadingIDandEmail,
+      setVerifyIDandEmail,
+      `?OTP=${OTP}&email=${Email}`
+    );
+  };
+  const checkVer = () => {
+    if (page === 1 && OTP !== undefined) {
+      if (OTP.length > 0 && verifyIDandEmail.status === 200) {
+        setPage((currpage) => currpage + 1);
+        setVerLoadingIDandEmail(true);
+      } else {
+        setErrorMessage2("Verification code Expired");
+        setVerLoadingIDandEmail(true);
+      }
+    }
+  };
+  /// 3 ///////send new password
+  const sendNewPassword = async () => {
+    //console.log(user.Email);
+    let resul3 = await PostEmailAndVerCode(
+      setVerLoadingNewPassword,
+      setVerifyNewPassword,
+      `?OTP=${OTP}&email=${Email}`
+    );
+  };
+  const checkNewPasswordSent = () => {
+    if (page === 0 && verifyNewPassword !== undefined) {
+      if (true) {
+        window.open("/Home", "_self");
+      }
+    }
+  };
+
+  //////////////////////////////////////////////
+
   //Temp funs/////////////////////////////////
   function EmailStageBTN() {
-    setPage(1);
+    sendEmail();
+    checkEmailSent();
+    // setPage(1);
   }
   function OtpStageBTN() {
+    sendEmailAndVerCode();
     setPage(2);
   }
 
   function NewPasswordStageBTN() {
-    console.log(Email + " " + OTP + " " + NewPassword);
+    // console.log(Email + " " + OTP + " " + NewPassword);
+    sendNewPassword();
+    window.open("/Home", "_self");
   }
 
   function getVerCode(val) {
@@ -33,6 +107,7 @@ function ForgotPasswordPage(props) {
   function getNewPassword(val) {
     setNewPassword(val.target.value);
   }
+  //////////////////////////////////////////////
 
   const EmailStage = () => {
     return (
@@ -148,7 +223,7 @@ function ForgotPasswordPage(props) {
           <div>
             <div className="form-floating mb-3">
               <input
-                type={"text"}
+                type={"password"}
                 className="inputTxt form-control signupButton nameArea"
                 id={("floatingInput phoneOrEmail", Popup.txtArea)}
                 placeholder="Verification code"
@@ -188,7 +263,7 @@ function ForgotPasswordPage(props) {
     } else {
       setBtnState(true);
     }
-    console.log(Email.length);
+    // console.log(Email.length);
   }
 
   const PageToDisplay = () => {
