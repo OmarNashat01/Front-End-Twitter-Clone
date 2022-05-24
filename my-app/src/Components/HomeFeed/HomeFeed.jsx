@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "./Loader";
 import Post from "../Post/Post";
-import { getHomeTweets } from "../../Api/homeFeed";
-
+import { getHomeTweetsAndRetweets } from "../../Api/homeFeed";
 
 function HomeFeed() {
   const [posts, setPosts] = useState([]);
@@ -11,16 +10,13 @@ function HomeFeed() {
   const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(1);
 
-
   useEffect(() => {
-    getHomeTweets(setLoading, setPosts, setHasMore, `?page=1`);
-
-  }, [])
+    getHomeTweetsAndRetweets(setLoading, setPosts, setHasMore, `?page=1`);
+  }, []);
 
   const fetchData = () => {
     setPage(page + 1);
-    getHomeTweets(setLoading, setPosts, setHasMore, `?page=${page}`);
-
+    getHomeTweetsAndRetweets(setLoading, setPosts, setHasMore, `?page=${page}`);
   };
 
   if (!loading) {
@@ -32,7 +28,6 @@ function HomeFeed() {
 
 
   return (
-
     <div>
       <InfiniteScroll
         className="overflow-hidden"
