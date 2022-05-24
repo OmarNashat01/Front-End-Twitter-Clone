@@ -16,10 +16,12 @@ import Container from "react-bootstrap/Container";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
 import Col from "react-bootstrap/Col";
+import { postLike, deleteLike, postRetweet, deleteRetweet } from "../../Api/tweetFull";
 const PostFull = forwardRef(
     (
         {
             user_id,
+            tweet_id,
             displayName,
             username,
             verified,
@@ -33,12 +35,15 @@ const PostFull = forwardRef(
             followers,
             following,
             bio,
+            likers,
         },
         ref
     ) => {
         const [Is_verified, setIs_verified] = useState(
             verified === "true" ? true : false
         );
+        const [response, setresponse] = useState();
+        const [loading, setLoading] = useState(true);
         const [counterLike, setCounter] = useState(likes);
         const [counterRetweets, setRetweets] = useState(retweets);
         const [textRetweets, setRetweets1] = useState("retweet");
@@ -49,11 +54,27 @@ const PostFull = forwardRef(
             isLiked === "true" ? true : false
         );
         useEffect(() => {
+            console.log("imageeeeeeeeeees");
+            console.log(image);
             setimgs_count(image.length);
             var temp = image.map((x) => x.url);
             image = temp;
-            console.log(verified);
+            console.log(image);
+            var temp2 = likers.map((x) => x.liker);
+            likers = temp2;
+            if ((likers.includes(localStorage.getItem("user_id")))) {
+                console.log("DA5AAL");
+                setIsLikedState(true);
+            }
+            else {
+                setIsLikedState(false);
+            }
         }, []);
+        const postObj = {
+            "user_id": localStorage.getItem("user_id"),
+            "tweet_id": window.location.pathname.split("/")[2].toString()
+
+        };
 
 
         function setImg(url) {
@@ -223,13 +244,13 @@ const PostFull = forwardRef(
             //})
             if (!e.currentTarget.classList.contains("is-liked-full")) {
                 e.currentTarget.classList.add("is-liked-full");
-                // debugger;
-                // document.getElementsByClassName("like-btns").classList.add("is-liked");
                 setCounter(counterLike + 1);
+                postLike(setLoading, setresponse, postObj);
                 setIsLikedState(true);
             } else {
                 e.currentTarget.classList.remove("is-liked-full");
                 // document.getElementsByClassName("like-btns").classList.remove("is-liked");
+                deleteLike(setLoading, setresponse, `?Id=${tweet_id}`)
                 setCounter(counterLike - 1);
                 setIsLikedState(false);
             }
@@ -383,7 +404,7 @@ const PostFull = forwardRef(
                             <span className="retweets-text-full">Retweets</span>
                         </div>
                         <div className="retweets-full-full ">
-                            <span className="retweets-count-full" >{likes}</span>
+                            <span className="retweets-count-full" >{counterLike}</span>
                             <span className="retweets-text-full">Likes</span>
                         </div>
                     </div>

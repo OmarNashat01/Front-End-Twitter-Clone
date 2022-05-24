@@ -24,10 +24,12 @@ function HomeFeed() {
   };
 
   if (!loading) {
-    console.log("homeee");
-    console.log(posts[0].tweet_id);
+    console.log("ana likers");
+    console.log(posts);
 
   }
+  const images_1 = [{ alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }]
+
 
   return (
 
@@ -50,7 +52,7 @@ function HomeFeed() {
                 verified="1"
                 text={post.text}
                 avatar={post.prof_pic_url}
-                image={post.images}
+                image={images_1}
                 isLiked="false"
                 isRetweet="false"
                 likes={post.like_count}
@@ -58,7 +60,8 @@ function HomeFeed() {
                 followers={post.followers_count}
                 following={post.following_count}
                 about={post.bio}
-                isReplying="true"
+                isReplying="false"
+                likers={post.liked_by_ids}
               ></Post>
             </div>
           })

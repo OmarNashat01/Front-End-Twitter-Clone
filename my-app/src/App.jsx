@@ -27,6 +27,8 @@ import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
 import SearchFeed from "./Components/SearchFeed/SearchFeed";
 import NotificationFeed from "./Components/NotificationFeed/NotificationFeed";
 import TweetFull from "./Components/FullTweet/FullTweet";
+import Comments from "./Components/Post/Comments";
+import ReplyBox from "./Components/Post/ReplyBox";
 
 import {
   BrowserRouter as Router,
@@ -350,8 +352,8 @@ function App() {
                     <div className="col col-md-7 col-lg-6 col-sm-10   col-xs-9 ">
                       <HomeNavbar />
                       <TweetFull></TweetFull>
-                      <TweetBox2 disabled={disabled} />
-                      <HomeFeed></HomeFeed>
+                      <ReplyBox />
+                      <Comments />
                     </div>
                   </div>
                 </div>

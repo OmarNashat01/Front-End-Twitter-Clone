@@ -3,6 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Post from "../Post/PostFull";
 import { getTweet } from "../../Api/tweetFull";
 import axios from "axios";
+import TweetBox2 from "../TweetBox2/TweetBox2";
 
 function FullTweet() {
     const count = 3
@@ -23,8 +24,8 @@ function FullTweet() {
 
 
     if (!loading) {
-        console.log("tweet_byId");
-        console.log(posts.data.tweet.bio);
+        console.log("COMMENTS");
+        console.log(posts.data);
 
 
     }
@@ -50,6 +51,7 @@ function FullTweet() {
         !loading && (
             <Post
                 user_id={posts.data.tweet.user_id}
+                tweet_id={posts.data.tweet.tweet_id}
                 displayName={posts.data.tweet.name}
                 username={posts.data.tweet.username}
                 verified="false"
@@ -63,8 +65,10 @@ function FullTweet() {
                 followers={posts.data.tweet.followers_count}
                 following={posts.data.tweet.following_count}
                 about={posts.data.tweet.bio}
+                likers={posts.data.tweet.liked_by_ids}
             ></Post>
         ));
+
 };
 
 export default FullTweet;

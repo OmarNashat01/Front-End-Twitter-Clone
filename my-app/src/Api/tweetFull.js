@@ -43,11 +43,11 @@ export async function deleteLike(setLoading, setResponse, params) {
 
 //RETWEET REQUESTS
 
-export async function postRetweet(setLoading, setRetweet, requestBody) {
+export async function postRetweet(setLoading, setRetweet, formdata) {
   setLoading(true);
 
   try {
-    const response = await postRequest("users/retweets", requestBody);
+    const response = await postRequest("users/retweets", formdata);
 
     setRetweet(response);
   } catch (error) {

@@ -73,8 +73,9 @@ const PostMini = forwardRef(
         function navProfile() {
             window.open(`/user/${user_id}`, "_self");
         }
-        function navTweet() {
+        function navTweet(e) {
             window.open(`/tweet/${tweet_id}`, "_self");
+            e.stopPropagation();
         }
 
         function closeImg() {
@@ -224,13 +225,8 @@ const PostMini = forwardRef(
             e.stopPropagation();
         }
 
-
-
-
-
         return (
-
-            <Card id="card-outline" style={{ width: '98%' }}>
+            <Card id="card-outline" style={{ width: '98%' }} onClick={navTweet}>
                 <Card.Body>
                     <Card.Title id="card-title"><ToolTip
                         user_id={user_id}
