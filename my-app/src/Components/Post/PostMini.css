@@ -1,0 +1,159 @@
+#card-outline {
+    border: 1px solid rgb(207, 217, 222);
+    border-radius: 10px;
+}
+
+#card-outline:hover {
+    background-color: rgba(185, 178, 178, 0.1) !important;
+
+}
+
+#card-title {
+    margin-bottom: -0.5rem;
+}
+
+.post-mini {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--twitter-background);
+    padding-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid rgb(207, 217, 222);
+    border-radius: 10px;
+}
+
+
+.post-mini :hover {
+    background-color: rgba(185, 178, 178, 0.1) !important;
+}
+
+.post__body-mini {
+    flex: 1;
+    padding: 10px;
+}
+
+.post__body-mini>img {
+    border-radius: 20px;
+    width: 100%;
+}
+
+
+.post__headerDescription-mini {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.post__headerText-mini {
+    display: inline-block;
+}
+
+.post__headerText-mini>h3 {
+    font-size: 15px !important;
+    margin-bottom: 5px !important;
+}
+
+.post__badge-mini {
+
+    font-size: 14px !important;
+    color: var(--twitter-color);
+}
+
+.post__headerSpecial-mini {
+    font-weight: 600;
+    font-size: 12px;
+    color: gray;
+}
+
+.post__avatar-mini {
+    padding: 0px;
+
+}
+
+
+.w-100 {
+    width: 100% !important;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+.h-50 {
+    height: 50% !important;
+}
+
+.p-0 {
+    padding: 0 !important;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.border-img-all {
+    border-radius: 25px 25px 25px 25px;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+.text-overflow-mini {
+
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.right-pad {
+    padding-right: 1%;
+
+}
+
+.left-pad {
+    padding-left: 1%;
+}
+
+.up-pad {
+    padding-top: 1%;
+
+}
+
+.down-pad {
+    padding-bottom: 1%;
+}
+
+.border-left-up {
+    border-radius: 25px 0px 0px 0px;
+}
+
+.border-left-down {
+    border-radius: 0px 0px 0px 25px;
+}
+
+.border-right-up {
+    border-radius: 0px 25px 0px 0px;
+}
+
+.border-right-down {
+    border-radius: 0px 0px 25px 0px;
+}
+
+.border-left-right {
+    border-radius: 0px 0px 25px 25px;
+}
+
+
+
+
+.full-border-left {
+    border-radius: 25px 0px 0px 25px;
+}
+
+.full-border-right {
+    border-radius: 0px 25px 25px 0px;
+}

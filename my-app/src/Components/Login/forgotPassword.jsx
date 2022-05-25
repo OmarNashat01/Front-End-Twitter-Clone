@@ -82,10 +82,9 @@ function ForgotPasswordPage(props) {
     );
   };
   const checkNewPasswordSent = () => {
-    if (page === 0 && verifyNewPassword !== undefined) {
-      if (true) {
-        // window.open("/Home", "_self");
-        console.log("xx" + verifyNewPassword);
+    if (page === 2 && verifyNewPassword !== undefined) {
+      if (verifyNewPassword.status === 200) {
+        window.open("/Home", "_self");
       }
     }
   };
@@ -107,8 +106,8 @@ function ForgotPasswordPage(props) {
   function NewPasswordStageBTN() {
     // console.log(Email + " " + OTP + " " + NewPassword);
     sendNewPassword();
-    console.log(verifyNewPassword);
-    // checkNewPasswordSent();
+    console.log(verifyNewPassword.status);
+    checkNewPasswordSent();
     // window.open("/Home", "_self");
   }
 

@@ -39,9 +39,11 @@ function ProfileFeed() {
         posts.map((post, index) => {
           return <div key={index}>
             <Post
+              user_id={post.user_id}
+              tweet_id={post.tweet_id}
               displayName={post.name}
               username={post.username}
-              verified="true"
+              verified="1"
               text={post.text}
               avatar={post.prof_pic_url}
               image={post.images}
@@ -49,6 +51,11 @@ function ProfileFeed() {
               isRetweet="false"
               likes={post.like_count}
               retweets={post.retweet_count}
+              followers={post.followers_count}
+              following={post.following_count}
+              about={post.bio}
+              isReplying="false"
+              likers={post.liked_by_ids}
             ></Post>
           </div>
         })}

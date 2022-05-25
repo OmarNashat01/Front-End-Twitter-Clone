@@ -27,6 +27,31 @@ export async function getUserTweets(setLoading, setUser, params) {
   setLoading(false);
 }
 
+export async function getHomeTweetsAndRetweets(
+  setLoading,
+  setPosts,
+  setHasMore,
+  params
+) {
+  //params is a string like => ?id=20
+  setLoading(true);
+
+  try {
+    const response = await getRequest(`home/random${params}`);
+    if (response.status === 404) {
+      setHasMore(false);
+    } else {
+      setHasMore(true);
+      setPosts((prevPosts) => {
+        return [...prevPosts, ...response.data["all_tweets_retweets"]];
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+  setLoading(false);
+}
+
 export async function getUserLikedTweets(setLoading, setUser, params) {
   //params is a string like => ?id=20
   // console.log(params);
@@ -55,12 +80,13 @@ export async function getHomeTweets(setLoading, setPosts, setHasMore, params) {
 
   try {
     const response = await getRequest(`tweets/random${params}`);
+
     if (response.status === 404) {
       setHasMore(false);
     } else {
       setHasMore(true);
       setPosts((prevPosts) => {
-        return [...prevPosts, ...response.data.tweets];
+        return [...prevPosts, ...response.data["all_tweets_retweets"]];
       });
     }
   } catch (error) {

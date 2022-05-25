@@ -3,7 +3,8 @@ import TweetPopupCSS from "./TweetPopup.module.css";
 
 import Modal from "react-modal";
 import TweetBox from "../../TweetBox/TweetBox";
-import ClosebtnNavbar from "./ClosebtnNavbar"
+import TweetBox2 from "../../TweetBox2/TweetBox2";
+import ClosebtnNavbar from "./ClosebtnNavbar";
 
 /**
  * Popup Component to view a Modal of a Tweet Submit sBox whenever clicking on a Tweet button
@@ -12,9 +13,13 @@ import ClosebtnNavbar from "./ClosebtnNavbar"
  * @param {function} toggleModal function being called when clicked to toggle between opening the Tweet Popup or not
  * @returns {Object}
  */
-export default function TweetPopup({setIsOpen,isOpen,toggleModal}) {
-  
-
+export default function TweetPopup({
+  setIsOpen,
+  isOpen,
+  toggleModal,
+  prop,
+  tweet_id,
+}) {
   return (
     <div className={TweetPopupCSS.popup_container}>
       {/* <button onClick={toggleModal}>Open modal</button> */}
@@ -28,8 +33,17 @@ export default function TweetPopup({setIsOpen,isOpen,toggleModal}) {
         closeTimeoutMS={500}
         ariaHideApp={false}
       >
-        <ClosebtnNavbar toggleModal={toggleModal}/>
-        <TweetBox setIsOpen={setIsOpen} isOpen={isOpen}/>
+        <ClosebtnNavbar toggleModal={toggleModal} />
+        {prop ? (
+          <TweetBox2
+            setIsOpen={setIsOpen}
+            isOpen={isOpen}
+            quote={prop}
+            tweet_id={tweet_id}
+          />
+        ) : (
+          <TweetBox setIsOpen={setIsOpen} isOpen={isOpen} />
+        )}
       </Modal>
     </div>
   );

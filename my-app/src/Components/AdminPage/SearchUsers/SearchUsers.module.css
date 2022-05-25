@@ -45,12 +45,15 @@ background-color:rgba(33, 85, 205,1);
 
     
         }
-@media only screen and (min-width:0px)  and (max-width:767px){
+@media only screen and (min-width:0px)  and (max-width:573px){
     .usersTable{
-   width:50vw;
+   width:60vw;
   
     }
-
+    .searchDiv{
+        margin-top: -100vh;
+        margin-bottom: 30px;
+    }
    
          .widthSmall{
          width:25vw !important;
@@ -90,7 +93,7 @@ margin-left: 12vw !important;
     }
 
     .usersTable{
-        width:75vw;
+        width:85vw;
        
          }
    
