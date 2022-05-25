@@ -50,7 +50,6 @@ export async function getHomeTweets(setLoading, setPosts, setHasMore, params) {
         const response = await getRequest(`tweets/random${params}`);
         if (response.status === 404) {
             setHasMore(false);
-            console.log("HIIIII");
         } else {
             setHasMore(true);
             setPosts((prevPosts) => { return [...prevPosts, ...response.data.tweets] });

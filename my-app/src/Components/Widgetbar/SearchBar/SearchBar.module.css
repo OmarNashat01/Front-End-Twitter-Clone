@@ -35,3 +35,17 @@ color: gray;
 .search__inputtext:focus + .search__searchIcon {
     color: rgb(26, 145, 218);
 }
+
+.close__btn{
+    background-color: transparent;
+    padding: 5px;
+}
+.close__btn:hover{
+    cursor: pointer;
+}
+.close__icon{
+    border-radius: 100%;
+    padding: 3px;
+    background-color: rgb(29, 155, 240); 
+    color: white !important;
+}

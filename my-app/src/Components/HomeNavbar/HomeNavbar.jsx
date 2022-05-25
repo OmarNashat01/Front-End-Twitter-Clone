@@ -1,9 +1,9 @@
 import React from 'react'
 import HomeNavbarCSS from "./HomeNavbar.module.css"
-function HomeNavbar() {
+function HomeNavbar({text="Home"}) {
   return (
     <div className={HomeNavbarCSS.topNavbar}>
-        <p className={HomeNavbarCSS.text}>Home</p>
+        <p className={HomeNavbarCSS.text}>{text}</p>
     </div>
     
     )

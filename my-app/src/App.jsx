@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import Post from "./Components/Post/Post";
-
+import NotificationCard from "./NotificationCard/NotificationCard";
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import LikesPage from "./Components/UserProfile/LikesPage";
@@ -17,10 +16,13 @@ import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
 import OtherProfiles from "./Components/UserProfile/OtherProfiles";
+import Navs2 from "./Components/SearchFeed/Navs/Navs2"
 // FEEDS
 import HomeNavbar from "./Components/HomeNavbar/HomeNavbar";
 import HomeFeed from "./Components/HomeFeed/HomeFeed";
 import ProfileFeed from "./Components/HomeFeed/ProfileFeed";
+import SearchFeed from "./Components/SearchFeed/SearchFeed"
+
 
 import {
   BrowserRouter as Router,
@@ -67,6 +69,7 @@ function App() {
   var authBool = false;
   var token = localStorage.getItem("token");
   const [disabled, setDisabled] = useState(false);
+ 
   try {
     var decode = jwt_decode(token);
     console.log("decode var = " + decode);
@@ -163,7 +166,13 @@ function App() {
                       <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
-                      <TestComponent name="notification" />
+                      <HomeNavbar text={"Notifications"} />
+                      <Navs2/>
+                      <NotificationCard />
+                      <NotificationCard />
+                      <NotificationCard />
+                      <NotificationCard />
+                      <NotificationCard />
                     </div>
                     <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
                       <Widgetbar />
@@ -291,6 +300,30 @@ function App() {
               )
             }
           />
+
+          <Route
+            path="/search/*"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <SearchFeed />
+                    </div>
+                    <div className="col col-md-3 col-lg-4 col-sm-3 .d-none .d-lg-block .d-xl-none ">
+                      <Widgetbar showSearchbar={false} />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
           <Route
             path="/user/*"
             element={
