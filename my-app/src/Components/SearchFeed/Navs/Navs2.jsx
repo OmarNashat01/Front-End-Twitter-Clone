@@ -4,7 +4,10 @@ import 'rsuite/dist/rsuite.min.css'
 import { useState } from "react";
 import "./Navs.css"
 
-
+/**
+ * Navs to be viewed in the Notification Feed of people replied/Liked/retweeted
+ * @returns {Object}
+ */
 function Navs2() {
 
  ////////////////////////////////////////////////////////////

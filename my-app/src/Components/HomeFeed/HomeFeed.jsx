@@ -4,6 +4,11 @@ import Loader from "./Loader";
 import Post from "../Post/Post";
 import { getHomeTweets } from "../../Api/homeFeed";
 
+/**
+ *  This componenet is responsable to view all Posts of User's tweets and Followers ones
+ *  This is also responsable to view limited numbers of posts for each page and retrieve additional posts when reaching the end of the page
+ * @returns {Object} 
+ */
 
 function HomeFeed() {
   const [posts, setPosts] = useState([]);
