@@ -17,7 +17,7 @@ const Card=(props)=> {
       {/* <MDBCardImage src='https://www.seoclerk.com/pics/202205-1kMlfU1396431821.jpg' position='top'height='150px' width='100px' alt='...' /> */}
       <MDBCardBody >
 
-        {type==1 && <div> <MDBCardTitle className={CardStyles.textAlign}><RepeatIcon/>{title}</MDBCardTitle>
+        {type==1 && <div> <MDBCardTitle className={CardStyles.textAlign}><div className={CardStyles.tweet}><RepeatIcon/></div>{title}</MDBCardTitle>
         <div className={CardStyles.textAlign}>
         <MDBCardText >
           {value}

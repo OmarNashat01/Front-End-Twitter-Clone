@@ -69,9 +69,9 @@ var temp=values.data[Object.keys(values.data)[0]];
                             <Sidebar />
                         </div>
                     </div>
-                    <div className={`col col-lg-10 col-md-9 col-sm-4 col-sm-4 ${TweetStatsStyle.borderStyle}`}>
+                    <div className={`col col-lg-10 col-md-9 col-sm-4 col-sm-4 `}>
 
-                        <div >
+                        <div className={TweetStatsStyle.borderStyle}>
                             <div className={TweetStatsStyle.textStyle}>Number of Tweets</div>
                             <div>
 
