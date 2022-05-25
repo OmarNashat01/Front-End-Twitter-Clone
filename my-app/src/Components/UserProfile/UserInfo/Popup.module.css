@@ -15,6 +15,7 @@
     padding: 32px;
     width: 70%;
     height: 75%;
+    z-index: 1000;
     left: 5%;
     max-width: 640px;
     background-color: white;
@@ -54,7 +55,6 @@
 .name {
     position: relative;
     top: 63%;
-    left: 0%;
 }
 
 .bio {
