@@ -71,10 +71,14 @@ function ForgotPasswordPage(props) {
   /// 3 ///////send new password
   const sendNewPassword = async () => {
     //console.log(user.Email);
-    let resul3 = await PostEmailAndVerCode(
+    let requestBody = {
+      email: Email,
+      password: NewPassword,
+    };
+    let resul3 = await PostNewPassword(
       setVerLoadingNewPassword,
       setVerifyNewPassword,
-      { password: NewPassword }
+      requestBody
     );
   };
   const checkNewPasswordSent = () => {
