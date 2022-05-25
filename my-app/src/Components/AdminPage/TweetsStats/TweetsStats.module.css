@@ -1,6 +1,6 @@
 .toDateSelector{
     margin-left: 320px;
-    margin-top: -80px;
+    margin-top: -67px;
     width:10%;
 }
 .chart{
@@ -15,7 +15,10 @@
 }
 .dateIcon{
     margin-left: 290px;
-    margin-top: -110px;
+    margin-top: -90px;
+}
+.buttonPosition{
+
 }
 .buttonStyle{
     box-shadow: 5px 5px 5px grey;
@@ -42,4 +45,180 @@ color:rgba(23, 40, 69);
 
     
     
+}
+.widthSmall{
+
+}
+.navBorder{
+    padding-left: 0 !important ;
+    padding-right: 0 !important;
+    border-right:3px solid grey;
+    box-shadow: 2px 2px 2px grey;
+
+}
+.barWidth{
+
+  background-color:rgba(33, 85, 205,1);
+
+}
+@media only screen and (min-width:769px) and (max-width:1280px) {
+    .retweetCard{
+        width:60vw !important;
+       margin-left: 50vw!important;
+       margin-top: -13vh;
+    }
+   
+}
+@media only screen and (min-width: 0px)  and (max-width:574px){
+   .buttonPosition{
+    margin-left: 5vw!important; 
+  
+    margin-top: 5vw;
+}
+    .widthSmall{
+    width:25vw !important;
+    }
+ 
+    .borderStyle{
+
+    margin-top: -100vh;
+   margin-left: 30vw;
+    }
+
+    .chart{
+        margin-left:-4vw;
+        width:130vw;
+    }
+    .fromDateSelector{
+      
+        width:3vw;
+      
+    }
+
+    .toDateSelector{
+        margin-left: 6vw;
+        margin-top: -9vw;
+        width:5vw;
+    }
+    .dateIcon{
+        margin-left: -2vw;
+        margin-top: 7vw;
+    }
+
+    .retweetCard{
+        margin-top: 2vw!important;
+        width:180vw !important;
+       margin-left:2vw!important;
+   
+    }
+   
+}
+@media only screen and (min-width: 576px)  and (max-width:767px){
+   
+    .widthSmall{
+    width:130vw !important;
+    }
+ 
+    .borderStyle{
+   margin-left: 1vw;
+   margin-top: 1vh;
+    }
+    .dateIcon{
+       
+        margin-top: -15vh;
+    }  
+    
+    .toDateSelector{
+       
+        margin-top: -10vh;
+      
+    }
+
+    .buttonPosition{
+    margin-left: 70vw;
+    margin-top: 2vh;
+    }
+
+    .chart{
+       
+        width:130vw;
+    }
+    .retweetCard{
+        margin-top: 2vw!important;
+        width:180vw !important;
+       margin-left:2vw!important;
+   
+    }
+}
+
+@media only screen and (width: 768px) {
+    .chart{
+       
+        width:130vw;
+    }
+    .widthSmall{
+    width:50vw !important;
+    }
+/*  
+    .borderStyle{
+margin-top: -100vh!important;
+margin-left: 12vw !important;
+    } */
+    .retweetCard{
+        margin-top: 2vw!important;
+        width:100vw !important;
+       margin-left:2vw!important;
+   
+    }
+   
+}
+@media only screen and (width: 571px)  {
+   
+    .widthSmall{
+    width:50vw !important;
+    }
+ 
+    .borderStyle{
+margin-top: -100vh!important;
+margin-left: 12vw !important;
+    }
+   
+}
+@media only screen and (min-width: 574px)  and (max-width:575.5px){
+   
+    .widthSmall{
+    width:15vw !important;
+    }
+ 
+    .borderStyle{
+margin-top: -100vh!important;
+margin-left: 14vw !important;
+    }
+    .dateIcon{
+       
+        margin-top: -15vh;
+        margin-left: 40vw;
+    }  
+    
+    .toDateSelector{
+       
+        margin-top: -10vh;
+        margin-left: 45vw;
+      
+    }
+    .buttonPosition{
+        margin-left: 5vw!important; 
+      
+        margin-top: 5vw;
+    }
+    .chart{
+       
+        width:130vw;
+    }
+    .retweetCard{
+        margin-top: 2vw!important;
+        width:100vw !important;
+       margin-left:2vw!important;
+   
+    }
 }

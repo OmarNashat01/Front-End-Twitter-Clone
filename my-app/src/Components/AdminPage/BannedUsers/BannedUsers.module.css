@@ -1,0 +1,131 @@
+.textStyle{
+    font-family: Arial Black,sans-serif;
+      font-size:22px;
+      font-weight:700px;
+      margin-top: -10px;
+margin-bottom: 20px;
+color:rgba(23, 40, 69);
+}
+
+.searchBox{
+   
+ 
+  box-shadow: 5px 5px 5px grey;
+margin-right: 100px !important; 
+}
+.usersTable{
+ display: flexbox;
+
+}
+.searchDiv{
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.searchButtonDiv{
+  margin-left: 10px;
+}
+.searchButton{
+
+
+box-shadow: 5px 5px 5px grey;
+
+}
+.navBorder{
+  padding-left: 0 !important ;
+  padding-right: 0 !important;
+  border-right:3px solid grey;
+  box-shadow: 2px 2px 2px grey;
+
+}
+.barWidth{
+border: black;
+
+background-color:rgba(33, 85, 205,1);
+}
+.pageColor{
+  background-color:rgba(242, 242, 242,1) ;
+}
+
+.widthSmall{
+
+  }
+
+  .borderStyle{
+
+  
+      }
+@media only screen and (min-width:0px)  and (max-width:767px){
+  .usersTable{
+ width:50vw;
+
+  }
+
+ 
+       .widthSmall{
+       width:25vw !important;
+       }
+    
+       .borderStyle{
+   
+       margin-top: -100vh;
+      margin-left: 30vw;
+       }
+
+}
+
+
+@media only screen and (min-width: 576px)  and (max-width:768px){
+ 
+  .widthSmall{
+  width:130vw !important;
+  }
+
+  .borderStyle{
+ margin-left: 1vw;
+ margin-top: 1vh;
+  }
+
+}
+
+@media only screen and (width: 768px) {
+ 
+  .widthSmall{
+  width:50vw !important;
+  }
+
+  .borderStyle{
+margin-top: -100vh!important;
+margin-left: 12vw !important;
+  }
+
+  .usersTable{
+      width:75vw;
+     
+       }
+ 
+}
+@media only screen and (width: 571px)  {
+ 
+  .widthSmall{
+  width:50vw !important;
+  }
+
+  .borderStyle{
+margin-top: -100vh!important;
+margin-left: 12vw !important;
+  }
+ 
+}
+@media only screen and (min-width: 574px)  and (max-width:575.5px){
+ 
+  .widthSmall{
+  width:15vw !important;
+  }
+
+  .borderStyle{
+margin-top: -100vh!important;
+margin-left: 14vw !important;
+  }
+
+
+}
