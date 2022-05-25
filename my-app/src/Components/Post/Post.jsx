@@ -18,6 +18,7 @@ import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
 import Col from "react-bootstrap/Col";
 import PostMini from "./PostMini"
 import { postLike, deleteLike, postRetweet, deleteRetweet } from "../../Api/tweetFull";
+import TweetPopup from "./../Sidebar/TweetPopup/TweetPopup";
 
 const Post = forwardRef(
   (
@@ -42,6 +43,7 @@ const Post = forwardRef(
       isRetweeted,
       isQuoted,
       replyingUser,
+      Retweet_user,
       //retweeters_ids,
 
 
@@ -77,9 +79,6 @@ const Post = forwardRef(
     const formData = new FormData();
     formData.append('quoted', false);
     formData.append('tweet_id', tweet_id);
-    formData.append('text', text);
-    formData.append('videos', []);
-    formData.append('images', image);
     useEffect(() => {
 
       //formdata object
@@ -118,7 +117,10 @@ const Post = forwardRef(
       "tweet_id": tweet_id
 
     };
-
+    const [isOpen, setIsOpen] = useState(false);
+    function toggleModal() {
+      setIsOpen(!isOpen);
+    }
 
 
     const images_1 = [{ alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }]
@@ -128,9 +130,6 @@ const Post = forwardRef(
 
     function fullScreenTog(e) {
       setfullScreen(!fullScreen);
-
-
-
     }
 
     function navProfile() {
@@ -377,7 +376,7 @@ const Post = forwardRef(
               {isRetweeted === "true" ? (
                 <RepeatIcon fontSize="small" />) : null}
               {isRetweeted === "true" ? (
-                <span className="post__headerSpecial" style={{ marginLeft: '2%' }}>{username} Retweeted</span>) : null
+                <span className="post__headerSpecial" style={{ marginLeft: '2%' }}>{Retweet_user} Retweeted</span>) : null
               }
 
               <h3>
@@ -444,6 +443,9 @@ const Post = forwardRef(
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>
                         {textRetweets}
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>
+                        Quote
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -514,6 +516,9 @@ const Post = forwardRef(
                 <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>
                   {textRetweets}
                 </Dropdown.Item>
+                <Dropdown.Item href="#/action-1" onClick={toggleModal}>
+                  quote
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <div
@@ -547,6 +552,21 @@ const Post = forwardRef(
             </div>
           </div>
         </div>
+        <TweetPopup
+          toggleModal={toggleModal}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          prop={<PostMini
+            displayName={displayName}
+            username={username}
+            text={text}
+            avatar={avatar}
+            image={image}
+            user_id={user_id}
+            tweet_id={tweet_id}
+          ></PostMini>}
+          tweet_id={tweet_id}
+        />
       </div>
     );
   }

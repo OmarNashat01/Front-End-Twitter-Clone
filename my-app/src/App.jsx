@@ -350,7 +350,7 @@ function App() {
                       <Sidebar setDisabled={setDisabled} />
                     </div>
                     <div className="col col-md-7 col-lg-6 col-sm-10   col-xs-9 ">
-                      <HomeNavbar />
+                      <HomeNavbar text={"Tweet"} />
                       <TweetFull></TweetFull>
                       <ReplyBox />
                       <Comments />

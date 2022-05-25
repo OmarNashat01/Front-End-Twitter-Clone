@@ -97,14 +97,15 @@ function HomeFeed() {
             else {
               return <div key={index}>
                 <Post
-                  user_id={post.user_id}
-                  tweet_id={post.tweet_id}
-                  displayName={post.name}
-                  username={post.username}
+                  user_id={post.tweet_refrenced.user_id}
+                  tweet_id={post.tweet_refrenced.tweet_id}
+                  displayName={post.tweet_refrenced.username}
+                  Retweet_user={post.name}
+                  username={post.tweet_refrenced.username}
                   verified="1"
-                  text={post.text}
-                  avatar={post.prof_pic_url}
-                  image={post.images}
+                  text={post.tweet_refrenced.text}
+                  avatar={post.tweet_refrenced.prof_pic_url}
+                  image={post.tweet_refrenced.images}
                   isLiked="false"
                   isRetweeted="true"
                   likes={post.like_count}

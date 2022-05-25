@@ -13,12 +13,12 @@ import TweetboxCSS from "./TweetBox2.module.css";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { getMe } from "../../Api/UserProfile";
-import { getTweet } from "../../Api/tweetFull";
+import { getTweet, postRetweet } from "../../Api/tweetFull";
 import { postReply } from "../../Api/tweetbox";
 
 
 const MAX_CHARS_ALLOWED = 280;
-export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyingUser }) {
+export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyingUser, quote, tweet_id }) {
   const replyArray = [];
 
 
@@ -30,10 +30,14 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
   ////////////////////////-----MINAAA---///////////////////////////////////////////
   const [replypost, setReplyPost] = useState([]);
 
-  const tweet_id = window.location.pathname.split("/")[2].toString();
   useEffect(() => {
     getMe(setLoading1, setMe);
-    getTweet(setLoading2, setReplyPost, `?Id=${tweet_id}`);
+    if (!quote) {
+      getTweet(setLoading2, setReplyPost, `?Id=${window.location.pathname.split("/")[2].toString()}`);
+    }
+    else {
+      setLoading2(false);
+    }
 
   }, [])
 
@@ -49,9 +53,9 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
       setIsOpen(!isOpen)
     }
     console.log("onSubmit  => ", { ...resState, media, plainText });
-    if (!loading1) {
+    if (!loading1 && !quote) {
       const formData = new FormData()
-      formData.append("tweet_id", tweet_id);
+      formData.append("tweet_id", window.location.pathname.split("/")[2].toString());
       formData.append("text", plainText);
       if (typeof media != 'undefined') {
         for (let i = 0; i < media.length; i++) {
@@ -64,6 +68,25 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
       for (var pair of formData.entries()) {
         console.log(pair[0] + ': ' + pair[1]);
       }
+    }
+    else if (!loading1 && quote) {
+      const formData = new FormData()
+      formData.append("tweet_id", tweet_id);
+      formData.append("text", plainText);
+      if (typeof media != 'undefined') {
+        for (let i = 0; i < media.length; i++) {
+          formData.append("img", media[i]);
+          console.log("mediaaaaaaa")
+          console.log(media[i]);
+        }
+      }
+      formData.append("quoted", true);
+      postRetweet(setLoading1, setTweet, formData);
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
+
     }
 
 
@@ -83,7 +106,9 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
     <div className={TweetboxCSS.tweetbox} data-testid="tweetbox-1">
       {!loading1 && !loading2 && !disabled &&
         <Container>
-          <span className={TweetboxCSS.replyingTo}>Replying to <span className={TweetboxCSS.replyingUser} >@{replyingUser}</span></span>
+          {replyingUser ?
+            <span className={TweetboxCSS.replyingTo}>Replying to <span className={TweetboxCSS.replyingUser} >@{replyingUser}</span></span> : null
+          }
           <Row>
             <Col xs={2}>
               <IconButton className={TweetboxCSS.imageInput} onClick={navProfile}>
@@ -93,6 +118,7 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
             <Col xs={10} md={10} >
               <Form onSubmit={OnSubmit} onReset={() => console.log("ON RESETTT")} id="form-click"  >
                 <WhatsHappeningBar maxChars={MAX_CHARS_ALLOWED} />
+                {quote}
                 <Preview />
                 <span className={TweetboxCSS.thematicBreak} />
                 <div id="test">

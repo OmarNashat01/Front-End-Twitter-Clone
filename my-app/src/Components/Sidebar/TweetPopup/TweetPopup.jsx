@@ -3,11 +3,12 @@ import TweetPopupCSS from "./TweetPopup.module.css";
 
 import Modal from "react-modal";
 import TweetBox from "../../TweetBox/TweetBox";
+import TweetBox2 from "../../TweetBox2/TweetBox2";
 import ClosebtnNavbar from "./ClosebtnNavbar"
 
 
-export default function TweetPopup({setIsOpen,isOpen,toggleModal}) {
-  
+export default function TweetPopup({ setIsOpen, isOpen, toggleModal, prop, tweet_id }) {
+
 
   return (
     <div className={TweetPopupCSS.popup_container}>
@@ -22,8 +23,9 @@ export default function TweetPopup({setIsOpen,isOpen,toggleModal}) {
         closeTimeoutMS={500}
         ariaHideApp={false}
       >
-        <ClosebtnNavbar toggleModal={toggleModal}/>
-        <TweetBox setIsOpen={setIsOpen} isOpen={isOpen}/>
+        <ClosebtnNavbar toggleModal={toggleModal} />{prop ?
+          <TweetBox2 setIsOpen={setIsOpen} isOpen={isOpen} quote={prop} tweet_id={tweet_id} /> : <TweetBox setIsOpen={setIsOpen} isOpen={isOpen} />
+        }
       </Modal>
     </div>
   );

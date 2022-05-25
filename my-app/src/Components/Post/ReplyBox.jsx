@@ -38,7 +38,7 @@ function ReplyBox() {
 
     return (
         !loading && (
-            <TweetBox2 disbaled={false} >/</TweetBox2>
+            <TweetBox2 disbaled={false} replyingUser={posts.data.tweet.username}>/</TweetBox2>
         ));
 
 };
