@@ -37,7 +37,7 @@ export async function PostNewPassword(setLoading, setRes, requestBody) {
   let response;
 
   try {
-    response = await putRequest("users/forgot_password/OTP", requestBody);
+    response = await putRequest("users/forgot_password", requestBody);
 
     setRes(response);
   } catch (error) {

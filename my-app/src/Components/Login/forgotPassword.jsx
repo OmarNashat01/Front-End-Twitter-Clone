@@ -9,6 +9,7 @@ import {
   PostEmailAndVerCode,
   PostNewPassword,
 } from "../../Api/forgotPassword";
+import { Password } from "@mui/icons-material";
 
 function ForgotPasswordPage(props) {
   const [Email, setEmail] = useState("");
@@ -39,9 +40,11 @@ function ForgotPasswordPage(props) {
     let resul = await postVerify(setVerLoading, setVerify, requestBody);
   };
   const checkEmailSent = () => {
-    if (page === 0 /*&& verify !== undefined*/) {
-      if (true /*verify.status === 200*/) {
+    if (page === 0 && verify !== undefined) {
+      if (verify.status === 200) {
         setPage(1);
+      } else {
+        setErrorMessage1("User not found");
       }
     }
   };
@@ -71,13 +74,14 @@ function ForgotPasswordPage(props) {
     let resul3 = await PostEmailAndVerCode(
       setVerLoadingNewPassword,
       setVerifyNewPassword,
-      `?OTP=${OTP}&email=${Email}`
+      { password: NewPassword }
     );
   };
   const checkNewPasswordSent = () => {
     if (page === 0 && verifyNewPassword !== undefined) {
       if (true) {
-        window.open("/Home", "_self");
+        // window.open("/Home", "_self");
+        console.log("xx" + verifyNewPassword);
       }
     }
   };
@@ -92,13 +96,16 @@ function ForgotPasswordPage(props) {
   }
   function OtpStageBTN() {
     sendEmailAndVerCode();
-    setPage(2);
+    checkVer();
+    // setPage(2);
   }
 
   function NewPasswordStageBTN() {
     // console.log(Email + " " + OTP + " " + NewPassword);
     sendNewPassword();
-    window.open("/Home", "_self");
+    console.log(verifyNewPassword);
+    // checkNewPasswordSent();
+    // window.open("/Home", "_self");
   }
 
   function getVerCode(val) {
@@ -142,13 +149,14 @@ function ForgotPasswordPage(props) {
               Enter your email, phone number, or username
             </label>
           </div>
+          <div className={Popup.errorMessage}>{errorMessage1}</div>
 
           <div className={Popup.FPbtn}>
             <button
               type="button"
               className="updatedBtn btn btn-dark"
               id={LoginCss.updatedBtn}
-              style={{ width: "100%", height: "50px" }}
+              style={{ width: "100%", height: "50px", marginTop: "30px" }}
               onClick={EmailStageBTN}
               disabled={btnState}
             >
