@@ -1,0 +1,33 @@
+.topNavbar{
+  display: flex;
+ align-items: center;
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    padding: 10px;
+    top: 0 !important;
+    align-self: flex-start; /* <-- this is the fix */
+    background-color: white; 
+    z-index: 100;
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(5px);
+
+  }
+
+  .popup_closebtn {
+    padding: 10px!important;
+    border-radius: 100% !important;
+    box-shadow: none !important;
+}
+
+.popup_closebtn:hover {
+  background-color: rgba(15,20,25,0.1); 
+}
+
+.text{
+  color: #0F1419;
+  font-size: 20px;
+  margin-left: 20px;
+  font-weight: bolder;
+}
+  
+  

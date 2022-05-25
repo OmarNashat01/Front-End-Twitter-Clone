@@ -20,6 +20,7 @@ const Post = forwardRef(
   (
     {
       user_id,
+      tweet_id,
       displayName,
       username,
       verified,
@@ -33,6 +34,7 @@ const Post = forwardRef(
       followers,
       following,
       bio,
+      isReplying,
     },
     ref
   ) => {
@@ -48,6 +50,7 @@ const Post = forwardRef(
     const [isLikedState, setIsLikedState] = useState(
       isLiked === "true" ? true : false
     );
+    const [isFull, setisFull] = useState(true);
     useEffect(() => {
       setimgs_count(image.length);
       var temp = image.map((x) => x.url);
@@ -60,12 +63,17 @@ const Post = forwardRef(
       setfullScreenImg(url);
     }
 
-    function fullScreenTog() {
+    function fullScreenTog(e) {
       setfullScreen(!fullScreen);
+      e.stopPropagation();
+
     }
 
     function navProfile() {
       window.open(`/user/${user_id}`, "_self");
+    }
+    function navTweet() {
+      window.open(`/tweet/${tweet_id}`, "_self");
     }
 
     function closeImg() {
@@ -96,7 +104,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[0].url}
-                  className="img-post h-100 w-100 border-img-all right-pad"
+                  className="img-post h-100 w-100 full-border-left right-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[0].url);
@@ -107,7 +115,7 @@ const Post = forwardRef(
               <Col className="p-0">
                 <img
                   src={image[1].url}
-                  className="img-post h-100 w-100 border-img-all left-pad"
+                  className="img-post h-100 w-100 full-border-right left-pad"
                   alt=""
                   onClick={() => {
                     setImg(image[1].url);
@@ -211,6 +219,9 @@ const Post = forwardRef(
         );
       }
     }
+    function stop_prop(e) {
+      e.stopPropagation();
+    }
 
     function toggleFavColor(e) {
       //DELETE
@@ -221,6 +232,7 @@ const Post = forwardRef(
       //axios.post('///',..., onsuccess: function(response) {
       //e.currentTarget.classList.add("liked");
       //})
+
       if (!e.currentTarget.classList.contains("is-liked")) {
         e.currentTarget.classList.add("is-liked");
         // debugger;
@@ -244,6 +256,7 @@ const Post = forwardRef(
       //    elements.classList.add("is-liked");
       //    setCounter(counterLike - 1);
       //  }
+      e.stopPropagation();
     }
 
     function toggleRetweets(e) {
@@ -266,10 +279,11 @@ const Post = forwardRef(
         setRetweets1("retweet");
         isRetweet = false;
       }
+      e.stopPropagation();
     }
 
     return (
-      <div className="post" ref={ref}>
+      <div className="post" ref={ref} onClick={navTweet}>
         <div className="post__avatar">
           <ToolTip
             user_id={user_id}
@@ -294,6 +308,10 @@ const Post = forwardRef(
               </h3>
             </div>
             <div className="post__headerDescription" >
+
+              {isReplying === "true" ? (
+                <span className="replyingTo-post">Replying to <span className="replyingUser-post" >@elonmask</span></span>) : null
+              }
               <p className="text-overflow">{text}</p>
             </div>
           </div>
@@ -353,15 +371,17 @@ const Post = forwardRef(
                     <span className="likeCounter-full">{counterLike}</span>
                   </div>
                   <div className="publish ">
-                    <Dropdown className="d-flex align-items-center">
+                    <Dropdown className="d-flex align-items-center" >
                       <Dropdown.Toggle
                         className="d-flex align-items-center"
                         variant="secondary"
                         id="dropdown-basic-full"
+
                       >
                         <PublishIcon
                           fontSize="small"
                           className="custom-icon-full"
+
                         />
                       </Dropdown.Toggle>
 
@@ -377,11 +397,15 @@ const Post = forwardRef(
               </div>
             ) : null}
           </div>
-          <div className="post__footer">
+          <div className={
+            isReplying === "true"
+              ? "post__footer_2"
+              : "post__footer"
+          }>
             <div className="chat d-flex align-items-center">
               <ChatBubbleOutlineIcon fontSize="small" className="custom-icon" />
             </div>
-            <Dropdown className="d-flex align-items-center">
+            <Dropdown className="d-flex align-items-center" onClick={stop_prop}>
               <Dropdown.Toggle
                 variant="secondary"
                 id="dropdown-basic"
@@ -412,7 +436,7 @@ const Post = forwardRef(
               <span className="likeCounter">{counterLike}</span>
             </div>
             <div className="publish ">
-              <Dropdown className="d-flex align-items-center">
+              <Dropdown className="d-flex align-items-center" onClick={stop_prop}>
                 <Dropdown.Toggle
                   className="d-flex align-items-center"
                   variant="secondary"

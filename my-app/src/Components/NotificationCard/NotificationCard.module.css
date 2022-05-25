@@ -45,6 +45,18 @@
     margin-top: 11px;
     color: #fb1682;
 }
+.retweet__icon{
+    font-size: 32px !important;
+    margin-top: 11px;
+    color: #76B153;
+}
+.reply__icon{
+    font-size: 32px !important;
+    margin-top: 11px;
+    color: #1988D2;
+}
+
+
 
 .toolbtn_container{
     display: flex;

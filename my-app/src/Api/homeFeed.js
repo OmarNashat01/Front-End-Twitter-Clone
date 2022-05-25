@@ -13,6 +13,14 @@ export async function getMyTweets(setLoading, setPosts) {
     setLoading(false);
   }
 
+  /**
+   * this function is used to retrieve Posts to be viewed in the Home Feed of the logged-in User
+   * 
+   * @param {boolean} setLoading  useState in order to check if the getRequest is still retrieving the data
+   * @param {array} setPosts  useState used to retrieve the posts that is retrieved through out this request
+   * @param {boolean} setHasMore  useSatet that indicates if our database has more posts to be retreived and it becomes false if there is no posts else to be retreived
+   * @param {string} params this paramaters is used to pass number of page to be retrieved
+   */
   export async function getHomeTweets(setLoading, setPosts,setHasMore, params) {
     //params is a string like => ?id=20
     setLoading(true);
