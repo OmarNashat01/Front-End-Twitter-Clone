@@ -39,7 +39,7 @@ console.log(userName);
         {console.log(saveName)}
       </form>
       </div >
-      <div ><UsersTable  userName={userName} /></div>
+      <div className={SearchUsersStyle.usersTable}><UsersTable  userName={userName} /></div>
       
     
             </div>

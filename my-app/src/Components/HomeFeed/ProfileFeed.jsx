@@ -23,6 +23,7 @@ function ProfileFeed() {
 
 
   if (!loading) {
+    console.log(posts)
     console.log("imageeeeeeeeeeee");
     console.log(posts[1].images);
     console.log(posts[0].images.length);
@@ -43,7 +44,7 @@ function ProfileFeed() {
               verified="true"
               text={post.text}
               avatar={post.prof_pic_url}
-              image={images_1}
+              image={post.images}
               isLiked="false"
               isRetweet="false"
               likes={post.like_count}

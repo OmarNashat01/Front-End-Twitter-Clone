@@ -8,7 +8,17 @@ import IconButton from "@mui/material/IconButton";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BlockIcon from "@mui/icons-material/Block";
 
-function SearchCard(props) {
+/**
+ * Notification Cards that is used in the Notification Feed to display Users that replied/liked/retweeted
+ * 
+ * @param {string} props.name  Name to be viewed of a user that replied/liked/retweeted in the notification card
+ * @param {string} props.tweet_text retweet/reply of the user to be viewed in the notification card 
+ * @param {string} props.img image of the user that replied/liked/retweeted
+ * @param {string} props.user_id User ID that replied/liked/retweeted
+ * @param {string} props.action action written here to display the icon that best describe this action (action = "reply"/"liked"/"retweeted" ) 
+ * @returns {Object}
+ */
+function NotificationCard(props) {
   function navProfile() {
     window.open(`/user/${props.user_id}`, "_self");
   }
@@ -43,4 +53,4 @@ function SearchCard(props) {
   );
 }
 
-export default SearchCard;
+export default NotificationCard;
