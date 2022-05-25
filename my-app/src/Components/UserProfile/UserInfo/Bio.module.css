@@ -32,16 +32,16 @@
     top: 75%;
     bottom: 20%;
     vertical-align: text-bottom;
-    left: 145px;
+    left: 205px;
 }
 
 .following {
     font-size: 15px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 400;
-    position: relative;
+    position: absolute;
     color: rgb(83, 100, 113);
-    top: 55px;
+    top: 80px;
     left: 10px;
     line-height: 20px;
 }
@@ -50,9 +50,9 @@
     font-size: 15px;
     font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 400;
-    position: relative;
+    position: absolute;
     color: rgb(83, 100, 113);
-    top: 35px;
+    top: 80px;
     left: 105px;
     line-height: 20px;
 }
@@ -95,6 +95,25 @@
     left: 20px;
 }
 
+.loc {
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: normal;
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+    margin-right: 12px;
+    color: rgb(83, 100, 113);
+    overflow-wrap: break-word;
+    min-width: 0px;
+    display: inline-block;
+    white-space: nowrap;
+    top: 13px;
+    bottom: 20%;
+    vertical-align: text-bottom;
+    left: 133px;
+}
+
 .bicon {
     position: absolute !important;
     top: 79% !important;
@@ -127,9 +146,9 @@ hr {
         font-size: 15px;
         font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         font-weight: 400;
-        position: absolute;
+        position: relative;
         color: rgb(83, 100, 113);
-        top: 175%;
+        top: 35px;
         left: 105px;
         line-height: 20px;
     }

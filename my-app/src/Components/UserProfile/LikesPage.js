@@ -18,11 +18,12 @@ import FollowingPage from "./UserInfo/FollowigPage";
 import bell from "../../assets/bell.png";
 import CloseButton from "react-bootstrap/CloseButton";
 import envelope from "../../assets/envelope-icon-14.png";
-import dots from "../../assets/3dots.jpg";
+import LikedFeed from "../HomeFeed/LikedFeed";
+
 
 
 // console.log("classes");
-const UserProfile = () => {
+const LikesPage = () => {
 const [buttonPopup, setButtonPopup] = useState(false);
 const [loading, setLoading] = useState(true);
 const [userData, setUserData] = useState();
@@ -44,16 +45,16 @@ async function OnSubmit() {
     //   setIsOpen(!isOpen)
     // }
     // console.log("onSubmit  => ", { ...resState, plainText });
-    if (!loading) {
-        const Obj = {
-            "source_user_id": userData.data.user._id,
-            "target_user_id": window.location.pathname.split("/")[2].toString()
-        };
-        console.log(Obj);
-        // sendFollow(setLoadingsss, setTweet, Obj);
-    }
+    // if (!loading) {
+    //     const Obj = {
+    //         "source_user_id": userData.data.user._id,
+    //         "target_user_id": window.location.pathname.split("/")[2].toString()
+    //     };
+    //     console.log(postObj);
+    //     sendFollow(setLoadingsss, setTweet, Obj);
+    // }
 
-    return true;
+    // return true;
 }
 
 function setImg(url) {
@@ -143,8 +144,6 @@ return (!loading && ( <
         fingcount = { userData.data.user.following_count }
         fercount = { userData.data.user.followers_count }
         bdate = { userData.data.user.date_of_birth }
-        link = { userData.data.user.website }
-        loc = { userData.data.user.location }
         />{" "} <
         Button variant = "outline-dark"
         size = "sm"
@@ -204,9 +203,11 @@ return (!loading && ( <
 }
 
 <
-/div> < /
+LikedFeed / >
+    <
+    /div> < /
 Container > { " " } <
     /Auxelary>
 ));
 };
-export default UserProfile;
+export default LikesPage;

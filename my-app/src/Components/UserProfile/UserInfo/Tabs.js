@@ -17,7 +17,13 @@ const Tabss = () => {
         className = { TabCSS.tabs } > Tweets & replies < /a> <
         a href = "profile/media"
         className = { TabCSS.tabs } > Media < /a> <
-        a href = "profile/likes"
+        a
+        // href = "profile/likes"
+        onClick = {
+            () => {
+                window.open("/profile/likes", "_self");
+            }
+        }
         className = { TabCSS.tabs } > Likes < /a> < /
         nav >
 

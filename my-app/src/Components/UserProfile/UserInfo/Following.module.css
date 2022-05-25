@@ -1,7 +1,7 @@
 .box {
     position: relative;
     width: max-content;
-    top: auto;
+    top: -60px;
 }
 
 .user {
@@ -9,7 +9,7 @@
     font-family: inherit;
     font-weight: bold;
     position: relative;
-    top: -15%;
+    top: 12px;
     left: 80%;
 }
 
@@ -19,7 +19,7 @@
     font-weight: lighter;
     color: gray;
     position: relative;
-    top: 10%;
+    top: -7px;
     left: 1%;
 }
 
@@ -30,8 +30,9 @@
     position: relative;
     white-space: nowrap;
     line-height: 0.4cm;
-    top: 30%;
+    top: -13px;
     left: 1%;
+    margin: -2.5% 0.66%;
     overflow-wrap: break-word;
     min-width: 0px;
     max-width: 468px;
@@ -39,7 +40,8 @@
 
 .btn {
     position: relative;
-    left: 450px;
+    left: 380px;
+    top: -60px;
     width: 2.5cm;
     text-align: center;
     height: 0.9cm;

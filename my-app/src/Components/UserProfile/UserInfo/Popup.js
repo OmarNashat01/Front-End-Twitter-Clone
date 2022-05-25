@@ -19,8 +19,8 @@ import { CFormFloating } from '@coreui/react'
 function Popup(props) {
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState();
-    const [verLoadingData, setVerLoadingData] = useState(true);
-    const [verifyData, setVerifyData] = useState();
+    const [verLoadingData, seLoadingData] = useState(true);
+    const [verifyData, setUpData] = useState();
     useEffect(() => {
         const getCurrentUser = async() => {
             const data = await getMe(setLoading, setUserData);
@@ -29,24 +29,28 @@ function Popup(props) {
     }, []);
 
 
-    // const sendData = async() => {
-    //     let requestBody = {
-    //         email: user.Email,
-    //         password: user.Password,
-    //         name: user.Name,
-    //         date_of_birth: `${user.Year}-${user.Month}-${user.Day}`,
-    //         gender: "M",
-    //         username: user.username,
-    //         bio: null,
-    //         location: null,
-    //         website: null,
-    //     };
-    //     let resul = await putUpdateUser(
-    //         setVerLoadingData,
-    //         setVerifyData,
-    //         requestBody
-    //     );
-    // };
+    const sendData = async() => {
+        let requestBody = {
+            email: null,
+            password: dat.Password,
+            name: dat.Name,
+            date_of_birth: null,
+            username: null,
+            bio: dat.Bio,
+            location: dat.Location,
+            website: null,
+            prof_pic_url: dat.p,
+            cover_pic_url: dat.c,
+        };
+        let resul = await putUpdateUser(
+            seLoadingData,
+            setUpData,
+            requestBody
+        );
+    };
+
+
+
 
     // const checkDataSent = () => {
     //     // console.log(verifyData.status);
@@ -57,9 +61,32 @@ function Popup(props) {
     //     ) {
     //     } 
     // };
+    var dat = {
+        Name: "",
+        Bio: "",
+        Location: "",
+        p: "",
+        c: "",
 
+    };
+
+    function getName(val) {
+        dat.Name = val.target.value;
+
+    }
+
+    function getBio(val) {
+        dat.Bio = val.target.value;
+
+    }
+
+    function getLoc(val) {
+        dat.Location = val.target.value;
+
+    }
 
     return props.trigger ? ( <
+
         div className = { PopCSS.popupProfile } >
         <
         div className = { PopCSS.popupinProfile } >
@@ -74,7 +101,11 @@ function Popup(props) {
         Button variant = "dark"
         className = { PopCSS.innerPro }
         onClick = {
-            () => props.setTrigger(false)
+            () => {
+
+                sendData();
+            }
+
         } >
         Save { " " } <
         /Button> <
@@ -104,11 +135,13 @@ function Popup(props) {
         label = "Name"
         className = { PopCSS.name } >
         <
-        input type = "email"
+        input type = "text"
         class = "form-control"
         id = "floatingInputValue"
-        placeholder = "name@example.com"
-        value = { userData.data.user.name }
+        defaultValue = { userData.data.user.name }
+        placeholder = "oname"
+        onChange = { getName }
+
         / > < /
         FloatingLabel >
 
@@ -119,25 +152,27 @@ function Popup(props) {
         label = "Bio"
         className = { PopCSS.bio } >
         <
-        input type = "email"
+        input type = "text"
         class = "form-control"
         id = "floatingInputValue"
+        defaultValue = { userData.data.user.bio }
         placeholder = "name@example.com"
-        value = { userData.data.user.bio }
+        onChange = { getBio }
         / > < /
         FloatingLabel > { " " } <
         FloatingLabel controlId = "floatingPassword"
         label = "Location"
         className = { PopCSS.location } >
         <
-        input type = "email"
+        input type = "text"
         class = "form-control"
         id = "floatingInputValue"
+        defaultValue = { userData.data.user.location }
         placeholder = "name@example.com"
-        value = { userData.data.user.location }
-        / > <
-        /FloatingLabel>{" "} < / > { " " } <
-        /div> < /
+        onChange = { getLoc }
+        / > < /
+        FloatingLabel > { " " } < / > { " " } < /
+        div > < /
         div >
     ) : (
         ""

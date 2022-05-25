@@ -5,6 +5,7 @@ import Post from "./Components/Post/Post";
 
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
+import LikesPage from "./Components/UserProfile/LikesPage";
 import Login from "./Components/Login/login";
 import SignIn from "./Components/Login/signIn";
 import SignUp from "./Components/Login/signUp";
@@ -243,6 +244,30 @@ function App() {
               )
             }
           />
+<Route
+            path="/profile/likes"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <LikesPage />
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
           <Route
             path="/profile/followers"
             element={
