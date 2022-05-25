@@ -25,22 +25,32 @@ function NotificationFeed() {
         tweet_text="this is a testweet"
         img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
         user_id="1"
-        action="reply"
+        action="user_tweeted_event"
       />
       <NotificationCard
         name="mark"
         tweet_text="this is a testweet"
         img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
         user_id="1"
-        action="block"
+        action="block_event"
       />
       <NotificationCard
         name="mark"
         tweet_text="this is a testweet"
         img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
         user_id="1"
-        action="like"
+        action="tweet_liked_event"
       />
+
+      {!loading &&
+        notificationData.data.notifications.map((notification) => {
+          <NotificationCard
+            name="mark"
+            tweet_text={notification.message}
+            user_id={notification["user_id"]}
+            action={notification.type}
+          />;
+        })}
     </div>
   );
 }

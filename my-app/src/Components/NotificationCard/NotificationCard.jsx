@@ -10,12 +10,12 @@ import BlockIcon from "@mui/icons-material/Block";
 
 /**
  * Notification Cards that is used in the Notification Feed to display Users that replied/liked/retweeted
- * 
+ *
  * @param {string} props.name  Name to be viewed of a user that replied/liked/retweeted in the notification card
- * @param {string} props.tweet_text retweet/reply of the user to be viewed in the notification card 
+ * @param {string} props.tweet_text retweet/reply of the user to be viewed in the notification card
  * @param {string} props.img image of the user that replied/liked/retweeted
  * @param {string} props.user_id User ID that replied/liked/retweeted
- * @param {string} props.action action written here to display the icon that best describe this action (action = "reply"/"liked"/"retweeted" ) 
+ * @param {string} props.action action written here to display the icon that best describe this action (action = "reply"/"liked"/"retweeted" )
  * @returns {Object}
  */
 function NotificationCard(props) {
@@ -25,13 +25,13 @@ function NotificationCard(props) {
   return (
     <div className={NotificationCardCSS.searchcard}>
       <div className={NotificationCardCSS.tooltip}>
-        {props.action === "block" && (
+        {props.action === "block_event" && (
           <BlockIcon className={NotificationCardCSS.block__icon} />
         )}
-        {props.action === "like" && (
+        {props.action === "tweet_liked_event" && (
           <FavoriteIcon className={NotificationCardCSS.heart__icon} />
         )}
-        {props.action === "reply" && (
+        {props.action === "user_tweeted_event" && (
           <ChatBubbleOutlineIcon className={NotificationCardCSS.reply__icon} />
         )}
       </div>
