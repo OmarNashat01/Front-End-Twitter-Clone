@@ -19,8 +19,11 @@ const RetweetsStats = (props) => {
     var chartLabels;
     var sumWithInitial;
     const buttonHandler = () => {
-
-        const fetchData = async () => {
+        if(startDate>endDate)
+{
+    alert("Choose valid date range");
+}
+    else{   const fetchData = async () => {
             const data = await getReTweetCount(setValuesLoading, setValues, `?start_date=${format(startDate, 'yyyy-MM-dd')}&end_date=${format(endDate, 'yyyy-MM-dd')}`);
         }
 
@@ -30,7 +33,7 @@ const RetweetsStats = (props) => {
             .catch(console.error);
 
         console.log(valuesLoading);
-
+    }
 
     };
     if (!valuesLoading) {
