@@ -18,14 +18,14 @@ console.log(userName);
       <div className={SearchUsersStyle.pageColor}>
 
       <div className={`container-fluid `}>
-        <div className={`row vh-100  `}>
+        <div className={`row vh-100   ${SearchUsersStyle.widthSmall}`}>
           <div className={`col col-lg-2 col-md-3 col-sm-1 col-sm-1 ${SearchUsersStyle.navBorder}`}>
            <div className={`sticky-top ${SearchUsersStyle.barWidth}`} >
 
            <Sidebar />
            </div>
           </div>
-          <div className="col col-lg-10 col-md-9 col-sm-1 col-sm-1">
+        <div className={`col col-lg-10 col-md-9 col-sm-4 col-sm-4 ${SearchUsersStyle.borderStyle}`}>
 
 
           <div className={SearchUsersStyle.searchDiv} >

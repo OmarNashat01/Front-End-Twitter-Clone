@@ -5,7 +5,7 @@
 margin-right: 100px !important; 
 }
 .usersTable{
-   
+   display: flexbox;
   
 }
 .searchDiv{
@@ -36,10 +36,87 @@ background-color:rgba(33, 85, 205,1);
 .pageColor{
     background-color:rgba(242, 242, 242,1) ;
 }
+
+.widthSmall{
+
+    }
+
+    .borderStyle{
+
+    
+        }
 @media only screen and (min-width:0px)  and (max-width:767px){
     .usersTable{
-   width:80vw;
+   width:50vw;
   
     }
 
+   
+         .widthSmall{
+         width:25vw !important;
+         }
+      
+         .borderStyle{
+     
+         margin-top: -100vh;
+        margin-left: 30vw;
+         }
+
+}
+
+
+@media only screen and (min-width: 576px)  and (max-width:768px){
+   
+    .widthSmall{
+    width:130vw !important;
+    }
+ 
+    .borderStyle{
+   margin-left: 1vw;
+   margin-top: 1vh;
+    }
+  
+}
+
+@media only screen and (width: 768px) {
+   
+    .widthSmall{
+    width:50vw !important;
+    }
+ 
+    .borderStyle{
+margin-top: -100vh!important;
+margin-left: 12vw !important;
+    }
+
+    .usersTable{
+        width:75vw;
+       
+         }
+   
+}
+@media only screen and (width: 571px)  {
+   
+    .widthSmall{
+    width:50vw !important;
+    }
+ 
+    .borderStyle{
+margin-top: -100vh!important;
+margin-left: 12vw !important;
+    }
+   
+}
+@media only screen and (min-width: 574px)  and (max-width:575.5px){
+   
+    .widthSmall{
+    width:15vw !important;
+    }
+ 
+    .borderStyle{
+margin-top: -100vh!important;
+margin-left: 14vw !important;
+    }
+  
+  
 }
