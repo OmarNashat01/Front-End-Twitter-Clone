@@ -13,22 +13,25 @@ function ProfileFeed() {
   const [hasMore, setHasMore] = useState(false);
   const [error, setError] = useState(false)
 
-  
-  useEffect(()=>{
-    getMyTweets(setLoading,setPosts);
-  },[])
-  
- 
+
+  useEffect(() => {
+    getMyTweets(setLoading, setPosts);
+  }, [])
+
+
 
 
 
   if (!loading) {
-    console.log(posts[0].images);
+    console.log(posts)
+    console.log("imageeeeeeeeeeee");
+    console.log(posts[1].images);
     console.log(posts[0].images.length);
     console.log(response);
   }
 
- 
+  const images_1 = [{ alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }]
+
 
   return (
     <div>
@@ -38,7 +41,7 @@ function ProfileFeed() {
             <Post
               displayName={post.name}
               username={post.username}
-              verified="0"
+              verified="true"
               text={post.text}
               avatar={post.prof_pic_url}
               image={post.images}
@@ -49,7 +52,7 @@ function ProfileFeed() {
             ></Post>
           </div>
         })}
-    </div>
+    </div >
   );
 }
 

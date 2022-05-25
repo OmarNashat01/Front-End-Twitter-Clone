@@ -57,6 +57,23 @@ function Sidebar() {
             tabIcon="Likes"
           />
         </li>
+        <li className={`${SidebarStyles.navItemTwo} text-lg-end text-start`}>
+          {/* Admin Retweets */}
+          <SidebarOption
+            tabName="Banned Users"
+            pageRoute="/banned"
+            tabIcon="Ban"
+          />
+        </li>
+
+        <li className={`${SidebarStyles.navItemTwo} text-lg-end text-start`}>
+          {/* Admin Retweets */}
+          <SidebarOption
+            tabName="New Accounts"
+            pageRoute="/newaccounts"
+            tabIcon="New"
+          />
+        </li>
         <li
           className={`${SidebarStyles.navItem} text-lg-end text-start ${SidebarStyles.logoutButton} `}
         >
@@ -72,7 +89,7 @@ function Sidebar() {
               ></i>
             </button>
             <button
-            type="button"  className={`btn btn-light rounded-pill ${SidebarStyles.tweetBtn}  d-none d-lg-block d-xl-block `}
+            type="button"  className={`btn btn-light rounded-pill ${SidebarStyles.tweetBtn}  d-none d-lg-block d-xl-block `} 
               onClick={handleLogout}
             >
               Logout

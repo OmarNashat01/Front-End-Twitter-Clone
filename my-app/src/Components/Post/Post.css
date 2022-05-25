@@ -3,7 +3,13 @@
   align-items: flex-start;
   border-bottom: 1px solid var(--twitter-background);
   padding-bottom: 10px;
+  cursor: pointer;
 
+
+}
+
+.post:hover {
+  background-color: rgba(185, 178, 178, 0.1) !important;
 }
 
 .post__body {
@@ -19,6 +25,12 @@
 .post__footer {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+}
+
+.post__footer_2 {
+  display: flex;
+  justify-content: space-around;
   margin-top: 20px;
 }
 
@@ -82,9 +94,9 @@
 
 #dropdown-basic {
   width: 40px !important;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0) !important;
   color: black;
-  border-color: white;
+  border-color: rgba(255, 255, 255, 0) !important;
   box-shadow: none;
 
 }
@@ -262,4 +274,22 @@
 
 .verified-color {
   color: rgb(26, 145, 218);
+}
+
+.replyingTo-post {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(83, 100, 113);
+}
+
+.replyingUser-post {
+  color: rgb(29, 155, 240);
+}
+
+.full-border-left {
+  border-radius: 25px 0px 0px 25px;
+}
+
+.full-border-right {
+  border-radius: 0px 25px 25px 0px;
 }
