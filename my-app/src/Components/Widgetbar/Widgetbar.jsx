@@ -2,14 +2,20 @@ import React from 'react'
 import SearchBar from './SearchBar/SearchBar'
 import WidgetbarCSS from './Widgetbar.module.css'
 import FollowCard from './FollowCard/FollowCard'
-
-function Widgetbar() {
+/**
+ * Widgetbar Component that contains FollowCards of people a User could follow and a Search bar placed on top for searching on users 
+ * @param {boolean} showSearchbar boolean that specifies whether to show or hide the search bar on top 
+ * @returns {Object}
+ */
+function Widgetbar({showSearchbar=true}) {
   return (
     <div  className={WidgetbarCSS.widget__divider}>
         <div className={WidgetbarCSS.widget__padding}>
-          <div className={WidgetbarCSS.topNavbar}>
-            <SearchBar />
-          </div>
+          {showSearchbar &&
+            <div className={WidgetbarCSS.topNavbar}>
+              <SearchBar />
+            </div>
+          }
             <h2 className={WidgetbarCSS.widget__whotofollowbox}>Who to follow</h2>
             <FollowCard name="Ahmed El Saka" tag="@ElSaka"/>
             <FollowCard name="Zakaria" tag="@Zakaria" img="https://fmdataba.com/images/p2/542811.png" about="WaPo columnist. Host of CNN's GPS, Sundays @ 10am and 1pm ET in the US. Order my book 'Ten Lessons for a Post-Pandemic World' " followers='75000' following='600'/> 

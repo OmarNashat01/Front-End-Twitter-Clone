@@ -1,5 +1,6 @@
 import React ,{useState} from 'react';
 import DatePicker from 'react-datepicker';
+import DateStyle from './DateSelector.module.css';
 import "react-datepicker/dist/react-datepicker.css";
 export var dateSelected=new Date();
 const DateSelector=(props)=>{
@@ -29,7 +30,7 @@ const {setStart, dateChosen,minimumDate}=props;
         
         setStart(date);
       }}
-     
+     wrapperClassName={DateStyle.width}
       dateFormat='yyyy-MM-dd'
       maxDate={new Date()}
       isClearable={true}

@@ -16,10 +16,15 @@ import Container from "react-bootstrap/Container";
 import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
 import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
 import Col from "react-bootstrap/Col";
+import PostMini from "./PostMini"
+import { postLike, deleteLike, postRetweet, deleteRetweet } from "../../Api/tweetFull";
+import TweetPopup from "./../Sidebar/TweetPopup/TweetPopup";
+
 const Post = forwardRef(
   (
     {
       user_id,
+      tweet_id,
       displayName,
       username,
       verified,
@@ -28,62 +33,132 @@ const Post = forwardRef(
       avatar,
       isLiked,
       likes,
-      isRetweet,
+      isRetweet = "false",
       retweets,
       followers,
       following,
       bio,
+      isReplying,
+      likers,
+      isRetweeted,
+      isQuoted,
+      replyingUser,
+      Retweet_user,
+      //retweeters_ids,
+
+
+      displayNameQ,
+      usernameQ,
+      verifiedQ,
+      textQ,
+      avatarQ,
+      imageQ,
+      user_idQ,
+      tweet_idQ,
     },
     ref
   ) => {
     const [Is_verified, setIs_verified] = useState(
       verified === "true" ? true : false
     );
+    const [response, setresponse] = useState();
+    const [loading, setLoading] = useState(true);
+
     const [counterLike, setCounter] = useState(likes);
+    const [isRetweetCol, setisRetweetCol] = useState(false);
     const [counterRetweets, setRetweets] = useState(retweets);
     const [textRetweets, setRetweets1] = useState("retweet");
     const [fullScreen, setfullScreen] = useState(false);
     const [fullScreenImg, setfullScreenImg] = useState("");
     const [imgs_count, setimgs_count] = useState(0);
+    const [img_type, setimg_type] = useState(true);
     const [isLikedState, setIsLikedState] = useState(
       isLiked === "true" ? true : false
     );
+    const [isFull, setisFull] = useState(true);
+    const formData = new FormData();
+    formData.append('quoted', false);
+    formData.append('tweet_id', tweet_id);
     useEffect(() => {
+
+      //formdata object
+      //formData.append('user_id', localStorage.getItem("user_id"));   //append the values with key, value pair 
       setimgs_count(image.length);
-      var temp = image.map((x) => x.url);
-      image = temp;
-      console.log(verified);
+      // console.log("FOUUUUUUUUUND");
+      // console.log(image);
+      // console.log(imageQ);
+
+      var temp2 = likers.map((x) => x.liker);
+      likers = temp2;
+      //console.log("LIKERSSSSSSSSSS")
+      //console.log(likers);
+      //console.log("USERRRR");
+      //console.log();
+      if ((likers.includes(localStorage.getItem("user_id")))) {
+        console.log("DA5AAL");
+        setIsLikedState(true);
+      }
+      else {
+        setIsLikedState(false);
+      }
+
+      // if ((retweeters_ids.includes(localStorage.getItem("user_id")))) {
+      //   console.log("DA5AAL");
+      //   setisRetweetCol(true);
+      //   setRetweets1("undo");
+      // }
+      // else {
+      //   setisRetweetCol(false);
+      //   setRetweets1("retweet");
+      // }
     }, []);
+    const postObj = {
+      "user_id": localStorage.getItem("user_id"),
+      "tweet_id": tweet_id
+
+    };
+    const [isOpen, setIsOpen] = useState(false);
+    function toggleModal() {
+      setIsOpen(!isOpen);
+    }
 
 
+    const images_1 = [{ alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }, { alt_text: '7:45 pm', height: 0, url: 'https://i.kym-cdn.com/entries/icons/facebook/000/003/269/smilejpg.jpg', width: 0 }]
     function setImg(url) {
       setfullScreenImg(url);
     }
 
-    function fullScreenTog() {
+    function fullScreenTog(e) {
       setfullScreen(!fullScreen);
     }
 
     function navProfile() {
       window.open(`/user/${user_id}`, "_self");
     }
-
-    function closeImg() {
-      console.log("closseeeeeeeeeeeee");
-      fullScreenTog();
+    function navTweet() {
+      window.open(`/tweet/${tweet_id}`, "_self");
     }
 
+    function closeImg(e) {
+      console.log("closseeeeeeeeeeeee");
+      fullScreenTog();
+
+    }
+    /**
+     * This function renders the image grid of the any tweet with variance of 0 to 4 images
+     * @returns {Object} The images grid div
+     */
     function imagesGrid() {
       if (imgs_count === 0) {
         return null;
       } else if (imgs_count === 1) {
         return (
           <img
-            src={image[0].url}
+            src={image[0]}
             className="img-post h-100 w-100 border-img-all"
             alt=""
             onClick={() => {
-              setImg(image[0].url);
+              setImg(image[0]);
               fullScreenTog();
             }}
           />
@@ -91,26 +166,26 @@ const Post = forwardRef(
       } else if (imgs_count === 2) {
         console.log(image[0]);
         return (
-          <div>
+          <div >
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={image[0].url}
-                  className="img-post h-100 w-100 border-img-all right-pad"
+                  src={image[0]}
+                  className="img-post h-100 w-100 full-border-left right-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[0].url);
+                    setImg(image[0]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={image[1].url}
-                  className="img-post h-100 w-100 border-img-all left-pad"
+                  src={image[1]}
+                  className="img-post h-100 w-100 full-border-right left-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[1].url);
+                    setImg(image[1]);
                     fullScreenTog();
                   }}
                 />
@@ -124,33 +199,33 @@ const Post = forwardRef(
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={image[0].url}
+                  src={image[0]}
                   className="img-post h-100 w-100 border-left-up right-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[0].url);
+                    setImg(image[0]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={image[1].url}
+                  src={image[1]}
                   className="img-post h-100 w-100 border-right-up left-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[1].url);
+                    setImg(image[1]);
                     fullScreenTog();
                   }}
                 />
               </Col>
             </Row>
             <img
-              src={image[2].url}
+              src={image[2]}
               className="img-post w-100 border-img-all border-left-right up-pad"
               alt=""
               onClick={() => {
-                setImg(image[2].url);
+                setImg(image[2]);
                 fullScreenTog();
               }}
             />
@@ -162,22 +237,22 @@ const Post = forwardRef(
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={image[0].url}
+                  src={image[0]}
                   className="img-post h-100 w-100 border-left-up right-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[0].url);
+                    setImg(image[0]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={image[1].url}
+                  src={image[1]}
                   className="img-post h-100 w-100 border-right-up left-pad down-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[1].url);
+                    setImg(image[1]);
                     fullScreenTog();
                   }}
                 />
@@ -186,22 +261,22 @@ const Post = forwardRef(
             <Row className="w-100 m-0">
               <Col className="p-0">
                 <img
-                  src={image[2].url}
+                  src={image[2]}
                   className="img-post h-100 w-100 border-left-down right-pad up-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[2].url);
+                    setImg(image[2]);
                     fullScreenTog();
                   }}
                 />
               </Col>
               <Col className="p-0">
                 <img
-                  src={image[3].url}
+                  src={image[3]}
                   className="img-post h-100 w-100 border-right-down left-pad up-pad"
                   alt=""
                   onClick={() => {
-                    setImg(image[3].url);
+                    setImg(image[3]);
                     fullScreenTog();
                   }}
                 />
@@ -210,6 +285,9 @@ const Post = forwardRef(
           </div>
         );
       }
+    }
+    function stop_prop(e) {
+      e.stopPropagation();
     }
 
     function toggleFavColor(e) {
@@ -221,15 +299,19 @@ const Post = forwardRef(
       //axios.post('///',..., onsuccess: function(response) {
       //e.currentTarget.classList.add("liked");
       //})
+
       if (!e.currentTarget.classList.contains("is-liked")) {
         e.currentTarget.classList.add("is-liked");
         // debugger;
         // document.getElementsByClassName("like-btns").classList.add("is-liked");
+
+        postLike(setLoading, setresponse, postObj);
         setCounter(counterLike + 1);
         setIsLikedState(true);
       } else {
         e.currentTarget.classList.remove("is-liked");
         // document.getElementsByClassName("like-btns").classList.remove("is-liked");
+        deleteLike(setLoading, setresponse, `?Id=${tweet_id}`)
         setCounter(counterLike - 1);
         setIsLikedState(false);
       }
@@ -244,6 +326,7 @@ const Post = forwardRef(
       //    elements.classList.add("is-liked");
       //    setCounter(counterLike - 1);
       //  }
+      e.stopPropagation();
     }
 
     function toggleRetweets(e) {
@@ -257,20 +340,24 @@ const Post = forwardRef(
       //})
       if (!e.currentTarget.classList.contains("is-retweet")) {
         e.currentTarget.classList.add("is-retweet");
+        postRetweet(setLoading, setresponse, formData);
         setRetweets(counterRetweets + 1);
         setRetweets1("undo");
-        isRetweet = true;
+        setisRetweetCol(true);
       } else {
         e.currentTarget.classList.remove("is-retweet");
+        //deleteLike(setLoading, setresponse, `?Id=${tweet_id}`)
         setRetweets(counterRetweets - 1);
         setRetweets1("retweet");
-        isRetweet = false;
+        setisRetweetCol(false);
       }
+      e.stopPropagation();
     }
 
     return (
-      <div className="post" ref={ref}>
+      <div className="post" ref={ref} >
         <div className="post__avatar">
+
           <ToolTip
             user_id={user_id}
             name={displayName}
@@ -279,12 +366,19 @@ const Post = forwardRef(
             show="displayRight"
             followers={followers}
             following={following}
-            bio={bio}
+            bio={bio} onClick={stop_prop}
           />
         </div>
         <div className="post__body">
-          <div className="post__header">
+          <div className="post__header" onClick={navTweet}>
             <div className="post__headerText">
+
+              {isRetweeted === "true" ? (
+                <RepeatIcon fontSize="small" />) : null}
+              {isRetweeted === "true" ? (
+                <span className="post__headerSpecial" style={{ marginLeft: '2%' }}>{Retweet_user} Retweeted</span>) : null
+              }
+
               <h3>
                 {displayName}{" "}
                 <span className="post__headerSpecial">
@@ -294,10 +388,25 @@ const Post = forwardRef(
               </h3>
             </div>
             <div className="post__headerDescription" >
+
+              {isReplying === "true" ? (
+                <span className="replyingTo-post">Replying to <span className="replyingUser-post" >@{replyingUser}</span></span>) : null
+              }
               <p className="text-overflow">{text}</p>
             </div>
           </div>
           {imagesGrid()}
+          {isQuoted === "true" ? (
+            <PostMini
+              displayName={displayNameQ}
+              username={usernameQ}
+              text={textQ}
+              avatar={avatarQ}
+              image={imageQ}
+              user_id={user_idQ}
+              tweet_id={tweet_idQ}
+            ></PostMini>) : null
+          }
           <div id="test">
             {fullScreen ? (
               <div className="full-screen" id="full-div">
@@ -318,7 +427,7 @@ const Post = forwardRef(
                       variant="secondary"
                       id="dropdown-basic-full"
                       className={
-                        isRetweet === "true"
+                        isRetweetCol === true
                           ? "is-retweet d-flex align-items-center"
                           : "retweet-icon d-flex align-items-center"
                       }
@@ -334,6 +443,9 @@ const Post = forwardRef(
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>
                         {textRetweets}
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>
+                        Quote
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -353,15 +465,17 @@ const Post = forwardRef(
                     <span className="likeCounter-full">{counterLike}</span>
                   </div>
                   <div className="publish ">
-                    <Dropdown className="d-flex align-items-center">
+                    <Dropdown className="d-flex align-items-center" >
                       <Dropdown.Toggle
                         className="d-flex align-items-center"
                         variant="secondary"
                         id="dropdown-basic-full"
+
                       >
                         <PublishIcon
                           fontSize="small"
                           className="custom-icon-full"
+
                         />
                       </Dropdown.Toggle>
 
@@ -377,16 +491,20 @@ const Post = forwardRef(
               </div>
             ) : null}
           </div>
-          <div className="post__footer">
+          <div className={
+            isReplying === "true"
+              ? "post__footer_2"
+              : "post__footer"
+          }>
             <div className="chat d-flex align-items-center">
               <ChatBubbleOutlineIcon fontSize="small" className="custom-icon" />
             </div>
-            <Dropdown className="d-flex align-items-center">
+            <Dropdown className="d-flex align-items-center" onClick={stop_prop}>
               <Dropdown.Toggle
                 variant="secondary"
                 id="dropdown-basic"
                 className={
-                  isRetweet === "true"
+                  isRetweetCol === true
                     ? "is-retweet d-flex align-items-center"
                     : "retweet-icon d-flex align-items-center"
                 }
@@ -397,6 +515,9 @@ const Post = forwardRef(
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1" onClick={toggleRetweets}>
                   {textRetweets}
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-1" onClick={toggleModal}>
+                  quote
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -412,7 +533,7 @@ const Post = forwardRef(
               <span className="likeCounter">{counterLike}</span>
             </div>
             <div className="publish ">
-              <Dropdown className="d-flex align-items-center">
+              <Dropdown className="d-flex align-items-center" onClick={stop_prop}>
                 <Dropdown.Toggle
                   className="d-flex align-items-center"
                   variant="secondary"
@@ -431,6 +552,21 @@ const Post = forwardRef(
             </div>
           </div>
         </div>
+        <TweetPopup
+          toggleModal={toggleModal}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          prop={<PostMini
+            displayName={displayName}
+            username={username}
+            text={text}
+            avatar={avatar}
+            image={image}
+            user_id={user_id}
+            tweet_id={tweet_id}
+          ></PostMini>}
+          tweet_id={tweet_id}
+        />
       </div>
     );
   }

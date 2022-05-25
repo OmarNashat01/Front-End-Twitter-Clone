@@ -1,9 +1,15 @@
 import React from 'react'
 import HomeNavbarCSS from "./HomeNavbar.module.css"
-function HomeNavbar() {
+
+/**
+ * NavBar to be placed at the top of the Home Feed
+ * @param {string} text parameter is being inserted here to be view at the top of the navbar  
+ * @returns {Object}
+ */
+function HomeNavbar({text="Home"}) {
   return (
     <div className={HomeNavbarCSS.topNavbar}>
-        <p className={HomeNavbarCSS.text}>Home</p>
+        <p className={HomeNavbarCSS.text}>{text}</p>
     </div>
     
     )

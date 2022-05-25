@@ -3,15 +3,20 @@ import auxelary from "../../../hoc/Auxelary";
 import BioCSS from "./Bio.module.css";
 import CalendarMonthTwoToneIcon from "@mui/icons-material/CalendarMonthTwoTone";
 import { useNavigate } from 'react-router-dom';
-import balloon from "../../../assets/balloon.png"
+import balloon from "../../../assets/balloon.png";
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
+import { useState, useEffect } from "react";
+
 
 // function Bio() {
 //     const navigate = useNavigate();
 const Bio = (props) => {
+    const [linkkk, setLink] = useState(false);
     const navigate = useNavigate();
     return ( <
         div className = { BioCSS.bio } > { " " } <
-        p > { props.bio } < /p>{" "} <
+        p className = { BioCSS.bioo } > { props.bio } < /p>{" "} <
         div className = { BioCSS.timejoined } > { " " } <
         CalendarMonthTwoToneIcon / > Joined { props.joindate } { " " } <
         /div>{" "}  <
@@ -42,11 +47,15 @@ const Bio = (props) => {
 
 
         <
+        div className = { BioCSS.link } > < LinkOutlinedIcon / > { props.link } < /div > 
+
+
+        <
+        div className = { BioCSS.loc } > < LocationOnOutlinedIcon / > { props.loc } < /div >  <
         div className = { BioCSS.born } > Born { props.bdate } <
-        /div> < /
+        /div>  < /
         div > <
-        /
-        div >
+        /div >
     );
 };
 // }

@@ -4,6 +4,18 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 
+/**
+ * ToolTip Component used or shown whenever hovering on any users avatar to show more info about this user
+ * 
+ * @param {string} name  Name to be viewed of a user that is being hovered on
+ * @param {string} tag Tag of the user to be viewed under the name that is being hovered on
+ * @param {string} img image of the user in the ToolTip
+ * @param {string} about Bio of the User
+ * @param {int} followers Number of followers of user 
+ * @param {int} following Number of followings user do follow
+ * @param {string} show a string whether to show the tooltip left or right of the user avatar
+ * @returns {Object}
+ */
 function ToolTip(
     {
         name= "Ahmed El Saka",

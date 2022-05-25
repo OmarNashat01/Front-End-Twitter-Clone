@@ -20,7 +20,7 @@ const AdminPage = (props) => {
            <Sidebar />
            </div>
           </div>
-          <div className="col col-lg-10 col-md-9 col-sm-1 col-sm-1">
+          <div className="col col-lg-10 col-md-9 col-sm-3 col-sm-3">
           <div>
         <TweetsStats />
         {/* <div  className={AdminPageStyle.chartBox}>

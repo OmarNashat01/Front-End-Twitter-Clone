@@ -9,21 +9,23 @@ const SearchUsers=(props)=>{
  const [userName,setUser]=useState('');
  const[saveName,setSaved]=useState('');
  const captureUser=()=>{
-setSaved(userName);
+  setUser(userName);
+
+console.log(userName);
 
  }
     return(
       <div className={SearchUsersStyle.pageColor}>
 
       <div className={`container-fluid `}>
-        <div className={`row vh-100  `}>
+        <div className={`row vh-100   ${SearchUsersStyle.widthSmall}`}>
           <div className={`col col-lg-2 col-md-3 col-sm-1 col-sm-1 ${SearchUsersStyle.navBorder}`}>
            <div className={`sticky-top ${SearchUsersStyle.barWidth}`} >
 
            <Sidebar />
            </div>
           </div>
-          <div className="col col-lg-10 col-md-9 col-sm-1 col-sm-1">
+        <div className={`col col-lg-10 col-md-9 col-sm-4 col-sm-4 ${SearchUsersStyle.borderStyle}`}>
 
 
           <div className={SearchUsersStyle.searchDiv} >
@@ -32,12 +34,12 @@ setSaved(userName);
         <input className={`form-control me-2 ${SearchUsersStyle.searchBox}`} type="search" placeholder="Search Users" aria-label="Search" value={userName} onChange={(name)=>setUser(name.target.value)}/>
         </div>
         <div className={SearchUsersStyle.searchButtonDiv}>
-        <button className={`btn btn-outline-primary ${SearchUsersStyle.searchButton}`} type="submit" onClick={captureUser}>Search</button>
+        <button className={`btn btn-outline-primary d-none ${SearchUsersStyle.searchButton}`} type="submit" onClick={captureUser}>Search</button>
         </div>
         {console.log(saveName)}
       </form>
       </div >
-      <div ><UsersTable /></div>
+      <div className={SearchUsersStyle.usersTable}><UsersTable  userName={userName} /></div>
       
     
             </div>

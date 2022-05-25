@@ -85,9 +85,9 @@ function SignUp(props) {
 
   const [passwordInputType, toggleIcon] = usePasswordToggle();
 
-  const [errorMessage1 , setErrorMessage1] = useState("");
-  const [errorMessage2 , setErrorMessage2] = useState("");
-  const [errorMessage3 , setErrorMessage3] = useState("");
+  const [errorMessage1, setErrorMessage1] = useState("");
+  const [errorMessage2, setErrorMessage2] = useState("");
+  const [errorMessage3, setErrorMessage3] = useState("");
 
   const secPageBtn = () => {
     console.log(page);
@@ -588,7 +588,7 @@ function SignUp(props) {
         setPage((currpage) => currpage + 1);
         setVerLoadingIDandEmail(true);
       } else {
-        setErrorMessage2("Verification code Expired")
+        setErrorMessage2("Verification code Expired");
         setVerLoadingIDandEmail(true);
       }
     }
@@ -651,6 +651,7 @@ function SignUp(props) {
       user.Day = temp_user.temp_Day;
       user.Year = temp_user.temp_Year;
 
+      // console.log(user.Name + " " + user.Email + " " + user.Month + " ");
 
       sendEmail();
       checkEmailSent();
@@ -665,7 +666,6 @@ function SignUp(props) {
       {
         sendEmailAndVerCode();
         checkVer();
-        
       }
       // if(verCode.length>0)setPage((currpage)=>currpage+1);
     } else if (page === 4) {
