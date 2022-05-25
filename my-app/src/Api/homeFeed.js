@@ -43,7 +43,7 @@ export async function getHomeTweetsAndRetweets(
     } else {
       setHasMore(true);
       setPosts((prevPosts) => {
-        return [...prevPosts, ...response.data.tweets];
+        return [...prevPosts, ...response.data["all_tweets_retweets"]];
       });
     }
   } catch (error) {
@@ -86,7 +86,7 @@ export async function getHomeTweets(setLoading, setPosts, setHasMore, params) {
     } else {
       setHasMore(true);
       setPosts((prevPosts) => {
-        return [...prevPosts, ...response.data.tweets];
+        return [...prevPosts, ...response.data["all_tweets_retweets"]];
       });
     }
   } catch (error) {
