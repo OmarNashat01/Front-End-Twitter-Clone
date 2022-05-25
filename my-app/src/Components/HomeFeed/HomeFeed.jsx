@@ -21,7 +21,7 @@ function HomeFeed() {
 
   if (!loading) {
     console.log("Postsssss");
-    // console.log(posts);
+    console.log(posts);
 
 
   }
@@ -49,7 +49,7 @@ function HomeFeed() {
                   verified="1"
                   text={post.text}
                   avatar={post.prof_pic_url}
-                  image={images_1}
+                  image={post.images}
                   isLiked="false"
                   //isRetweeted="true"
                   likes={post.like_count}
@@ -87,7 +87,7 @@ function HomeFeed() {
                   usernameQ={post.tweet_refrenced.username}
                   textQ={post.tweet_refrenced.text}
                   avatarQ={post.tweet_refrenced.prof_pic_url}
-                  imageQ={images_1}
+                  imageQ={post.tweet_refrenced.images}
                   user_idQ={post.tweet_refrenced.user_id}
                   tweet_idQ={post.tweet_refrenced.tweet_id}
                 //retweeters_ids={post.retweeters_by_ids}
@@ -119,7 +119,7 @@ function HomeFeed() {
                   usernameQ={post.tweet_refrenced.username}
                   textQ={post.tweet_refrenced.text}
                   avatarQ={post.tweet_refrenced.prof_pic_url}
-                  imageQ={images_1}
+                  imageQ={post.tweet_refrenced.images}
                   user_idQ={post.tweet_refrenced.user_id}
                   tweet_idQ={post.tweet_refrenced.tweet_id}
                 //retweeters_ids={post.retweeters_by_ids}

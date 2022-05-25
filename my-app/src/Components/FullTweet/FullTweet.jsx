@@ -25,7 +25,7 @@ function FullTweet() {
 
     if (!loading) {
         console.log("FULL TWEET");
-        //console.log(posts.data);
+        console.log(posts);
 
 
     }

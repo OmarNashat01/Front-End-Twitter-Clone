@@ -18,6 +18,7 @@ import ToolTip from "./../Widgetbar/ToolTip/ToolTip";
 import Col from "react-bootstrap/Col";
 import PostMini from "./PostMini"
 import { postLike, deleteLike, postRetweet, deleteRetweet } from "../../Api/tweetFull";
+
 const Post = forwardRef(
   (
     {
@@ -144,7 +145,10 @@ const Post = forwardRef(
       fullScreenTog();
 
     }
-
+    /**
+     * This function renders the image grid of the any tweet with variance of 0 to 4 images
+     * @returns {Object} The images grid div
+     */
     function imagesGrid() {
       if (imgs_count === 0) {
         return null;

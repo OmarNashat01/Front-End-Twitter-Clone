@@ -25,15 +25,15 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
   const [replies, setreplies] = useState(replyArray);
   const [Me, setMe] = useState();
   const [Tweet, setTweet] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loading1, setLoading1] = useState(true);
   const [loading2, setLoading2] = useState(true);
   ////////////////////////-----MINAAA---///////////////////////////////////////////
   const [replypost, setReplyPost] = useState([]);
 
   const tweet_id = window.location.pathname.split("/")[2].toString();
   useEffect(() => {
-    getMe(setLoading, setMe);
-    getTweet(setLoading, setReplyPost, `?Id=${tweet_id}`);
+    getMe(setLoading1, setMe);
+    getTweet(setLoading2, setReplyPost, `?Id=${tweet_id}`);
 
   }, [])
 
@@ -49,7 +49,7 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
       setIsOpen(!isOpen)
     }
     console.log("onSubmit  => ", { ...resState, media, plainText });
-    if (!loading) {
+    if (!loading1) {
       const formData = new FormData()
       formData.append("tweet_id", tweet_id);
       formData.append("text", plainText);
@@ -81,7 +81,7 @@ export default function TweetBox2({ disabled, setIsOpen, isOpen = false, replyin
 
   return (
     <div className={TweetboxCSS.tweetbox} data-testid="tweetbox-1">
-      {!loading && !disabled &&
+      {!loading1 && !loading2 && !disabled &&
         <Container>
           <span className={TweetboxCSS.replyingTo}>Replying to <span className={TweetboxCSS.replyingUser} >@{replyingUser}</span></span>
           <Row>

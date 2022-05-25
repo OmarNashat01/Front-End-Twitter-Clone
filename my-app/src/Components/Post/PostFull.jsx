@@ -74,8 +74,6 @@ const PostFull = forwardRef(
         }
         useEffect(() => {
             setimgs_count(image.length);
-            var temp2 = likers.map((x) => x.liker);
-            likers = temp2;
             if ((likers.includes(localStorage.getItem("user_id")))) {
                 console.log("DA5AAL");
                 setIsLikedState(true);
@@ -124,11 +122,11 @@ const PostFull = forwardRef(
             } else if (imgs_count === 1) {
                 return (
                     <img
-                        src={image[0].url}
+                        src={image[0]}
                         className="img-post-full h-100-full w-100-full border-img-all-full img-height-full"
                         alt=""
                         onClick={() => {
-                            setImg(image[0].url);
+                            setImg(image[0]);
                             fullScreenTog();
                         }}
                     />
@@ -140,22 +138,22 @@ const PostFull = forwardRef(
                         <Row className="w-100-full m-0-full">
                             <Col className="p-0-full img-height-full">
                                 <img
-                                    src={image[0].url}
+                                    src={image[0]}
                                     className="img-post-full h-100-full w-100-full full-border-left-full right-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[0].url);
+                                        setImg(image[0]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0-full">
                                 <img
-                                    src={image[1].url}
+                                    src={image[1]}
                                     className="img-post-full h-100-full w-100-full full-border-right-full left-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[1].url);
+                                        setImg(image[1]);
                                         fullScreenTog();
                                     }}
                                 />
@@ -169,33 +167,33 @@ const PostFull = forwardRef(
                         <Row className="w-100-full m-0-full">
                             <Col className="p-0-full">
                                 <img
-                                    src={image[0].url}
+                                    src={image[0]}
                                     className="img-post-full h-100-full w-100-full border-left-up-full right-pad-full down-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[0].url);
+                                        setImg(image[0]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0">
                                 <img
-                                    src={image[1].url}
+                                    src={image[1]}
                                     className="img-post-full h-100-full w-100-full border-right-up-full left-pad-full down-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[1].url);
+                                        setImg(image[1]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                         </Row>
                         <img
-                            src={image[2].url}
+                            src={image[2]}
                             className="img-post-full w-100-full border-img-all-full border-left-right-full up-pad-full"
                             alt=""
                             onClick={() => {
-                                setImg(image[2].url);
+                                setImg(image[2]);
                                 fullScreenTog();
                             }}
                         />
@@ -207,22 +205,22 @@ const PostFull = forwardRef(
                         <Row className="w-100-full m-0-full">
                             <Col className="p-0">
                                 <img
-                                    src={image[0].url}
+                                    src={image[0]}
                                     className="img-post-full h-100-full w-100-full border-left-up-full right-pad-full down-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[0].url);
+                                        setImg(image[0]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0">
                                 <img
-                                    src={image[1].url}
+                                    src={image[1]}
                                     className="img-post-full h-100-full w-100-full border-right-up-full left-pad-full down-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[1].url);
+                                        setImg(image[1]);
                                         fullScreenTog();
                                     }}
                                 />
@@ -231,22 +229,22 @@ const PostFull = forwardRef(
                         <Row className="w-100-full m-0-full">
                             <Col className="p-0-full">
                                 <img
-                                    src={image[2].url}
+                                    src={image[2]}
                                     className="img-post-full h-100-full w-100-full border-left-down-full right-pad-full up-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[2].url);
+                                        setImg(image[2]);
                                         fullScreenTog();
                                     }}
                                 />
                             </Col>
                             <Col className="p-0-full">
                                 <img
-                                    src={image[3].url}
+                                    src={image[3]}
                                     className="img-post-full h-100-full w-100-full border-right-down-full left-pad-full up-pad-full"
                                     alt=""
                                     onClick={() => {
-                                        setImg(image[3].url);
+                                        setImg(image[3]);
                                         fullScreenTog();
                                     }}
                                 />

@@ -53,7 +53,15 @@ const PostMini = forwardRef(
         );
         const [isFull, setisFull] = useState(true);
         useEffect(() => {
-            setimgs_count(image.length);
+            console.log("imageeeee");
+            console.log(image);
+            if (image === undefined) {
+                setimgs_count(0);
+            }
+            else {
+                setimgs_count(image.length);
+            }
+
         }, []);
 
 
