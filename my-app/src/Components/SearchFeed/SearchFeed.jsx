@@ -7,7 +7,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchCard from "./SearchCard/SearchCard"
 import { getSearchAllUsers } from "./../../Api/Search";
-
+/**
+ * Search Feed that contains all search cards of users that is being search for 
+ * @returns {Object}
+ */
 function SearchFeed() {
     const [users, setUsers]= useState([]);
     const [loading , setLoading] = useState(true);
