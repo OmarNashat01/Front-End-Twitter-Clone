@@ -20,7 +20,7 @@ function Sidebar() {
   }
 
   return (
-    <div className={`container-fluid  flex-column position-sticky `} >
+    <div className={`container-fluid  flex-column position-sticky  `} >
       <ul className={`item-list nav nav-pills flex-column mb-auto vh-100 ${SidebarStyles.barWidth} `}>
         <li className={`${SidebarStyles.navbarLogo} text-start `}>
           {/* LOGO */}
@@ -79,7 +79,7 @@ function Sidebar() {
         >
           <div className={`${SidebarStyles.logoutButtonStyle}`}>
             {/* LOGOUT BUTTON*/}
-            <button
+            {/* <button
               className={`btn btn-primary  ${SidebarStyles.tweetBtn} ${SidebarStyles.tweetBtnSmall}  d-md-block d-xl-none d-lg-none rounded-circle text-center `}
               onClick={handleLogout}
             >
@@ -87,9 +87,9 @@ function Sidebar() {
                 className="fa-solid fa-right-from-bracket"
                 style={{ fontSize: 35 }}
               ></i>
-            </button>
+            </button> */}
             <button
-            type="button"  className={`btn btn-light rounded-pill ${SidebarStyles.tweetBtn}  d-none d-lg-block d-xl-block `} 
+            type="button"  className={`btn btn-light rounded-pill ${SidebarStyles.logout} `} 
               onClick={handleLogout}
             >
               Logout

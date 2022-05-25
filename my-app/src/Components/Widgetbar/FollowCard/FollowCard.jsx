@@ -17,7 +17,6 @@ import IconButton from '@mui/material/IconButton';
  * @param {boolean} verified boolean if a user is verified
  * @returns {Object}
  */
-
 function FollowCard({
     name= "Ahmed El Saka",
     tag= "@ElSAKA",
