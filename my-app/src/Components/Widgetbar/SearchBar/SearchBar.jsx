@@ -5,7 +5,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState } from "react";
 
 
-
+/**
+ * A SearchBar Component used to insert keywords or user names to be searched for 
+ * @returns {Object}
+ */
 function SearchBar() { 
   const [text,setText]= useState('');
   let textInput = React.createRef();

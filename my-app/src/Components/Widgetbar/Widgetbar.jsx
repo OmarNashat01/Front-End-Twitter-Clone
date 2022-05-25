@@ -5,7 +5,7 @@ import FollowCard from './FollowCard/FollowCard'
 /**
  * Widgetbar Component that contains FollowCards of people a User could follow and a Search bar placed on top for searching on users 
  * @param {boolean} showSearchbar boolean that specifies whether to show or hide the search bar on top 
- * @returns 
+ * @returns {Object}
  */
 function Widgetbar({showSearchbar=true}) {
   return (
