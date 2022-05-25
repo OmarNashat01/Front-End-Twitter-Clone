@@ -27,6 +27,8 @@ const OtherProfiles = () => {
     const [buttonPopup, setButtonPopup] = useState(false);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState();
+    const [loadingme, setMeLoading] = useState(true);
+    const [meData, setMeData] = useState();
     const [loadingg, setLoadingg] = useState(true);
     const [userDataa, setUserDataa] = useState();
     const [fullScreen, setfullScreen] = useState(false);
@@ -38,7 +40,7 @@ const OtherProfiles = () => {
     const [loadunf, setLoadingunf] = useState(true);
     const [unf, setUnf] = useState();
 
-    const [following, setfollowing] = useState(true);
+    const [following, setfollowing] = useState("");
     // const [fullScreenImg, setfullScreenImg] = useState("");
 
     function followTog() {
@@ -71,6 +73,7 @@ const OtherProfiles = () => {
         fullScreenTogp();
     }
 
+
     useEffect(() => {
         const getCurrentUser = async() => {
             const data = await getUser(
@@ -102,7 +105,7 @@ const OtherProfiles = () => {
 
         if (!loading) {
             const Obj = {
-                "source_user_id": userData.data.user._id,
+                "source_user_id": meData.data.user._id,
                 "target_user_id": window.location.pathname.split("/")[2].toString()
             };
 
@@ -120,12 +123,26 @@ const OtherProfiles = () => {
             deleteFollowing(
                 setLoadingunf,
                 setUnf,
-                `?source_user_id=${localStorage.getItem("user_id")}&target_user_id=${window.location.pathname.split("/")[2].toString()}`
+                `?source_user_id=${meData.data.user._id}&target_user_id=${window.location.pathname.split("/")[2].toString()}`
             );
         }
 
         return true;
     }
+    useEffect(() => {
+        const getCurrentMe = async() => {
+            const data = await getMe(setMeLoading, setMeData);
+        };
+        getCurrentMe();
+    }, []);
+    useEffect(() => {
+        function see() {
+            for (let i = 0; i < userData.data.user.followers.length; i++) {
+                console.log("koko" + userData.data.user.followers[i].user_id)
+                if (userData.data.user.followers[i].user_id === localStorage.getItem("user_id")) { setfollowing(true); break } else { setfollowing(false) }
+            }
+        }
+    }, []);
     return (!loading && ( <
                 Auxelary >
                 <
