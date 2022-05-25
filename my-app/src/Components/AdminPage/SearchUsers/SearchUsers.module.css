@@ -5,7 +5,7 @@
 margin-right: 100px !important; 
 }
 .usersTable{
-    display: flex;
+   
   
 }
 .searchDiv{
@@ -35,4 +35,11 @@ background-color:rgba(33, 85, 205,1);
 }
 .pageColor{
     background-color:rgba(242, 242, 242,1) ;
+}
+@media only screen and (min-width:0px)  and (max-width:767px){
+    .usersTable{
+   width:80vw;
+  
+    }
+
 }
