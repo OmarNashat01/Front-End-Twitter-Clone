@@ -113,7 +113,7 @@ color:rgba(23, 40, 69);
     }
    
 }
-@media only screen and (min-width: 576px)  and (max-width:768px){
+@media only screen and (min-width: 576px)  and (max-width:767px){
    
     .widthSmall{
     width:130vw !important;
@@ -152,14 +152,23 @@ color:rgba(23, 40, 69);
 }
 
 @media only screen and (width: 768px) {
-   
+    .chart{
+       
+        width:130vw;
+    }
     .widthSmall{
     width:50vw !important;
     }
- 
+/*  
     .borderStyle{
 margin-top: -100vh!important;
 margin-left: 12vw !important;
+    } */
+    .retweetCard{
+        margin-top: 2vw!important;
+        width:100vw !important;
+       margin-left:2vw!important;
+   
     }
    
 }
