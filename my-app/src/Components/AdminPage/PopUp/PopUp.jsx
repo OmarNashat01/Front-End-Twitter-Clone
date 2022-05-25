@@ -27,8 +27,11 @@ console.log(period);
 console.log("from pop");
 console.log(userId);
 let requestBody={"_id":userId,minutes:period};
-
-postBan(setLoading,setMessage,requestBody);
+if(period==="")
+{
+  alert("Choose ban period");
+}
+else{postBan(setLoading,setMessage,requestBody);}
 
 
 }

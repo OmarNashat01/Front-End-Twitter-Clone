@@ -6,6 +6,7 @@ import PostFull from "./Components/Post/PostFull";
 import NotificationCard from "./Components/NotificationCard/NotificationCard";
 import TestComponent from "./Components/Sidebar/TestComponent";
 import UserProfile from "./Components/UserProfile/UserProfile";
+import LikesPage from "./Components/UserProfile/LikesPage";
 import Login from "./Components/Login/login";
 import SignIn from "./Components/Login/signIn";
 import SignUp from "./Components/Login/signUp";
@@ -16,6 +17,7 @@ import FollowingPage from "./Components/UserProfile/UserInfo/FollowigPage";
 import AdminPage from "./Components/AdminPage/AdminPage";
 import SearchUsers from "./Components/AdminPage/SearchUsers/SearchUsers";
 import RetweetsStats from "./Components/AdminPage/RetweetsStats/RetweetsStats";
+import TweetsStats from "./Components/AdminPage/TweetsStats/TweetsStats";
 import BannedUsersTable from "./Components/AdminPage/BannedUsers/BannedUsers";
 import NewAccountsStats from "./Components/AdminPage/NewAccountsStats/NewAccountsStats";
 import OtherProfiles from "./Components/UserProfile/OtherProfiles";
@@ -270,6 +272,30 @@ function App() {
               )
             }
           />
+<Route
+            path="/profile/likes"
+            element={
+              isAuth === true ? (
+                <div className=" container-fluid">
+                  <div className="row">
+                    <div className="main-screen col col-md-2 col-lg-2 col-sm-1 col-xs-1 sticky-top">
+                      <Sidebar setDisabled={setDisabled} />
+                    </div>
+                    <div className="col col-md-6 col-lg-5 col-sm-9   col-xs-8">
+                      <div>
+                        <LikesPage />
+                        {/* TODO:for testing */}
+                        {/* <HomeFeed /> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
           <Route
             path="/profile/followers"
             element={
@@ -363,7 +389,7 @@ function App() {
             }
           />
 
-          <Route path="/adminhome" element={<AdminPage />} />
+          <Route path="/adminhome" element={<TweetsStats />} />
           <Route path="/adminsearch" element={<SearchUsers />} />
           <Route path="/retweets" element={<RetweetsStats />}></Route>
           <Route path="/likes" element={<LikesStats />}></Route>

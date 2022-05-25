@@ -2,7 +2,11 @@ import React from 'react'
 import SearchBar from './SearchBar/SearchBar'
 import WidgetbarCSS from './Widgetbar.module.css'
 import FollowCard from './FollowCard/FollowCard'
-
+/**
+ * Widgetbar Component that contains FollowCards of people a User could follow and a Search bar placed on top for searching on users 
+ * @param {boolean} showSearchbar boolean that specifies whether to show or hide the search bar on top 
+ * @returns {Object}
+ */
 function Widgetbar({showSearchbar=true}) {
   return (
     <div  className={WidgetbarCSS.widget__divider}>

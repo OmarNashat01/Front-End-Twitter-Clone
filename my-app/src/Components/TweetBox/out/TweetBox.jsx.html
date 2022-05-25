@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: TweetBox.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: TweetBox.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { useEffect, useState } from "react";
+import { Form ,useForm} from "usetheform";
+import {Preview } from "./Preview/Preview";
+import {PrivacyPicker} from "./PrivacyPicker/PrivacyPicker"
+// import JSONTree from "react-json-tree";
+import { WhatsHappeningBar } from "./WhatsHappeningBar/WhatsHappeningBar";
+import { UploadMediaBar } from "./UploadMediaBar/UploadMediaBar";
+import { Submit } from "./Submit/Submit";
+import { CharacterCounter } from "./CharacterCounter/CharacterCounter";
+import { Container,Row,Col } from 'react-bootstrap';
+import TweetboxCSS from "./TweetBox.module.css";
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import { getMe } from "../../Api/UserProfile";
+import {postTweet} from "../../Api/tweetbox";
+
+
+const MAX_CHARS_ALLOWED = 280;
+/**
+ * TweetBox Component where a User can insert a text tweet in addition to emojis or attach a photo with it to post it in his feed
+ * @param {boolean} disabled boolean wether to show the TweetBox or not
+ * @param {function} setIsOpen function to toggle setting isOpen or not 
+ * @param {boolean} isOpen boolean to check weather a Tweet Popup is opened or not
+ * @returns {Object}
+ */
+export default function TweetBox({disabled, setIsOpen,isOpen=false}) {
+
+  const [Me, setMe] = useState();
+  const [Tweet,setTweet] = useState();
+  const [loading , setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+  
+
+    
+
+  useEffect(()=>{
+    getMe(setLoading, setMe);
+  },[])
+
+  
+  async function OnSubmit(state) {
+    // make an API call
+    // await submitForm(state)
+    
+    const { editor: { plainText }, media,...resState} = state;
+    if(isOpen)
+    { 
+      setIsOpen(!isOpen)
+    }
+    console.log("onSubmit  => ", { ...resState,media, plainText });
+    if(!loading){
+
+      const formData = new FormData()
+      formData.append("text",plainText);
+
+      if(typeof media != 'undefined'){ 
+        for(let i=0 ; i&lt;media.length ; i++){
+              formData.append("img",media[i]);
+              console.log(media[i]);
+            }
+      }
+          postTweet(setLoading2,setTweet,formData);
+          for (var pair of formData.entries()) {
+            console.log(pair[0]+ ': ' + pair[1]); 
+        }
+    }
+        
+  
+    return true;
+  }
+
+  
+
+  
+
+
+  function navProfile() {
+    window.open(`/profile`, "_self");
+  }
+
+  return (
+    &lt;div className={TweetboxCSS.tweetbox} data-testid="tweetbox-1">
+      {!loading &amp;&amp; !disabled &amp;&amp;
+      &lt;Container>
+        &lt;Row>
+          &lt;Col xs={2}>
+            &lt;IconButton className={TweetboxCSS.imageInput} onClick={navProfile}>
+                &lt;Avatar  src={Me.data.prof_pic_url} style={{width: "45px",height: "45px"}}/>
+            &lt;/IconButton>
+          &lt;/Col>
+          &lt;Col xs={10} md={10}>
+            &lt;Form onSubmit={OnSubmit}  onReset={() => console.log("ON RESETTT")}  >
+              &lt;WhatsHappeningBar maxChars={MAX_CHARS_ALLOWED} />
+              &lt;Preview />
+              &lt;PrivacyPicker />
+              &lt;span className={TweetboxCSS.thematicBreak} />
+              &lt;div className={TweetboxCSS.actionBar}>
+                &lt;UploadMediaBar />
+                &lt;div className={TweetboxCSS.actionBar__Submit}>
+                  &lt;CharacterCounter maxChars={MAX_CHARS_ALLOWED} />
+                  &lt;span className={TweetboxCSS.thematicBreakVertical} />
+                  &lt;Submit OnSubmit={OnSubmit}/>
+                &lt;/div>
+              &lt;/div>
+
+              {/* form state viewer - debug only */}
+              {/* &lt;ReactJsonViewer /> */}
+            &lt;/Form>
+          &lt;/Col>
+        &lt;/Row>
+      &lt;/Container>}
+      &lt;/div>
+  );
+}
+
+
+
+// function ReactJsonViewer() {
+//   const { state } = useForm();
+//   return (
+//     &lt;div className="ReactJsonViewer">
+//       &lt;JSONTree data={state} />
+//     &lt;/div>
+//   );
+// }
+
+
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed May 25 2022 03:21:01 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

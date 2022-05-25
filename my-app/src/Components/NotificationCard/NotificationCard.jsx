@@ -4,23 +4,34 @@ import NotificationCardCSS from "./NotificationCard.module.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
-import RepeatIcon from "@mui/icons-material/Repeat";
+// import RepeatIcon from "@mui/icons-material/Repeat";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import BlockIcon from "@mui/icons-material/Block";
 
-function SearchCard(props) {
+/**
+ * Notification Cards that is used in the Notification Feed to display Users that replied/liked/retweeted
+ *
+ * @param {string} props.name  Name to be viewed of a user that replied/liked/retweeted in the notification card
+ * @param {string} props.tweet_text retweet/reply of the user to be viewed in the notification card
+ * @param {string} props.img image of the user that replied/liked/retweeted
+ * @param {string} props.user_id User ID that replied/liked/retweeted
+ * @param {string} props.action action written here to display the icon that best describe this action (action = "reply"/"liked"/"retweeted" )
+ * @returns {Object}
+ */
+function NotificationCard(props) {
   function navProfile() {
     window.open(`/user/${props.user_id}`, "_self");
   }
   return (
     <div className={NotificationCardCSS.searchcard}>
       <div className={NotificationCardCSS.tooltip}>
-        {props.action === "retweet" && (
-          <RepeatIcon className={NotificationCardCSS.retweet__icon} />
+        {props.action === "block_event" && (
+          <BlockIcon className={NotificationCardCSS.block__icon} />
         )}
-        {props.action === "like" && (
+        {props.action === "tweet_liked_event" && (
           <FavoriteIcon className={NotificationCardCSS.heart__icon} />
         )}
-        {props.action === "reply" && (
+        {props.action === "user_tweeted_event" && (
           <ChatBubbleOutlineIcon className={NotificationCardCSS.reply__icon} />
         )}
       </div>
@@ -32,9 +43,9 @@ function SearchCard(props) {
         </div>
         <div className={NotificationCardCSS.middlepart_1}>
           <p className={NotificationCardCSS.name}>{props.name} </p>
-          <p className={NotificationCardCSS.liketweet__text}>
+          {/* <p className={NotificationCardCSS.liketweet__text}>
             &nbsp;liked your Tweet
-          </p>
+          </p> */}
         </div>
         <p className={NotificationCardCSS.tweet__text}>{props.tweet_text}</p>
       </div>
@@ -42,4 +53,4 @@ function SearchCard(props) {
   );
 }
 
-export default SearchCard;
+export default NotificationCard;
