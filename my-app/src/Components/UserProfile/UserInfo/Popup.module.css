@@ -15,7 +15,7 @@
     padding: 32px;
     width: 70%;
     height: 75%;
-    z-index: 1;
+    z-index: 1000;
     left: 5%;
     max-width: 640px;
     background-color: white;

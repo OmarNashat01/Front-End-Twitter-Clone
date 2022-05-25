@@ -35,15 +35,7 @@ const [fullScreenImgp, setfullScreenImgp] = useState("");
 
 async function OnSubmit() {
     // make an API call
-    // await submitForm(state)
 
-    // const { editor: { plainText }, ...resState} = state;
-
-    // if(isOpen)
-    // { 
-    //   setIsOpen(!isOpen)
-    // }
-    // console.log("onSubmit  => ", { ...resState, plainText });
     if (!loading) {
         const Obj = {
             "source_user_id": userData.data.user._id,
