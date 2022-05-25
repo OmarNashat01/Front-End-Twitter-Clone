@@ -15,12 +15,12 @@ function NotificationFeed() {
   }, []);
 
   if (!loading) {
-    console.log(notificationData);
+    console.log(notificationData.data.notifications);
   }
 
   return (
     <div>
-      <NotificationCard
+      {/* <NotificationCard
         name="mark"
         tweet_text="this is a testweet"
         img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
@@ -40,16 +40,21 @@ function NotificationFeed() {
         img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
         user_id="1"
         action="tweet_liked_event"
-      />
+      /> */}
 
       {!loading &&
         notificationData.data.notifications.map((notification) => {
-          <NotificationCard
-            name="mark"
-            tweet_text={notification.message}
-            user_id={notification["user_id"]}
-            action={notification.type}
-          />;
+          return (
+            <div>
+              <NotificationCard
+                // name="mark"
+                tweet_text={notification.message}
+                // img="https://media.elcinema.com/uploads/_315x420_2268328b39ea214e6ed4d52eb7e1ef3a4d600c27dc40aecc08d937effc307389.jpg"
+                user_id={notification.user_id}
+                action={notification.type}
+              />
+            </div>
+          );
         })}
     </div>
   );

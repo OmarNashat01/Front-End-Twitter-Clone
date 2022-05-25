@@ -43,9 +43,9 @@ function NotificationCard(props) {
         </div>
         <div className={NotificationCardCSS.middlepart_1}>
           <p className={NotificationCardCSS.name}>{props.name} </p>
-          <p className={NotificationCardCSS.liketweet__text}>
+          {/* <p className={NotificationCardCSS.liketweet__text}>
             &nbsp;liked your Tweet
-          </p>
+          </p> */}
         </div>
         <p className={NotificationCardCSS.tweet__text}>{props.tweet_text}</p>
       </div>
