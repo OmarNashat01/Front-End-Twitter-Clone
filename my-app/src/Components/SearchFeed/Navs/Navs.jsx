@@ -4,7 +4,10 @@ import 'rsuite/dist/rsuite.min.css'
 import { useState } from "react";
 import "./Navs.css"
 
-
+/**
+ * Navs to be viewed in the Search Feed of people Searched for in the search input field
+ * @returns {Object}
+ */
 function Navs() {
 
  ////////////////////////////////////////////////////////////
